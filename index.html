@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Beehive — by The Good Project</title>
-    <meta name="description" content="Project Beehive builds disaster-ready community hubs: thrift and outdoor retail, training, emergency supplies, and local crisis command—so relief starts in the neighborhood.">
-    <meta property="og:title" content="Project Beehive — by The Good Project">
-    <meta property="og:description" content="Nonprofit humanitarian infrastructure: community preparedness hubs that serve daily and convert when disaster hits.">
+    <title>The Good Project — Beehive & partner initiatives</title>
+    <meta name="description" content="The Good Project spans multiple initiatives: Project Beehive (disaster-ready community hubs), hands-on founder partnerships, and capital modeling for qualified partners.">
+    <meta property="og:title" content="The Good Project — Beehive & partner initiatives">
+    <meta property="og:description" content="Humanitarian infrastructure, founder partnerships, and structured capital work—centered on Project Beehive community hubs.">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PCMWDK746H"></script>
     <script>
@@ -196,6 +196,7 @@ nav .nav-links a:hover {
     background: var(--bg2);
 }
 
+#projects,
 #mission,
 #problem,
 #model,
@@ -280,6 +281,49 @@ nav .nav-links a:hover {
     font-size: 15px;
     color: var(--muted);
     line-height: 1.55;
+}
+
+.card.project-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.card.project-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--heading);
+    text-transform: none;
+    letter-spacing: -0.01em;
+    margin: 6px 0 12px;
+}
+
+.project-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal-pitch);
+    margin: 0;
+}
+
+.project-link {
+    margin-top: auto;
+    padding-top: 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.project-link:hover {
+    color: var(--accent-hover);
+}
+
+.project-card--primary {
+    border-color: var(--divider-strong);
+    box-shadow: 0 8px 28px rgba(8, 112, 116, 0.08);
 }
 
 .portals {
@@ -410,12 +454,13 @@ footer .footer-quote {
     <a href="/" class="logo-link">
         <img src="./assets/logo-the-good-project.png" alt="The Good Project" class="logo">
         <span class="brand-text">
-            <span class="brand-kicker">Project Beehive</span>
-            <span class="brand-sub">by The Good Project</span>
+            <span class="brand-kicker">The Good Project</span>
+            <span class="brand-sub">Beehive &amp; other initiatives</span>
         </span>
     </a>
     <div class="nav-links">
-        <a href="#model">Model</a>
+        <a href="#projects">Projects</a>
+        <a href="#model">Beehive</a>
         <a href="investors.html">Supporters</a>
         <a href="approach.html">PORTALS</a>
         <a href="contact.html">Contact</a>
@@ -424,19 +469,47 @@ footer .footer-quote {
 
 <section class="hero">
     <div class="hero-inner">
-        <p class="eyebrow">Nonprofit humanitarian infrastructure</p>
+        <p class="eyebrow">The Good Project</p>
         <h1 class="title">Community hubs that serve every day—and stand ready when disaster hits.</h1>
-        <p class="subtitle">Project Beehive, by The Good Project</p>
-        <p class="lede">We build disaster-response community hubs called <strong>Beehives</strong>. Each one combines daily commercial activity with emergency preparedness: a thrift and outdoor gear store, a training center, and an emergency supply warehouse on ordinary days—and converts to shelter and local crisis command when the worst happens.</p>
-        <p class="lede">Our mission is to reduce human suffering through local, disaster-ready institutions and faster relief than traditional aid systems allow—starting in Tornado Alley, with a model designed to replicate.</p>
+        <p class="subtitle"><strong>Project Beehive</strong> is our flagship nonprofit build. We also partner with founders and teams on capital, go-to-market, and systems—several project lines, one standard for execution.</p>
+        <p class="lede">This page focuses on Beehive: disaster-response community hubs that combine daily commercial activity with emergency preparedness—a thrift and outdoor gear store, a training center, and an emergency supply warehouse on ordinary days, converting to shelter and local crisis command when the worst happens.</p>
+        <p class="lede">Our mission for Beehive is to reduce human suffering through local, disaster-ready institutions and faster relief than traditional aid systems allow—starting in Tornado Alley, with a model designed to replicate.</p>
+    </div>
+</section>
+
+<section id="projects" class="section alt">
+    <div class="container container--wide">
+        <p class="kicker">What we do</p>
+        <h2>Multiple projects, one house</h2>
+        <p class="prose">The Good Project is not a single program. Alongside <strong>Project Beehive</strong>, we take on partner work across philanthropy, operating companies, and (where appropriate) structured capital—always with clear lanes and accountable leadership.</p>
+        <div class="card-grid">
+            <article class="card project-card project-card--primary">
+                <p class="project-label">Nonprofit · Flagship</p>
+                <h3>Project Beehive</h3>
+                <p>Humanitarian infrastructure: community preparedness hubs with retail, training, stocked supplies, and crisis command—built to earn revenue and endowment yield, not to depend on perpetual disaster fundraising.</p>
+                <a class="project-link" href="#model">Read the Beehive model →</a>
+            </article>
+            <article class="card project-card">
+                <p class="project-label">Founder &amp; enterprise</p>
+                <h3>Operating partnerships</h3>
+                <p>Hands-on support for serious founders: capital formation, go-to-market, and practical tools when something important is missing in the stack. Engagements range from platform rebuilds to multi-market retail expansion.</p>
+                <a class="project-link" href="contact.html">Discuss a partnership →</a>
+            </article>
+            <article class="card project-card">
+                <p class="project-label">Capital structure</p>
+                <h3>Models &amp; diligence</h3>
+                <p>Illustrative fund economics, deployment mechanics, and LP-style summaries for qualified partners who need an operating case—not slide-deck hand-waving—for private credit and similar structures.</p>
+                <a class="project-link" href="model/index.html">View an interactive model →</a>
+            </article>
+        </div>
     </div>
 </section>
 
 <section id="mission" class="section">
     <div class="container">
-        <p class="kicker">Mission</p>
+        <p class="kicker">Mission · Project Beehive</p>
         <h2>Prepared neighbors. Faster response.</h2>
-        <p class="prose">We help the individuals and families that make up a community become more prepared and resilient when crises arrive—by putting infrastructure, training, and supplies in place before they are needed.</p>
+        <p class="prose">For Beehive, we help the individuals and families that make up a community become more prepared and resilient when crises arrive—by putting infrastructure, training, and supplies in place before they are needed.</p>
     </div>
 </section>
 
@@ -557,7 +630,7 @@ footer .footer-quote {
 
 <footer>
     <p class="footer-quote">Build the change you wish to see in the world.</p>
-    <p>© 2026 The Good Project · Project Beehive</p>
+    <p>© 2026 The Good Project · Beehive &amp; partner work</p>
 </footer>
 
 </body>
