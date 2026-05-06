@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Beehive — The Good Project</title>
-<meta name="description" content="We build Beehives — permanent community hubs stocked, trained, and ready before disaster strikes. Springfield, Missouri. Pre-launch.">
+<meta name="description" content="We build Beehives. Permanent community infrastructure, stocked and ready before disaster strikes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -17,7 +17,6 @@
   --lavender: #9490E8;
   --amber:    #D4880F;
   --amber-lt: #F5A820;
-  --text:     #13183A;
   --muted:    #5C5A72;
   --faint:    #A8A4BC;
   --rule:     #D6CFA8;
@@ -29,7 +28,6 @@
   --md:   26px;
   --lg:   42px;
   --xl:   68px;
-  --2xl: 110px;
 
   --sp1: 24px;
   --sp2: 40px;
@@ -41,79 +39,63 @@
 
 html{scroll-behavior:smooth;overflow-x:hidden;}
 body{
-  background:var(--cream);color:var(--text);
+  background:var(--cream);color:var(--navy);
   font-family:var(--font);font-size:var(--base);line-height:1.618;
   overflow-x:hidden;max-width:1440px;margin:0 auto;
 }
 
-/* ── NAV ── */
+/* NAV */
 nav{
   display:flex;align-items:center;justify-content:space-between;
   padding:16px var(--sp3);
   border-bottom:1px solid var(--rule);
   background:#fff;
 }
-.logo img{height:32px;width:auto;}
+.nav-logo img{height:28px;width:auto;}
 .nav-links{
   display:flex;gap:var(--sp2);list-style:none;
-  font-size:var(--sm);font-weight:600;
-  letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);
+  font-size:var(--xs);font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);
   cursor:pointer;
 }
 .nav-links li:hover{color:var(--navy);}
 .nav-cta{
   background:var(--amber);color:#fff;
   padding:10px var(--sp1);border-radius:100px;
-  font-family:var(--font);font-size:var(--sm);font-weight:700;
-  letter-spacing:0.06em;text-transform:uppercase;
+  font-family:var(--font);font-size:var(--xs);font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;
   border:none;cursor:pointer;
 }
 .nav-cta:hover{background:var(--amber-lt);}
 
-/* ── HERO ── */
+/* HERO */
 .hero{
   padding:var(--sp4) var(--sp3) var(--sp3);
-  display:grid;grid-template-columns:61.8fr 38.2fr;
-  gap:var(--sp3);align-items:end;
   background:var(--cream);
+  text-align:center;
 }
-.hero-kicker{
-  font-size:var(--sm);color:var(--lavender);
-  font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
-  margin-bottom:var(--sp1);
-}
+.hero-logo{margin-bottom:var(--sp3);}
+.hero-logo img{height:80px;width:auto;}
 .hero-display{
   font-size:var(--xl);font-weight:800;
-  line-height:1.0;letter-spacing:-0.02em;color:var(--navy);
-}
-.hero-right{padding-bottom:6px;}
-.hero-lead{
-  font-size:var(--md);font-weight:700;
-  color:var(--navy);line-height:1.3;margin-bottom:12px;
+  line-height:1.05;letter-spacing:-0.02em;
+  color:var(--navy);
+  margin-bottom:var(--sp1);
 }
 .hero-sub{
   font-size:var(--base);color:var(--muted);
-  line-height:1.7;margin-bottom:var(--sp2);
+  margin-bottom:var(--sp2);
 }
-.btn-primary{
+.hero-cta{
   background:var(--amber);color:#fff;
-  padding:14px var(--sp2);border-radius:100px;
-  font-family:var(--font);font-size:var(--sm);font-weight:700;
+  padding:18px 48px;border-radius:100px;
+  font-family:var(--font);font-size:var(--base);font-weight:700;
   letter-spacing:0.06em;text-transform:uppercase;
-  border:none;cursor:pointer;
+  border:none;cursor:pointer;display:inline-block;
 }
-.btn-primary:hover{background:var(--amber-lt);}
-.btn-ghost{
-  background:transparent;color:var(--navy);
-  border:1.5px solid var(--rule);
-  padding:14px var(--sp2);border-radius:100px;
-  font-family:var(--font);font-size:var(--sm);font-weight:600;
-  letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;
-}
-.btn-ghost:hover{border-color:var(--navy);}
-.btns{display:flex;gap:16px;flex-wrap:wrap;}
+.hero-cta:hover{background:var(--amber-lt);}
 
-/* ── PHOTO ── */
+/* PHOTO */
 .photo-wrap{position:relative;}
 .photo-wrap img{
   width:100%;height:480px;
@@ -127,16 +109,13 @@ nav{
 .photo-caption{position:absolute;bottom:0;left:0;right:0;padding:var(--sp3);}
 .photo-closing{
   font-size:var(--lg);font-weight:800;
-  line-height:1.1;color:#fff;
-  letter-spacing:-0.01em;
+  line-height:1.1;color:#fff;letter-spacing:-0.01em;
 }
 
-/* ── WHAT A BEEHIVE IS ── */
+/* WHAT A BEEHIVE IS */
 .what{
   padding:var(--sp4) var(--sp3);
   border-bottom:1px solid var(--rule);
-  display:grid;grid-template-columns:61.8fr 38.2fr;
-  gap:var(--sp3);align-items:start;
   background:var(--cream-lt);
 }
 .section-eye{
@@ -147,18 +126,32 @@ nav{
 .section-h{
   font-size:var(--lg);font-weight:800;
   line-height:1.1;letter-spacing:-0.01em;color:var(--navy);
-  margin-bottom:var(--sp1);
+  margin-bottom:var(--sp1);max-width:61.8%;
 }
-.section-p{font-size:var(--base);color:var(--muted);line-height:1.7;}
-.what-right{padding-top:60px;}
-.what-item{margin-bottom:var(--sp2);}
-.what-item-h{
-  font-size:var(--sm);font-weight:700;color:var(--navy);
-  letter-spacing:0.04em;text-transform:uppercase;margin-bottom:6px;
+.section-p{
+  font-size:var(--base);color:var(--muted);
+  line-height:1.7;max-width:50%;margin-bottom:var(--sp3);
 }
-.what-item-p{font-size:var(--sm);color:var(--muted);line-height:1.7;}
 
-/* ── WHAT IT CREATES (quote) ── */
+/* Image placeholder grid */
+.img-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:var(--sp1);
+}
+.img-ph{
+  background:var(--rule);border-radius:10px;
+  aspect-ratio:4/3;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:8px;
+}
+.img-ph-label{
+  font-size:var(--xs);font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);
+}
+.img-ph svg{opacity:0.35;}
+
+/* WHAT IT CREATES */
 .creates{
   padding:var(--sp4) var(--sp3);
   display:grid;grid-template-columns:61.8fr 38.2fr;
@@ -172,7 +165,6 @@ nav{
   border-left:3px solid var(--amber);
   padding-left:var(--sp2);
 }
-.creates-right{}
 .creates-eye{
   font-size:var(--xs);color:var(--amber);
   font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
@@ -180,7 +172,7 @@ nav{
 }
 .creates-p{font-size:var(--base);color:var(--faint);line-height:1.7;}
 
-/* ── WHERE WE BUILD ── */
+/* WHERE WE BUILD */
 .where{
   padding:var(--sp4) var(--sp3);
   border-bottom:1px solid var(--rule);
@@ -189,60 +181,52 @@ nav{
   background:var(--cream);
 }
 .where-p{font-size:var(--base);color:var(--muted);line-height:1.7;}
-.where-tag{
-  display:inline-block;
-  background:var(--lavender);color:#fff;
+
+/* WHERE image placeholder */
+.where-ph{
+  background:var(--rule);border-radius:10px;
+  aspect-ratio:3/2;
+  display:flex;align-items:center;justify-content:center;
+}
+.where-ph-label{
   font-size:var(--xs);font-weight:700;
-  letter-spacing:0.08em;text-transform:uppercase;
-  padding:4px 12px;border-radius:100px;
-  margin-top:var(--sp1);
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);
 }
 
-/* ── STATS ── */
-.stats{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  border-bottom:1px solid var(--rule);
-  background:var(--cream-lt);
-}
-.stat{padding:var(--sp2) var(--sp3);border-right:1px solid var(--rule);}
-.stat:last-child{border-right:none;}
-.stat-n{
-  font-size:var(--lg);font-weight:800;
-  letter-spacing:-0.02em;color:var(--navy);line-height:1;
-}
-.stat-n em{color:var(--lavender);font-style:normal;}
-.stat-l{
-  font-size:var(--xs);color:var(--muted);
-  font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
-  margin-top:8px;
-}
-.stat-d{font-size:var(--sm);color:var(--faint);margin-top:10px;line-height:1.6;}
-
-/* ── BUILD THE FIRST ONE ── */
-.build{
+/* DONATE CTA */
+.donate{
   padding:var(--sp4) var(--sp3);
   background:var(--navy);
   text-align:center;
 }
-.build-h{
+.donate-h{
   font-size:var(--xl);font-weight:800;
   line-height:1.0;letter-spacing:-0.02em;
   color:var(--cream);margin-bottom:var(--sp1);
 }
-.build-p{
+.donate-p{
   font-size:var(--base);color:var(--faint);
-  max-width:480px;margin:0 auto var(--sp2);line-height:1.7;
+  max-width:420px;margin:0 auto var(--sp2);line-height:1.7;
 }
 .btn-amber{
   background:var(--amber);color:#fff;
-  padding:14px var(--sp2);border-radius:100px;
-  font-family:var(--font);font-size:var(--sm);font-weight:700;
+  padding:16px var(--sp2);border-radius:100px;
+  font-family:var(--font);font-size:var(--base);font-weight:700;
   letter-spacing:0.06em;text-transform:uppercase;
   border:none;cursor:pointer;
 }
 .btn-amber:hover{background:var(--amber-lt);}
+.btn-ghost-light{
+  background:transparent;color:var(--cream);
+  border:1.5px solid rgba(237,232,196,0.3);
+  padding:16px var(--sp2);border-radius:100px;
+  font-family:var(--font);font-size:var(--base);font-weight:600;
+  letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;
+}
+.btn-ghost-light:hover{border-color:rgba(237,232,196,0.7);}
+.btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
 
-/* ── AFTER SPRINGFIELD ── */
+/* AFTER SPRINGFIELD */
 .after{
   padding:var(--sp4) var(--sp3);
   border-bottom:1px solid var(--rule);
@@ -257,10 +241,9 @@ nav{
 .cities span{color:var(--rule);}
 .after-p{font-size:var(--base);color:var(--muted);line-height:1.7;}
 
-/* ── READY TO GIVE ── */
+/* READY TO GIVE */
 .ready{
   padding:var(--sp4) var(--sp3);
-  border-top:1px solid rgba(237,232,196,0.12);
   background:var(--navy);
   display:grid;grid-template-columns:61.8fr 38.2fr;
   gap:var(--sp3);align-items:center;
@@ -276,34 +259,27 @@ nav{
   font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
   margin-top:var(--sp1);
 }
-.btn-ghost-light{
-  background:transparent;color:var(--cream);
-  border:1.5px solid rgba(237,232,196,0.3);
-  padding:14px var(--sp2);border-radius:100px;
-  font-family:var(--font);font-size:var(--sm);font-weight:600;
-  letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;
-}
-.btn-ghost-light:hover{border-color:rgba(237,232,196,0.7);}
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer{
   border-top:1px solid var(--rule);
   padding:var(--sp2) var(--sp3);
   display:flex;justify-content:space-between;align-items:center;
   background:var(--cream);
 }
-.footer-tgp img{height:26px;width:auto;opacity:0.7;}
+.footer-tgp img{height:24px;width:auto;opacity:0.65;}
 .footer-right{
   font-size:var(--xs);color:var(--faint);
   font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
 }
+
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="logo">
+  <div class="nav-logo">
     <img src="/assets/brand/beehive-logo-navy.png" alt="The Beehive">
   </div>
   <ul class="nav-links">
@@ -316,18 +292,12 @@ footer{
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-left">
-    <div class="hero-kicker">The Good Project · Springfield, Missouri</div>
-    <div class="hero-display">The help that's<br>already there.</div>
+  <div class="hero-logo">
+    <img src="/assets/brand/beehive-logo.png" alt="The Beehive">
   </div>
-  <div class="hero-right">
-    <p class="hero-lead">A permanent community hub — stocked, trained, and ready before disaster strikes.</p>
-    <p class="hero-sub">Springfield, Missouri. The place your neighborhood has never had.</p>
-    <div class="btns">
-      <button class="btn-primary">Donate Now</button>
-      <button class="btn-ghost">Learn More</button>
-    </div>
-  </div>
+  <div class="hero-display">The help that's already there.</div>
+  <p class="hero-sub">We build Beehives. Springfield, Missouri.</p>
+  <button class="hero-cta">Donate Now</button>
 </div>
 
 <!-- PHOTO -->
@@ -341,23 +311,22 @@ footer{
 
 <!-- WHAT A BEEHIVE IS -->
 <div class="what">
-  <div class="what-left">
-    <div class="section-eye">What a Beehive is</div>
-    <h2 class="section-h">The place your<br>neighborhood<br>has never had.</h2>
-    <p class="section-p">Buy a 72-hour kit, a water filter, a tent. Learn to can food, earn a first aid certification, find a tornado shelter. Everything your family needs — before you need it.</p>
-  </div>
-  <div class="what-right">
-    <div class="what-item">
-      <div class="what-item-h">The Store</div>
-      <div class="what-item-p">72-hour kits, water filters, tents, cots, tornado shelters — ready to buy today, before you need them.</div>
+  <div class="section-eye">What a Beehive is</div>
+  <h2 class="section-h">The place your neighborhood has never had.</h2>
+  <p class="section-p">Buy a 72-hour kit, a water filter, a tent. Learn to can food, earn a first aid certification. Everything your family needs, before you need it.</p>
+
+  <div class="img-grid">
+    <div class="img-ph">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="4" width="24" height="24" rx="3" stroke="#5C5A72" stroke-width="1.5"/><circle cx="11" cy="11" r="3" stroke="#5C5A72" stroke-width="1.5"/><path d="M4 22l7-7 5 5 3-3 9 9" stroke="#5C5A72" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <div class="img-ph-label">The Store</div>
     </div>
-    <div class="what-item">
-      <div class="what-item-h">Disaster School</div>
-      <div class="what-item-p">Canning classes, first aid certification, preparedness training. Your neighbors, ready before the sirens.</div>
+    <div class="img-ph">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="4" width="24" height="24" rx="3" stroke="#5C5A72" stroke-width="1.5"/><circle cx="11" cy="11" r="3" stroke="#5C5A72" stroke-width="1.5"/><path d="M4 22l7-7 5 5 3-3 9 9" stroke="#5C5A72" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <div class="img-ph-label">Disaster School</div>
     </div>
-    <div class="what-item">
-      <div class="what-item-h">Shelter & Command</div>
-      <div class="what-item-p">Safe beds, stocked kitchen, communications, and a coordination center — already in place when the grid goes dark.</div>
+    <div class="img-ph">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="4" width="24" height="24" rx="3" stroke="#5C5A72" stroke-width="1.5"/><circle cx="11" cy="11" r="3" stroke="#5C5A72" stroke-width="1.5"/><path d="M4 22l7-7 5 5 3-3 9 9" stroke="#5C5A72" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <div class="img-ph-label">Shelter &amp; Command</div>
     </div>
   </div>
 </div>
@@ -365,9 +334,9 @@ footer{
 <!-- WHAT IT CREATES -->
 <div class="creates">
   <div class="creates-quote">If you are prepared,<br>you shall not fear.</div>
-  <div class="creates-right">
+  <div>
     <div class="creates-eye">What it creates</div>
-    <p class="creates-p">A resilient community. A Beehive puts trained people, stocked supplies, and a permanent institution in place — before the crisis, not after it.</p>
+    <p class="creates-p">A resilient community. Trained people, stocked supplies, and a permanent institution in place before the crisis.</p>
   </div>
 </div>
 
@@ -376,18 +345,18 @@ footer{
   <div>
     <div class="section-eye">Where we build first</div>
     <h2 class="section-h">Springfield,<br>Missouri.</h2>
-    <p class="where-p">Tornado Alley. The right place to build community infrastructure that's ready before disaster strikes.</p>
+    <p class="where-p">Tornado Alley. The right place to build permanent community infrastructure.</p>
   </div>
-  <div class="where-p" style="color:var(--muted);font-size:var(--base);line-height:1.8;">
-    The first Beehive establishes the model, proves the revenue, and seeds the endowment. Springfield is where community infrastructure gets built first — and where the network begins.
+  <div class="where-ph">
+    <div class="where-ph-label">Photo coming</div>
   </div>
 </div>
 
-<!-- BUILD THE FIRST ONE -->
-<div class="build">
+<!-- DONATE -->
+<div class="donate">
   <div class="section-eye" style="color:var(--amber);margin-bottom:var(--sp1);">Build the first Beehive</div>
-  <h2 class="build-h">Your gift builds<br>the walls.</h2>
-  <p class="build-p">Stock the shelves, train the neighbors, open the doors. Every dollar goes directly to building permanent community infrastructure.</p>
+  <h2 class="donate-h">Your gift builds<br>the walls.</h2>
+  <p class="donate-p">Stock the shelves, train the neighbors, open the doors.</p>
   <button class="btn-amber">Donate Now</button>
 </div>
 
@@ -400,7 +369,7 @@ footer{
       Tulsa<span>.</span> Kansas City<span>.</span> St. Louis<span>.</span>
     </div>
   </div>
-  <p class="after-p">Each Beehive funds the next. The network grows city by city — permanent infrastructure, community by community.</p>
+  <p class="after-p">Each Beehive funds the next. The network grows city by city.</p>
 </div>
 
 <!-- READY TO GIVE -->
@@ -408,8 +377,8 @@ footer{
   <div>
     <div class="section-eye" style="color:var(--amber);">Ready to give?</div>
     <h2 class="ready-h">Wire, check, DAF,<br>or foundation grant.</h2>
-    <p class="ready-p">Email us and we'll send instructions within 24 hours. Tax documentation provided.</p>
-    <div class="btns">
+    <p class="ready-p">Email us and we will send instructions within 24 hours. Tax documentation provided.</p>
+    <div class="btns" style="justify-content:flex-start;">
       <button class="btn-amber">Donate Now</button>
       <button class="btn-ghost-light">Email the Team</button>
     </div>
@@ -421,7 +390,7 @@ footer{
 <!-- FOOTER -->
 <footer>
   <div class="footer-tgp"><img src="/assets/brand/tgp-logo.png" alt="The Good Project"></div>
-  <div class="footer-right">© 2026 · hello@thegoodproject.net</div>
+  <div class="footer-right">2026 · hello@thegoodproject.net</div>
 </footer>
 
 </body>
