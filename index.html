@@ -172,7 +172,7 @@ nav{
   will-change:transform;
 }
 .car-slide{min-width:calc(100% - 80px);flex-shrink:0;border-radius:14px;overflow:hidden;cursor:pointer;}
-.car-slide img{width:100%;height:44vh;object-fit:cover;display:block;pointer-events:none;user-select:none;}
+.car-slide img{width:100%;height:56vh;object-fit:cover;object-position:center top;display:block;pointer-events:none;user-select:none;}
 .car-info{padding:var(--sp2) var(--sp3) var(--sp1);}
 .car-info-title{
   font-size:clamp(22px,2.5vw,38px);font-weight:700;font-family:var(--font-hd);
@@ -644,10 +644,10 @@ footer{
 
 <script>
 const carSlides = [
-  {title:'The Store', desc:'Buy emergency supplies, water filters, first aid kits, and 72-hour preparedness packs — all vetted and ready.'},
-  {title:'Disaster School', desc:'Earn certifications in first aid, emergency response, and disaster preparedness — right in your neighborhood.'},
-  {title:'Shelter & Command', desc:'When the grid goes down, the Beehive stays up. A full disaster response command center, ready on day one.'},
-  {title:'The Relief Team', desc:'Trained local volunteers who know the neighborhood — and show up when it matters most.'},
+  {title:'The Store', desc:'Everything your family needs before disaster strikes — 72-hour kits, water filtration, first aid, emergency power, and gear. All vetted, all in stock, all in your neighborhood. No shipping. No waiting.'},
+  {title:'Disaster School', desc:'Hands-on training in first aid, emergency response, search and rescue, and shelter-in-place. Taught by certified instructors. Earn credentials that matter when systems go down.'},
+  {title:'Shelter & Command', desc:'The Beehive doubles as a full disaster response command center — staffed, stocked, and ready to activate within hours of a declared emergency. When the grid goes down, this is where the city reports.'},
+  {title:'The Relief Team', desc:'Neighborhood volunteers trained to a professional standard — first aid certified, situationally aware, and pre-positioned in the community. They don\'t fly in from somewhere else. They live here.'},
 ];
 let carIdx = 0;
 const carTotal = carSlides.length;
