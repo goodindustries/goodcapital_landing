@@ -42,8 +42,14 @@ html{scroll-behavior:smooth;overflow-x:hidden;}
 body{
   background:var(--cream);color:var(--navy);
   font-family:var(--font);font-size:var(--base);line-height:1.618;
-  overflow-x:hidden;max-width:1440px;margin:0 auto;
+  overflow-x:hidden;
 }
+
+/* CONTENT CAP — text/chrome sections get max-width; full-bleed sections (photo-wrap, prob-stats, creates, donate, ready) stay uncapped */
+nav,.hero,.what,.about-tgp,footer{
+  max-width:1440px;margin-left:auto;margin-right:auto;
+}
+.map-section{max-width:1440px;margin-left:auto;margin-right:auto;}
 
 /* NAV */
 nav{
@@ -114,11 +120,11 @@ nav{
   letter-spacing:0.01em;color:var(--amber);line-height:1;
 }
 .prob-l{
-  font-size:var(--xs);color:var(--cream);
+  font-size:var(--sm);color:var(--cream);
   font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
-  margin-top:8px;
+  margin-top:12px;
 }
-.prob-d{font-size:var(--sm);color:var(--faint);margin-top:10px;line-height:1.6;}
+.prob-d{font-size:var(--base);color:var(--faint);margin-top:10px;line-height:1.6;}
 
 /* WHAT A BEEHIVE IS */
 .what{
@@ -127,7 +133,7 @@ nav{
   background:var(--cream-lt);
 }
 .section-eye{
-  font-size:var(--xs);color:var(--amber);
+  font-size:var(--sm);color:var(--amber);
   font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
   margin-bottom:var(--sp1);
 }
@@ -136,7 +142,7 @@ nav{
   line-height:1.05;letter-spacing:0.01em;color:var(--navy);
   margin-bottom:var(--sp1);max-width:61.8%;
 }
-.section-p{font-size:var(--base);color:var(--muted);line-height:1.7;max-width:50%;margin-bottom:var(--sp3);}
+.section-p{font-size:var(--md);color:var(--muted);line-height:1.6;max-width:640px;margin-bottom:var(--sp3);}
 
 /* FULL-WIDTH FEATURE PHOTOS */
 .photo-feature{position:relative;cursor:pointer;display:block;overflow:hidden;}
