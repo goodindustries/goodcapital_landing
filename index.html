@@ -60,12 +60,12 @@ body{
 /* ── NAV ── */
 nav{
   display:flex;align-items:center;justify-content:space-between;
-  padding:20px var(--sp3);
+  padding:16px var(--sp3);
   border-bottom:1px solid var(--rule);
-  background:var(--cream);
+  background:#fff;
 }
 .logo{display:flex;align-items:center;}
-.logo img{height:36px;width:auto;}
+.logo img{height:32px;width:auto;}
 .nav-links{
   display:flex;gap:var(--sp2);list-style:none;
   font-size:var(--sm);font-weight:600;
@@ -329,13 +329,15 @@ footer{
   font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
   background:var(--cream);
 }
+.footer-tgp img{height:28px;width:auto;opacity:0.75;}
+.footer-right{text-align:right;}
 </style>
 </head>
 <body>
 
 <nav>
   <div class="logo">
-    <img src="/assets/brand/beehive-logo.png" alt="The Beehive">
+    <img src="/assets/brand/beehive-logo-navy.png" alt="The Beehive">
   </div>
   <ul class="nav-links">
     <li>What We Build</li>
@@ -474,8 +476,8 @@ footer{
 </div>
 
 <footer>
-  <div>Brought to you by The Good Project</div>
-  <div>© 2026 · hello@thegoodproject.net</div>
+  <div class="footer-tgp"><img src="/assets/brand/tgp-logo.png" alt="The Good Project"></div>
+  <div class="footer-right">© 2026 · hello@thegoodproject.net</div>
 </footer>
 
 </body>
