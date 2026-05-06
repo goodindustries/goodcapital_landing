@@ -1,6 +1,6 @@
 [build]
-  publish = "."
-  command = ""
+  publish = "public"
+  command = "rm -rf public && mkdir -p public/assets/icons && cp index.html public/ && cp _redirects public/ && cp assets/logo-the-good-project.png public/assets/ && cp assets/icons/* public/assets/icons/"
 
 [[headers]]
   for = "/*"
@@ -8,7 +8,7 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
 
-# Legacy cache rules (kept for paths that may exist in older deploys)
+# Legacy cache rules (paths not in index-only deploy; harmless if unused)
 [[headers]]
   for = "/entities/*"
   [headers.values]
