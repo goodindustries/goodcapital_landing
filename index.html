@@ -80,7 +80,7 @@ nav{
 
 /* HERO */
 .hero{
-  position:relative;min-height:92vh;
+  position:relative;min-height:60vh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;overflow:hidden;padding:var(--sp4) var(--sp3);
   max-width:none!important;
@@ -172,7 +172,7 @@ nav{
   will-change:transform;
 }
 .car-slide{min-width:calc(100% - 80px);flex-shrink:0;border-radius:14px;overflow:hidden;cursor:pointer;}
-.car-slide img{width:100%;height:60vh;object-fit:cover;display:block;pointer-events:none;user-select:none;}
+.car-slide img{width:100%;height:44vh;object-fit:cover;display:block;pointer-events:none;user-select:none;}
 .car-info{padding:var(--sp2) var(--sp3) var(--sp1);}
 .car-info-title{
   font-size:clamp(22px,2.5vw,38px);font-weight:700;font-family:var(--font-hd);
@@ -386,12 +386,6 @@ footer{
     <p class="hero-sub">We build disaster relief hubs in your city.</p>
     <button class="hero-cta" onclick="document.getElementById('give').scrollIntoView({behavior:'smooth'})">Donate Now</button>
   </div>
-</div>
-
-<!-- PHOTO -->
-<div class="photo-wrap">
-  <img src="/assets/photos/beehive-stockhouse.png" alt="The Beehive in operation">
-  <div class="photo-grad"></div>
 </div>
 
 <!-- PROBLEM STATS -->
