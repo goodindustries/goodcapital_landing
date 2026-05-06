@@ -377,7 +377,6 @@ footer{
 <div class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
-  <p class="hero-tag">Springfield, Missouri &middot; Pre-launch</p>
   <div class="hero-display">A prepared people make a prepared city.</div>
   <p class="hero-sub">We build disaster relief hubs in your city.</p>
   <button class="hero-cta" onclick="document.getElementById('give').scrollIntoView({behavior:'smooth'})">Donate Now</button>
@@ -429,6 +428,10 @@ footer{
       <div class="car-slide" onclick="openLb(2)">
         <img src="/assets/photos/beehive-command-center.png" alt="Shelter &amp; Command">
         <div class="car-cap">Shelter &amp; Command</div>
+      </div>
+      <div class="car-slide" onclick="openLb(3)">
+        <img src="/assets/photos/relief-team.png" alt="The Relief Team">
+        <div class="car-cap">The Relief Team</div>
       </div>
     </div>
     <button class="car-btn car-prev" onclick="carStep(-1)">&#8592;</button>
@@ -639,7 +642,7 @@ footer{
 <script>
 // Carousel
 let carIdx = 0;
-const carTotal = 3;
+const carTotal = 4;
 function carStep(dir){
   carIdx=(carIdx+dir+carTotal)%carTotal;
   renderCar();
@@ -658,7 +661,8 @@ renderCar();
 const lbImgs = [
   {src:'/assets/photos/beehive-the-store.png', alt:'The Store'},
   {src:'/assets/photos/beehive-shelter.png', alt:'Shelter'},
-  {src:'/assets/photos/beehive-command-center.png', alt:'Disaster Response Command Center'}
+  {src:'/assets/photos/beehive-command-center.png', alt:'Disaster Response Command Center'},
+  {src:'/assets/photos/relief-team.png', alt:'The Relief Team'}
 ];
 let lbIdx = 0;
 function openLb(i){
