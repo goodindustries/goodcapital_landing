@@ -1,6 +1,6 @@
 [build]
   publish = "public"
-  command = "rm -rf public && mkdir -p public/assets/icons && cp index.html public/ && cp _redirects public/ && cp assets/logo-the-good-project.png public/assets/ && cp assets/icons/* public/assets/icons/"
+  command = "rm -rf public && mkdir -p public/assets/icons public/assets/photos && cp index.html public/ && cp _redirects public/ && cp assets/logo-the-good-project.png public/assets/ && cp assets/icons/* public/assets/icons/ && cp assets/photos/* public/assets/photos/"
 
 [[headers]]
   for = "/*"
