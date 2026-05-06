@@ -101,7 +101,11 @@ nav{
   color:#fff;margin-bottom:var(--sp2);
   text-shadow:0 2px 40px rgba(10,12,28,0.5);
 }
-.hero-sub{font-size:var(--md);color:rgba(255,255,255,0.72);font-weight:400;margin-bottom:var(--sp2);}
+.hero-tag{
+  font-size:clamp(11px,1vw,14px);font-weight:700;letter-spacing:0.16em;text-transform:uppercase;
+  color:rgba(255,255,255,0.5);margin-bottom:var(--sp2);
+}
+.hero-sub{font-size:clamp(18px,2vw,28px);color:rgba(255,255,255,0.8);font-weight:400;margin-bottom:var(--sp2);}
 .hero-cta{
   background:var(--amber);color:#fff;
   padding:18px 52px;border-radius:100px;
@@ -373,8 +377,9 @@ footer{
 <div class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
+  <p class="hero-tag">Springfield, Missouri &middot; Pre-launch</p>
   <div class="hero-display">A prepared people make a prepared city.</div>
-  <p class="hero-sub">Springfield, Missouri. Pre-launch.</p>
+  <p class="hero-sub">We build disaster relief hubs in your city.</p>
   <button class="hero-cta" onclick="document.getElementById('give').scrollIntoView({behavior:'smooth'})">Donate Now</button>
 </div>
 
