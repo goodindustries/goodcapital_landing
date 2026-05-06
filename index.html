@@ -11,15 +11,15 @@
 
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --cream:    #EDE8C4;
-  --cream-lt: #F5F1DC;
+  --cream:    #FAF8F4;
+  --cream-lt: #F2F0EB;
   --navy:     #13183A;
   --lavender: #9490E8;
   --amber:    #D4880F;
   --amber-lt: #F5A820;
-  --muted:    #5C5A72;
-  --faint:    #A8A4BC;
-  --rule:     #D6CFA8;
+  --muted:    #6B6880;
+  --faint:    #9895AA;
+  --rule:     #E0DDD6;
 
 
   --xs:   10px;
@@ -51,7 +51,8 @@ nav{
   padding:16px var(--sp3);
   background:var(--cream);
 }
-.nav-logo img{height:44px;width:auto;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-wordmark{font-family:var(--font);font-size:18px;font-weight:700;color:var(--navy);letter-spacing:-0.01em;}
 .nav-links{
   display:flex;gap:var(--sp2);list-style:none;
   font-size:var(--sm);font-weight:700;
@@ -75,9 +76,9 @@ nav{
   text-align:center;
 }
 .hero-display{
-  font-size:var(--xl);font-weight:700;font-family:var(--font);
-  line-height:1.1;letter-spacing:-0.01em;
-  color:var(--navy);margin-bottom:var(--sp1);
+  font-size:clamp(56px,9vw,140px);font-weight:700;font-family:var(--font);
+  line-height:1.0;letter-spacing:-0.02em;
+  color:var(--navy);margin-bottom:var(--sp2);
 }
 .hero-sub{font-size:var(--md);color:var(--muted);font-weight:400;margin-bottom:var(--sp2);}
 .hero-cta{
@@ -104,12 +105,12 @@ nav{
   border-bottom:1px solid rgba(255,255,255,0.06);
 }
 .prob-stat{
-  padding:var(--sp2) var(--sp3);
+  padding:var(--sp3) var(--sp3);
   border-right:1px solid rgba(255,255,255,0.06);
 }
 .prob-stat:last-child{border-right:none;}
 .prob-n{
-  font-size:var(--xl);font-weight:800;font-family:var(--font-hd);
+  font-size:clamp(80px,8vw,120px);font-weight:800;font-family:var(--font-hd);
   letter-spacing:0.01em;color:var(--amber);line-height:1;
 }
 .prob-l{
@@ -136,15 +137,18 @@ nav{
   margin-bottom:var(--sp1);max-width:61.8%;
 }
 .section-p{font-size:var(--base);color:var(--muted);line-height:1.7;max-width:50%;margin-bottom:var(--sp3);}
-.img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp1);}
-.img-ph{
-  background:var(--rule);border-radius:10px;
-  aspect-ratio:4/3;overflow:hidden;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
-  cursor:pointer;position:relative;
+
+/* FULL-WIDTH FEATURE PHOTOS */
+.photo-feature{position:relative;cursor:pointer;display:block;overflow:hidden;}
+.photo-feature img{width:100%;height:auto;display:block;transition:transform 0.4s ease;}
+.photo-feature:hover img{transform:scale(1.015);}
+.photo-feature-cap{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:var(--sp3);
+  background:linear-gradient(to top,rgba(10,12,28,0.82) 0%,transparent 100%);
+  font-family:var(--font-hd);font-size:var(--md);font-weight:700;
+  color:#fff;letter-spacing:0.03em;
 }
-.img-ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s ease;}
-.img-ph:hover img{transform:scale(1.03);}
 
 /* LIGHTBOX */
 .lb{
@@ -200,12 +204,16 @@ nav{
   font-size:var(--lg);font-weight:700;font-family:var(--font-hd);
   line-height:1.05;letter-spacing:0.01em;
   color:var(--cream);
-  border-left:3px solid var(--amber);
+  border-left:6px solid var(--amber);
   padding-left:var(--sp2);
 }
 .creates-eye{font-size:var(--xs);color:var(--amber);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:var(--sp1);}
 .creates-p{font-size:var(--md);font-family:var(--font-hd);font-weight:700;color:var(--cream);line-height:1.2;}
-.creates-sub{font-size:var(--sm);color:rgba(168,164,188,0.6);margin-top:var(--sp1);font-style:italic;line-height:1.6;}
+.creates-sub{
+  font-size:clamp(24px,3vw,38px);font-family:var(--font-hd);font-weight:700;
+  color:var(--cream);opacity:0.8;
+  margin-top:var(--sp2);line-height:1.15;letter-spacing:0.01em;
+}
 
 /* NETWORK MAP */
 .map-section{
@@ -256,7 +264,6 @@ nav{
   padding:var(--sp4) var(--sp3);
   background:var(--navy);
   border-top:1px solid rgba(255,255,255,0.06);
-  max-width:680px;
 }
 .ready-h{font-size:var(--lg);font-weight:700;font-family:var(--font-hd);line-height:1.05;letter-spacing:0.01em;color:var(--cream);margin-bottom:var(--sp1);}
 .ready-p{font-size:var(--base);color:var(--faint);line-height:1.7;margin-bottom:var(--sp2);}
@@ -272,19 +279,13 @@ nav{
 
 /* FLOATING TGP LOGO */
 .tgp-float{
-  position:fixed;left:16px;top:50%;
-  transform:translateY(-50%);
+  position:fixed;left:24px;bottom:24px;
   z-index:200;text-decoration:none;
-  display:flex;align-items:center;
-  opacity:0.55;transition:opacity 0.2s;
+  opacity:0.5;transition:opacity 0.2s;
 }
 .tgp-float:hover{opacity:1;}
-.tgp-float img{
-  height:120px;width:auto;
-  transform:rotate(-90deg);
-  display:block;
-}
-@media(max-width:1100px){.tgp-float{display:none;}}
+.tgp-float img{height:26px;width:auto;display:block;}
+@media(max-width:900px){.tgp-float{display:none;}}
 
 /* FOOTER */
 footer{
@@ -311,7 +312,11 @@ footer{
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <img src="/assets/brand/beehive-logo-transparent.png" alt="The Beehive">
+    <svg width="20" height="23" viewBox="0 0 20 23" fill="none" aria-hidden="true">
+      <path d="M10 1L19 5.5V14.5L10 22L1 14.5V5.5L10 1Z" fill="#D4880F"/>
+      <path d="M10 6L14 8.5V13.5L10 17L6 13.5V8.5L10 6Z" fill="#FAF8F4" opacity="0.25"/>
+    </svg>
+    <span class="nav-wordmark">The Beehive</span>
   </div>
   <ul class="nav-links">
     <li onclick="document.getElementById('what').scrollIntoView({behavior:'smooth'})">What We Build</li>
@@ -358,17 +363,21 @@ footer{
   <div class="section-eye">What a Beehive is</div>
   <h2 class="section-h">The place your neighborhood has never had.</h2>
   <p class="section-p">Buy a 72-hour kit, a water filter, a tent. Learn to can food, earn a first aid certification. Everything your family needs. Before you need it.</p>
-  <div class="img-grid">
-    <div class="img-ph" onclick="openLb(0)">
-      <img src="/assets/photos/beehive-the-store.png" alt="The Store" style="object-position:center 20%;">
-    </div>
-    <div class="img-ph" onclick="openLb(1)">
-      <img src="/assets/photos/beehive-shelter.png" alt="Shelter" style="object-position:center 30%;">
-    </div>
-    <div class="img-ph" onclick="openLb(2)">
-      <img src="/assets/photos/beehive-command-center.png" alt="Disaster Response Command Center" style="object-position:center 25%;">
-    </div>
-  </div>
+</div>
+
+<div class="photo-feature" onclick="openLb(0)">
+  <img src="/assets/photos/beehive-the-store.png" alt="The Store">
+  <div class="photo-feature-cap">The Store</div>
+</div>
+
+<div class="photo-feature" onclick="openLb(1)">
+  <img src="/assets/photos/beehive-shelter.png" alt="Disaster School">
+  <div class="photo-feature-cap">Disaster School</div>
+</div>
+
+<div class="photo-feature" onclick="openLb(2)">
+  <img src="/assets/photos/beehive-command-center.png" alt="Shelter &amp; Command">
+  <div class="photo-feature-cap">Shelter &amp; Command</div>
 </div>
 
 <!-- WHAT IT CREATES -->
@@ -430,7 +439,7 @@ footer{
     <svg viewBox="0 0 800 520" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;border-radius:10px;">
 
       <!-- Background (surrounding states) -->
-      <rect width="800" height="520" fill="#EDE8C4"/>
+      <rect width="800" height="520" fill="#FAF8F4"/>
 
       <!-- State boundary guides (very subtle) -->
       <!-- Iowa/MO north border extended -->
@@ -457,7 +466,7 @@ footer{
         L 109,149
         L 109,106
         Z"
-        fill="#F5F1DC" stroke="#9490E8" stroke-width="1.5" stroke-linejoin="round"/>
+        fill="#F2F0EB" stroke="#9490E8" stroke-width="1.5" stroke-linejoin="round"/>
 
       <!-- Missouri River (KC to STL, west to east) -->
       <path d="M 109,130 Q 165,168 215,215 Q 340,252 435,253 Q 530,252 614,238"
