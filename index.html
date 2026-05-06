@@ -69,8 +69,8 @@
   --body:    'Inter', sans-serif;
 }
 
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:var(--base);line-height:1.618;overflow-x:hidden;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:var(--base);line-height:1.618;overflow-x:hidden;max-width:1440px;margin:0 auto;}
 
 /* ── NAV ── */
 nav{
@@ -105,7 +105,7 @@ nav{
 
 /* ── PHOTO ── */
 .photo-wrap{position:relative;margin-top:var(--sp2);}
-.photo-wrap img{width:100%;height:420px;object-fit:cover;object-position:center 38%;display:block;}
+.photo-wrap img{width:100%;height:420px;object-fit:cover;object-position:center 38%;display:block;filter:brightness(1.4) contrast(0.9);}
 .photo-grad{position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,rgba(22,21,19,0.15) 50%,transparent 100%);}
 .photo-caption{position:absolute;bottom:0;left:0;right:0;padding:var(--sp3);}
 .photo-eyebrow{font-size:var(--xs);color:var(--amber);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:var(--sp1);}
@@ -279,7 +279,7 @@ footer{
     <div class="stat-d">Flagship Beehive, endowment seeded, second node reserved.</div>
   </div>
   <div class="stat">
-    <div class="stat-n">~$4.5M</div>
+    <div class="stat-n">≈$4.5M</div>
     <div class="stat-l">Flagship Setup Cost</div>
     <div class="stat-d">Property, retrofit, and core infrastructure. Springfield region.</div>
   </div>
