@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Beehive — The Good Project</title>
-<meta name="description" content="We build Beehives. Permanent community infrastructure, stocked and ready before disaster strikes.">
+<meta name="description" content="A prepared people make a prepared city. The Beehive is a permanent community preparedness hub. Springfield, Missouri.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -20,7 +20,7 @@
   --muted:    #5C5A72;
   --faint:    #A8A4BC;
   --rule:     #D6CFA8;
-  --card:     #FFFDF4;
+
 
   --xs:   10px;
   --sm:   13px;
@@ -110,8 +110,8 @@ nav{
 }
 .prob-stat:last-child{border-right:none;}
 .prob-n{
-  font-size:var(--xl);font-weight:800;
-  letter-spacing:-0.02em;color:var(--amber);line-height:1;
+  font-size:var(--xl);font-weight:800;font-family:var(--font-hd);
+  letter-spacing:0.01em;color:var(--amber);line-height:1;
 }
 .prob-l{
   font-size:var(--xs);color:var(--cream);
@@ -146,8 +146,6 @@ nav{
 }
 .img-ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s ease;}
 .img-ph:hover img{transform:scale(1.03);}
-.img-ph-label{font-size:var(--xs);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
-.img-ph svg{opacity:0.35;}
 
 /* LIGHTBOX */
 .lb{
@@ -207,7 +205,7 @@ nav{
   padding-left:var(--sp2);
 }
 .creates-eye{font-size:var(--xs);color:var(--amber);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:var(--sp1);}
-.creates-p{font-size:var(--base);color:var(--faint);line-height:1.7;}
+.creates-p{font-size:var(--md);font-family:var(--font-hd);font-weight:700;color:var(--cream);line-height:1.2;}
 .creates-sub{font-size:var(--sm);color:rgba(168,164,188,0.6);margin-top:var(--sp1);font-style:italic;line-height:1.6;}
 
 /* NETWORK MAP */
@@ -222,7 +220,7 @@ nav{
   gap:var(--sp3);align-items:end;
 }
 .cities{
-  font-size:var(--md);font-weight:700;
+  font-size:var(--md);font-weight:700;font-family:var(--font-hd);
   color:var(--navy);line-height:1.5;
 }
 .cities span{color:var(--rule);}
@@ -259,8 +257,7 @@ nav{
   padding:var(--sp4) var(--sp3);
   background:var(--navy);
   border-top:1px solid rgba(255,255,255,0.06);
-  display:grid;grid-template-columns:61.8fr 38.2fr;
-  gap:var(--sp3);align-items:center;
+  max-width:680px;
 }
 .ready-h{font-size:var(--lg);font-weight:700;font-family:var(--font-hd);line-height:1.05;letter-spacing:0.01em;color:var(--cream);margin-bottom:var(--sp1);}
 .ready-p{font-size:var(--base);color:var(--faint);line-height:1.7;margin-bottom:var(--sp2);}
@@ -288,9 +285,9 @@ footer{
     <img src="/assets/brand/beehive-logo-transparent.png" alt="The Beehive">
   </div>
   <ul class="nav-links">
-    <li>What We Build</li>
-    <li>Where We Build</li>
-    <li>Contact</li>
+    <li onclick="document.getElementById('what').scrollIntoView({behavior:'smooth'})">What We Build</li>
+    <li onclick="document.getElementById('where').scrollIntoView({behavior:'smooth'})">Where We Build</li>
+    <li><a href="mailto:hello@thegoodproject.net" style="color:inherit;text-decoration:none;">Contact</a></li>
   </ul>
   <button class="nav-cta" onclick="document.getElementById('give').scrollIntoView({behavior:'smooth'})">Donate Now</button>
 </nav>
@@ -318,12 +315,12 @@ footer{
   <div class="prob-stat">
     <div class="prob-n">42%</div>
     <div class="prob-l">Have supplies for more than one week</div>
-    <div class="prob-d">Preparedness drops sharply with duration. Beyond a few days, most households have nothing in reserve.</div>
+    <div class="prob-d">Preparedness drops sharply with duration.</div>
   </div>
   <div class="prob-stat">
     <div class="prob-n">25%</div>
     <div class="prob-l">Complete power outage in the prior year</div>
-    <div class="prob-d">Electricity loss is common. Most households are not equipped to operate through it.</div>
+    <div class="prob-d">Electricity loss is common.</div>
   </div>
 </div>
 
@@ -334,7 +331,7 @@ footer{
 </div>
 
 <!-- WHAT A BEEHIVE IS -->
-<div class="what">
+<div class="what" id="what">
   <div class="section-eye">What a Beehive is</div>
   <h2 class="section-h">The place your neighborhood has never had.</h2>
   <p class="section-p">Buy a 72-hour kit, a water filter, a tent. Learn to can food, earn a first aid certification. Everything your family needs. Before you need it.</p>
@@ -362,7 +359,7 @@ footer{
 </div>
 
 <!-- NETWORK MAP -->
-<div class="map-section">
+<div class="map-section" id="where">
   <div class="map-header">
     <div>
       <div class="section-eye">Where we build</div>
@@ -444,15 +441,15 @@ footer{
             fill="none" stroke="#93b8cc" stroke-width="2" opacity="0.45" stroke-linecap="round"/>
 
       <!-- State labels -->
-      <text x="340" y="72" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" fill="#A8A4BC" letter-spacing="3" font-weight="700">IOWA</text>
-      <text x="340" y="498" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" fill="#A8A4BC" letter-spacing="3" font-weight="700">ARKANSAS</text>
-      <text x="748" y="260" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" fill="#A8A4BC" letter-spacing="2" font-weight="700">ILLINOIS</text>
-      <text x="60" y="300" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" fill="#A8A4BC" letter-spacing="2" font-weight="700" transform="rotate(-90,60,300)">KANSAS</text>
-      <text x="44" y="472" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" fill="#A8A4BC" letter-spacing="2" font-weight="700">OKLAHOMA</text>
-      <text x="134" y="72" text-anchor="middle" font-family="Nunito,sans-serif" font-size="9" fill="#A8A4BC" letter-spacing="2" font-weight="700">NEBRASKA</text>
+      <text x="340" y="72" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" fill="#A8A4BC" letter-spacing="3" font-weight="700">IOWA</text>
+      <text x="340" y="498" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" fill="#A8A4BC" letter-spacing="3" font-weight="700">ARKANSAS</text>
+      <text x="748" y="260" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#A8A4BC" letter-spacing="2" font-weight="700">ILLINOIS</text>
+      <text x="60" y="300" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#A8A4BC" letter-spacing="2" font-weight="700" transform="rotate(-90,60,300)">KANSAS</text>
+      <text x="44" y="472" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#A8A4BC" letter-spacing="2" font-weight="700">OKLAHOMA</text>
+      <text x="134" y="72" text-anchor="middle" font-family="Barlow,sans-serif" font-size="9" fill="#A8A4BC" letter-spacing="2" font-weight="700">NEBRASKA</text>
 
       <!-- MISSOURI label -->
-      <text x="400" y="265" text-anchor="middle" font-family="Nunito,sans-serif" font-size="13" fill="#9490E8" letter-spacing="4" font-weight="700" opacity="0.4">MISSOURI</text>
+      <text x="400" y="265" text-anchor="middle" font-family="Barlow,sans-serif" font-size="13" fill="#9490E8" letter-spacing="4" font-weight="700" opacity="0.4">MISSOURI</text>
 
       <!-- Network connections from Springfield -->
       <!-- To Joplin (solid, near) -->
@@ -471,50 +468,50 @@ footer{
       <!-- Future city dots (outline only) -->
       <!-- Kansas City -->
       <circle cx="215" cy="215" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
-      <text x="230" y="212" font-family="Nunito,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Kansas City</text>
+      <text x="230" y="212" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Kansas City</text>
 
       <!-- St. Louis -->
       <circle cx="604" cy="251" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
-      <text x="618" y="248" font-family="Nunito,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">St. Louis</text>
+      <text x="618" y="248" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">St. Louis</text>
 
       <!-- Joplin (near future) -->
       <circle cx="221" cy="365" r="7" fill="#13183A" opacity="0.55"/>
-      <text x="206" y="357" text-anchor="end" font-family="Nunito,sans-serif" font-size="11" fill="#5C5A72" font-weight="600">Joplin</text>
+      <text x="206" y="357" text-anchor="end" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" font-weight="600">Joplin</text>
 
       <!-- Branson (near future) -->
       <circle cx="336" cy="398" r="7" fill="#13183A" opacity="0.55"/>
-      <text x="351" y="412" font-family="Nunito,sans-serif" font-size="11" fill="#5C5A72" font-weight="600">Branson</text>
+      <text x="351" y="412" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" font-weight="600">Branson</text>
 
       <!-- Bentonville (AR - future) -->
       <circle cx="248" cy="418" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
-      <text x="263" y="432" font-family="Nunito,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Bentonville</text>
+      <text x="263" y="432" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Bentonville</text>
 
       <!-- Tulsa (OK - future) -->
       <circle cx="90" cy="434" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
-      <text x="105" y="448" font-family="Nunito,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Tulsa</text>
+      <text x="105" y="448" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Tulsa</text>
 
       <!-- Springfield HQ (amber, prominent) -->
       <circle cx="329" cy="356" r="20" fill="#D4880F" opacity="0.12"/>
       <circle cx="329" cy="356" r="11" fill="#D4880F"/>
       <circle cx="329" cy="356" r="16" fill="none" stroke="#D4880F" stroke-width="1" opacity="0.35"/>
-      <text x="329" y="334" text-anchor="middle" font-family="Nunito,sans-serif" font-size="12" font-weight="800" fill="#13183A">Springfield</text>
-      <text x="329" y="320" text-anchor="middle" font-family="Nunito,sans-serif" font-size="9" fill="#D4880F" font-weight="700" letter-spacing="2">NOW</text>
+      <text x="329" y="334" text-anchor="middle" font-family="Barlow,sans-serif" font-size="12" font-weight="800" fill="#13183A">Springfield</text>
+      <text x="329" y="320" text-anchor="middle" font-family="Barlow,sans-serif" font-size="9" fill="#D4880F" font-weight="700" letter-spacing="2">NOW</text>
 
       <!-- Legend -->
       <rect x="622" y="370" width="162" height="90" rx="6" fill="white" stroke="#D6CFA8" stroke-width="1" opacity="0.96"/>
       <circle cx="640" cy="391" r="7" fill="#D4880F"/>
-      <text x="654" y="395" font-family="Nunito,sans-serif" font-size="10" fill="#13183A" font-weight="700">Active now</text>
+      <text x="654" y="395" font-family="Barlow,sans-serif" font-size="10" fill="#13183A" font-weight="700">Active now</text>
       <circle cx="640" cy="414" r="7" fill="#13183A" opacity="0.55"/>
-      <text x="654" y="418" font-family="Nunito,sans-serif" font-size="10" fill="#5C5A72" font-weight="600">Near future</text>
+      <text x="654" y="418" font-family="Barlow,sans-serif" font-size="10" fill="#5C5A72" font-weight="600">Near future</text>
       <circle cx="640" cy="437" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.4"/>
-      <text x="654" y="441" font-family="Nunito,sans-serif" font-size="10" fill="#5C5A72" opacity="0.75" font-weight="600">Planned</text>
+      <text x="654" y="441" font-family="Barlow,sans-serif" font-size="10" fill="#5C5A72" opacity="0.75" font-weight="600">Planned</text>
     </svg>
   </div>
 </div>
 
 <!-- DONATE -->
 <div class="donate" id="give">
-  <div class="section-eye" style="color:var(--amber);margin-bottom:var(--sp1);">Build the first Beehive</div>
+  <div class="section-eye" style="margin-bottom:var(--sp1);">Build the first Beehive</div>
   <h2 class="donate-h">Your gift builds the walls, stocks the shelves, trains the neighbors, opens the doors.</h2>
   <button class="btn-amber">Donate Now</button>
 </div>
@@ -527,10 +524,9 @@ footer{
     <p class="ready-p">Email us. Instructions within 24 hours. Tax documentation included.</p>
     <div class="btns" style="justify-content:flex-start;">
       <button class="btn-amber">Donate Now</button>
-      <a href="mailto:hello@thegoodproject.net"><button class="btn-ghost-light">Email the Team</button></a>
+      <a href="mailto:hello@thegoodproject.net" class="btn-ghost-light">Email the Team</a>
     </div>
   </div>
-  <div></div>
 </div>
 
 <!-- LIGHTBOX -->
