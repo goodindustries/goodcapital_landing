@@ -54,28 +54,29 @@ nav{
 .nav-logo img{height:44px;width:auto;}
 .nav-links{
   display:flex;gap:var(--sp2);list-style:none;
-  font-size:var(--xs);font-weight:700;
-  letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);
+  font-size:var(--sm);font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);
   cursor:pointer;
 }
 .nav-links li:hover{color:var(--navy);}
 .nav-cta{
   background:var(--amber);color:#fff;
-  padding:10px var(--sp1);border-radius:100px;
-  font-family:var(--font);font-size:var(--xs);font-weight:700;
-  letter-spacing:0.08em;text-transform:uppercase;
+  padding:11px var(--sp1);border-radius:100px;
+  font-family:var(--font);font-size:var(--sm);font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
   border:none;cursor:pointer;
 }
 .nav-cta:hover{background:var(--amber-lt);}
 
 /* HERO */
 .hero{
-  padding:var(--sp4) var(--sp3) var(--sp3);
-  background:var(--cream);
+  padding:var(--sp3) var(--sp3) var(--sp4);
+  background:#fff;
   text-align:center;
+  border-bottom:1px solid var(--rule);
 }
-.hero-logo{margin-bottom:var(--sp3);}
-.hero-logo img{height:80px;width:auto;}
+.hero-logo{margin-bottom:var(--sp2);}
+.hero-logo img{height:160px;width:auto;}
 .hero-display{
   font-size:var(--xl);font-weight:800;
   line-height:1.05;letter-spacing:-0.02em;
@@ -83,12 +84,12 @@ nav{
   margin-bottom:var(--sp1);
 }
 .hero-sub{
-  font-size:var(--base);color:var(--muted);
+  font-size:var(--md);color:var(--muted);font-weight:400;
   margin-bottom:var(--sp2);
 }
 .hero-cta{
   background:var(--amber);color:#fff;
-  padding:18px 48px;border-radius:100px;
+  padding:18px 52px;border-radius:100px;
   font-family:var(--font);font-size:var(--base);font-weight:700;
   letter-spacing:0.06em;text-transform:uppercase;
   border:none;cursor:pointer;display:inline-block;
@@ -293,7 +294,7 @@ footer{
 <!-- HERO -->
 <div class="hero">
   <div class="hero-logo">
-    <img src="/assets/brand/beehive-logo.png" alt="The Beehive">
+    <img src="/assets/brand/beehive-logo-navy.png" alt="The Beehive">
   </div>
   <div class="hero-display">The help that's already there.</div>
   <p class="hero-sub">We build Beehives. Springfield, Missouri.</p>
