@@ -1,5 +1,5 @@
 [build]
-  publish = "library"
+  publish = "."
   command = ""
 
 [[headers]]
@@ -8,6 +8,7 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
 
+# Legacy cache rules (kept for paths that may exist in older deploys)
 [[headers]]
   for = "/entities/*"
   [headers.values]
@@ -22,8 +23,3 @@
   for = "/word_index/*"
   [headers.values]
     Cache-Control = "public, max-age=86400"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
