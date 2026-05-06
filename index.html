@@ -80,16 +80,28 @@ nav{
 
 /* HERO */
 .hero{
-  padding:var(--sp4) var(--sp3) calc(var(--sp4) * 1.5);
-  background:var(--cream);
-  text-align:center;
+  position:relative;min-height:92vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;padding:var(--sp4) var(--sp3);
+  max-width:none!important;
 }
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('/assets/photos/beehive-exterior-night.png') center 40% / cover no-repeat;
+  z-index:0;
+}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to bottom,rgba(10,12,28,0.4) 0%,rgba(10,12,28,0.65) 100%);
+}
+.hero>*{position:relative;z-index:2;}
 .hero-display{
   font-size:clamp(56px,9vw,140px);font-weight:700;font-family:var(--font);
   line-height:1.0;letter-spacing:-0.02em;
-  color:var(--navy);margin-bottom:var(--sp2);
+  color:#fff;margin-bottom:var(--sp2);
+  text-shadow:0 2px 40px rgba(10,12,28,0.5);
 }
-.hero-sub{font-size:var(--md);color:var(--muted);font-weight:400;margin-bottom:var(--sp2);}
+.hero-sub{font-size:var(--md);color:rgba(255,255,255,0.72);font-weight:400;margin-bottom:var(--sp2);}
 .hero-cta{
   background:var(--amber);color:#fff;
   padding:18px 52px;border-radius:100px;
@@ -123,11 +135,11 @@ nav{
   letter-spacing:0.01em;color:var(--amber);line-height:1;
 }
 .prob-l{
-  font-size:var(--sm);color:var(--cream);
+  font-size:clamp(11px,1vw,16px);color:var(--cream);
   font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
   margin-top:12px;
 }
-.prob-d{font-size:var(--base);color:var(--faint);margin-top:10px;line-height:1.6;}
+.prob-d{font-size:clamp(14px,1.2vw,18px);color:var(--faint);margin-top:10px;line-height:1.6;}
 
 /* WHAT A BEEHIVE IS */
 .what{
@@ -136,16 +148,16 @@ nav{
   background:var(--cream-lt);
 }
 .section-eye{
-  font-size:var(--sm);color:var(--amber);
+  font-size:clamp(11px,1.1vw,15px);color:var(--amber);
   font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
   margin-bottom:var(--sp1);
 }
 .section-h{
-  font-size:var(--lg);font-weight:700;font-family:var(--font-hd);
+  font-size:clamp(32px,4vw,64px);font-weight:700;font-family:var(--font-hd);
   line-height:1.05;letter-spacing:0.01em;color:var(--navy);
   margin-bottom:var(--sp1);max-width:61.8%;
 }
-.section-p{font-size:var(--md);color:var(--muted);line-height:1.6;max-width:640px;margin-bottom:var(--sp3);}
+.section-p{font-size:clamp(17px,1.6vw,26px);color:var(--muted);line-height:1.6;max-width:640px;margin-bottom:var(--sp3);}
 
 /* CAROUSEL */
 .carousel-wrap{
@@ -158,7 +170,7 @@ nav{
   transition:transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .car-slide{min-width:100%;position:relative;cursor:pointer;}
-.car-slide img{width:100%;height:auto;display:block;}
+.car-slide img{width:100%;height:60vh;object-fit:cover;display:block;}
 .car-cap{
   position:absolute;bottom:0;left:0;right:0;
   padding:var(--sp2) var(--sp3);
@@ -319,7 +331,7 @@ nav{
   opacity:0.7;transition:opacity 0.2s;
 }
 .tgp-float:hover{opacity:1;}
-.tgp-float img{width:10vw;min-width:80px;max-width:180px;height:auto;display:block;}
+.tgp-float img{width:10vw;min-width:100px;max-width:220px;height:auto;display:block;}
 @media(max-width:700px){.tgp-float{display:none;}}
 
 /* FOOTER */
@@ -341,7 +353,7 @@ footer{
 
 <!-- FLOATING TGP LOGO -->
 <a class="tgp-float" href="#about" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});return false;">
-  <img src="/assets/brand/tgp-logo-full.png" alt="The Good Project">
+  <img src="/assets/brand/tgp-logo-wordmark.png" alt="The Good Project">
 </a>
 
 <!-- NAV -->
@@ -359,6 +371,8 @@ footer{
 
 <!-- HERO -->
 <div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-display">A prepared people make a prepared city.</div>
   <p class="hero-sub">Springfield, Missouri. Pre-launch.</p>
   <button class="hero-cta" onclick="document.getElementById('give').scrollIntoView({behavior:'smooth'})">Donate Now</button>
