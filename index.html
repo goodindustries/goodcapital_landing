@@ -171,8 +171,8 @@ nav{
   transition:transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
   will-change:transform;
 }
-.car-slide{min-width:calc(100% - 80px);flex-shrink:0;border-radius:14px;overflow:hidden;cursor:pointer;}
-.car-slide img{width:100%;height:auto;max-height:480px;object-fit:contain;display:block;pointer-events:none;user-select:none;background:var(--navy);}
+.car-slide{min-width:65%;flex-shrink:0;border-radius:14px;overflow:hidden;cursor:pointer;}
+.car-slide img{width:100%;height:auto;display:block;pointer-events:none;user-select:none;}
 .car-info{padding:var(--sp2) var(--sp3) var(--sp1);}
 .car-info-title{
   font-size:clamp(22px,2.5vw,38px);font-weight:700;font-family:var(--font-hd);
@@ -658,7 +658,7 @@ function renderCar(){
   const track = document.getElementById('car-track');
   const slide = track.querySelector('.car-slide');
   const offset = slide.offsetWidth + 20;
-  track.style.transform = `translateX(${32 - carIdx * offset}px)`;
+  track.style.transform = `translateX(${-carIdx * offset}px)`;
   document.getElementById('car-title').textContent = carSlides[carIdx].title;
   document.getElementById('car-desc').textContent = carSlides[carIdx].desc;
   document.getElementById('car-dots').innerHTML = carSlides.map((_,i) =>
