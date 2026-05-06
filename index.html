@@ -3,60 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Beehive — The Good Project</title>
+<title>The Beehive — The Good Project</title>
 <meta name="description" content="The Good Project builds permanent community infrastructure — stocked, trained, and ready. The help that's already there.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/*
-  GOLDEN RATIO SYSTEM — φ = 1.618
-  Base unit: 16px
-
-  Type scale (× φ each step):
-  xs:   10px  (16 ÷ φ ÷ φ)
-  sm:   13px  (16 ÷ φ)
-  base: 16px
-  md:   26px  (16 × φ)
-  lg:   42px  (16 × φ²)
-  xl:   68px  (16 × φ³)
-  2xl: 110px  (16 × φ⁴)
-
-  Spacing scale (base 24px × φ):
-  sp1:  24px
-  sp2:  40px  (24 × φ)
-  sp3:  64px  (24 × φ²)
-  sp4: 104px  (24 × φ³)
-
-  Column ratio: 61.8% / 38.2%
-*/
 
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --φ: 1.618;
+  /* brand palette */
+  --cream:    #EDE8C4;
+  --cream-lt: #F5F1DC;
+  --navy:     #13183A;
+  --navy-mid: #1E2750;
+  --lavender: #9490E8;
+  --amber:    #D4880F;
+  --amber-lt: #F5A820;
 
-  /* backgrounds — warm dark, not black */
-  --bg:     #161513;
-  --surface:#1d1b19;
-  --card:   #211f1d;
-  --rule:   #252320;
+  /* functional */
+  --text:     #13183A;
+  --muted:    #5C5A72;
+  --faint:    #A8A4BC;
+  --rule:     #D6CFA8;
+  --card:     #FFFDF4;
 
-  /* type */
-  --text:   #ede9e3;
-  --muted:  #6b6760;
-  --faint:  #38352f;
-
-  /* accent */
-  --amber:  #c8882a;
-  --amber2: #e8c97a;
-
-  /* type scale */
-  --xs:   10px;
-  --sm:   13px;
-  --base: 16px;
-  --md:   26px;
-  --lg:   42px;
-  --xl:   68px;
-  --2xl: 110px;
+  /* type scale — φ = 1.618 */
+  --xs:    10px;
+  --sm:    13px;
+  --base:  16px;
+  --md:    26px;
+  --lg:    42px;
+  --xl:    68px;
+  --2xl:  110px;
 
   /* spacing */
   --sp1: 24px;
@@ -64,57 +42,116 @@
   --sp3: 64px;
   --sp4:104px;
 
-  /* fonts */
-  --display: 'Syne', sans-serif;
-  --body:    'Inter', sans-serif;
+  --font: 'Nunito', sans-serif;
 }
 
 html{scroll-behavior:smooth;overflow-x:hidden;}
-body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:var(--base);line-height:1.618;overflow-x:hidden;max-width:1440px;margin:0 auto;}
+body{
+  background:var(--cream);
+  color:var(--text);
+  font-family:var(--font);
+  font-size:var(--base);
+  line-height:1.618;
+  overflow-x:hidden;
+  max-width:1440px;
+  margin:0 auto;
+}
 
 /* ── NAV ── */
 nav{
   display:flex;align-items:center;justify-content:space-between;
-  padding:var(--sp1) var(--sp3);
+  padding:20px var(--sp3);
   border-bottom:1px solid var(--rule);
+  background:var(--cream);
 }
-.logo{display:flex;align-items:center;gap:10px;}
-.hex-mark{width:26px;height:26px;}
-.logo-text{font-family:var(--display);font-size:var(--sm);font-weight:700;letter-spacing:0.04em;}
-.nav-links{display:flex;gap:var(--sp2);list-style:none;font-size:var(--xs);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
-.nav-cta{background:var(--amber);color:#111;padding:10px var(--sp1);border-radius:100px;font-size:var(--xs);font-weight:500;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;}
+.logo{display:flex;align-items:center;}
+.logo img{height:36px;width:auto;}
+.nav-links{
+  display:flex;gap:var(--sp2);list-style:none;
+  font-size:var(--sm);font-weight:600;
+  letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);
+}
+.nav-links li{cursor:pointer;}
+.nav-links li:hover{color:var(--navy);}
+.nav-cta{
+  background:var(--amber);color:#fff;
+  padding:10px var(--sp1);border-radius:100px;
+  font-family:var(--font);font-size:var(--sm);font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  border:none;cursor:pointer;transition:background 0.2s;
+}
+.nav-cta:hover{background:var(--amber-lt);}
 
 /* ── HERO ── */
-.hero{padding:var(--sp3) var(--sp3) 0;}
-.hero-kicker{font-size:var(--xs);color:var(--amber);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:var(--sp1);}
+.hero{
+  padding:var(--sp4) var(--sp3) var(--sp3);
+  display:grid;
+  grid-template-columns:61.8fr 38.2fr;
+  gap:var(--sp3);
+  align-items:end;
+  background:var(--cream);
+}
+.hero-left{}
+.hero-kicker{
+  font-size:var(--sm);color:var(--lavender);
+  font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  margin-bottom:var(--sp1);
+}
 .hero-display{
-  font-family:var(--display);
-  font-size:var(--2xl);
+  font-size:var(--xl);
   font-weight:800;
-  line-height:0.88;
-  letter-spacing:-0.03em;
-  color:var(--text);
+  line-height:1.0;
+  letter-spacing:-0.02em;
+  color:var(--navy);
 }
+.hero-right{padding-bottom:8px;}
 .hero-sub{
-  font-size:var(--sm);
+  font-size:var(--md);
+  font-weight:400;
   color:var(--muted);
-  margin-top:var(--sp1);
-  max-width:320px; /* 38.2% of ~840px content */
-  line-height:1.618;
+  line-height:1.5;
+  margin-bottom:var(--sp2);
 }
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-primary{
+  background:var(--amber);color:#fff;
+  padding:14px var(--sp2);border-radius:100px;
+  font-family:var(--font);font-size:var(--sm);font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  border:none;cursor:pointer;transition:background 0.2s;
+}
+.btn-primary:hover{background:var(--amber-lt);}
+.btn-secondary{
+  background:transparent;color:var(--navy);
+  border:1.5px solid var(--rule);
+  padding:14px var(--sp2);border-radius:100px;
+  font-family:var(--font);font-size:var(--sm);font-weight:600;
+  letter-spacing:0.06em;text-transform:uppercase;
+  cursor:pointer;transition:border-color 0.2s;
+}
+.btn-secondary:hover{border-color:var(--navy);}
 
 /* ── PHOTO ── */
-.photo-wrap{position:relative;margin-top:var(--sp2);}
-.photo-wrap img{width:100%;height:420px;object-fit:cover;object-position:center 38%;display:block;filter:brightness(1.4) contrast(0.9);}
-.photo-grad{position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,rgba(22,21,19,0.15) 50%,transparent 100%);}
+.photo-wrap{position:relative;margin-top:0;}
+.photo-wrap img{
+  width:100%;height:480px;
+  object-fit:cover;object-position:center 38%;
+  display:block;
+  filter:brightness(1.15) contrast(0.95);
+}
+.photo-grad{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(19,24,58,0.7) 0%,rgba(19,24,58,0.1) 55%,transparent 100%);
+}
 .photo-caption{position:absolute;bottom:0;left:0;right:0;padding:var(--sp3);}
-.photo-eyebrow{font-size:var(--xs);color:var(--amber);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:var(--sp1);}
-/* caption width = 61.8% */
+.photo-eyebrow{
+  font-size:var(--xs);color:var(--amber-lt);
+  font-weight:700;letter-spacing:0.16em;text-transform:uppercase;
+  margin-bottom:12px;
+}
 .photo-statement{
-  font-family:var(--display);
-  font-size:var(--md);
-  font-weight:700;
-  line-height:1.25;
+  font-size:var(--md);font-weight:700;
+  line-height:1.3;color:#fff;
   max-width:61.8%;
 }
 
@@ -123,49 +160,78 @@ nav{
   padding:var(--sp4) var(--sp3);
   border-bottom:1px solid var(--rule);
   display:grid;
-  /* golden split */
   grid-template-columns:61.8fr 38.2fr;
   gap:var(--sp3);
   align-items:center;
+  background:var(--cream-lt);
 }
 .tagline-h{
-  font-family:var(--display);
-  font-size:var(--lg);
-  font-weight:800;
-  line-height:1.05;
-  letter-spacing:-0.02em;
+  font-size:var(--lg);font-weight:800;
+  line-height:1.1;letter-spacing:-0.01em;
+  color:var(--navy);
 }
-.tagline-p{font-size:var(--sm);color:var(--muted);line-height:1.618;}
+.tagline-h span{color:var(--lavender);}
+.tagline-p{font-size:var(--base);color:var(--muted);line-height:1.7;}
 
 /* ── STATS ── */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--rule);}
+.stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-bottom:1px solid var(--rule);
+  background:var(--cream);
+}
 .stat{padding:var(--sp2) var(--sp3);border-right:1px solid var(--rule);}
 .stat:last-child{border-right:none;}
-.stat-n{font-family:var(--display);font-size:var(--lg);font-weight:800;letter-spacing:-0.02em;color:var(--text);}
-.stat-l{font-size:var(--xs);color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:6px;}
-.stat-d{font-size:var(--xs);color:var(--faint);margin-top:var(--sp1);line-height:1.618;}
+.stat-n{
+  font-size:var(--lg);font-weight:800;
+  letter-spacing:-0.02em;color:var(--navy);
+  line-height:1;
+}
+.stat-n em{color:var(--lavender);font-style:normal;}
+.stat-l{
+  font-size:var(--xs);color:var(--muted);
+  font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  margin-top:8px;
+}
+.stat-d{font-size:var(--sm);color:var(--faint);margin-top:10px;line-height:1.6;}
 
-/* ── BUILD SECTION ── */
-.build{padding:var(--sp4) var(--sp3);}
-.section-eye{font-size:var(--xs);color:var(--amber);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:var(--sp1);}
-.section-h{
-  font-family:var(--display);
-  font-size:var(--lg);
-  font-weight:800;
-  line-height:1.05;
-  letter-spacing:-0.02em;
-  /* dominant column: 61.8% */
-  max-width:61.8%;
+/* ── BUILD ── */
+.build{padding:var(--sp4) var(--sp3);background:var(--cream-lt);}
+.section-eye{
+  font-size:var(--xs);color:var(--amber);
+  font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
   margin-bottom:var(--sp1);
 }
-.section-p{font-size:var(--sm);color:var(--muted);max-width:50%;line-height:1.618;margin-bottom:var(--sp2);}
-
-/* CARDS — golden proportions internally */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);margin-top:var(--sp3);}
-.card{background:var(--card);padding:var(--sp2);}
-.card-icon{margin-bottom:var(--sp2);}
-.card-h{font-family:var(--display);font-size:var(--base);font-weight:700;margin-bottom:10px;line-height:1.25;}
-.card-p{font-size:var(--xs);color:var(--muted);line-height:1.618;}
+.section-h{
+  font-size:var(--lg);font-weight:800;
+  line-height:1.1;letter-spacing:-0.01em;
+  color:var(--navy);
+  max-width:61.8%;margin-bottom:var(--sp1);
+}
+.section-p{
+  font-size:var(--base);color:var(--muted);
+  max-width:50%;line-height:1.7;margin-bottom:var(--sp3);
+}
+.cards{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:var(--sp1);
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--rule);
+  border-radius:12px;
+  padding:var(--sp2);
+}
+.card-icon{
+  width:44px;height:44px;
+  background:var(--cream);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:var(--sp1);
+}
+.card-h{
+  font-size:var(--base);font-weight:700;
+  color:var(--navy);margin-bottom:10px;
+}
+.card-p{font-size:var(--sm);color:var(--muted);line-height:1.7;}
 
 /* ── QUOTE ── */
 .quote-section{
@@ -175,74 +241,101 @@ nav{
   grid-template-columns:61.8fr 38.2fr;
   gap:var(--sp3);
   align-items:center;
+  background:var(--navy);
 }
 .quote-text{
-  font-family:var(--display);
-  font-size:var(--md);
-  font-weight:700;
-  line-height:1.25;
-  border-left:2px solid var(--amber);
+  font-size:var(--md);font-weight:700;
+  line-height:1.35;
+  color:var(--cream);
+  border-left:3px solid var(--amber);
   padding-left:var(--sp2);
 }
-.quote-right{font-size:var(--sm);color:var(--muted);line-height:1.618;}
-.quote-attr{font-size:var(--xs);color:var(--faint);letter-spacing:0.1em;text-transform:uppercase;margin-top:var(--sp1);}
+.quote-right{font-size:var(--base);color:var(--faint);line-height:1.7;}
+.quote-attr{
+  font-size:var(--xs);color:var(--amber);
+  font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  margin-top:var(--sp1);
+}
 
 /* ── NETWORK ── */
-.network{padding:var(--sp4) var(--sp3);border-top:1px solid var(--rule);}
-.nodes{display:flex;align-items:flex-start;gap:0;margin-top:var(--sp3);overflow-x:auto;padding-bottom:8px;}
+.network{padding:var(--sp4) var(--sp3);border-top:1px solid var(--rule);background:var(--cream);}
+.nodes{
+  display:flex;align-items:flex-start;
+  margin-top:var(--sp3);overflow-x:auto;padding-bottom:8px;
+}
 .node{display:flex;align-items:flex-start;}
-.node-inner{display:flex;flex-direction:column;align-items:center;min-width:80px;}
-.dot{width:10px;height:10px;border-radius:50%;background:var(--amber);}
-.dot.off{background:transparent;border:1px solid var(--faint);}
-.line{flex:1;height:1px;background:var(--rule);margin-top:4px;min-width:40px;}
-.city{font-size:var(--xs);letter-spacing:0.08em;text-transform:uppercase;color:var(--faint);margin-top:8px;text-align:center;}
+.node-inner{display:flex;flex-direction:column;align-items:center;min-width:90px;}
+.hex-dot{
+  width:14px;height:14px;
+  background:var(--amber);
+  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+}
+.hex-dot.off{background:var(--rule);}
+.line{flex:1;height:1px;background:var(--rule);margin-top:6px;min-width:40px;}
+.city{
+  font-size:var(--xs);font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--faint);margin-top:10px;text-align:center;
+}
 .city.on{color:var(--amber);}
-.now{font-size:9px;color:var(--amber);margin-top:4px;}
+.now{font-size:9px;color:var(--amber);font-weight:700;margin-top:4px;}
 
 /* ── DONATE ── */
-.donate{position:relative;overflow:hidden;}
-.donate img{width:100%;height:460px;object-fit:cover;object-position:center 40%;display:block;filter:brightness(0.5);}
-.donate-over{position:absolute;inset:0;background:rgba(22,21,19,0.65);}
-.donate-inner{
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  text-align:center;padding:var(--sp3);
+.donate{
+  background:var(--navy);
+  padding:var(--sp4) var(--sp3);
+  text-align:center;
 }
 .donate-h{
-  font-family:var(--display);
-  font-size:var(--xl);
-  font-weight:800;
-  line-height:0.95;
-  letter-spacing:-0.03em;
+  font-size:var(--xl);font-weight:800;
+  line-height:1.0;letter-spacing:-0.02em;
+  color:var(--cream);
   margin-bottom:var(--sp1);
 }
-.donate-p{font-size:var(--sm);color:var(--muted);max-width:400px;margin:0 auto var(--sp2);line-height:1.618;}
-.btns{display:flex;gap:var(--sp1);justify-content:center;}
-.btn-a{background:var(--amber);color:#111;padding:12px var(--sp2);border-radius:100px;font-size:var(--xs);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;border:none;cursor:pointer;}
-.btn-b{background:transparent;color:var(--text);border:1px solid var(--faint);padding:12px var(--sp2);border-radius:100px;font-size:var(--xs);letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;}
-.donate-fine{font-size:var(--xs);color:var(--faint);letter-spacing:0.08em;text-transform:uppercase;margin-top:var(--sp2);line-height:1.618;}
+.donate-p{
+  font-size:var(--base);color:var(--faint);
+  max-width:440px;margin:0 auto var(--sp2);line-height:1.7;
+}
+.btns{display:flex;gap:var(--sp1);justify-content:center;flex-wrap:wrap;}
+.btn-a{
+  background:var(--amber);color:#fff;
+  padding:14px var(--sp2);border-radius:100px;
+  font-family:var(--font);font-size:var(--sm);font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  border:none;cursor:pointer;transition:background 0.2s;
+}
+.btn-a:hover{background:var(--amber-lt);}
+.btn-b{
+  background:transparent;color:var(--cream);
+  border:1.5px solid rgba(237,232,196,0.25);
+  padding:14px var(--sp2);border-radius:100px;
+  font-family:var(--font);font-size:var(--sm);font-weight:600;
+  letter-spacing:0.06em;text-transform:uppercase;
+  cursor:pointer;transition:border-color 0.2s;
+}
+.btn-b:hover{border-color:rgba(237,232,196,0.6);}
+.donate-fine{
+  font-size:var(--xs);color:rgba(237,232,196,0.35);
+  font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  margin-top:var(--sp2);
+}
 
 /* ── FOOTER ── */
 footer{
   border-top:1px solid var(--rule);
   padding:var(--sp2) var(--sp3);
   display:flex;justify-content:space-between;align-items:center;
-  font-size:var(--xs);color:var(--faint);letter-spacing:0.08em;text-transform:uppercase;
+  font-size:var(--xs);color:var(--faint);
+  font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  background:var(--cream);
 }
-.tgp{font-family:var(--display);font-size:var(--xs);font-weight:700;color:var(--faint);}
 </style>
 </head>
 <body>
 
 <nav>
   <div class="logo">
-    <svg class="hex-mark" viewBox="0 0 26 26" fill="none">
-      <polygon points="13,2 23,7.5 23,18.5 13,24 3,18.5 3,7.5" stroke="#c8882a" stroke-width="1.2" fill="none"/>
-      <polygon points="13,7 18,9.8 18,16.2 13,19 8,16.2 8,9.8" fill="#c8882a" opacity="0.12"/>
-      <circle cx="13" cy="13" r="2" fill="#c8882a"/>
-    </svg>
-    <span class="logo-text">Beehive</span>
+    <img src="/assets/brand/beehive-logo.png" alt="The Beehive">
   </div>
   <ul class="nav-links">
     <li>What We Build</li>
@@ -253,13 +346,21 @@ footer{
 </nav>
 
 <div class="hero">
-  <div class="hero-kicker">Project Beehive · Springfield, Missouri · Pre-launch</div>
-  <div class="hero-display">Beehive</div>
-  <p class="hero-sub">The place your neighborhood has never had — until now.</p>
+  <div class="hero-left">
+    <div class="hero-kicker">Project Beehive · Springfield, Missouri · Pre-launch</div>
+    <div class="hero-display">The Beehive</div>
+  </div>
+  <div class="hero-right">
+    <p class="hero-sub">The place your neighborhood has never had — until now.</p>
+    <div class="hero-btns">
+      <button class="btn-primary">Donate Now</button>
+      <button class="btn-secondary">Learn More</button>
+    </div>
+  </div>
 </div>
 
 <div class="photo-wrap">
-  <img src="/assets/photos/beehive-exterior.png" alt="The Beehive exterior during active disaster response">
+  <img src="/assets/photos/beehive-exterior.png" alt="The Beehive facility during active disaster response">
   <div class="photo-grad"></div>
   <div class="photo-caption">
     <div class="photo-eyebrow">About Beehive</div>
@@ -268,23 +369,23 @@ footer{
 </div>
 
 <div class="tagline">
-  <h2 class="tagline-h">The help that's<br>already there.</h2>
+  <h2 class="tagline-h">The help that's<br><span>already there.</span></h2>
   <p class="tagline-p">We build community hubs that serve your neighborhood every day — and become shelter, supply chain, and crisis command the night everything else goes dark.</p>
 </div>
 
 <div class="stats">
   <div class="stat">
-    <div class="stat-n">$20M</div>
+    <div class="stat-n">$20<em>M</em></div>
     <div class="stat-l">Fundraising Vision</div>
     <div class="stat-d">Flagship Beehive, endowment seeded, second node reserved.</div>
   </div>
   <div class="stat">
-    <div class="stat-n">≈$4.5M</div>
+    <div class="stat-n">≈$4.5<em>M</em></div>
     <div class="stat-l">Flagship Setup Cost</div>
     <div class="stat-d">Property, retrofit, and core infrastructure. Springfield region.</div>
   </div>
   <div class="stat">
-    <div class="stat-n">12–18mo</div>
+    <div class="stat-n">12–18<em>mo</em></div>
     <div class="stat-l">To First Open Beehive</div>
     <div class="stat-d">From capital secured to keys — stocked, staffed, operational.</div>
   </div>
@@ -298,9 +399,9 @@ footer{
   <div class="cards">
     <div class="card">
       <div class="card-icon">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-          <path d="M20 4L36 13v14L20 36 4 27V13L20 4z" stroke="#c8882a" stroke-width="1.2"/>
-          <circle cx="20" cy="20" r="4" stroke="#c8882a" stroke-width="1.2"/>
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M11 2L19 6.5v9L11 20 3 15.5v-9L11 2z" stroke="#D4880F" stroke-width="1.5" fill="none"/>
+          <circle cx="11" cy="11" r="2.5" fill="#D4880F"/>
         </svg>
       </div>
       <div class="card-h">The Store</div>
@@ -308,13 +409,13 @@ footer{
     </div>
     <div class="card">
       <div class="card-icon">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-          <rect x="6" y="12" width="28" height="18" rx="1.5" stroke="#c8882a" stroke-width="1.2"/>
-          <path d="M6 18h28" stroke="#c8882a" stroke-width="1.2"/>
-          <circle cx="13" cy="25" r="2" fill="#c8882a"/>
-          <circle cx="20" cy="25" r="2" fill="#c8882a"/>
-          <circle cx="27" cy="25" r="2" fill="#c8882a"/>
-          <path d="M14 12V8M26 12V8" stroke="#c8882a" stroke-width="1.2"/>
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <rect x="3" y="7" width="16" height="11" rx="1" stroke="#D4880F" stroke-width="1.5"/>
+          <path d="M3 10h16" stroke="#D4880F" stroke-width="1.5"/>
+          <circle cx="8" cy="14" r="1.2" fill="#D4880F"/>
+          <circle cx="11" cy="14" r="1.2" fill="#D4880F"/>
+          <circle cx="14" cy="14" r="1.2" fill="#D4880F"/>
+          <path d="M8 7V4.5M14 7V4.5" stroke="#D4880F" stroke-width="1.5"/>
         </svg>
       </div>
       <div class="card-h">Disaster School</div>
@@ -322,9 +423,9 @@ footer{
     </div>
     <div class="card">
       <div class="card-icon">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-          <path d="M20 6L34 14v12l-14 8L6 26V14L20 6z" stroke="#c8882a" stroke-width="1.2" fill="none"/>
-          <path d="M20 6v22M6 14l14 8 14-8" stroke="#c8882a" stroke-width="1.2"/>
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M11 3L19 7.5v7L11 19 3 14.5v-7L11 3z" stroke="#D4880F" stroke-width="1.5" fill="none"/>
+          <path d="M11 3v16M3 7.5l8 4.5 8-4.5" stroke="#D4880F" stroke-width="1.5"/>
         </svg>
       </div>
       <div class="card-h">Shelter & Command</div>
@@ -347,37 +448,33 @@ footer{
   <div class="nodes">
     <div class="node">
       <div class="node-inner">
-        <div class="dot"></div>
+        <div class="hex-dot"></div>
         <div class="city on">Springfield</div>
         <div class="now">Now</div>
       </div>
       <div class="line"></div>
     </div>
-    <div class="node"><div class="node-inner"><div class="dot off"></div><div class="city">Joplin</div></div><div class="line"></div></div>
-    <div class="node"><div class="node-inner"><div class="dot off"></div><div class="city">Branson</div></div><div class="line"></div></div>
-    <div class="node"><div class="node-inner"><div class="dot off"></div><div class="city">Bentonville</div></div><div class="line"></div></div>
-    <div class="node"><div class="node-inner"><div class="dot off"></div><div class="city">Tulsa</div></div><div class="line"></div></div>
-    <div class="node"><div class="node-inner"><div class="dot off"></div><div class="city">Kansas City</div></div><div class="line"></div></div>
-    <div class="node"><div class="node-inner"><div class="dot off"></div><div class="city">St. Louis</div></div></div>
+    <div class="node"><div class="node-inner"><div class="hex-dot off"></div><div class="city">Joplin</div></div><div class="line"></div></div>
+    <div class="node"><div class="node-inner"><div class="hex-dot off"></div><div class="city">Branson</div></div><div class="line"></div></div>
+    <div class="node"><div class="node-inner"><div class="hex-dot off"></div><div class="city">Bentonville</div></div><div class="line"></div></div>
+    <div class="node"><div class="node-inner"><div class="hex-dot off"></div><div class="city">Tulsa</div></div><div class="line"></div></div>
+    <div class="node"><div class="node-inner"><div class="hex-dot off"></div><div class="city">Kansas City</div></div><div class="line"></div></div>
+    <div class="node"><div class="node-inner"><div class="hex-dot off"></div><div class="city">St. Louis</div></div></div>
   </div>
 </div>
 
 <div class="donate">
-  <img src="/assets/photos/beehive-exterior.png" alt="">
-  <div class="donate-over"></div>
-  <div class="donate-inner">
-    <h2 class="donate-h">No Beehive<br>exists yet.</h2>
-    <p class="donate-p">Your gift builds the walls, stocks the shelves, and trains the neighbors. Wire, check, DAF, or foundation grant — instructions within 24 hours.</p>
-    <div class="btns">
-      <button class="btn-a">Donate Now</button>
-      <button class="btn-b">Email the Team</button>
-    </div>
-    <div class="donate-fine">Wire · Check · DAF · Foundation Grant · Tax documentation provided</div>
+  <h2 class="donate-h">No Beehive<br>exists yet.</h2>
+  <p class="donate-p">Your gift builds the walls, stocks the shelves, and trains the neighbors. Wire, check, DAF, or foundation grant — instructions within 24 hours.</p>
+  <div class="btns">
+    <button class="btn-a">Donate Now</button>
+    <button class="btn-b">Email the Team</button>
   </div>
+  <div class="donate-fine">Wire · Check · DAF · Foundation Grant · Tax documentation provided</div>
 </div>
 
 <footer>
-  <div class="tgp">Brought to you by The Good Project</div>
+  <div>Brought to you by The Good Project</div>
   <div>© 2026 · hello@thegoodproject.net</div>
 </footer>
 
