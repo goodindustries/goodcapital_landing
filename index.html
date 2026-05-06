@@ -3,11 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BEEHIVE · The Good Project</title>
+<meta name="theme-color" content="#111110">
+<title>Beehive · The Good Project</title>
 <meta name="description" content="Beehive: permanent community infrastructure in Springfield and across the region — stocked, trained, and ready before disaster strikes.">
+<meta property="og:title" content="Beehive · The Good Project">
+<meta property="og:description" content="Permanent community infrastructure — stocked, trained, and ready before disaster strikes.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon-16x16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PCMWDK746H"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -15,223 +23,319 @@
   gtag('js', new Date());
   gtag('config', 'G-PCMWDK746H');
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+:root{
+  --bg:#111110;
+  --bg-elev:rgba(17,17,16,.94);
+  --text:#f0ede8;
+  --muted:#7a7875;
+  --muted-soft:#5a5855;
+  --line:#1e1d1b;
+  --line-soft:#2a2927;
+  --gold:#d4922a;
+  --gold-soft:rgba(212,146,42,.22);
+  --space-nav:4.25rem;
+  --ease: cubic-bezier(.25,.1,.25,1);
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
+}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:#111110;color:#f0ede8;font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction:column;}
+body{
+  background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;
+  font-weight:400;min-height:100vh;display:flex;flex-direction:column;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+img{max-width:100%;height:auto;vertical-align:middle;}
+a{color:inherit;}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+.skip{
+  position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+}
+.skip:focus{left:1rem;top:1rem;width:auto;height:auto;padding:.6rem 1rem;background:var(--bg);border:1px solid var(--line);z-index:200;}
 
-nav, #build, #where, #give { scroll-margin-top: 1rem; }
+nav, #build, #where, #give{scroll-margin-top:var(--space-nav);}
 
-nav{padding:1.75rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;position:sticky;top:0;z-index:100;background:rgba(17,17,16,0.92);backdrop-filter:blur(10px);border-bottom:1px solid #1e1d1b;}
-.logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none;color:inherit;}
+.wrap{max-width:72rem;margin:0 auto;padding-left:clamp(1.25rem,4vw,2.5rem);padding-right:clamp(1.25rem,4vw,2.5rem);}
+
+/* NAV */
+nav{
+  padding:1.25rem 0;position:sticky;top:0;z-index:100;
+  background:var(--bg-elev);backdrop-filter:saturate(1.2) blur(12px);-webkit-backdrop-filter:saturate(1.2) blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem 1.5rem;}
+
+.logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:inherit;transition:opacity .2s var(--ease);}
+.logo:hover{opacity:.92;}
+.logo .hex{color:var(--gold);}
 .hex{width:32px;height:32px;flex-shrink:0;}
-.logo-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.01em;}
+.logo-name{font-family:Syne,sans-serif;font-size:1rem;font-weight:700;letter-spacing:.02em;line-height:1;}
 
-.nav-links{display:flex;flex-wrap:wrap;gap:1rem 2rem;list-style:none;font-size:0.8rem;color:#5a5855;letter-spacing:0.04em;}
-.nav-links a{color:#5a5855;text-decoration:none;}
-.nav-links a:hover{color:#d4922a;}
-.nav-pill{background:#d4922a;color:#111;padding:0.5rem 1.3rem;border-radius:100px;font-size:0.78rem;font-weight:500;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;}
-.nav-pill:hover{filter:brightness(1.06);}
+.nav-links{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem 1.75rem;list-style:none;font-size:.8125rem;color:var(--muted-soft);letter-spacing:.06em;text-transform:uppercase;}
+.nav-links a{
+  color:var(--muted-soft);text-decoration:none;padding:.35rem 0;border-bottom:1px solid transparent;transition:color .2s var(--ease),border-color .2s var(--ease);
+}
+.nav-links a:hover{color:var(--gold);}
+
+.nav-pill{
+  background:var(--gold);color:var(--bg);padding:.55rem 1.35rem;border-radius:100px;font-size:.78rem;font-weight:600;border:none;cursor:pointer;
+  text-decoration:none;display:inline-flex;align-items:center;transition:filter .2s var(--ease),transform .2s var(--ease);
+}
+.nav-pill:hover{filter:brightness(1.08);}
+.nav-pill:active{transform:scale(.98);}
 
 /* HERO */
-.hero{padding:1rem 2.5rem 0;}
-.hero-kicker{font-size:0.7rem;color:#5a5855;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1.25rem;}
-.hero-display{font-family:'Syne',sans-serif;font-size:clamp(5rem,14vw,11rem);font-weight:800;line-height:0.88;letter-spacing:-0.03em;color:#f0ede8;}
-.hero-sub{font-size:0.88rem;color:#5a5855;margin:1.5rem 0 0;max-width:320px;line-height:1.65;}
+.hero{padding:clamp(2rem,6vw,3.75rem) 0 0;}
+.hero-kicker{font-size:.6875rem;color:var(--muted-soft);letter-spacing:.16em;text-transform:uppercase;margin-bottom:1.35rem;}
+.hero-display{
+  font-family:Syne,sans-serif;font-size:clamp(3.75rem,12.5vw,10.5rem);font-weight:800;line-height:.9;letter-spacing:-.035em;color:var(--text);
+}
+.hero-sub{font-size:.9375rem;color:var(--muted-soft);margin:1.65rem 0 0;max-width:22em;line-height:1.65;font-weight:400;}
 
 /* PHOTO */
-.photo-wrap{position:relative;margin-top:2rem;}
-.photo-wrap img{width:100%;height:500px;object-fit:cover;object-position:center 35%;display:block;}
-.photo-grad{position:absolute;inset:0;background:linear-gradient(to top,#111110 0%,rgba(17,17,16,0.2) 50%,transparent 100%);}
-.photo-text{position:absolute;bottom:0;left:0;right:0;padding:2.5rem;}
-.photo-eyebrow{font-size:0.68rem;color:#d4922a;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.75rem;}
-.photo-statement{font-family:'Syne',sans-serif;font-size:clamp(1.2rem,2.5vw,1.9rem);font-weight:700;line-height:1.2;max-width:640px;}
+.photo-wrap{position:relative;margin-top:clamp(2rem,5vw,3rem);}
+.photo-wrap .photo-img{
+  width:100%;height:min(52vh,520px);object-fit:cover;object-position:center 35%;display:block;
+}
+.photo-grad{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,var(--bg) 0%,rgba(17,17,16,.35) 45%,transparent 100%);}
+.photo-text{position:absolute;inset:auto 0 0 0;padding:clamp(1.5rem,4vw,2.75rem) clamp(1.25rem,4vw,2.5rem);}
+.photo-eyebrow{font-size:.6875rem;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:.85rem;}
+.photo-statement{font-family:Syne,sans-serif;font-size:clamp(1.25rem,2.8vw,1.95rem);font-weight:700;line-height:1.18;max-width:36rem;}
 
 /* SECTIONS */
-.section{padding:4.5rem 2.5rem;border-top:1px solid #1e1d1b;}
-.s-label{font-size:0.68rem;color:#d4922a;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1.25rem;}
-.s-h{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:700;line-height:1.1;margin-bottom:1.25rem;}
-.s-p{font-size:0.9rem;color:#7a7875;line-height:1.8;max-width:560px;}
+.section{padding:clamp(3.5rem,8vw,5rem) 0;border-top:1px solid var(--line);}
+.s-label{font-size:.6875rem;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:1.1rem;}
+.s-h{font-family:Syne,sans-serif;font-size:clamp(1.65rem,3.2vw,2.55rem);font-weight:700;line-height:1.08;margin-bottom:1.1rem;max-width:16em;}
+.s-p{font-size:.9375rem;color:var(--muted);line-height:1.8;max-width:38rem;}
 
-/* THREE CARDS */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#1e1d1b;margin-top:3rem;}
-.card{background:#111110;padding:2.25rem 1.75rem;}
-.card-icon{margin-bottom:1.75rem;}
-.card-h{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;}
-.card-p{font-size:0.82rem;color:#5a5855;line-height:1.7;}
+/* CARDS */
+.cards{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  margin-top:clamp(2.25rem,5vw,3.25rem);border-radius:2px;overflow:hidden;
+}
+.card{
+  background:var(--bg);padding:clamp(1.75rem,3vw,2.35rem) clamp(1.35rem,2.5vw,1.85rem);
+  transition:background .25s var(--ease);
+}
+@media (hover:hover){
+  .card:hover{background:#161514;}
+}
+.card-icon{margin-bottom:1.5rem;opacity:.95;}
+.card-h{font-family:Syne,sans-serif;font-size:1.0625rem;font-weight:700;margin-bottom:.55rem;line-height:1.25;}
+.card-p{font-size:.8125rem;color:var(--muted-soft);line-height:1.75;}
 
 /* QUOTE */
-.quote-section{padding:4.5rem 2.5rem;border-top:1px solid #1e1d1b;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
-.quote-text{font-family:'Syne',sans-serif;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;line-height:1.2;border-left:2px solid #d4922a;padding-left:1.75rem;}
-.quote-right{font-size:0.88rem;color:#5a5855;line-height:1.8;}
+.quote-section{
+  padding:clamp(3.5rem,8vw,5rem) 0;border-top:1px solid var(--line);
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,4rem);align-items:center;
+}
+.quote-text{
+  font-family:Syne,sans-serif;font-size:clamp(1.35rem,2.8vw,2.15rem);font-weight:700;line-height:1.18;
+  border-left:3px solid var(--gold);padding-left:clamp(1.25rem,3vw,1.85rem);
+}
+.quote-right{font-size:.875rem;color:var(--muted-soft);line-height:1.78;max-width:34rem;}
 
-/* NODES */
-.network{padding:4.5rem 2.5rem;border-top:1px solid #1e1d1b;}
-.nodes{display:flex;align-items:flex-start;gap:0;margin-top:2.5rem;overflow-x:auto;padding-bottom:0.5rem;}
-.node{display:flex;align-items:flex-start;}
+/* NETWORK */
+.network{padding:clamp(3.5rem,8vw,5rem) 0;border-top:1px solid var(--line);}
+.network .s-h{max-width:12em;}
+.nodes{
+  display:flex;align-items:flex-start;gap:0;margin-top:clamp(1.75rem,4vw,2.75rem);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;padding-bottom:.35rem;
+}
+.nodes::-webkit-scrollbar{height:4px;}
+.nodes::-webkit-scrollbar-thumb{background:var(--line-soft);border-radius:99px;}
+.node{display:flex;align-items:flex-start;flex-shrink:0;}
 .node-inner{display:flex;flex-direction:column;align-items:center;}
-.dot{width:10px;height:10px;border-radius:50%;background:#d4922a;flex-shrink:0;}
-.dot.off{background:transparent;border:1px solid #2a2927;}
-.line{width:56px;height:1px;background:#1e1d1b;margin-top:4px;flex-shrink:0;}
-.city{font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:#3a3836;margin-top:0.5rem;white-space:nowrap;}
-.city.on{color:#d4922a;}
-.now-tag{font-size:0.58rem;color:#d4922a;margin-top:0.25rem;}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+.dot.off{background:transparent;border:1px solid var(--line-soft);}
+.line{width:clamp(2.25rem,8vw,3.5rem);height:1px;background:var(--line);margin-top:4px;flex-shrink:0;}
+.city{font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;color:#3a3836;margin-top:.5rem;white-space:nowrap;}
+.city.on{color:var(--gold);}
+.now-tag{font-size:.5625rem;color:var(--gold);margin-top:.25rem;letter-spacing:.04em;text-transform:uppercase;}
 
 /* DONATE */
 .donate{position:relative;overflow:hidden;}
-.donate img{width:100%;height:460px;object-fit:cover;object-position:center 40%;display:block;}
-.donate-over{position:absolute;inset:0;background:rgba(17,17,16,0.8);}
-.donate-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2.5rem;}
-.donate-h{font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.05;letter-spacing:-0.02em;margin-bottom:1rem;}
-.donate-p{font-size:0.88rem;color:#7a7875;max-width:420px;margin:0 auto 2rem;line-height:1.75;}
-.donate-btns{display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;}
-.btn-a{background:#d4922a;color:#111;padding:0.8rem 2rem;border-radius:100px;font-size:0.8rem;font-weight:600;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;}
-.btn-a:hover{filter:brightness(1.06);}
-.btn-b{background:transparent;color:#f0ede8;border:1px solid rgba(255,255,255,0.15);padding:0.8rem 1.75rem;border-radius:100px;font-size:0.8rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;}
-.btn-b:hover{border-color:rgba(212,146,42,0.5);}
-.donate-fine{font-size:0.65rem;color:#2a2927;letter-spacing:0.08em;text-transform:uppercase;margin-top:1.75rem;line-height:2;}
+.donate .donate-img{
+  width:100%;height:min(48vh,440px);object-fit:cover;object-position:center 40%;display:block;
+}
+.donate-over{position:absolute;inset:0;background:linear-gradient(135deg,rgba(17,17,16,.88) 0%,rgba(17,17,16,.78) 100%);}
+.donate-inner{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:clamp(1.75rem,4vw,2.75rem);
+}
+.donate-h{
+  font-family:Syne,sans-serif;font-size:clamp(1.85rem,4.5vw,3.35rem);font-weight:800;line-height:1.05;
+  letter-spacing:-.02em;margin-bottom:.85rem;max-width:14ch;
+}
+.donate-p{font-size:.875rem;color:var(--muted);max-width:28rem;margin:0 auto 1.75rem;line-height:1.75;}
+.donate-btns{display:flex;flex-wrap:wrap;gap:.65rem;justify-content:center;}
+.btn-a{
+  background:var(--gold);color:var(--bg);padding:.82rem 1.85rem;border-radius:100px;font-size:.8125rem;font-weight:600;border:none;cursor:pointer;
+  text-decoration:none;display:inline-flex;align-items:center;transition:filter .2s var(--ease),transform .2s var(--ease);
+}
+.btn-a:hover{filter:brightness(1.08);}
+.btn-a:active{transform:scale(.98);}
+.btn-b{
+  background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.18);
+  padding:.82rem 1.65rem;border-radius:100px;font-size:.8125rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;
+  transition:border-color .2s var(--ease),background .2s var(--ease);
+}
+.btn-b:hover{border-color:rgba(212,146,42,.55);background:rgba(255,255,255,.03);}
+.donate-fine{font-size:.625rem;color:var(--line-soft);letter-spacing:.08em;text-transform:uppercase;margin-top:1.5rem;line-height:1.85;max-width:42ch;}
 
 /* FOOTER */
-footer{border-top:1px solid #1e1d1b;padding:1.75rem 2.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;font-size:0.7rem;color:#3a3836;letter-spacing:0.06em;text-transform:uppercase;}
-.tgp-mark{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;color:#2a2927;}
-footer a{color:#5a5855;text-decoration:none;}
-footer a:hover{color:#d4922a;}
+footer{border-top:1px solid var(--line);padding:1.65rem 0;font-size:.6875rem;color:#3a3836;letter-spacing:.07em;text-transform:uppercase;}
+footer .foot-inner{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;}
+.tgp-mark{font-family:Syne,sans-serif;font-size:.75rem;font-weight:700;color:var(--line-soft);}
+footer a{color:var(--muted-soft);text-decoration:none;border-bottom:1px solid transparent;transition:color .2s var(--ease),border-color .2s var(--ease);}
+footer a:hover{color:var(--gold);border-bottom-color:var(--gold-soft);}
 
-@media(max-width:900px){
+@media (max-width:900px){
   .cards{grid-template-columns:1fr;}
-  .quote-section{grid-template-columns:1fr;gap:2rem;}
-  .photo-wrap img{height:380px;}
-  .donate img{height:400px;}
+  .quote-section{grid-template-columns:1fr;}
+  .photo-wrap .photo-img{height:min(42vh,400px);}
+  .donate .donate-img{height:min(44vh,400px);}
 }
-@media(max-width:640px){
-  nav{flex-direction:column;align-items:flex-start;}
-  .nav-links{width:100%;}
+@media (max-width:640px){
+  .nav-inner{flex-direction:column;align-items:stretch;}
+  .nav-links{justify-content:flex-start;gap:.5rem 1.25rem;}
+  .nav-pill{align-self:flex-start;}
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="/" class="logo" aria-label="Beehive home">
-    <svg class="hex" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" stroke="#d4922a" stroke-width="1.5" fill="none"/>
-      <polygon points="16,8 22,11.5 22,20.5 16,24 10,20.5 10,11.5" fill="#d4922a" opacity="0.15"/>
-      <circle cx="16" cy="16" r="2.5" fill="#d4922a"/>
-    </svg>
-    <span class="logo-name">Beehive</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#build">What We Build</a></li>
-    <li><a href="#where">Where We Build</a></li>
-    <li><a href="#give">Contact</a></li>
-  </ul>
-  <a class="nav-pill" href="mailto:hello@thegoodproject.net?subject=Donation%20%E2%80%94%20Beehive">Donate Now</a>
-</nav>
+<a class="skip" href="#main">Skip to content</a>
 
-<div class="hero">
-  <div class="hero-kicker">Project Beehive · Springfield, Missouri · Pre-launch</div>
-  <div class="hero-display">Beehive</div>
-  <p class="hero-sub">The place your neighborhood has never had — until now.</p>
-</div>
-
-<div class="photo-wrap">
-  <img src="./assets/photos/beehive-exterior.png" alt="The Beehive exterior — community preparedness hub">
-  <div class="photo-grad"></div>
-  <div class="photo-text">
-    <div class="photo-eyebrow">About Beehive</div>
-    <div class="photo-statement">Beehive exists to build permanent community infrastructure — stocked, trained, and ready before disaster strikes. The help that’s already there.</div>
-  </div>
-</div>
-
-<div class="section" id="build">
-  <div class="s-label">What We Build</div>
-  <h2 class="s-h">One building. Four jobs.</h2>
-  <p class="s-p">A Beehive earns revenue every day — thrift, outdoor gear, disaster training — then converts to shelter, supply chain, and neighborhood command when the grid goes down.</p>
-  <div class="cards">
-    <div class="card">
-      <div class="card-icon">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-          <path d="M8 32V18l12-10 12 10v14" stroke="#d4922a" stroke-width="1.2"/>
-          <rect x="15" y="24" width="10" height="8" stroke="#d4922a" stroke-width="1.2"/>
-          <path d="M15 20h10" stroke="#d4922a" stroke-width="1.2"/>
+<header>
+  <nav aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a href="/" class="logo" aria-label="Beehive — home">
+        <svg class="hex" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <polygon points="16,8 22,11.5 22,20.5 16,24 10,20.5 10,11.5" fill="currentColor" opacity="0.15"/>
+          <circle cx="16" cy="16" r="2.5" fill="currentColor"/>
         </svg>
-      </div>
-      <div class="card-h">The Store</div>
-      <div class="card-p">Buy a 72-hour kit, a water filter, a tent. Learn to can food, find a tornado shelter. Everything your family needs — before you need it.</div>
+        <span class="logo-name">Beehive</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#build">What we build</a></li>
+        <li><a href="#where">Where</a></li>
+        <li><a href="#give">Give</a></li>
+      </ul>
+      <a class="nav-pill" href="mailto:hello@thegoodproject.net?subject=Donation%20%E2%80%94%20Beehive">Donate now</a>
     </div>
-    <div class="card">
-      <div class="card-icon">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-          <rect x="6" y="10" width="28" height="20" rx="1.5" stroke="#d4922a" stroke-width="1.2"/>
-          <path d="M6 16h28" stroke="#d4922a" stroke-width="1.2"/>
-          <circle cx="14" cy="24" r="2" fill="#d4922a"/>
-          <circle cx="20" cy="24" r="2" fill="#d4922a"/>
-          <circle cx="26" cy="24" r="2" fill="#d4922a"/>
-        </svg>
-      </div>
-      <div class="card-h">Disaster School</div>
-      <div class="card-p">First aid certifications, canning classes, emergency preparedness training. Your neighbors, ready — before the sirens go off.</div>
-    </div>
-    <div class="card">
-      <div class="card-icon">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-          <circle cx="20" cy="20" r="12" stroke="#d4922a" stroke-width="1.2"/>
-          <path d="M20 8v4M20 28v4M8 20h4M28 20h4" stroke="#d4922a" stroke-width="1.2"/>
-          <circle cx="20" cy="20" r="4" stroke="#d4922a" stroke-width="1.2"/>
-        </svg>
-      </div>
-      <div class="card-h">Shelter &amp; Command</div>
-      <div class="card-p">Safe beds, stocked kitchen, comms, and a local coordination center — already in place the night everything else goes dark.</div>
-    </div>
-  </div>
-</div>
+  </nav>
+</header>
 
-<div class="quote-section">
-  <div class="quote-text">If you are prepared,<br>you shall not fear.</div>
-  <div class="quote-right">A resilient community doesn't wait to be rescued. A Beehive puts trained people, stocked supplies, and a permanent institution in place — before the crisis, not after it.</div>
-</div>
+<main id="main">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <p class="hero-kicker">The Good Project · Project Beehive · Springfield, Missouri</p>
+    <h1 id="hero-title" class="hero-display">Beehive</h1>
+    <p class="hero-sub">The place your neighborhood has never had — until now.</p>
+  </section>
 
-<div class="network" id="where">
-  <div class="s-label">Where We Build</div>
-  <h2 class="s-h" style="max-width:400px;">Springfield first.<br>Then the network grows.</h2>
-  <div class="nodes">
-    <div class="node">
-      <div class="node-inner">
-        <div class="dot"></div>
-        <div class="city on">Springfield</div>
-        <div class="now-tag">Now</div>
+  <figure class="photo-wrap" aria-label="Beehive building and mission">
+    <img class="photo-img" src="./assets/photos/beehive-exterior.png" alt="Exterior of the planned Beehive community hub in Springfield" width="1600" height="900" fetchpriority="high" decoding="async">
+    <div class="photo-grad" aria-hidden="true"></div>
+    <figcaption class="photo-text wrap">
+      <p class="photo-eyebrow">About Beehive</p>
+      <p class="photo-statement">Beehive exists to build permanent community infrastructure — stocked, trained, and ready before disaster strikes. The help that’s already there.</p>
+    </figcaption>
+  </figure>
+
+  <section class="section wrap" id="build" aria-labelledby="build-heading">
+    <p class="s-label">What we build</p>
+    <h2 id="build-heading" class="s-h">One building. Four jobs.</h2>
+    <p class="s-p">A Beehive earns revenue every day — thrift, outdoor gear, disaster training — then converts to shelter, supply chain, and neighborhood command when the grid goes down.</p>
+    <div class="cards">
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path d="M8 32V18l12-10 12 10v14" stroke="#d4922a" stroke-width="1.2"/>
+            <rect x="15" y="24" width="10" height="8" stroke="#d4922a" stroke-width="1.2"/>
+            <path d="M15 20h10" stroke="#d4922a" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <h3 class="card-h">The store</h3>
+        <p class="card-p">Buy a 72-hour kit, a water filter, a tent. Learn to can food, find a tornado shelter. Everything your family needs — before you need it.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <rect x="6" y="10" width="28" height="20" rx="1.5" stroke="#d4922a" stroke-width="1.2"/>
+            <path d="M6 16h28" stroke="#d4922a" stroke-width="1.2"/>
+            <circle cx="14" cy="24" r="2" fill="#d4922a"/>
+            <circle cx="20" cy="24" r="2" fill="#d4922a"/>
+            <circle cx="26" cy="24" r="2" fill="#d4922a"/>
+          </svg>
+        </div>
+        <h3 class="card-h">Disaster school</h3>
+        <p class="card-p">First aid certifications, canning classes, emergency preparedness training. Your neighbors, ready — before the sirens go off.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="12" stroke="#d4922a" stroke-width="1.2"/>
+            <path d="M20 8v4M20 28v4M8 20h4M28 20h4" stroke="#d4922a" stroke-width="1.2"/>
+            <circle cx="20" cy="20" r="4" stroke="#d4922a" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <h3 class="card-h">Shelter &amp; command</h3>
+        <p class="card-p">Safe beds, stocked kitchen, comms, and a local coordination center — already in place the night everything else goes dark.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="quote-section wrap" aria-label="Mission statement">
+    <blockquote class="quote-text" cite="https://en.wikiquote.org/wiki/Benjamin_Franklin">If you are prepared,<br>you shall not fear.</blockquote>
+    <p class="quote-right">A resilient community doesn’t wait to be rescued. A Beehive puts trained people, stocked supplies, and a permanent institution in place — before the crisis, not after it.</p>
+  </section>
+
+  <section class="network wrap" id="where" aria-labelledby="where-heading">
+    <p class="s-label">Where we build</p>
+    <h2 id="where-heading" class="s-h">Springfield first.<br>Then the network grows.</h2>
+    <div class="nodes" aria-label="Planned regional nodes">
+      <div class="node">
+        <div class="node-inner">
+          <div class="dot" aria-hidden="true"></div>
+          <span class="city on">Springfield</span>
+          <span class="now-tag">Now</span>
+        </div>
+        <div class="line" aria-hidden="true"></div>
       </div>
-      <div class="line"></div>
+      <div class="node"><div class="node-inner"><div class="dot off" aria-hidden="true"></div><span class="city">Joplin</span></div><div class="line" aria-hidden="true"></div></div>
+      <div class="node"><div class="node-inner"><div class="dot off" aria-hidden="true"></div><span class="city">Branson</span></div><div class="line" aria-hidden="true"></div></div>
+      <div class="node"><div class="node-inner"><div class="dot off" aria-hidden="true"></div><span class="city">Bentonville</span></div><div class="line" aria-hidden="true"></div></div>
+      <div class="node"><div class="node-inner"><div class="dot off" aria-hidden="true"></div><span class="city">Tulsa</span></div><div class="line" aria-hidden="true"></div></div>
+      <div class="node"><div class="node-inner"><div class="dot off" aria-hidden="true"></div><span class="city">Kansas City</span></div><div class="line" aria-hidden="true"></div></div>
+      <div class="node"><div class="node-inner"><div class="dot off" aria-hidden="true"></div><span class="city">St. Louis</span></div></div>
     </div>
-    <div class="node"><div class="node-inner"><div class="dot off"></div><div class="city">Joplin</div></div><div class="line"></div></div>
-    <div class="node"><div class="node-inner"><div class="dot off"></div><div class="city">Branson</div></div><div class="line"></div></div>
-    <div class="node"><div class="node-inner"><div class="dot off"></div><div class="city">Bentonville</div></div><div class="line"></div></div>
-    <div class="node"><div class="node-inner"><div class="dot off"></div><div class="city">Tulsa</div></div><div class="line"></div></div>
-    <div class="node"><div class="node-inner"><div class="dot off"></div><div class="city">Kansas City</div></div><div class="line"></div></div>
-    <div class="node"><div class="node-inner"><div class="dot off"></div><div class="city">St. Louis</div></div></div>
-  </div>
-</div>
+  </section>
 
-<div class="donate" id="give">
-  <img src="./assets/photos/beehive-exterior.png" alt="">
-  <div class="donate-over"></div>
-  <div class="donate-inner">
-    <h2 class="donate-h">No Beehive exists yet.<br>Your gift changes that.</h2>
-    <p class="donate-p">We're raising $20M to open the flagship and seed the network. Wire, check, DAF, or foundation grant — we'll send instructions within 24 hours.</p>
-    <div class="donate-btns">
-      <a class="btn-a" href="mailto:hello@thegoodproject.net?subject=Donation%20%E2%80%94%20Beehive">Donate Now</a>
-      <a class="btn-b" href="mailto:hello@thegoodproject.net?subject=The%20Good%20Project%20%E2%80%94%20hello">Email the Team</a>
+  <section class="donate" id="give" aria-labelledby="give-heading">
+    <img class="donate-img" src="./assets/photos/beehive-exterior.png" alt="" width="1600" height="900" loading="lazy" decoding="async">
+    <div class="donate-over" aria-hidden="true"></div>
+    <div class="donate-inner">
+      <h2 id="give-heading" class="donate-h">No Beehive exists yet.<br>Your gift changes that.</h2>
+      <p class="donate-p">We’re raising $20M to open the flagship and seed the network. Wire, check, DAF, or foundation grant — we’ll send instructions within 24 hours.</p>
+      <div class="donate-btns">
+        <a class="btn-a" href="mailto:hello@thegoodproject.net?subject=Donation%20%E2%80%94%20Beehive">Donate now</a>
+        <a class="btn-b" href="mailto:hello@thegoodproject.net?subject=The%20Good%20Project%20%E2%80%94%20hello">Email the team</a>
+      </div>
+      <p class="donate-fine">Wire · Check · DAF · Foundation grant · Tax documentation provided</p>
     </div>
-    <div class="donate-fine">Wire · Check · DAF · Foundation Grant · Tax documentation provided</div>
-  </div>
-</div>
+  </section>
+</main>
 
 <footer>
-  <div class="tgp-mark">The Good Project</div>
-  <div>© 2026 · <a href="mailto:hello@thegoodproject.net">hello@thegoodproject.net</a></div>
+  <div class="wrap foot-inner">
+    <div class="tgp-mark">The Good Project</div>
+    <div>© 2026 · <a href="mailto:hello@thegoodproject.net">hello@thegoodproject.net</a></div>
+  </div>
 </footer>
-
 </body>
 </html>
