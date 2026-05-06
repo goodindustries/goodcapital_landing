@@ -6,7 +6,7 @@
 <title>The Beehive — The Good Project</title>
 <meta name="description" content="We build Beehives. Permanent community infrastructure, stocked and ready before disaster strikes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -34,7 +34,8 @@
   --sp3: 64px;
   --sp4:104px;
 
-  --font: 'Nunito', sans-serif;
+  --font:    'Barlow', sans-serif;
+  --font-hd: 'Barlow Condensed', sans-serif;
 }
 
 html{scroll-behavior:smooth;overflow-x:hidden;}
@@ -75,8 +76,8 @@ nav{
   text-align:center;
 }
 .hero-display{
-  font-size:var(--xl);font-weight:800;
-  line-height:1.05;letter-spacing:-0.02em;
+  font-size:var(--xl);font-weight:800;font-family:var(--font-hd);
+  line-height:1.0;letter-spacing:0.01em;
   color:var(--navy);margin-bottom:var(--sp1);
 }
 .hero-sub{font-size:var(--md);color:var(--muted);font-weight:400;margin-bottom:var(--sp2);}
@@ -131,19 +132,65 @@ nav{
   margin-bottom:var(--sp1);
 }
 .section-h{
-  font-size:var(--lg);font-weight:800;
-  line-height:1.1;letter-spacing:-0.01em;color:var(--navy);
+  font-size:var(--lg);font-weight:700;font-family:var(--font-hd);
+  line-height:1.05;letter-spacing:0.01em;color:var(--navy);
   margin-bottom:var(--sp1);max-width:61.8%;
 }
 .section-p{font-size:var(--base);color:var(--muted);line-height:1.7;max-width:50%;margin-bottom:var(--sp3);}
 .img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp1);}
 .img-ph{
   background:var(--rule);border-radius:10px;
-  aspect-ratio:4/3;
+  aspect-ratio:4/3;overflow:hidden;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  cursor:pointer;position:relative;
 }
+.img-ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s ease;}
+.img-ph:hover img{transform:scale(1.03);}
 .img-ph-label{font-size:var(--xs);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
 .img-ph svg{opacity:0.35;}
+
+/* LIGHTBOX */
+.lb{
+  display:none;position:fixed;inset:0;z-index:1000;
+  background:rgba(10,12,28,0.93);
+  align-items:center;justify-content:center;
+}
+.lb.open{display:flex;}
+.lb-inner{
+  position:relative;width:90vw;max-width:1100px;
+  display:flex;flex-direction:column;align-items:center;gap:16px;
+}
+.lb-img{
+  width:100%;max-height:80vh;object-fit:contain;
+  border-radius:6px;display:block;
+}
+.lb-close{
+  position:absolute;top:-44px;right:0;
+  background:none;border:none;color:#fff;cursor:pointer;
+  font-size:28px;line-height:1;opacity:0.7;font-family:sans-serif;
+}
+.lb-close:hover{opacity:1;}
+.lb-prev,.lb-next{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(255,255,255,0.12);border:none;color:#fff;cursor:pointer;
+  width:48px;height:48px;border-radius:50%;font-size:22px;
+  display:flex;align-items:center;justify-content:center;
+  transition:background 0.2s;
+}
+.lb-prev{left:-64px;}
+.lb-next{right:-64px;}
+.lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,0.25);}
+.lb-dots{display:flex;gap:8px;}
+.lb-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,0.3);border:none;cursor:pointer;padding:0;
+}
+.lb-dot.active{background:var(--amber);}
+@media(max-width:700px){
+  .lb-prev{left:-4px;}
+  .lb-next{right:-4px;}
+  .img-grid{grid-template-columns:1fr;}
+}
 
 /* WHAT IT CREATES */
 .creates{
@@ -153,8 +200,8 @@ nav{
   background:var(--navy);
 }
 .creates-quote{
-  font-size:var(--lg);font-weight:800;
-  line-height:1.1;letter-spacing:-0.01em;
+  font-size:var(--lg);font-weight:700;font-family:var(--font-hd);
+  line-height:1.05;letter-spacing:0.01em;
   color:var(--cream);
   border-left:3px solid var(--amber);
   padding-left:var(--sp2);
@@ -185,8 +232,8 @@ nav{
 /* DONATE */
 .donate{padding:var(--sp4) var(--sp3);background:var(--navy);text-align:center;}
 .donate-h{
-  font-size:var(--xl);font-weight:800;
-  line-height:1.15;letter-spacing:-0.02em;
+  font-size:var(--xl);font-weight:700;font-family:var(--font-hd);
+  line-height:1.1;letter-spacing:0.01em;
   color:var(--cream);margin-bottom:var(--sp2);max-width:820px;margin-left:auto;margin-right:auto;
 }
 .btn-amber{
@@ -215,7 +262,7 @@ nav{
   display:grid;grid-template-columns:61.8fr 38.2fr;
   gap:var(--sp3);align-items:center;
 }
-.ready-h{font-size:var(--lg);font-weight:800;line-height:1.1;letter-spacing:-0.01em;color:var(--cream);margin-bottom:var(--sp1);}
+.ready-h{font-size:var(--lg);font-weight:700;font-family:var(--font-hd);line-height:1.05;letter-spacing:0.01em;color:var(--cream);margin-bottom:var(--sp1);}
 .ready-p{font-size:var(--base);color:var(--faint);line-height:1.7;margin-bottom:var(--sp2);}
 
 /* FOOTER */
@@ -292,16 +339,14 @@ footer{
   <h2 class="section-h">The place your neighborhood has never had.</h2>
   <p class="section-p">Buy a 72-hour kit, a water filter, a tent. Learn to can food, earn a first aid certification. Everything your family needs. Before you need it.</p>
   <div class="img-grid">
-    <div class="img-ph" style="background:none;padding:0;overflow:hidden;">
-      <img src="/assets/photos/beehive-the-store.png" alt="The Beehive Store" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;border-radius:10px;">
+    <div class="img-ph" onclick="openLb(0)">
+      <img src="/assets/photos/beehive-the-store.png" alt="The Store" style="object-position:center 20%;">
     </div>
-    <div class="img-ph">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="4" width="24" height="24" rx="3" stroke="#5C5A72" stroke-width="1.5"/><circle cx="11" cy="11" r="3" stroke="#5C5A72" stroke-width="1.5"/><path d="M4 22l7-7 5 5 3-3 9 9" stroke="#5C5A72" stroke-width="1.5" stroke-linejoin="round"/></svg>
-      <div class="img-ph-label">Disaster School</div>
+    <div class="img-ph" onclick="openLb(1)">
+      <img src="/assets/photos/beehive-facility-grid.png" alt="Disaster School">
     </div>
-    <div class="img-ph">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="4" width="24" height="24" rx="3" stroke="#5C5A72" stroke-width="1.5"/><circle cx="11" cy="11" r="3" stroke="#5C5A72" stroke-width="1.5"/><path d="M4 22l7-7 5 5 3-3 9 9" stroke="#5C5A72" stroke-width="1.5" stroke-linejoin="round"/></svg>
-      <div class="img-ph-label">Shelter &amp; Command</div>
+    <div class="img-ph" onclick="openLb(2)">
+      <img src="/assets/photos/beehive-command-center.png" alt="Disaster Response Command Center" style="object-position:center 25%;">
     </div>
   </div>
 </div>
@@ -487,6 +532,58 @@ footer{
   </div>
   <div></div>
 </div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="closeLbOutside(event)">
+  <div class="lb-inner">
+    <button class="lb-close" onclick="closeLb()">&#x2715;</button>
+    <button class="lb-prev" onclick="stepLb(-1)">&#8592;</button>
+    <img class="lb-img" id="lb-img" src="" alt="">
+    <button class="lb-next" onclick="stepLb(1)">&#8594;</button>
+    <div class="lb-dots" id="lb-dots"></div>
+  </div>
+</div>
+
+<script>
+const lbImgs = [
+  {src:'/assets/photos/beehive-the-store.png', alt:'The Store'},
+  {src:'/assets/photos/beehive-facility-grid.png', alt:'Disaster School'},
+  {src:'/assets/photos/beehive-command-center.png', alt:'Disaster Response Command Center'}
+];
+let lbIdx = 0;
+function openLb(i){
+  lbIdx = i;
+  renderLb();
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb(){
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeLbOutside(e){
+  if(e.target === document.getElementById('lb')) closeLb();
+}
+function stepLb(dir){
+  lbIdx = (lbIdx + dir + lbImgs.length) % lbImgs.length;
+  renderLb();
+}
+function renderLb(){
+  const img = document.getElementById('lb-img');
+  img.src = lbImgs[lbIdx].src;
+  img.alt = lbImgs[lbIdx].alt;
+  const dots = document.getElementById('lb-dots');
+  dots.innerHTML = lbImgs.map((_, i) =>
+    `<button class="lb-dot${i===lbIdx?' active':''}" onclick="openLb(${i})"></button>`
+  ).join('');
+}
+document.addEventListener('keydown', e => {
+  if(!document.getElementById('lb').classList.contains('open')) return;
+  if(e.key === 'Escape') closeLb();
+  if(e.key === 'ArrowLeft') stepLb(-1);
+  if(e.key === 'ArrowRight') stepLb(1);
+});
+</script>
 
 <!-- FOOTER -->
 <footer>
