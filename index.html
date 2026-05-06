@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Good Project — Project Beehive</title>
-<meta name="description" content="The Good Project is building Project Beehive: a nonprofit community hub in Missouri that serves families daily and becomes shelter and crisis command when disaster hits. Donate to fund the first site.">
+<meta name="description" content="Project Beehive is sponsored by The Good Project — building a nonprofit community hub in Missouri that serves families daily and becomes shelter and crisis command when disaster hits. Donate to fund the first site.">
 <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon-16x16.png">
@@ -38,10 +38,11 @@ nav, section[id], .capital-section, .quote-break, .cta-section { scroll-margin-t
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.25rem 3rem;background:linear-gradient(to bottom,rgba(14,13,11,0.95) 0%,rgba(14,13,11,0) 100%);flex-wrap:wrap;}
-.nav-brand{display:flex;align-items:center;gap:0.75rem;text-decoration:none;color:inherit;}
-.nav-logo{font-family:var(--mono);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--paper);}
-.nav-logo span{color:var(--amber);}
-.nav-logo-img{height:36px;width:auto;display:block;opacity:0.92;}
+.nav-brand{display:flex;align-items:center;gap:0.85rem;text-decoration:none;color:inherit;}
+.nav-logo-img{height:46px;width:auto;display:block;border-radius:2px;box-shadow:0 2px 12px rgba(0,0,0,0.25);}
+.nav-sponsor{display:flex;flex-direction:column;gap:0.1rem;line-height:1.15;}
+.nav-sponsor-line{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.42);}
+.nav-sponsor-line strong{color:var(--amber-light);font-weight:500;}
 .nav-links{display:flex;gap:1.25rem 2rem;list-style:none;flex-wrap:wrap;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;}
 .nav-links a{color:rgba(255,255,255,0.55);text-decoration:none;}
 .nav-links a:hover{color:var(--amber-light);}
@@ -165,6 +166,9 @@ footer .f-right{text-align:right;}
   footer{grid-template-columns:1fr;text-align:center;}
   footer .f-center, footer .f-right{text-align:center;}
 }
+@media(max-width:720px){
+  .nav-sponsor{display:none;}
+}
 </style>
 </head>
 <body>
@@ -172,9 +176,12 @@ footer .f-right{text-align:right;}
 <!-- Photo slots: add files under assets/photos/ — command-center.*, warehouse.*, shelter.* — then replace .photo-placeholder blocks with <img class="photo-fill" src="…" alt="…"> -->
 
 <nav>
-  <a href="/" class="nav-brand" aria-label="The Good Project home">
-    <img class="nav-logo-img" src="./assets/logo-the-good-project.png" alt="">
-    <div class="nav-logo">The Good <span>Project</span></div>
+  <a href="/" class="nav-brand" aria-label="The Good Project sponsors Project Beehive">
+    <img class="nav-logo-img" src="./assets/logo-the-good-project.png" alt="The Good Project">
+    <div class="nav-sponsor">
+      <span class="nav-sponsor-line">Sponsors</span>
+      <span class="nav-sponsor-line"><strong>Project Beehive</strong></span>
+    </div>
   </a>
   <ul class="nav-links">
     <li><a href="#why">Why it matters</a></li>
@@ -189,7 +196,7 @@ footer .f-right{text-align:right;}
   <img class="hero-photo" src="./assets/photos/beehive-exterior.png" alt="The Beehive exterior — community preparedness hub">
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Project Beehive · Pre-launch · Springfield region, Missouri</div>
+    <div class="hero-eyebrow">The Good Project · Sponsors <em style="font-style:normal;color:var(--amber);">Project Beehive</em> · Pre-launch · Springfield region, Missouri</div>
     <h1 class="hero-headline">Relief that starts<br>in the <em>neighborhood.</em></h1>
     <p class="hero-sub">America’s first Beehive — a thrift and training hub that serves families every day, and converts to shelter and crisis command when disaster strikes.</p>
     <div class="hero-actions">
@@ -420,7 +427,7 @@ footer .f-right{text-align:right;}
 </section>
 
 <footer>
-  <div>© 2026 The Good Project · A nonprofit initiative</div>
+  <div>© 2026 The Good Project · Sponsors Project Beehive</div>
   <div class="f-center">Project Beehive · Springfield, Missouri</div>
   <div class="f-right"><a href="mailto:hello@thegoodproject.net">hello@thegoodproject.net</a></div>
 </footer>
