@@ -57,8 +57,7 @@ nav{
   padding:16px var(--sp3);
   background:var(--cream);
 }
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.nav-wordmark{font-family:var(--font);font-size:18px;font-weight:700;color:var(--navy);letter-spacing:-0.01em;}
+.nav-logo img{height:40px;width:auto;}
 .nav-links{
   display:flex;gap:var(--sp2);list-style:none;
   font-size:var(--sm);font-weight:700;
@@ -77,7 +76,7 @@ nav{
 
 /* HERO */
 .hero{
-  padding:var(--sp3) var(--sp3) var(--sp4);
+  padding:var(--sp4) var(--sp3) calc(var(--sp4) * 1.5);
   background:var(--cream);
   text-align:center;
 }
@@ -144,17 +143,43 @@ nav{
 }
 .section-p{font-size:var(--md);color:var(--muted);line-height:1.6;max-width:640px;margin-bottom:var(--sp3);}
 
-/* FULL-WIDTH FEATURE PHOTOS */
-.photo-feature{position:relative;cursor:pointer;display:block;overflow:hidden;}
-.photo-feature img{width:100%;height:auto;display:block;transition:transform 0.4s ease;}
-.photo-feature:hover img{transform:scale(1.015);}
-.photo-feature-cap{
+/* CAROUSEL */
+.carousel-wrap{
+  padding:var(--sp4) var(--sp3);
+  max-width:1440px;margin:0 auto;
+}
+.carousel{position:relative;overflow:hidden;border-radius:14px;}
+.car-track{
+  display:flex;
+  transition:transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.car-slide{min-width:100%;position:relative;cursor:pointer;}
+.car-slide img{width:100%;height:auto;display:block;}
+.car-cap{
   position:absolute;bottom:0;left:0;right:0;
-  padding:var(--sp3);
-  background:linear-gradient(to top,rgba(10,12,28,0.82) 0%,transparent 100%);
+  padding:var(--sp2) var(--sp3);
+  background:linear-gradient(to top,rgba(10,12,28,0.8) 0%,transparent 100%);
   font-family:var(--font-hd);font-size:var(--md);font-weight:700;
   color:#fff;letter-spacing:0.03em;
 }
+.car-btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(255,255,255,0.15);backdrop-filter:blur(4px);
+  border:none;color:#fff;
+  width:52px;height:52px;border-radius:50%;font-size:20px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;z-index:10;transition:background 0.2s;
+}
+.car-btn:hover{background:rgba(255,255,255,0.3);}
+.car-prev{left:20px;}
+.car-next{right:20px;}
+.car-dots{display:flex;justify-content:center;gap:10px;margin-top:20px;}
+.car-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--rule);border:none;cursor:pointer;padding:0;
+  transition:background 0.2s;
+}
+.car-dot.active{background:var(--amber);}
 
 /* LIGHTBOX */
 .lb{
@@ -318,11 +343,7 @@ footer{
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <svg width="20" height="23" viewBox="0 0 20 23" fill="none" aria-hidden="true">
-      <path d="M10 1L19 5.5V14.5L10 22L1 14.5V5.5L10 1Z" fill="#D4880F"/>
-      <path d="M10 6L14 8.5V13.5L10 17L6 13.5V8.5L10 6Z" fill="#FAF8F4" opacity="0.25"/>
-    </svg>
-    <span class="nav-wordmark">The Beehive</span>
+    <img src="/assets/brand/beehive-logo-transparent.png" alt="The Beehive">
   </div>
   <ul class="nav-links">
     <li onclick="document.getElementById('what').scrollIntoView({behavior:'smooth'})">What We Build</li>
@@ -371,19 +392,26 @@ footer{
   <p class="section-p">Buy a 72-hour kit, a water filter, a tent. Learn to can food, earn a first aid certification. Everything your family needs. Before you need it.</p>
 </div>
 
-<div class="photo-feature" onclick="openLb(0)">
-  <img src="/assets/photos/beehive-the-store.png" alt="The Store">
-  <div class="photo-feature-cap">The Store</div>
-</div>
-
-<div class="photo-feature" onclick="openLb(1)">
-  <img src="/assets/photos/beehive-shelter.png" alt="Disaster School">
-  <div class="photo-feature-cap">Disaster School</div>
-</div>
-
-<div class="photo-feature" onclick="openLb(2)">
-  <img src="/assets/photos/beehive-command-center.png" alt="Shelter &amp; Command">
-  <div class="photo-feature-cap">Shelter &amp; Command</div>
+<div class="carousel-wrap">
+  <div class="carousel">
+    <div class="car-track" id="car-track">
+      <div class="car-slide" onclick="openLb(0)">
+        <img src="/assets/photos/beehive-the-store.png" alt="The Store">
+        <div class="car-cap">The Store</div>
+      </div>
+      <div class="car-slide" onclick="openLb(1)">
+        <img src="/assets/photos/beehive-shelter.png" alt="Disaster School">
+        <div class="car-cap">Disaster School</div>
+      </div>
+      <div class="car-slide" onclick="openLb(2)">
+        <img src="/assets/photos/beehive-command-center.png" alt="Shelter &amp; Command">
+        <div class="car-cap">Shelter &amp; Command</div>
+      </div>
+    </div>
+    <button class="car-btn car-prev" onclick="carStep(-1)">&#8592;</button>
+    <button class="car-btn car-next" onclick="carStep(1)">&#8594;</button>
+  </div>
+  <div class="car-dots" id="car-dots"></div>
 </div>
 
 <!-- WHAT IT CREATES -->
@@ -584,6 +612,24 @@ footer{
     <div class="lb-dots" id="lb-dots"></div>
   </div>
 </div>
+
+<script>
+// Carousel
+let carIdx = 0;
+const carTotal = 3;
+function carStep(dir){
+  carIdx=(carIdx+dir+carTotal)%carTotal;
+  renderCar();
+}
+function renderCar(){
+  document.getElementById('car-track').style.transform=`translateX(-${carIdx*100}%)`;
+  document.getElementById('car-dots').innerHTML=
+    Array.from({length:carTotal},(_,i)=>
+      `<button class="car-dot${i===carIdx?' active':''}" onclick="carIdx=${i};renderCar()"></button>`
+    ).join('');
+}
+renderCar();
+</script>
 
 <script>
 const lbImgs = [
