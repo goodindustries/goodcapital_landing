@@ -49,8 +49,7 @@ body{
 nav{
   display:flex;align-items:center;justify-content:space-between;
   padding:16px var(--sp3);
-  border-bottom:1px solid var(--rule);
-  background:#fff;
+  background:var(--cream);
 }
 .nav-logo img{height:44px;width:auto;}
 .nav-links{
@@ -76,8 +75,8 @@ nav{
   text-align:center;
 }
 .hero-display{
-  font-size:var(--xl);font-weight:800;font-family:var(--font-hd);
-  line-height:1.0;letter-spacing:0.01em;
+  font-size:var(--xl);font-weight:700;font-family:var(--font);
+  line-height:1.1;letter-spacing:-0.01em;
   color:var(--navy);margin-bottom:var(--sp1);
 }
 .hero-sub{font-size:var(--md);color:var(--muted);font-weight:400;margin-bottom:var(--sp2);}
@@ -92,10 +91,10 @@ nav{
 
 /* PHOTO */
 .photo-wrap{position:relative;}
-.photo-wrap img{width:100%;height:480px;object-fit:cover;object-position:center 30%;display:block;}
+.photo-wrap img{width:100%;height:auto;display:block;}
 .photo-grad{
   position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(19,24,58,0.35) 0%,transparent 50%);
+  background:linear-gradient(to top,rgba(19,24,58,0.25) 0%,transparent 40%);
 }
 
 /* PROBLEM STATS */
@@ -262,12 +261,37 @@ nav{
 .ready-h{font-size:var(--lg);font-weight:700;font-family:var(--font-hd);line-height:1.05;letter-spacing:0.01em;color:var(--cream);margin-bottom:var(--sp1);}
 .ready-p{font-size:var(--base);color:var(--faint);line-height:1.7;margin-bottom:var(--sp2);}
 
+/* ABOUT TGP */
+.about-tgp{
+  padding:var(--sp4) var(--sp3);
+  background:var(--cream-lt);
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+.about-tgp .section-p{max-width:52ch;}
+
+/* FLOATING TGP LOGO */
+.tgp-float{
+  position:fixed;left:16px;top:50%;
+  transform:translateY(-50%);
+  z-index:200;text-decoration:none;
+  display:flex;align-items:center;
+  opacity:0.55;transition:opacity 0.2s;
+}
+.tgp-float:hover{opacity:1;}
+.tgp-float img{
+  height:120px;width:auto;
+  transform:rotate(-90deg);
+  display:block;
+}
+@media(max-width:1100px){.tgp-float{display:none;}}
+
 /* FOOTER */
 footer{
   border-top:1px solid var(--rule);
   padding:var(--sp3) var(--sp3);
   display:flex;flex-direction:column;align-items:center;gap:var(--sp1);
-  background:#fff;text-align:center;
+  background:var(--cream);text-align:center;
 }
 .footer-by{font-size:var(--xs);color:var(--faint);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;}
 .footer-tgp img{height:52px;width:auto;}
@@ -278,6 +302,11 @@ footer{
 </style>
 </head>
 <body>
+
+<!-- FLOATING TGP LOGO -->
+<a class="tgp-float" href="#about" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});return false;">
+  <img src="/assets/brand/tgp-logo-full.png" alt="The Good Project">
+</a>
 
 <!-- NAV -->
 <nav>
@@ -322,12 +351,6 @@ footer{
     <div class="prob-l">Complete power outage in the prior year</div>
     <div class="prob-d">Electricity loss is common.</div>
   </div>
-</div>
-
-<!-- PHOTO 2 -->
-<div class="photo-wrap">
-  <img src="/assets/photos/beehive-exterior.png" alt="The Beehive" style="object-position:center center;">
-  <div class="photo-grad"></div>
 </div>
 
 <!-- WHAT A BEEHIVE IS -->
@@ -509,6 +532,13 @@ footer{
   </div>
 </div>
 
+<!-- ABOUT THE GOOD PROJECT -->
+<div class="about-tgp" id="about">
+  <div class="section-eye">The organization</div>
+  <h2 class="section-h">The Good Project</h2>
+  <p class="section-p">A nonprofit building the permanent community infrastructure America doesn't yet have. The Beehive is our first hub.</p>
+</div>
+
 <!-- DONATE -->
 <div class="donate" id="give">
   <div class="section-eye" style="margin-bottom:var(--sp1);">Build the first Beehive</div>
@@ -583,9 +613,8 @@ document.addEventListener('keydown', e => {
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-by">Brought to you by</div>
-  <div class="footer-tgp"><img src="/assets/brand/tgp-logo-full.png" alt="The Good Project"></div>
-  <div class="footer-meta"><span>2026</span> &nbsp;·&nbsp; <a href="mailto:hello@thegoodproject.net">hello@thegoodproject.net</a></div>
+  <div class="footer-by">A project of The Good Project</div>
+  <div class="footer-meta"><a href="mailto:hello@thegoodproject.net">hello@thegoodproject.net</a></div>
 </footer>
 
 </body>
