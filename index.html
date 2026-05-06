@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Good Project — Beehive & partner initiatives</title>
-    <meta name="description" content="The Good Project spans multiple initiatives: Project Beehive (disaster-ready community hubs), hands-on founder partnerships, and capital modeling for qualified partners.">
-    <meta property="og:title" content="The Good Project — Beehive & partner initiatives">
-    <meta property="og:description" content="Humanitarian infrastructure, founder partnerships, and structured capital work—centered on Project Beehive community hubs.">
+    <title>The Good Project — Help build America’s first Beehive</title>
+    <meta name="description" content="The Good Project is a nonprofit building Project Beehive: disaster-ready community hubs in the heart of Tornado Alley. Help fund local shelter, training, and supplies before the next storm.">
+    <meta property="og:title" content="The Good Project — Project Beehive">
+    <meta property="og:description" content="Nonprofit community hubs for daily service and disaster response. Donate to build the first Beehive.">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PCMWDK746H"></script>
     <script>
@@ -22,7 +22,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
 * { box-sizing: border-box; }
@@ -39,6 +39,10 @@
     --teal-pitch: #1b7a70;
     --accent: #087074;
     --accent-hover: #065A5D;
+    --splash-deep: #0a2e2c;
+    --donate: #f0b429;
+    --donate-hover: #ffc940;
+    --donate-text: #1a1a1a;
 }
 
 body {
@@ -64,33 +68,33 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 24px 0 16px;
-    height: 96px;
-    min-height: 96px;
+    padding: 0 20px 0 14px;
+    height: 80px;
+    min-height: 80px;
     width: 100%;
-    border-bottom: 1px solid var(--divider);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 9999;
-    background: var(--bg2);
-    box-shadow: 0 2px 20px rgba(38,34,29,0.04);
+    background: rgba(253, 250, 245, 0.97);
+    border-bottom: 1px solid var(--divider);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
 }
 
 nav .logo-link {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
     text-decoration: none;
     color: inherit;
     height: 100%;
-    padding: 12px 0;
+    padding: 10px 0;
 }
 
 nav .logo {
     display: block;
-    height: 52px;
+    height: 48px;
     width: auto;
     object-fit: contain;
     object-position: left center;
@@ -104,87 +108,182 @@ nav .brand-text {
 }
 
 nav .brand-kicker {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--teal-pitch);
 }
 
 nav .brand-sub {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     color: var(--muted);
 }
 
-nav .nav-links {
+nav .nav-main {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
-    gap: 8px 20px;
-    padding: 0 8px;
+    gap: 6px 16px;
+    padding: 0 4px;
 }
 
-nav .nav-links a {
+nav .nav-main a {
     text-decoration: none;
     color: var(--text);
     font-size: 14px;
     font-weight: 500;
 }
 
-nav .nav-links a:hover {
+nav .nav-main a:hover {
     color: var(--accent);
 }
 
-.hero {
-    padding: calc(96px + 56px) 24px 72px;
-    background: var(--bg2);
+.btn-donate {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    background: var(--donate);
+    color: var(--donate-text) !important;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border-radius: 999px;
+    border: none;
+    box-shadow: 0 2px 12px rgba(240, 180, 41, 0.35);
+    transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
 }
 
-.hero-inner {
-    max-width: 1040px;
+.btn-donate:hover {
+    background: var(--donate-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(240, 180, 41, 0.45);
+}
+
+.splash {
+    margin-top: 80px;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    padding: 48px 24px 64px;
+    background-color: var(--splash-deep);
+    background-image:
+        linear-gradient(155deg, rgba(10, 46, 44, 0.94) 0%, rgba(8, 112, 116, 0.88) 55%, rgba(27, 122, 112, 0.82) 100%),
+        url("https://images.unsplash.com/photo-1593113598338-cbdc1226e563?auto=format&fit=crop&w=2000&q=75");
+    background-size: cover;
+    background-position: center;
+}
+
+.splash-inner {
+    max-width: 1080px;
     margin: 0 auto;
+    width: 100%;
 }
 
-.hero .eyebrow {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
+.splash .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--teal-pitch);
+    color: rgba(255,255,255,0.75);
     margin: 0 0 16px;
 }
 
-.hero .title {
-    font-family: 'DM Serif Display', 'Nanum Myeongjo', serif;
-    font-size: clamp(40px, 5.5vw, 64px);
+.splash .title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(42px, 7vw, 76px);
     font-weight: 400;
-    line-height: 1.12;
-    letter-spacing: -0.02em;
-    color: var(--heading);
-    margin: 0 0 12px;
-    max-width: 900px;
-}
-
-.hero .subtitle {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 21px;
-    font-weight: 500;
-    color: var(--muted);
-    margin: 0 0 28px;
-    max-width: 720px;
-}
-
-.hero .lede {
-    max-width: 680px;
-    font-size: 18px;
-    color: var(--text);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #fff;
     margin: 0 0 20px;
+    max-width: 14ch;
+    text-shadow: 0 2px 40px rgba(0,0,0,0.25);
 }
 
-.hero .lede:last-of-type {
-    margin-bottom: 0;
+.splash .dek {
+    font-size: clamp(18px, 2.4vw, 22px);
+    line-height: 1.5;
+    color: rgba(255,255,255,0.92);
+    max-width: 560px;
+    margin: 0 0 32px;
+    font-weight: 400;
+}
+
+.splash-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 40px;
+}
+
+.splash .btn-donate {
+    padding: 16px 32px;
+    font-size: 15px;
+}
+
+.splash-ghost {
+    display: inline-flex;
+    padding: 16px 28px;
+    border: 2px solid rgba(255,255,255,0.55);
+    color: #fff !important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 999px;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.splash-ghost:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: #fff;
+}
+
+.splash-micro {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.stat-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--divider-strong);
+    border-top: 1px solid var(--divider);
+}
+
+.stat-cell {
+    background: var(--bg2);
+    padding: 28px 20px;
+    text-align: center;
+}
+
+.stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400;
+    color: var(--teal-pitch);
+    line-height: 1.1;
+    margin: 0 0 8px;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.4;
+    max-width: 220px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .section {
@@ -196,6 +295,7 @@ nav .nav-links a:hover {
     background: var(--bg2);
 }
 
+#give,
 #projects,
 #mission,
 #problem,
@@ -208,12 +308,12 @@ nav .nav-links a:hover {
 #supporters,
 #timeline,
 #contact {
-    scroll-margin-top: 110px;
+    scroll-margin-top: 96px;
 }
 
 .section h2 {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(28px, 3.2vw, 36px);
+    font-size: clamp(28px, 3.2vw, 38px);
     font-weight: 400;
     color: var(--heading);
     margin: 0 0 12px;
@@ -248,8 +348,37 @@ nav .nav-links a:hover {
     margin-bottom: 10px;
 }
 
-.section li:last-child {
-    margin-bottom: 0;
+.give-panel {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.give-panel .btn-donate {
+    padding: 18px 40px;
+    font-size: 17px;
+    margin-top: 8px;
+}
+
+.give-note {
+    font-size: 15px;
+    color: var(--muted);
+    margin: 20px 0 0;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.give-trust {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 28px;
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--divider);
+    font-size: 14px;
+    color: var(--muted);
 }
 
 .card-grid {
@@ -267,13 +396,12 @@ nav .nav-links a:hover {
 }
 
 .card h3 {
-    font-size: 15px;
+    font-size: 11px;
     font-weight: 600;
     color: var(--teal-pitch);
     margin: 0 0 10px;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    font-size: 11px;
 }
 
 .card p {
@@ -328,8 +456,8 @@ nav .nav-links a:hover {
 
 .portals {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
     margin-top: 20px;
     max-width: 680px;
 }
@@ -337,17 +465,17 @@ nav .nav-links a:hover {
 .portal {
     background: var(--bg2);
     border: 1px solid var(--divider);
-    padding: 14px 16px;
+    padding: 12px 14px;
     text-align: center;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 13px;
     color: var(--heading);
 }
 
 .portal span {
     display: block;
-    font-size: 11px;
-    font-weight: 500;
+    font-size: 10px;
+    font-weight: 600;
     color: var(--accent);
     margin-bottom: 4px;
     letter-spacing: 0.06em;
@@ -362,16 +490,49 @@ nav .nav-links a:hover {
     max-width: 680px;
 }
 
+.inline-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin-top: 28px;
+}
+
+.cta-band {
+    text-align: center;
+    padding: 88px 24px;
+    background: linear-gradient(180deg, var(--teal-pitch) 0%, #0e4a45 100%);
+    color: #fff;
+}
+
+.cta-band h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(30px, 4vw, 42px);
+    color: #fff;
+    margin: 0 0 12px;
+}
+
+.cta-band p {
+    margin: 0 auto 8px;
+    color: rgba(255,255,255,0.88);
+    max-width: 520px;
+    font-size: 18px;
+}
+
+.cta-band .btn-donate {
+    margin-top: 24px;
+}
+
 .cta {
     text-align: center;
-    padding: 100px 24px;
+    padding: 72px 24px;
     background: var(--bg3);
     border-top: 1px solid var(--divider);
 }
 
 .cta h2 {
     font-family: 'DM Serif Display', serif;
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 400;
     margin: 0 0 12px;
     color: var(--heading);
@@ -387,8 +548,8 @@ nav .nav-links a:hover {
 
 .cta a.button {
     display: inline-block;
-    margin-top: 22px;
-    padding: 14px 32px;
+    margin-top: 18px;
+    padding: 14px 28px;
     border: 1px solid var(--accent);
     background: var(--accent);
     text-decoration: none;
@@ -401,7 +562,6 @@ nav .nav-links a:hover {
 .cta a.button:hover {
     background: var(--accent-hover);
     border-color: var(--accent-hover);
-    color: #FFFFFF;
 }
 
 .cta a.button.button-secondary {
@@ -412,13 +572,11 @@ nav .nav-links a:hover {
 
 .cta a.button.button-secondary:hover {
     background: rgba(8, 112, 116, 0.08);
-    border-color: var(--accent);
-    color: var(--accent-hover);
 }
 
 footer {
     border-top: 1px solid var(--divider);
-    padding: 48px 24px 36px;
+    padding: 48px 24px 40px;
     font-size: 14px;
     color: var(--muted);
     text-align: center;
@@ -434,16 +592,35 @@ footer .footer-quote {
     line-height: 1.4;
 }
 
+footer .footer-donate {
+    margin: 24px 0 8px;
+}
+
 @media (max-width: 720px) {
     nav .brand-text {
         display: none;
     }
     nav .logo {
-        height: 44px;
+        height: 40px;
+    }
+    .stat-bar {
+        grid-template-columns: 1fr;
+    }
+    .nav-main .nav-skip-sm {
+        display: none;
+    }
+    .splash .title {
+        max-width: none;
     }
     .cta a.button.button-secondary {
         margin-left: 0;
         margin-top: 12px;
+    }
+}
+
+@media (max-width: 900px) {
+    nav .nav-main a:not(.btn-donate) {
+        font-size: 13px;
     }
 }
     </style>
@@ -451,98 +628,107 @@ footer .footer-quote {
 <body>
 
 <nav>
-    <a href="/" class="logo-link">
-        <img src="./assets/logo-the-good-project.png" alt="The Good Project" class="logo">
+    <a href="/" class="logo-link" aria-label="The Good Project home">
+        <img src="./assets/logo-the-good-project.png" alt="" class="logo" width="160" height="48">
         <span class="brand-text">
-            <span class="brand-kicker">The Good Project</span>
-            <span class="brand-sub">Beehive &amp; other initiatives</span>
+            <span class="brand-kicker">Nonprofit</span>
+            <span class="brand-sub">The Good Project</span>
         </span>
     </a>
-    <div class="nav-links">
-        <a href="#projects">Projects</a>
-        <a href="#model">Beehive</a>
-        <a href="#capital">Supporters</a>
-        <a href="#governance">PORTALS</a>
-        <a href="#contact">Contact</a>
+    <div class="nav-main">
+        <a class="nav-skip-sm" href="#problem">Why it matters</a>
+        <a class="nav-skip-sm" href="#model">The Beehive</a>
+        <a class="nav-skip-sm" href="#give">Give</a>
+        <a href="mailto:hello@thegoodproject.net?subject=Contact%20%E2%80%94%20The%20Good%20Project">Contact</a>
+        <a class="btn-donate" href="#give">Donate now</a>
     </div>
 </nav>
 
-<section class="hero">
-    <div class="hero-inner">
-        <p class="eyebrow">The Good Project</p>
-        <h1 class="title">Community hubs that serve every day—and stand ready when disaster hits.</h1>
-        <p class="subtitle"><strong>Project Beehive</strong> is our flagship nonprofit build. We also partner with founders and teams on capital, go-to-market, and systems—several project lines, one standard for execution.</p>
-        <p class="lede">This page focuses on Beehive: disaster-response community hubs that combine daily commercial activity with emergency preparedness—a thrift and outdoor gear store, a training center, and an emergency supply warehouse on ordinary days, converting to shelter and local crisis command when the worst happens.</p>
-        <p class="lede">Our mission for Beehive is to reduce human suffering through local, disaster-ready institutions and faster relief than traditional aid systems allow—starting in Tornado Alley, with a model designed to replicate.</p>
+<section class="splash">
+    <div class="splash-inner">
+        <p class="eyebrow">Project Beehive · The Good Project</p>
+        <h1 class="title">Relief that starts in the neighborhood.</h1>
+        <p class="dek">We’re a nonprofit building America’s first <strong>Beehive</strong>—a thrift and training hub that serves families every day and becomes shelter and local command when disaster hits. <strong>Your gift builds the walls, the supplies, and the training</strong> before the sirens go off.</p>
+        <div class="splash-actions">
+            <a class="btn-donate" href="#give">Donate now</a>
+            <a class="splash-ghost" href="#model">See how it works</a>
+        </div>
+        <p class="splash-micro">First flagship site: <strong>Springfield region / Ozark, Missouri</strong> · Tornado Alley · Pre-launch — we’re raising and building now.</p>
     </div>
 </section>
 
-<section id="projects" class="section alt">
-    <div class="container container--wide">
-        <p class="kicker">What we do</p>
-        <h2>Multiple projects, one house</h2>
-        <p class="prose">The Good Project is not a single program. Alongside <strong>Project Beehive</strong>, we take on partner work across philanthropy, operating companies, and (where appropriate) structured capital—always with clear lanes and accountable leadership.</p>
-        <div class="card-grid">
-            <article class="card project-card project-card--primary">
-                <p class="project-label">Nonprofit · Flagship</p>
-                <h3>Project Beehive</h3>
-                <p>Humanitarian infrastructure: community preparedness hubs with retail, training, stocked supplies, and crisis command—built to earn revenue and endowment yield, not to depend on perpetual disaster fundraising.</p>
-                <a class="project-link" href="#model">Read the Beehive model →</a>
-            </article>
-            <article class="card project-card">
-                <p class="project-label">Founder &amp; enterprise</p>
-                <h3>Operating partnerships</h3>
-                <p>Hands-on support for serious founders: capital formation, go-to-market, and practical tools when something important is missing in the stack. Engagements range from platform rebuilds to multi-market retail expansion.</p>
-                <a class="project-link" href="mailto:hello@thegoodproject.net?subject=Partnership">Discuss a partnership →</a>
-            </article>
-            <article class="card project-card">
-                <p class="project-label">Capital structure</p>
-                <h3>Models &amp; diligence</h3>
-                <p>Illustrative fund economics, deployment mechanics, and LP-style summaries for qualified partners who need an operating case—not slide-deck hand-waving—for private credit and similar structures. We share materials by request.</p>
-                <a class="project-link" href="mailto:hello@thegoodproject.net?subject=Model%20%2F%20diligence%20materials">Request model / diligence →</a>
-            </article>
+<div class="stat-bar" role="region" aria-label="Impact at a glance">
+    <div class="stat-cell">
+        <p class="stat-number">$20M</p>
+        <p class="stat-label">Initial fundraising vision to open the first Beehive, seed the endowment, and reserve the next node</p>
+    </div>
+    <div class="stat-cell">
+        <p class="stat-number">~$4.5M</p>
+        <p class="stat-label">Estimated setup for flagship facility—purchase, retrofit, and core infrastructure</p>
+    </div>
+    <div class="stat-cell">
+        <p class="stat-number">12–18 mo</p>
+        <p class="stat-label">Estimated time to launch a fully built Beehive after capital is secured</p>
+    </div>
+</div>
+
+<section id="give" class="section alt">
+    <div class="container">
+        <div class="give-panel">
+            <p class="kicker">Give</p>
+            <h2>Help us open the first Beehive.</h2>
+            <p class="prose" style="margin-left:auto;margin-right:auto;text-align:center">Disasters don’t wait for grants to clear. We’re assembling capital for real property, stocked supplies, and year-round training—<strong>durable infrastructure</strong> your neighbors can walk into on a Tuesday and rely on on the worst night of the year.</p>
+            <a class="btn-donate" href="mailto:hello@thegoodproject.net?subject=Donation%20%E2%80%94%20Project%20Beehive&amp;body=Please%20share%20instructions%20to%20donate%20(check%2C%20DAF%2C%20wire%2C%20etc.).">Donate now</a>
+            <p class="give-note"><strong>Secure online giving is coming soon.</strong> Today, use the button above to email our team—we’ll send wire / check / DAF instructions and a simple pledge form. Major gifts and foundation partners: we’d love to walk the model with you personally.</p>
+            <div class="give-trust">
+                <span>Questions? <a href="mailto:hello@thegoodproject.net">hello@thegoodproject.net</a></span>
+                <span>Tax &amp; entity documentation: provided when you make a gift</span>
+            </div>
         </div>
     </div>
 </section>
 
-<section id="mission" class="section">
+<section id="problem" class="section">
     <div class="container">
-        <p class="kicker">Mission · Project Beehive</p>
-        <h2>Prepared neighbors. Faster response.</h2>
-        <p class="prose">For Beehive, we help the individuals and families that make up a community become more prepared and resilient when crises arrive—by putting infrastructure, training, and supplies in place before they are needed.</p>
+        <p class="kicker">Why it matters</p>
+        <h2>Money shows up after storms. Neighbors need readiness before them.</h2>
+        <p class="prose">Aid is real—but too often it’s too late for the first 72 hours. Tornado Alley needs <strong>local</strong> buildings, supplies, and trained people who already live there.</p>
+        <ul>
+            <li>Communities need organizations that <strong>prepare</strong> before events, not only respond after.</li>
+            <li>We need more trained people ready to <strong>deploy</strong> where they live.</li>
+            <li>Resources must be <strong>stored nearby</strong>, not hundreds of miles away.</li>
+        </ul>
+        <div class="inline-cta-row">
+            <a class="btn-donate" href="#give">Fund local readiness</a>
+        </div>
     </div>
 </section>
 
-<section id="problem" class="section alt">
+<section id="mission" class="section alt">
     <div class="container">
-        <p class="kicker">Problem</p>
-        <h2>Funding exists—but delivery is too slow.</h2>
-        <p class="prose">Disaster funding is real, yet communities still wait. Too often, local areas lack pre-positioned infrastructure for an immediate response. In Tornado Alley, disasters are not rare—they are part of life.</p>
-        <ul>
-            <li>We need more organizations that actively prepare communities before events occur.</li>
-            <li>We need more organizations that train people to deploy effectively in emergencies.</li>
-            <li>We need more organizations that store resources locally so help does not have to travel hundreds of miles first.</li>
-        </ul>
+        <p class="kicker">Mission</p>
+        <h2>Reduce suffering with institutions that stay ready.</h2>
+        <p class="prose">Project Beehive exists to help families become more resilient—by putting <strong>infrastructure, training, and supplies</strong> in place before crises, and by moving faster than distant relief when seconds count.</p>
     </div>
 </section>
 
 <section id="model" class="section">
     <div class="container container--wide">
-        <p class="kicker">The Beehive model</p>
-        <h2>Retail, training, warehouse—and a command posture for crisis.</h2>
-        <p class="prose">A Beehive is a community preparedness hub: the market sells donated and sourced preparedness supplies to the public; the Storehouse holds rotating emergency stock; Disaster School runs paid preparedness classes and certifications year-round; the Command Center runs operations and coordinates relief.</p>
+        <p class="kicker">One building, four jobs</p>
+        <h2>Retail. Training. Warehouse. Command.</h2>
+        <p class="prose">A Beehive earns revenue on ordinary days—thrift and outdoor gear, Disaster School memberships, rotating emergency stock—then converts to <strong>shelter and neighborhood crisis command</strong> when the grid goes down.</p>
         <div class="card-grid">
             <div class="card">
                 <h3>Provisions</h3>
-                <p>Emergency supply warehouse and retail—donated items, consignment, food donations, wholesale pricing, and pre-built emergency packs.</p>
+                <p>Warehouse and store: donated and sourced preparedness goods, packs families can afford, and inventory that doubles as emergency supply.</p>
             </div>
             <div class="card">
-                <h3>Disaster Team</h3>
-                <p>Disaster-response training center: physical training, certifications, and ongoing membership for individuals and organizations.</p>
+                <h3>Disaster School</h3>
+                <p>Certifications, classes, and memberships so everyday people and workplaces know what to do when warning goes out.</p>
             </div>
             <div class="card">
                 <h3>Shelter &amp; command</h3>
-                <p>Built-in shelter conversion and a local crisis command center so the hub can coordinate response when events overwhelm normal capacity.</p>
+                <p>Built to convert: safe beds, kitchens, comms, and a local coordination center so ad hoc heroes aren’t working in the dark.</p>
             </div>
         </div>
     </div>
@@ -550,49 +736,56 @@ footer .footer-quote {
 
 <section id="revenue" class="section alt">
     <div class="container">
-        <p class="kicker">Revenue model</p>
-        <h2>Built to reduce dependence on one-off fundraising.</h2>
-        <p class="prose">The design combines earned revenue with endowment income so the work can scale without perpetual donor-only dependency.</p>
+        <p class="kicker">Sustainability</p>
+        <h2>Not only disaster fundraising.</h2>
+        <p class="prose">Earned revenue and a targeted endowment help keep lights on between events—so this isn’t a pop-up that vanishes when headlines fade.</p>
         <ul>
-            <li><strong>Preparedness retail</strong> — sales of donated goods, consignment, food programs, wholesale relationships, and emergency packs.</li>
-            <li><strong>Disaster School</strong> — membership and course fees for physical training and certifications.</li>
-            <li><strong>Endowment yield</strong> — invested capital producing recurring income for long-term stability.</li>
+            <li><strong>Retail &amp; programs</strong> — sales and training fees.</li>
+            <li><strong>Endowment yield</strong> — long-horizon capital for stability (modeled with disciplined private credit and real assets—not a gimmick “guaranteed” APY).</li>
         </ul>
     </div>
 </section>
 
 <section id="first-beehive" class="section">
     <div class="container">
-        <p class="kicker">First Beehive</p>
-        <h2>Springfield region, Missouri—proof of concept in Tornado Alley.</h2>
-        <p class="prose">The first node anchors the network in a region where preparedness is not theoretical. Reif Tauati serves as founding operating president. Estimated one-time setup is approximately <strong>$4.5M</strong>, including building purchase, retrofit, and infrastructure upgrades. The operating case is modeled for the Springfield metro; the first facility targets the <strong>Ozark</strong> area as a central test bed for the Beehive playbook.</p>
-        <p class="note">We start now—gathering donations and working from wherever we can—while pursuing capital for the flagship facility.</p>
+        <p class="kicker">Where we start</p>
+        <h2>Springfield region · Ozark, Missouri</h2>
+        <p class="prose"><strong>Reif Tauati</strong> serves as founding operating president. We’re in pre-launch: collecting donations, refining the plan, and pursuing the flagship facility while working from wherever we can.</p>
+        <p class="note">Every major gift gets us closer to keys, retrofit, and first payroll—not another slide deck.</p>
+        <div class="inline-cta-row">
+            <a class="btn-donate" href="#give">Back the first site</a>
+        </div>
     </div>
 </section>
 
 <section id="capital" class="section alt">
     <div class="container">
-        <p class="kicker">Capital plan</p>
-        <h2>Initial raise: $20M</h2>
-        <p class="prose">Proceeds are intended to fund the first Beehive, build a core endowment (~$8M target), provide operating runway, and reserve capital for a second node. The endowment is designed to generate recurring yield (modeled around a blended 5–6% net strategy), strengthening balance-sheet resilience. Yields are not legally guaranteed; they reflect a documented, actively managed approach rather than passive public-market assumptions.</p>
-        <p class="prose">Illustrative Year 1 economics for the Springfield case (from our planning materials): roughly <strong>$1.05M</strong> combined revenue (Provisions and Disaster School) against approximately <strong>$592K</strong> operating cost—before broader network and capital structure effects. Each future node is modeled with the same framework, adjusted for local population, real estate, and market density.</p>
-        <p class="prose"><a href="#supporters">Who we’re speaking with →</a></p>
+        <p class="kicker">The raise</p>
+        <h2>$20M to stand up the network’s first node.</h2>
+        <p class="prose">Capital seeds the flagship Beehive, endowment (~$8M target), runway, and reserve for a second hub. Springfield-area planning work sketches roughly <strong>$1.05M</strong> Year 1 revenue against <strong>~$592K</strong> operating costs—before we widen the aperture to regional replication.</p>
+        <p class="prose"><a href="#supporters">Foundations &amp; major donors →</a></p>
     </div>
+</section>
+
+<section class="cta-band">
+    <h2>Ready to give?</h2>
+    <p>Join the group building the first Beehive—where local commerce and local courage share the same roof.</p>
+    <a class="btn-donate" href="mailto:hello@thegoodproject.net?subject=Donation%20%E2%80%94%20Project%20Beehive">Donate now</a>
 </section>
 
 <section id="expansion" class="section">
     <div class="container">
-        <p class="kicker">Expansion</p>
-        <h2>A self-replicating regional network</h2>
-        <p class="prose">After the Springfield-area flagship, the roadmap includes nodes such as Branson, Joplin, Bentonville, Tulsa, Kansas City, and St. Louis—each within a few hours’ drive of neighbors so the region can mobilize quickly. Beehives are designed so success at one node helps fund the next.</p>
+        <p class="kicker">After the first</p>
+        <h2>Regional nodes, close enough to help each other.</h2>
+        <p class="prose">Branson, Joplin, Bentonville, Tulsa, Kansas City, St. Louis—each Beehive helps fund the next, within a couple hours’ drive for mutual aid.</p>
     </div>
 </section>
 
 <section id="governance" class="section alt">
     <div class="container">
-        <p class="kicker">Governance</p>
-        <h2>Local leadership with clear operating lanes</h2>
-        <p class="prose">Each Beehive runs through <strong>PORTALS</strong>, adapted from high-discipline operating companies: People, Operations, Revenue, Treasury, Automations, Leads, and Story. Board composition includes the president and spouse and two counselors with spouses, alongside a local leadership council.</p>
+        <p class="kicker">How we run</p>
+        <h2>PORTALS: disciplined operations</h2>
+        <p class="prose">Every hub runs through <strong>People, Operations, Revenue, Treasury, Automations, Leads, and Story</strong>—the same clarity we use in serious operating companies.</p>
         <div class="portals">
             <div class="portal"><span>P</span>People</div>
             <div class="portal"><span>O</span>Operations</div>
@@ -607,30 +800,66 @@ footer .footer-quote {
 
 <section id="supporters" class="section">
     <div class="container">
-        <p class="kicker">Who this is for</p>
-        <h2>Philanthropic partners who build institutions</h2>
-        <p class="prose">We are engaging private foundations, donor-advised funds, philanthropic high-net-worth individuals, and institutional charitable capital that wants durable infrastructure—not only event-based grants.</p>
+        <p class="kicker">Partners</p>
+        <h2>Built with foundations, DAFs, and bold individuals.</h2>
+        <p class="prose">We talk with private foundations, donor-advised funds, philanthropic families, and institutional charitable capital that wants <strong>permanent</strong> community capacity—not only one-time relief checks.</p>
+        <div class="inline-cta-row">
+            <a class="btn-donate" href="#give">Become a donor</a>
+            <a class="project-link" href="mailto:hello@thegoodproject.net?subject=Foundation%20%2F%20DAF%20conversation">Foundation or DAF? Email us →</a>
+        </div>
     </div>
 </section>
 
 <section id="timeline" class="section alt">
     <div class="container">
-        <p class="kicker">Timeline &amp; stage</p>
-        <h2>Pre-launch; execution begins with capital.</h2>
-        <p class="prose">Once funded, launch of the first fully built Beehive is estimated at roughly <strong>12–18 months</strong>. We prefer purchasing warehouses rather than leasing because of heavy retrofit requirements. No operational Beehive exists yet; this site reflects the pre-launch stage and active partnership building.</p>
+        <p class="kicker">Status</p>
+        <h2>Pre-launch. Building the coalition.</h2>
+        <p class="prose">No Beehive is open yet—that’s why gifts matter now. Funding turns waiting into steel, inventory, and instructors.</p>
+    </div>
+</section>
+
+<section id="projects" class="section">
+    <div class="container container--wide">
+        <p class="kicker">Our organization</p>
+        <h2>Project Beehive leads—other work continues.</h2>
+        <p class="prose">The Good Project also engages selected <strong>operating partnerships</strong> and <strong>capital-structure diligence</strong> with aligned teams. Project Beehive is the public nonprofit priority on this site.</p>
+        <div class="card-grid">
+            <article class="card project-card project-card--primary">
+                <p class="project-label">Flagship nonprofit</p>
+                <h3>Project Beehive</h3>
+                <p>Community preparedness hubs—this page is for you, the supporter.</p>
+                <a class="project-link" href="#give">Give to Beehive →</a>
+            </article>
+            <article class="card project-card">
+                <p class="project-label">Enterprise</p>
+                <h3>Operating partnerships</h3>
+                <p>Founder-side capital, GTM, and tools for builders we believe in.</p>
+                <a class="project-link" href="mailto:hello@thegoodproject.net?subject=Partnership">Start a conversation →</a>
+            </article>
+            <article class="card project-card">
+                <p class="project-label">Capital</p>
+                <h3>Models &amp; diligence</h3>
+                <p>Fund mechanics and LP-grade summaries by request—for qualified partners.</p>
+                <a class="project-link" href="mailto:hello@thegoodproject.net?subject=Model%20%2F%20diligence%20materials">Request materials →</a>
+            </article>
+        </div>
     </div>
 </section>
 
 <section id="contact" class="cta">
-    <h2>Partner with us</h2>
-    <p>Foundations, donors, and allies who want to fund local preparedness infrastructure—we would like to hear from you.</p>
-    <a class="button" href="mailto:hello@thegoodproject.net">hello@thegoodproject.net</a>
-    <a class="button button-secondary" href="mailto:hello@thegoodproject.net?subject=Contact">Team &amp; contact</a>
+    <h2>Walk with us.</h2>
+    <p>Whether you’re writing the first check or the largest, we’ll answer.</p>
+    <a class="btn-donate" href="mailto:hello@thegoodproject.net?subject=The%20Good%20Project%20%E2%80%94%20hello">Email the team</a>
+    <a class="button button-secondary" href="mailto:hello@thegoodproject.net?subject=Contact%20%E2%80%94%20The%20Good%20Project">General contact</a>
 </section>
 
 <footer>
     <p class="footer-quote">Build the change you wish to see in the world.</p>
-    <p>© 2026 The Good Project · Beehive &amp; partner work</p>
+    <div class="footer-donate">
+        <a class="btn-donate" href="#give">Donate now</a>
+    </div>
+    <p>© 2026 The Good Project · Project Beehive · A nonprofit initiative</p>
+    <p style="margin-top:12px;font-size:13px">Photo: community volunteers (Unsplash).</p>
 </footer>
 
 </body>
