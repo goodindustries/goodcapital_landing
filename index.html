@@ -20,14 +20,15 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
+  /* TGP logo: cream field + mustard ribbon (#D4A017) */
   --ink:#1a1814;
-  --paper:#f5f2eb;
-  --amber:#c8882e;
-  --amber-light:#e8c97a;
+  --paper:#f9f7e8;
+  --amber:#d4a017;
+  --amber-light:#e8bc3a;
   --dark:#0e0d0b;
   --mid:#3d3a34;
   --muted:#8a8278;
-  --rule:#c8c2b4;
+  --rule:#d4cfc0;
   --serif:'EB Garamond',Georgia,serif;
   --mono:'DM Mono',monospace;
 }
@@ -39,14 +40,15 @@ nav, section[id], .capital-section, .quote-break, .cta-section { scroll-margin-t
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.25rem 3rem;background:linear-gradient(to bottom,rgba(14,13,11,0.95) 0%,rgba(14,13,11,0) 100%);flex-wrap:wrap;}
 .nav-brand{display:flex;align-items:center;gap:0.85rem;text-decoration:none;color:inherit;}
-.nav-logo-img{height:46px;width:auto;display:block;border-radius:2px;box-shadow:0 2px 12px rgba(0,0,0,0.25);}
+.nav-logo-img{height:46px;width:auto;display:block;border-radius:2px;box-shadow:0 2px 16px rgba(212,160,23,0.15),0 2px 8px rgba(0,0,0,0.2);}
 .nav-sponsor{display:flex;flex-direction:column;gap:0.1rem;line-height:1.15;}
 .nav-sponsor-line{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.42);}
 .nav-sponsor-line strong{color:var(--amber-light);font-weight:500;}
 .nav-links{display:flex;gap:1.25rem 2rem;list-style:none;flex-wrap:wrap;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;}
 .nav-links a{color:rgba(255,255,255,0.55);text-decoration:none;}
 .nav-links a:hover{color:var(--amber-light);}
-.nav-cta{background:var(--amber);color:var(--dark);padding:0.55rem 1.4rem;font-family:var(--mono);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;}
+.nav-cta{background:var(--amber);color:var(--dark);padding:0.55rem 1.4rem;font-family:var(--mono);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;transition:background 0.15s ease;}
+.nav-cta:hover{background:#c29215;}
 
 /* HERO — full bleed exterior photo */
 .hero{position:relative;height:100vh;min-height:700px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
@@ -59,7 +61,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .hero-headline em{font-style:italic;color:var(--amber-light);}
 .hero-sub{font-size:1.15rem;color:rgba(255,255,255,0.7);max-width:560px;line-height:1.7;margin-bottom:2.5rem;}
 .hero-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
-.btn-amber{background:var(--amber);color:var(--dark);padding:0.9rem 2.25rem;font-family:var(--mono);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;}
+.btn-amber{background:var(--amber);color:var(--dark);padding:0.9rem 2.25rem;font-family:var(--mono);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;transition:background 0.15s ease,filter 0.15s ease;}
+.btn-amber:hover{background:#c29215;filter:brightness(1.03);}
 .btn-outline{background:transparent;color:var(--paper);border:1px solid rgba(255,255,255,0.35);padding:0.9rem 2rem;font-family:var(--mono);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;}
 .hero-stats-strip{position:relative;z-index:10;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,0.12);margin:0;}
 .stat-cell{padding:1.75rem 3rem;border-right:1px solid rgba(255,255,255,0.08);}
@@ -244,8 +247,8 @@ footer .f-right{text-align:right;}
     <!-- Next image: ./assets/photos/command-center.jpg -->
     <div class="photo-placeholder" style="background:#141210;">
       <div style="text-align:center;padding:2rem;">
-        <div style="width:64px;height:64px;border:1px solid rgba(200,136,46,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.5rem;">⬡</div>
-        <div style="color:rgba(200,136,46,0.6);margin-bottom:0.5rem;">Command center</div>
+        <div style="width:64px;height:64px;border:1px solid rgba(212,160,23,0.35);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.5rem;">⬡</div>
+        <div style="color:rgba(212,160,23,0.65);margin-bottom:0.5rem;">Command center</div>
         <div style="font-size:0.6rem;color:rgba(255,255,255,0.15);">Drop image into assets/photos/</div>
       </div>
     </div>
@@ -276,8 +279,8 @@ footer .f-right{text-align:right;}
     <!-- Next image: ./assets/photos/warehouse.jpg -->
     <div class="photo-placeholder" style="background:#101009;">
       <div style="text-align:center;padding:2rem;">
-        <div style="width:64px;height:64px;border:1px solid rgba(200,136,46,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.5rem;">⬡</div>
-        <div style="color:rgba(200,136,46,0.6);margin-bottom:0.5rem;">Logistics warehouse</div>
+        <div style="width:64px;height:64px;border:1px solid rgba(212,160,23,0.35);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.5rem;">⬡</div>
+        <div style="color:rgba(212,160,23,0.65);margin-bottom:0.5rem;">Logistics warehouse</div>
         <div style="font-size:0.6rem;color:rgba(255,255,255,0.15);">Drop image into assets/photos/</div>
       </div>
     </div>
@@ -317,8 +320,8 @@ footer .f-right{text-align:right;}
     <!-- Next image: ./assets/photos/shelter.jpg -->
     <div class="photo-placeholder" style="background:#0f0d0c;">
       <div style="text-align:center;padding:2rem;">
-        <div style="width:64px;height:64px;border:1px solid rgba(200,136,46,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.5rem;">⬡</div>
-        <div style="color:rgba(200,136,46,0.6);margin-bottom:0.5rem;">Shelter area</div>
+        <div style="width:64px;height:64px;border:1px solid rgba(212,160,23,0.35);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.5rem;">⬡</div>
+        <div style="color:rgba(212,160,23,0.65);margin-bottom:0.5rem;">Shelter area</div>
         <div style="font-size:0.6rem;color:rgba(255,255,255,0.15);">Drop image into assets/photos/</div>
       </div>
     </div>
