@@ -172,7 +172,7 @@ nav{
   will-change:transform;
 }
 .car-slide{min-width:calc(100% - 80px);flex-shrink:0;border-radius:14px;overflow:hidden;cursor:pointer;}
-.car-slide img{width:100%;height:56vh;object-fit:cover;object-position:center top;display:block;pointer-events:none;user-select:none;}
+.car-slide img{width:100%;height:auto;max-height:480px;object-fit:contain;display:block;pointer-events:none;user-select:none;background:var(--navy);}
 .car-info{padding:var(--sp2) var(--sp3) var(--sp1);}
 .car-info-title{
   font-size:clamp(22px,2.5vw,38px);font-weight:700;font-family:var(--font-hd);
