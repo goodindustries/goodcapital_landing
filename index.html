@@ -94,7 +94,7 @@ nav{
   position:absolute;inset:0;z-index:1;
   background:linear-gradient(to bottom,rgba(10,12,28,0.4) 0%,rgba(10,12,28,0.65) 100%);
 }
-.hero>*{position:relative;z-index:2;}
+.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:100%;}
 .hero-display{
   font-size:clamp(56px,9vw,140px);font-weight:700;font-family:var(--font);
   line-height:1.0;letter-spacing:-0.02em;
@@ -381,9 +381,11 @@ footer{
 <div class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
-  <div class="hero-display">A prepared people make a prepared city.</div>
-  <p class="hero-sub">We build disaster relief hubs in your city.</p>
-  <button class="hero-cta" onclick="document.getElementById('give').scrollIntoView({behavior:'smooth'})">Donate Now</button>
+  <div class="hero-content">
+    <div class="hero-display">A prepared people make a prepared city.</div>
+    <p class="hero-sub">We build disaster relief hubs in your city.</p>
+    <button class="hero-cta" onclick="document.getElementById('give').scrollIntoView({behavior:'smooth'})">Donate Now</button>
+  </div>
 </div>
 
 <!-- PHOTO -->
