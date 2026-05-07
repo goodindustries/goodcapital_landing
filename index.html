@@ -62,7 +62,7 @@ nav{
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
 }
-.nav-logo img{height:40px;width:auto;}
+.nav-logo img{height:36px;width:auto;max-width:360px;}
 .nav-links{
   display:flex;gap:var(--sp2);list-style:none;
   font-size:var(--sm);font-weight:700;
@@ -423,15 +423,10 @@ footer{
 </head>
 <body>
 
-<!-- FLOATING TGP LOGO -->
-<a class="tgp-float" href="#about" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});return false;">
-  <img src="/assets/brand/tgp-logo-wordmark.png" alt="The Good Project">
-</a>
-
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <img src="/assets/brand/beehive-logo-transparent.png" alt="The Beehive">
+    <img src="/assets/brand/beehive-combined-logo.png" alt="The Beehive — a project by The Good Project">
   </div>
   <ul class="nav-links">
     <li onclick="document.getElementById('what').scrollIntoView({behavior:'smooth'})">What We Build</li>
