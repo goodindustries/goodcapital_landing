@@ -747,6 +747,26 @@ nav{
 .city-pin circle,.city-pin text{transition:opacity 0.1s;}
 .city-pin:hover circle{opacity:1!important;}
 
+/* MAP TORNADO ANIMATION */
+@keyframes funnel-wobble{
+  0%,100%{transform:skewX(0deg) scaleX(1);}
+  25%{transform:skewX(4deg) scaleX(0.92);}
+  75%{transform:skewX(-4deg) scaleX(1.08);}
+}
+@keyframes danger-pulse{
+  0%,100%{opacity:0.18;}50%{opacity:0.32;}
+}
+@keyframes status-fade{
+  0%{opacity:0;transform:translateY(4px);}
+  15%,85%{opacity:1;transform:translateY(0);}
+  100%{opacity:0;transform:translateY(-4px);}
+}
+#anim-funnel-spin{transform-origin:0px 0px;animation:funnel-wobble 0.5s ease-in-out infinite;}
+#anim-tornado,#anim-danger,#anim-resp-sf,#anim-resp-joplin,#anim-resp-branson,
+#anim-sf-glow,#anim-joplin-glow,#anim-branson-glow,#anim-impact-rings,
+#anim-ir1,#anim-ir2,#anim-ir3,#anim-status-box{pointer-events:none;}
+#anim-status-text{font-family:Barlow,sans-serif;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+
 /* FOOTER */
 footer{
   border-top:1px solid var(--rule);
@@ -1251,6 +1271,68 @@ we dive, we drown, we pirate on,
       <text x="640" y="441" font-family="Barlow,sans-serif" font-size="10" fill="#5C5A72" opacity="0.75" font-weight="600">Planned</text>
       <line x1="618" y1="453" x2="776" y2="453" stroke="#E0DDD6" stroke-width="0.75" opacity="0.8"/>
       <text x="697" y="465" text-anchor="middle" font-family="Barlow,sans-serif" font-size="8.5" fill="#9895AA" font-style="italic">Hover a city · see 3-hr radius</text>
+
+      <!-- ═══ TORNADO ANIMATION LAYER ═══ -->
+
+      <!-- Danger glow at impact (Joplin corridor ~260,355) -->
+      <g id="anim-danger" style="opacity:0;display:none;">
+        <circle cx="260" cy="355" r="60" fill="#CC2222" fill-opacity="0.13"/>
+        <circle cx="260" cy="355" r="32" fill="#CC2222" fill-opacity="0.12"/>
+      </g>
+
+      <!-- Impact rings (JS animates r + opacity) -->
+      <g id="anim-impact-rings" style="display:none;">
+        <circle id="anim-ir1" cx="260" cy="355" r="4" fill="none" stroke="#CC3333" stroke-width="2.5" opacity="0"/>
+        <circle id="anim-ir2" cx="260" cy="355" r="4" fill="none" stroke="#CC3333" stroke-width="1.5" opacity="0"/>
+        <circle id="anim-ir3" cx="260" cy="355" r="4" fill="none" stroke="#DD5555" stroke-width="1"   opacity="0"/>
+      </g>
+
+      <!-- Response coverage blooms -->
+      <g id="anim-sf-glow" style="opacity:0;display:none;">
+        <ellipse cx="329" cy="356" rx="192" ry="128" fill="#D4880F" fill-opacity="0.07" stroke="#D4880F" stroke-width="1.5" stroke-dasharray="9 6"/>
+        <ellipse cx="329" cy="356" rx="108" ry="72"  fill="#D4880F" fill-opacity="0.07" stroke="#D4880F" stroke-width="1"   stroke-dasharray="5 5"/>
+      </g>
+      <g id="anim-joplin-glow" style="opacity:0;display:none;">
+        <circle cx="221" cy="365" r="13" fill="#D4880F"/>
+        <ellipse cx="221" cy="365" rx="130" ry="87" fill="#D4880F" fill-opacity="0.06" stroke="#D4880F" stroke-width="1" stroke-dasharray="5 5"/>
+      </g>
+      <g id="anim-branson-glow" style="opacity:0;display:none;">
+        <circle cx="336" cy="398" r="13" fill="#D4880F"/>
+        <ellipse cx="336" cy="398" rx="110" ry="73" fill="#D4880F" fill-opacity="0.06" stroke="#D4880F" stroke-width="1" stroke-dasharray="5 5"/>
+      </g>
+
+      <!-- Animated response lines -->
+      <line id="anim-resp-sf"      x1="329" y1="356" x2="260" y2="355" stroke="#D4880F" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="500" stroke-dashoffset="500" opacity="0"/>
+      <line id="anim-resp-joplin"  x1="221" y1="365" x2="260" y2="355" stroke="#D4880F" stroke-width="2"   stroke-linecap="round" stroke-dasharray="500" stroke-dashoffset="500" opacity="0"/>
+      <line id="anim-resp-branson" x1="336" y1="398" x2="260" y2="355" stroke="#D4880F" stroke-width="2"   stroke-linecap="round" stroke-dasharray="500" stroke-dashoffset="500" opacity="0"/>
+
+      <!-- Status label HUD -->
+      <g id="anim-status-box" style="display:none;">
+        <rect x="16" y="16" width="200" height="28" rx="4" fill="#13183A" fill-opacity="0.82"/>
+        <text id="anim-status-text" x="116" y="34" text-anchor="middle" fill="#D4880F">CATEGORY 4 — JOPLIN CORRIDOR</text>
+      </g>
+
+      <!-- Tornado funnel (JS moves via transform) -->
+      <g id="anim-tornado" style="display:none;opacity:0;" transform="translate(88,490)">
+        <g id="anim-funnel-spin">
+          <!-- Cloud top -->
+          <ellipse cx="0" cy="-56" rx="26" ry="11" fill="#7070AA" opacity="0.72"/>
+          <ellipse cx="-11" cy="-60" rx="13" ry="8"  fill="#6868A0" opacity="0.65"/>
+          <ellipse cx="11"  cy="-58" rx="11" ry="7"  fill="#6868A0" opacity="0.60"/>
+          <!-- Funnel body: wide top → narrow bottom -->
+          <path d="M-18,-50 C-22,-25 -11,0 -4,18 L0,30 L4,18 C11,0 22,-25 18,-50 Z" fill="#6A68A8" opacity="0.78"/>
+          <!-- Rotation bands -->
+          <ellipse cx="0" cy="-38" rx="17" ry="4.5" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.3"/>
+          <ellipse cx="0" cy="-25" rx="13" ry="3.5" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.1"/>
+          <ellipse cx="0" cy="-13" rx="9"  ry="2.5" fill="none" stroke="rgba(255,255,255,0.38)" stroke-width="0.9"/>
+          <ellipse cx="0" cy="-2"  rx="6"  ry="2"   fill="none" stroke="rgba(255,255,255,0.30)" stroke-width="0.8"/>
+          <ellipse cx="0" cy="9"   rx="3.5" ry="1.5" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="0.7"/>
+          <!-- Debris at tip -->
+          <circle cx="-7" cy="24" r="2.5" fill="#9090CC" opacity="0.55"/>
+          <circle cx="6"  cy="27" r="2"   fill="#9090CC" opacity="0.45"/>
+          <circle cx="0"  cy="29" r="1.5" fill="#9090CC" opacity="0.50"/>
+        </g>
+      </g>
     </svg>
   </div>
 </div>
@@ -1648,6 +1730,188 @@ var CITY_COORDS = {
 })();
 </script>
 
+<script>
+// ── TORNADO MAP ANIMATION ──────────────────────────────────────────
+(function(){
+  var tornado   = document.getElementById('anim-tornado');
+  var danger    = document.getElementById('anim-danger');
+  var impactRings = document.getElementById('anim-impact-rings');
+  var ir1 = document.getElementById('anim-ir1');
+  var ir2 = document.getElementById('anim-ir2');
+  var ir3 = document.getElementById('anim-ir3');
+  var sfGlow  = document.getElementById('anim-sf-glow');
+  var jGlow   = document.getElementById('anim-joplin-glow');
+  var bGlow   = document.getElementById('anim-branson-glow');
+  var respSF  = document.getElementById('anim-resp-sf');
+  var respJ   = document.getElementById('anim-resp-joplin');
+  var respB   = document.getElementById('anim-resp-branson');
+  var statusBox  = document.getElementById('anim-status-box');
+  var statusText = document.getElementById('anim-status-text');
+
+  // Tornado tip lands at impact; funnel extends ~30px above group center
+  var START = {x:88, y:490};   // enters from SW (off-screen bottom)
+  var END   = {x:255, y:320};  // tip contact at (255, 350) ≈ Joplin corridor
+
+  var timers = [];
+  var rafId  = null;
+  var running = false;
+
+  function show(el){ el.style.display=''; requestAnimationFrame(function(){ el.style.opacity='1'; }); }
+  function hide(el){ el.style.opacity='0'; }
+  function hideNow(el){ el.style.display='none'; el.style.opacity='0'; }
+
+  function setStatus(txt, color){
+    statusText.textContent = txt;
+    statusText.setAttribute('fill', color || '#D4880F');
+    show(statusBox);
+  }
+
+  // Animate a circle's r from 0→max, opacity 1→0 over duration ms
+  function pulseRing(el, maxR, dur, delay){
+    timers.push(setTimeout(function(){
+      el.style.opacity = '1';
+      var start = null;
+      function step(t){
+        if(!start) start=t;
+        var p = Math.min((t-start)/dur, 1);
+        var r = p * maxR;
+        var op = 1 - p;
+        el.setAttribute('r', r.toFixed(1));
+        el.setAttribute('opacity', op.toFixed(2));
+        if(p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }, delay||0));
+  }
+
+  // Animate stroke-dashoffset from 500→0 over dur ms
+  function drawLine(el, dur, delay){
+    timers.push(setTimeout(function(){
+      el.style.transition = 'stroke-dashoffset '+dur+'ms ease, opacity 300ms';
+      el.setAttribute('opacity','0.85');
+      el.setAttribute('stroke-dashoffset','0');
+    }, delay||0));
+  }
+
+  function moveTornado(onDone){
+    var dur  = 2600;
+    var start = null;
+    tornado.style.display = '';
+    function step(t){
+      if(!start) start = t;
+      var p = Math.min((t - start) / dur, 1);
+      // ease in-out cubic
+      var e = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p+2,3)/2;
+      var x = START.x + (END.x - START.x) * e;
+      var y = START.y + (END.y - START.y) * e;
+      tornado.setAttribute('transform','translate('+x.toFixed(1)+','+y.toFixed(1)+')');
+      // fade in first 200ms
+      tornado.style.opacity = Math.min(p * (dur/200), 1).toFixed(2);
+      if(p < 1){ rafId = requestAnimationFrame(step); }
+      else { onDone && onDone(); }
+    }
+    rafId = requestAnimationFrame(step);
+  }
+
+  function fadeTornado(){
+    var dur = 600; var start = null; var oy = parseFloat(END.y);
+    function step(t){
+      if(!start) start=t;
+      var p = Math.min((t-start)/dur,1);
+      tornado.style.opacity = (1-p).toFixed(2);
+      tornado.setAttribute('transform','translate('+END.x.toFixed(1)+','+(oy + p*12).toFixed(1)+')');
+      if(p<1) rafId = requestAnimationFrame(step);
+      else hideNow(tornado);
+    }
+    rafId = requestAnimationFrame(step);
+  }
+
+  function resetAll(){
+    running = false;
+    timers.forEach(clearTimeout); timers=[];
+    if(rafId) cancelAnimationFrame(rafId);
+    hideNow(tornado); hideNow(danger); hideNow(impactRings);
+    hideNow(sfGlow); hideNow(jGlow); hideNow(bGlow); hideNow(statusBox);
+    [ir1,ir2,ir3].forEach(function(el){ el.setAttribute('r','4'); el.setAttribute('opacity','0'); });
+    [respSF,respJ,respB].forEach(function(el){
+      el.style.transition='none';
+      el.setAttribute('stroke-dashoffset','500');
+      el.setAttribute('opacity','0');
+    });
+  }
+
+  function runSequence(){
+    if(running) return;
+    running = true;
+
+    // Phase 1: Tornado approaches (0–2600ms)
+    setStatus('CATEGORY 4 · JOPLIN CORRIDOR', '#CC3333');
+    moveTornado(function(){
+
+      // Phase 2: Impact (2600ms)
+      fadeTornado();
+      show(danger);
+      danger.style.animation = 'danger-pulse 1.4s ease-in-out infinite';
+      impactRings.style.display='';
+      pulseRing(ir1, 75,  1000, 0);
+      pulseRing(ir2, 100, 1300, 200);
+      pulseRing(ir3, 130, 1600, 400);
+      setStatus('IMPACT DETECTED · BEEHIVES ACTIVATING', '#CC3333');
+
+      // Phase 3: Springfield responds (3400ms)
+      timers.push(setTimeout(function(){
+        setStatus('SPRINGFIELD RESPONDING · 40 MIN ETA', '#D4880F');
+        show(sfGlow);
+        sfGlow.style.transition = 'opacity 1s ease';
+        drawLine(respSF, 1200, 0);
+      }, 800));
+
+      // Phase 4: Joplin activates (4800ms)
+      timers.push(setTimeout(function(){
+        setStatus('JOPLIN MOBILIZING · NETWORK EXPANDING', '#D4880F');
+        show(jGlow);
+        jGlow.style.transition = 'opacity 0.9s ease';
+        drawLine(respJ, 900, 0);
+      }, 2200));
+
+      // Phase 5: Branson activates (5800ms)
+      timers.push(setTimeout(function(){
+        setStatus('FULL NETWORK COVERAGE', '#4CAF50');
+        show(bGlow);
+        bGlow.style.transition = 'opacity 0.9s ease';
+        drawLine(respB, 900, 0);
+      }, 3200));
+
+      // Phase 6: Hold, then reset (9000ms total)
+      timers.push(setTimeout(function(){
+        hide(statusBox);
+        timers.push(setTimeout(function(){
+          hide(sfGlow); hide(jGlow); hide(bGlow);
+          hide(danger); hide(respSF); hide(respJ); hide(respB);
+          timers.push(setTimeout(resetAll, 1000));
+        }, 800));
+      }, 4600));
+    });
+  }
+
+  // Trigger on scroll into view, loop every ~14s
+  var mapSection = document.getElementById('where');
+  var loopTimer  = null;
+  var observed   = false;
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting && !observed){
+        observed = true;
+        function loop(){ runSequence(); loopTimer = setTimeout(loop, 14000); }
+        loop();
+      }
+    });
+  }, {threshold:0.3});
+  observer.observe(mapSection);
+})();
+</script>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -1657,7 +1921,8 @@ var CITY_COORDS = {
       </div>
       <div class="footer-legal">
         A registered 501(c)(3) nonprofit organization.<br>
-        The worth of every soul is great.
+        The worth of every soul is <i>great</i>.<br>
+        To relieve human suffering, in all forms, in all places.
       </div>
     </div>
     <div class="footer-hierarchy">
