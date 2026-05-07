@@ -372,6 +372,8 @@ nav{
 
   /* About */
   .about-tgp{padding:var(--sp3) 20px;}
+  .about-grid{grid-template-columns:1fr;gap:var(--sp3);}
+  .about-pillars{grid-template-columns:1fr 1fr;}
   .section-h{font-size:clamp(28px,8vw,48px);}
   .about-body{font-size:clamp(15px,4vw,18px);}
 
@@ -463,19 +465,104 @@ nav{
 /* ABOUT TGP */
 .about-tgp{
   padding:var(--sp4) var(--sp3);
-  background:var(--cream-lt);
-  border-top:1px solid var(--rule);
-  border-bottom:1px solid var(--rule);
+  background:var(--navy);
+  border-top:1px solid rgba(255,255,255,0.06);
 }
-.about-tgp .section-p{max-width:52ch;margin-bottom:var(--sp2);}
-.about-body{
-  font-size:clamp(16px,1.4vw,20px);color:var(--muted);
-  line-height:1.7;max-width:64ch;margin-bottom:var(--sp1);
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:var(--sp4);align-items:start;
+  padding-bottom:var(--sp4);
+  border-bottom:1px solid rgba(255,255,255,0.1);
 }
-.about-proof{
-  font-size:clamp(17px,1.5vw,22px);
-  font-weight:600;color:var(--navy);
-  margin-top:var(--sp2);margin-bottom:0;
+.about-mission-eye{
+  font-size:clamp(13px,1vw,16px);font-weight:700;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:var(--sp2);
+}
+.about-mission-h{
+  font-size:clamp(26px,3vw,48px);font-family:var(--font-hd);font-weight:700;
+  color:#fff;line-height:1.05;margin-bottom:var(--sp2);
+}
+.about-mission-p{
+  font-size:clamp(15px,1.3vw,19px);color:rgba(255,255,255,0.6);
+  line-height:1.75;margin-bottom:var(--sp1);max-width:52ch;
+}
+.about-pillars{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;
+  margin-top:var(--sp2);
+}
+.about-pillar{
+  font-size:clamp(12px,1vw,15px);font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;color:rgba(255,255,255,0.4);
+  padding:10px 0;border-top:1px solid rgba(255,255,255,0.1);
+}
+.about-pillar span{color:var(--amber);margin-right:8px;}
+.about-poem{
+  padding:var(--sp3);
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;
+}
+.poem-title{
+  font-size:clamp(11px,0.9vw,14px);font-weight:700;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:var(--sp1);
+}
+.poem-body{
+  font-size:clamp(14px,1.2vw,17px);color:rgba(255,255,255,0.75);
+  line-height:1.85;font-style:italic;white-space:pre-line;
+}
+.poem-author{
+  margin-top:var(--sp2);
+  font-size:clamp(12px,1vw,14px);color:rgba(255,255,255,0.35);
+  font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+}
+.about-expand{margin-top:var(--sp3);}
+.manifesto-toggle{
+  display:flex;align-items:center;gap:12px;
+  background:none;border:none;cursor:pointer;padding:0;
+  font-size:clamp(14px,1.2vw,17px);font-weight:700;font-family:var(--font);
+  color:rgba(255,255,255,0.5);letter-spacing:0.04em;
+  transition:color 0.2s;
+}
+.manifesto-toggle:hover{color:#fff;}
+.manifesto-toggle .tog-arrow{
+  width:32px;height:32px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;transition:all 0.25s;flex-shrink:0;
+}
+.manifesto-toggle.open{color:#fff;}
+.manifesto-toggle.open .tog-arrow{
+  background:var(--amber);border-color:var(--amber);color:#fff;transform:rotate(45deg);
+}
+.manifesto-body{
+  display:none;
+  padding-top:var(--sp3);
+  max-width:72ch;
+}
+.manifesto-body.open{display:block;}
+.manifesto-p{
+  font-size:clamp(15px,1.3vw,18px);color:rgba(255,255,255,0.6);
+  line-height:1.8;margin-bottom:var(--sp1);
+}
+.manifesto-p strong{color:rgba(255,255,255,0.85);font-weight:600;}
+.manifesto-ol{
+  margin:var(--sp1) 0 var(--sp2) 0;padding-left:0;list-style:none;
+  display:flex;flex-direction:column;gap:12px;
+}
+.manifesto-ol li{
+  font-size:clamp(15px,1.3vw,18px);color:rgba(255,255,255,0.6);
+  line-height:1.75;padding-left:36px;position:relative;
+}
+.manifesto-ol li::before{
+  content:attr(data-n);position:absolute;left:0;
+  color:var(--amber);font-weight:700;font-family:var(--font-hd);font-size:1.1em;
+}
+.manifesto-quote{
+  margin:var(--sp2) 0;
+  padding:var(--sp2) var(--sp2);
+  border-left:4px solid var(--amber);
+  font-size:clamp(16px,1.4vw,20px);color:rgba(255,255,255,0.8);
+  font-style:italic;line-height:1.7;
 }
 
 /* FLOATING TGP LOGO */
@@ -530,24 +617,24 @@ footer{
 <div class="prob-stats">
   <div class="prob-featured">
     <div class="prob-featured-n">16 days.</div>
-    <div class="prob-featured-l">The average wait for federal aid after a disaster is declared.</div>
+    <div class="prob-featured-l">The average wait for federal aid after a disaster is declared. Your neighborhood can't wait sixteen days.</div>
   </div>
   <div class="prob-grid">
     <div class="prob-stat">
       <div class="prob-n">13M</div>
-      <div class="prob-l">Americans live in communities with no formal disaster preparedness infrastructure.</div>
+      <div class="prob-l">Americans have nowhere to turn when disaster hits their block.</div>
     </div>
     <div class="prob-stat">
       <div class="prob-n">3 in 4</div>
-      <div class="prob-l">Americans have no emergency plan for their household.</div>
+      <div class="prob-l">Families haven't talked about what to do when something goes wrong.</div>
     </div>
     <div class="prob-stat">
       <div class="prob-n">47%</div>
-      <div class="prob-l">Of emergency calls go unanswered during a major disaster.</div>
+      <div class="prob-l">Emergency calls go unanswered. The system gets overwhelmed. Your neighbor doesn't get through.</div>
     </div>
     <div class="prob-stat">
       <div class="prob-n">25%</div>
-      <div class="prob-l">Of U.S. households experienced a complete power outage last year.</div>
+      <div class="prob-l">One in four households lost power completely last year. Most weren't ready.</div>
     </div>
   </div>
 </div>
@@ -563,39 +650,35 @@ footer{
 
     <div class="what-grid">
       <div class="what-pillar">
-        <div class="what-num">01</div>
         <div class="what-icon">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 6h20l-2 12H6L4 6Z" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/><circle cx="10" cy="23" r="1.5" fill="#D4880F"/><circle cx="18" cy="23" r="1.5" fill="#D4880F"/><path d="M2 3h3l1 3" stroke="#D4880F" stroke-width="2" stroke-linecap="round"/></svg>
         </div>
         <div class="what-kw">A store</div>
-        <div class="what-desc">Buy a 72-hour kit, a water filter, a tent, a cot. Everything your family needs — before you need it.</div>
+        <div class="what-desc">The things your family needs — water filters, 72-hour kits, emergency gear — on the shelf, in your neighborhood, before you ever need them.</div>
       </div>
 
       <div class="what-pillar">
-        <div class="what-num">02</div>
         <div class="what-icon">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4L4 9l10 5 10-5-10-5Z" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/><path d="M4 14l10 5 10-5" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/><path d="M4 19l10 5 10-5" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/></svg>
         </div>
         <div class="what-kw">A school</div>
-        <div class="what-desc">Learn to can food. Earn a first aid certification. Get tornado shelter certified. Your neighbors trained before the sirens go off.</div>
+        <div class="what-desc">Learn to preserve food, earn a first aid cert, get tornado-shelter certified. Skills that live in your hands — not a pamphlet in a drawer.</div>
       </div>
 
       <div class="what-pillar">
-        <div class="what-num">03</div>
         <div class="what-icon">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M3 13L14 4l11 9v11a1 1 0 01-1 1H4a1 1 0 01-1-1V13Z" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/><path d="M10 24v-8h8v8" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/></svg>
         </div>
         <div class="what-kw">A shelter</div>
-        <div class="what-desc">When evacuation orders go out, the Beehive is already open. Safe beds, warm meals, power, and people who know what they're doing.</div>
+        <div class="what-desc">When the orders go out and people have nowhere to go, the doors are already open. Beds, food, power, and calm people who know what to do.</div>
       </div>
 
       <div class="what-pillar">
-        <div class="what-num">04</div>
         <div class="what-icon">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="3" fill="#D4880F"/><path d="M7 7a9.9 9.9 0 000 14" stroke="#D4880F" stroke-width="2" stroke-linecap="round"/><path d="M21 7a9.9 9.9 0 010 14" stroke="#D4880F" stroke-width="2" stroke-linecap="round"/><path d="M4 4a14.1 14.1 0 000 20" stroke="#D4880F" stroke-width="2" stroke-linecap="round" opacity=".4"/><path d="M24 4a14.1 14.1 0 010 20" stroke="#D4880F" stroke-width="2" stroke-linecap="round" opacity=".4"/></svg>
         </div>
         <div class="what-kw">A command center</div>
-        <div class="what-desc">When the grid goes down, the Beehive coordinates the neighborhood. Local leadership, live logistics, resources moving to where they're needed.</div>
+        <div class="what-desc">When the phones are down and no one knows what's happening, someone at the Beehive does. Local people, real-time logistics, help moving where it's needed.</div>
       </div>
     </div>
 
@@ -806,17 +889,72 @@ footer{
 
 <!-- ABOUT THE GOOD PROJECT -->
 <div class="about-tgp" id="about">
-  <div class="section-eye">The Organization</div>
-  <h2 class="section-h">The Good Project</h2>
-  <p class="section-p">A nonprofit building the permanent community infrastructure America doesn't yet have.</p>
-  <p class="about-body">Most relief organizations respond after disaster. We build before it. The Beehive is the first hub in a network designed to make every city in its region self-sufficient — stocked, trained, and ready before the warning goes out.</p>
-  <p class="about-body">We are not a campaign. We are not a fund. We are an institution being built to last — governed by a board, funded by an endowment, and designed so that every hub generates the revenue to sustain itself and seed the next one.</p>
-  <p class="about-body about-proof">The Beehive is our first proof.</p>
+  <div class="about-grid">
+    <div>
+      <div class="about-mission-eye">The Good Project</div>
+      <div class="about-mission-h">To relieve human suffering, in all forms, in all places.</div>
+      <p class="about-mission-p">Not after the disaster. Before it. The Beehive is the first hub in a network we're building city by city — each one stocked, trained, and ready. And each one designed to fund the next.</p>
+      <div class="about-pillars">
+        <div class="about-pillar"><span>I</span> Physical</div>
+        <div class="about-pillar"><span>II</span> Intellectual</div>
+        <div class="about-pillar"><span>III</span> Social</div>
+        <div class="about-pillar"><span>IV</span> Spiritual</div>
+      </div>
+      <div class="about-expand">
+        <button class="manifesto-toggle" onclick="toggleManifesto(this)">
+          <span class="tog-arrow">+</span>
+          Read our manifesto
+        </button>
+        <div class="manifesto-body">
+          <p class="manifesto-p">The Good Project exists to relieve human suffering, in all forms, in all places. To bring light and life, as Jesus does, to the inhabitants of the earth.</p>
+          <ol class="manifesto-ol">
+            <li data-n="1">All humans are children of God and therefore, regardless of circumstance, race, past actions, or social standing, are creatures of infinite worth.</li>
+            <li data-n="2">Given that infinite worth, suffering in any way and in any degree can and should be prevented, remedied, and, where possible, healed.</li>
+            <li data-n="3">Charity begins with Christlike love and ends in action. It includes bread, water, and the necessities of life, but does not exclude spiritual, social, mental, and other forms of support.</li>
+            <li data-n="4">The Savior Himself taught that "the poor ye have always with you" — no organization can fully rectify human suffering until His return.</li>
+            <li data-n="5">Yet any effort to provide relief or prosper any human being, according to the light-and-life pattern of Jesus Christ, is among the highest aims to which any organization can aspire.</li>
+          </ol>
+          <div class="manifesto-quote">"Verily I say, men should be anxiously engaged in a good cause, and do many things of their own free will, and bring to pass much righteousness."</div>
+          <p class="manifesto-p">The Good Project is one permutation of a good cause. One way to be anxiously engaged in doing good. We derive our four pillars from Jacob: to clothe the naked, feed the hungry, liberate the captive, and administer relief to the sick and afflicted.</p>
+        </div>
+      </div>
+    </div>
+    <div class="about-poem">
+      <div class="poem-title">A Sailor's Hymn</div>
+      <div class="poem-body">We followed Him thru wicked sea —
+horrid, bloody fierce,
+We kept the pace 'til freedom's Dawn
+rang new in ev'ry ear.
+We trafficked jagged highways
+with daggers sharp and bright,
+We bore the weak thru vantablack
+of Serpent's needled night.
+
+We did indeed these talents turn
+to free the single flow'r,
+twas Rose's light they nectar'd dim
+since that fateful hour.
+We raked the seas for Willow
+the Fallen Son would claim,
+and struck back the dark,
+alas once more — with frigid, Holy Flame.
+
+Now we commission galleons
+whose berth we'll never meet;
+They shall pirate ever on,
+those blistered, wretched seas.
+Our florians are quiet-kept,
+we're absent honor's roll;
+we dive, we drown, we pirate on,
+— we ransom for the Pearl.</div>
+      <div class="poem-author">— Reif Tauati</div>
+    </div>
+  </div>
 </div>
 
 <!-- DONATE -->
 <div class="donate" id="give">
-  <div class="section-eye" style="margin-bottom:var(--sp1);">Build the first Beehive</div>
+  <div class="section-eye" style="margin-bottom:var(--sp1);">Support the mission</div>
   <h2 class="donate-h">Your gift builds the walls, stocks the shelves, trains the neighbors, opens the doors.</h2>
   <div class="btns" style="margin-bottom:var(--sp2);">
     <button class="btn-amber">Donate Now</button>
@@ -929,6 +1067,14 @@ document.addEventListener('keydown', e => {
   if(e.key === 'ArrowLeft') stepLb(-1);
   if(e.key === 'ArrowRight') stepLb(1);
 });
+</script>
+
+<script>
+function toggleManifesto(btn){
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+  btn.querySelector('.tog-arrow').textContent = btn.classList.contains('open') ? '×' : '+';
+}
 </script>
 
 <!-- FOOTER -->
