@@ -66,7 +66,7 @@ nav{
 .nav-logo img{width:clamp(220px,26vw,400px);height:auto;display:block;}
 .nav-links{
   display:flex;gap:var(--sp2);list-style:none;
-  font-size:var(--sm);font-weight:700;
+  font-size:clamp(15px,1.3vw,22px);font-weight:700;
   letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);
   cursor:pointer;
 }
@@ -145,13 +145,13 @@ nav{
 }
 .prob-stat:last-child{border-right:none;}
 .prob-n{
-  font-size:clamp(44px,5vw,80px);font-weight:800;font-family:var(--font-hd);
+  font-size:clamp(32px,3.5vw,56px);font-weight:700;font-family:var(--font-hd);
   letter-spacing:-0.01em;color:var(--amber);line-height:1;
 }
 .prob-l{
-  font-size:clamp(11px,0.85vw,13px);color:rgba(255,255,255,0.55);
-  font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
-  margin-top:10px;line-height:1.5;
+  font-size:clamp(16px,1.6vw,26px);color:rgba(255,255,255,0.65);
+  font-weight:500;letter-spacing:0.01em;text-transform:none;
+  margin-top:12px;line-height:1.5;
 }
 
 /* WHAT A BEEHIVE IS */
@@ -159,6 +159,8 @@ nav{
   background:var(--navy);
   padding:var(--sp4) var(--sp3);
   max-width:none!important;
+  border-radius:24px;
+  margin:clamp(12px,2vw,28px) clamp(12px,2vw,28px) 0;
 }
 .what-inner{max-width:1200px;margin:0 auto;}
 .what-header{
@@ -239,7 +241,7 @@ nav{
   font-size:clamp(26px,3.5vw,52px);font-weight:700;font-family:var(--font-hd);
   color:#fff;margin-bottom:10px;letter-spacing:0.01em;
 }
-.car-cap-desc{font-size:clamp(16px,1.6vw,24px);color:rgba(255,255,255,0.85);line-height:1.5;max-width:580px;}
+.car-cap-desc{font-size:clamp(18px,2.2vw,32px);color:rgba(255,255,255,0.85);line-height:1.5;max-width:640px;}
 .car-next-peek{
   position:absolute;right:32%;top:50%;transform:translateY(-50%);
   width:clamp(144px,14vw,208px);height:clamp(144px,14vw,208px);border-radius:50%;
@@ -359,8 +361,8 @@ nav{
   .carousel-outer{padding-left:16px;}
   .car-slide{min-width:78%;border-radius:10px;height:56vw;}
   .car-slide img{height:100%;width:100%;object-fit:cover;object-position:center;}
-  .car-cap-title{font-size:clamp(20px,6vw,32px);}
-  .car-cap-desc{display:none;}
+  .car-cap-title{font-size:clamp(18px,5.5vw,28px);}
+  .car-cap-desc{font-size:clamp(13px,3.8vw,16px);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
   .car-next-peek{display:none;}
   .car-next-ctrl{display:flex;}
   .car-controls{padding:var(--sp1) 16px;justify-content:flex-start;gap:12px;}
@@ -373,12 +375,11 @@ nav{
   /* Map */
   .map-header{grid-template-columns:1fr;gap:var(--sp2);padding:var(--sp2) 20px;}
   .cities{font-size:clamp(22px,7vw,32px);line-height:1.4;}
-  .map-svg-wrap{padding:0 20px var(--sp2);overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  .map-svg-wrap svg{min-width:480px;}
+  .map-svg-wrap{padding:0 20px var(--sp2);}
+  .map-svg-wrap svg{min-width:unset;width:100%;}
 
   /* About */
   .about-tgp{padding:var(--sp3) 20px;}
-  .about-grid{grid-template-columns:1fr;gap:var(--sp3);}
   .about-pillars{grid-template-columns:1fr 1fr;}
   .section-h{font-size:clamp(28px,8vw,48px);}
   .about-body{font-size:clamp(15px,4vw,18px);}
@@ -411,10 +412,10 @@ nav{
   border-left:6px solid var(--amber);
   padding-left:var(--sp2);
 }
-.creates-eye{font-size:var(--xs);color:var(--amber);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:var(--sp1);}
-.creates-p{font-size:clamp(24px,3vw,42px);font-family:var(--font-hd);font-weight:700;color:var(--cream);line-height:1.15;}
+.creates-eye{font-size:clamp(11px,1vw,14px);color:var(--amber);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:var(--sp1);}
+.creates-p{font-size:clamp(32px,4.5vw,64px);font-family:var(--font-hd);font-weight:700;color:var(--cream);line-height:1.1;}
 .creates-sub{
-  font-size:clamp(18px,2vw,28px);font-family:var(--font-hd);font-weight:600;
+  font-size:clamp(18px,2.2vw,32px);font-family:var(--font-hd);font-weight:500;
   color:var(--cream);opacity:0.75;
   margin-top:var(--sp1);line-height:1.3;letter-spacing:0.01em;
 }
@@ -482,12 +483,55 @@ nav{
 }
 
 /* DONATE */
-.donate{padding:var(--sp3) var(--sp3);background:var(--navy);text-align:center;}
-.donate-h{
-  font-size:var(--xl);font-weight:700;font-family:var(--font-hd);
-  line-height:1.1;letter-spacing:0.01em;
-  color:var(--cream);margin-bottom:var(--sp2);max-width:820px;margin-left:auto;margin-right:auto;
+.donate{padding:var(--sp4) var(--sp3);background:var(--navy);text-align:center;}
+.donate-hero{margin-bottom:var(--sp3);}
+.donate-top{
+  font-size:clamp(40px,6vw,80px);font-weight:700;font-family:var(--font-hd);
+  color:var(--cream);line-height:1.0;letter-spacing:0.01em;
+  display:flex;align-items:baseline;justify-content:center;gap:0.2em;flex-wrap:wrap;
 }
+.donate-amt-val{color:var(--amber);}
+.donate-effect-wrap{
+  overflow:hidden;height:clamp(52px,7vw,100px);
+  display:flex;align-items:center;justify-content:center;
+  margin-top:4px;
+}
+.donate-effect{
+  font-size:clamp(40px,6vw,80px);font-weight:700;font-family:var(--font-hd);
+  color:rgba(255,255,255,0.9);line-height:1.0;
+  display:inline-block;transition:transform 0.38s cubic-bezier(.22,1,.36,1),opacity 0.38s;
+}
+.donate-effect.exit{transform:translateY(-110%);opacity:0;}
+.donate-effect.enter{transform:translateY(110%);opacity:0;}
+.donate-amounts{
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+  margin-bottom:var(--sp2);
+}
+.dam{
+  padding:12px 24px;border-radius:100px;
+  border:1.5px solid rgba(255,255,255,0.18);
+  background:transparent;color:rgba(255,255,255,0.7);
+  font-family:var(--font-hd);font-size:clamp(15px,1.4vw,20px);font-weight:700;
+  cursor:pointer;letter-spacing:0.02em;
+  transition:all 0.15s;
+}
+.dam:hover{border-color:rgba(255,255,255,0.45);color:#fff;}
+.dam.active{background:var(--amber);border-color:var(--amber);color:#fff;}
+.donate-custom-wrap{margin:-8px 0 var(--sp1);}
+.donate-custom-wrap input{
+  background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.2);
+  border-radius:100px;padding:12px 24px;text-align:center;
+  font-family:var(--font-hd);font-size:clamp(16px,1.5vw,22px);font-weight:700;
+  color:#fff;width:200px;outline:none;letter-spacing:0.02em;
+}
+.donate-custom-wrap input:focus{border-color:var(--amber);}
+.donate-custom-wrap input::placeholder{color:rgba(255,255,255,0.3);}
+.donate-impact{
+  font-size:clamp(15px,1.4vw,20px);color:rgba(255,255,255,0.55);
+  max-width:540px;margin:0 auto var(--sp2);min-height:2.4em;
+  line-height:1.5;transition:opacity 0.2s;
+}
+.donate-meta{font-size:var(--sm);color:rgba(255,255,255,0.4);letter-spacing:0.06em;margin-top:var(--sp2);}
 .btn-amber{
   background:var(--amber);color:#fff;
   padding:16px var(--sp2);border-radius:100px;
@@ -521,12 +565,6 @@ nav{
   background:var(--navy);
   border-top:1px solid rgba(255,255,255,0.06);
 }
-.about-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:var(--sp4);align-items:start;
-  padding-bottom:var(--sp4);
-  border-bottom:1px solid rgba(255,255,255,0.1);
-}
 .about-mission-eye{
   font-size:clamp(13px,1vw,16px);font-weight:700;letter-spacing:0.12em;
   text-transform:uppercase;color:var(--amber);margin-bottom:var(--sp2);
@@ -550,10 +588,10 @@ nav{
 }
 .about-pillar span{color:var(--amber);margin-right:8px;}
 .about-poem{
-  padding:var(--sp3);
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:12px;
+  margin-top:var(--sp3);
+  padding:var(--sp3) 0;
+  border-top:1px solid rgba(255,255,255,0.08);
+  max-width:640px;
 }
 .poem-title{
   font-size:clamp(11px,0.9vw,14px);font-weight:700;letter-spacing:0.12em;
@@ -593,16 +631,16 @@ nav{
 }
 .manifesto-body.open{display:block;}
 .manifesto-p{
-  font-size:clamp(15px,1.3vw,18px);color:rgba(255,255,255,0.6);
-  line-height:1.8;margin-bottom:var(--sp1);
+  font-size:clamp(15px,1.3vw,20px);color:rgba(255,255,255,0.6);
+  line-height:1.8;margin-bottom:var(--sp1);max-width:80ch;
 }
 .manifesto-p strong{color:rgba(255,255,255,0.85);font-weight:600;}
 .manifesto-ol{
-  margin:var(--sp1) 0 var(--sp2) 0;padding-left:0;list-style:none;
-  display:flex;flex-direction:column;gap:12px;
+  margin:var(--sp2) 0;padding-left:0;list-style:none;
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,32px) clamp(32px,4vw,64px);
 }
 .manifesto-ol li{
-  font-size:clamp(15px,1.3vw,18px);color:rgba(255,255,255,0.6);
+  font-size:clamp(15px,1.3vw,20px);color:rgba(255,255,255,0.6);
   line-height:1.75;padding-left:36px;position:relative;
 }
 .manifesto-ol li::before{
@@ -613,8 +651,11 @@ nav{
   margin:var(--sp2) 0;
   padding:var(--sp2) var(--sp2);
   border-left:4px solid var(--amber);
-  font-size:clamp(16px,1.4vw,20px);color:rgba(255,255,255,0.8);
-  font-style:italic;line-height:1.7;
+  font-size:clamp(16px,1.5vw,22px);color:rgba(255,255,255,0.8);
+  font-style:italic;line-height:1.7;max-width:80ch;
+}
+@media(max-width:768px){
+  .manifesto-ol{grid-template-columns:1fr;}
 }
 
 /* OPERATION 61 */
@@ -686,6 +727,30 @@ nav{
 .tgp-float img{width:10vw;min-width:100px;max-width:220px;height:auto;display:block;}
 @media(max-width:700px){.tgp-float{display:none;}}
 
+
+/* MAP TOOLTIP */
+.map-tooltip{
+  position:fixed;pointer-events:none;z-index:200;
+  background:#13183A;border:1px solid rgba(212,136,15,0.4);
+  border-radius:14px;padding:16px 20px;min-width:210px;max-width:270px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.4);
+  opacity:0;transition:opacity 0.12s;
+  transform:translate(-50%,-115%);
+}
+.map-tooltip.vis{opacity:1;}
+.mt-name{font-size:15px;font-weight:800;font-family:var(--font-hd);color:#fff;line-height:1.2;margin-bottom:3px;}
+.mt-status{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;}
+.mt-status.active{color:var(--amber);}
+.mt-status.near{color:#8a8fa8;}
+.mt-status.planned{color:#5a5f75;}
+.mt-row{display:flex;gap:10px;align-items:baseline;margin-bottom:5px;}
+.mt-lbl{font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.08em;width:72px;flex-shrink:0;}
+.mt-val{font-size:12px;color:rgba(255,255,255,0.82);line-height:1.4;}
+.mt-note{font-size:11px;color:rgba(255,255,255,0.48);margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);font-style:italic;line-height:1.5;}
+.city-pin{cursor:pointer;}
+.city-pin circle,.city-pin text{transition:opacity 0.1s;}
+.city-pin:hover circle{opacity:1!important;}
+
 /* FOOTER */
 footer{
   border-top:1px solid var(--rule);
@@ -699,6 +764,28 @@ footer{
 .footer-meta a{color:var(--faint);text-decoration:none;}
 .footer-meta a:hover{color:var(--muted);}
 
+/* MOBILE OVERRIDES — placed after base CSS to win the cascade */
+@media(max-width:768px){
+  .creates{grid-template-columns:1fr!important;gap:var(--sp2);padding:var(--sp3) 20px;}
+  .map-header{grid-template-columns:1fr!important;align-items:start;gap:var(--sp2);padding:var(--sp2) 20px;}
+  .map-svg-wrap{padding:0 20px var(--sp2);}
+  .map-svg-wrap svg{min-width:unset!important;width:100%;}
+  .how{padding:var(--sp3) 20px;}
+  .how-grid{grid-template-columns:1fr!important;}
+  .about-tgp{padding:var(--sp3) 20px;}
+  .about-grid{grid-template-columns:1fr!important;gap:var(--sp3);}
+  .about-poem{margin-top:0;}
+  .donate{padding:var(--sp3) 20px;}
+  .donate-h{font-size:clamp(28px,8vw,48px);}
+  .btns{flex-direction:column;align-items:center;}
+  .btn-amber,.btn-ghost-light{width:100%;max-width:320px;text-align:center;}
+}
+@media(max-width:1024px) and (min-width:769px){
+  .creates{grid-template-columns:1fr!important;}
+  .map-header{grid-template-columns:1fr 1fr;}
+  .about-grid{grid-template-columns:1fr!important;gap:var(--sp3);}
+  .how-grid{grid-template-columns:1fr!important;}
+}
 </style>
 </head>
 <body>
@@ -748,7 +835,7 @@ footer{
     <div class="what-header">
       <div class="section-eye" style="color:var(--amber);margin-bottom:var(--sp1);">What is The Beehive?</div>
       <div class="what-tagline">Storm shelters<br>on steroids.</div>
-      <div class="what-intro-p">The Beehive is four things in one building.</div>
+      <div class="what-intro-p">A disaster relief resource hub — one building, built to do everything.</div>
     </div>
 
     <div class="what-grid">
@@ -765,7 +852,7 @@ footer{
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4L4 9l10 5 10-5-10-5Z" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/><path d="M4 14l10 5 10-5" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/><path d="M4 19l10 5 10-5" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/></svg>
         </div>
         <div class="what-kw">A school</div>
-        <div class="what-desc">Learn to preserve food, earn a first aid cert, get tornado-shelter certified. Skills that live in your hands — not a pamphlet in a drawer.</div>
+        <div class="what-desc">Learn to preserve food, earn a first aid cert, get tornado-shelter certified. Skills that live in your hands.</div>
       </div>
 
       <div class="what-pillar">
@@ -819,6 +906,13 @@ footer{
         <div class="car-cap-overlay">
           <div class="car-cap-title">Operation 61</div>
           <div class="car-cap-desc">Most people don't know what to do when the grid goes down. We change that. First aid, food preservation, emergency preparedness — taught by people who've been through it. Your neighbors, trained and ready before the sirens go off.</div>
+        </div>
+      </div>
+      <div class="car-slide" onclick="openLb(4)">
+        <img src="/assets/photos/beehive-stockhouse.png" alt="The Stockhouse">
+        <div class="car-cap-overlay">
+          <div class="car-cap-title">The Stockhouse</div>
+          <div class="car-cap-desc">Pallets of water, food, and disaster relief supplies staged and ready. When a disaster hits the region, the Beehive loads and moves — we deploy within hours.</div>
         </div>
       </div>
     </div>
@@ -946,7 +1040,7 @@ footer{
       Platte SW   40.00N 95.77W → 109, 149
       Platte NW   40.57N 95.77W → 109, 106
     -->
-    <svg viewBox="0 0 800 520" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;border-radius:10px;">
+    <svg viewBox="0 0 800 520" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;border-radius:10px;overflow:hidden;">
 
       <!-- Background (surrounding states) -->
       <rect width="800" height="520" fill="#FAF8F4"/>
@@ -993,6 +1087,31 @@ footer{
       <!-- MISSOURI label -->
       <text x="400" y="265" text-anchor="middle" font-family="Barlow,sans-serif" font-size="13" fill="#9490E8" letter-spacing="4" font-weight="700" opacity="0.4">MISSOURI</text>
 
+      <!-- HOVER RADIUS RINGS — shown on city hover, hidden by default -->
+      <g id="hover-rings" style="display:none;pointer-events:none;">
+
+        <!-- Springfield rings (amber) — always shown when any city is hovered -->
+        <g id="sf-rings">
+          <ellipse cx="329" cy="356" rx="88"  ry="59"  fill="none" stroke="#D4880F" stroke-width="1"   stroke-dasharray="3 5" opacity="0.22"/>
+          <ellipse cx="329" cy="356" rx="176" ry="117" fill="none" stroke="#D4880F" stroke-width="1"   stroke-dasharray="4 6" opacity="0.28"/>
+          <ellipse cx="329" cy="356" rx="264" ry="176" fill="#D4880F" fill-opacity="0.06" stroke="#D4880F" stroke-width="1.5" stroke-dasharray="6 7" opacity="0.5"/>
+          <text x="391" y="316" font-family="Barlow,sans-serif" font-size="8" fill="#D4880F" opacity="0.7" font-weight="800" letter-spacing="1.2">1 HR</text>
+          <text x="452" y="275" font-family="Barlow,sans-serif" font-size="8" fill="#D4880F" opacity="0.7" font-weight="800" letter-spacing="1.2">2 HR</text>
+          <text x="512" y="232" font-family="Barlow,sans-serif" font-size="8" fill="#D4880F" opacity="0.8" font-weight="800" letter-spacing="1.2">3 HR</text>
+        </g>
+
+        <!-- Hovered city rings (navy/purple) — cx/cy set by JS -->
+        <g id="city-rings" style="display:none;">
+          <ellipse id="cr-1" cx="0" cy="0" rx="88"  ry="59"  fill="none" stroke="#9490E8" stroke-width="1"   stroke-dasharray="3 5" opacity="0.22"/>
+          <ellipse id="cr-2" cx="0" cy="0" rx="176" ry="117" fill="none" stroke="#9490E8" stroke-width="1"   stroke-dasharray="4 6" opacity="0.28"/>
+          <ellipse id="cr-3" cx="0" cy="0" rx="264" ry="176" fill="#9490E8" fill-opacity="0.06" stroke="#9490E8" stroke-width="1.5" stroke-dasharray="6 7" opacity="0.5"/>
+          <text id="cr-l1" x="0" y="0" font-family="Barlow,sans-serif" font-size="8" fill="#9490E8" opacity="0.7" font-weight="800" letter-spacing="1.2">1 HR</text>
+          <text id="cr-l2" x="0" y="0" font-family="Barlow,sans-serif" font-size="8" fill="#9490E8" opacity="0.7" font-weight="800" letter-spacing="1.2">2 HR</text>
+          <text id="cr-l3" x="0" y="0" font-family="Barlow,sans-serif" font-size="8" fill="#9490E8" opacity="0.8" font-weight="800" letter-spacing="1.2">3 HR</text>
+        </g>
+
+      </g>
+
       <!-- Network connections from Springfield -->
       <!-- To Joplin (solid, near) -->
       <line x1="329" y1="356" x2="221" y2="365" stroke="#13183A" stroke-width="2" opacity="0.4"/>
@@ -1008,36 +1127,50 @@ footer{
       <line x1="329" y1="356" x2="90" y2="434" stroke="#13183A" stroke-width="1.2" stroke-dasharray="6 5" opacity="0.2"/>
 
       <!-- Future city dots (outline only) -->
-      <!-- Kansas City -->
-      <circle cx="215" cy="215" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
-      <text x="230" y="212" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Kansas City</text>
+      <g class="city-pin" data-city="kansascity">
+        <circle cx="215" cy="215" r="14" fill="transparent"/>
+        <circle cx="215" cy="215" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
+        <text x="230" y="212" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Kansas City</text>
+      </g>
 
-      <!-- St. Louis -->
-      <circle cx="604" cy="251" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
-      <text x="618" y="248" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">St. Louis</text>
+      <g class="city-pin" data-city="stlouis">
+        <circle cx="604" cy="251" r="14" fill="transparent"/>
+        <circle cx="604" cy="251" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
+        <text x="618" y="248" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">St. Louis</text>
+      </g>
 
-      <!-- Joplin (near future) -->
-      <circle cx="221" cy="365" r="7" fill="#13183A" opacity="0.55"/>
-      <text x="206" y="357" text-anchor="end" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" font-weight="600">Joplin</text>
+      <g class="city-pin" data-city="joplin">
+        <circle cx="221" cy="365" r="14" fill="transparent"/>
+        <circle cx="221" cy="365" r="7" fill="#13183A" opacity="0.55"/>
+        <text x="206" y="357" text-anchor="end" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" font-weight="600">Joplin</text>
+      </g>
 
-      <!-- Branson (near future) -->
-      <circle cx="336" cy="398" r="7" fill="#13183A" opacity="0.55"/>
-      <text x="351" y="412" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" font-weight="600">Branson</text>
+      <g class="city-pin" data-city="branson">
+        <circle cx="336" cy="398" r="14" fill="transparent"/>
+        <circle cx="336" cy="398" r="7" fill="#13183A" opacity="0.55"/>
+        <text x="351" y="412" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" font-weight="600">Branson</text>
+      </g>
 
-      <!-- Bentonville (AR - future) -->
-      <circle cx="248" cy="418" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
-      <text x="263" y="432" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Bentonville</text>
+      <g class="city-pin" data-city="bentonville">
+        <circle cx="248" cy="418" r="14" fill="transparent"/>
+        <circle cx="248" cy="418" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
+        <text x="263" y="432" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Bentonville</text>
+      </g>
 
-      <!-- Tulsa (OK - future) -->
-      <circle cx="90" cy="434" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
-      <text x="105" y="448" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Tulsa</text>
+      <g class="city-pin" data-city="tulsa">
+        <circle cx="90" cy="434" r="14" fill="transparent"/>
+        <circle cx="90" cy="434" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
+        <text x="105" y="448" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Tulsa</text>
+      </g>
 
-      <!-- Springfield HQ (amber, prominent) -->
-      <circle cx="329" cy="356" r="20" fill="#D4880F" opacity="0.12"/>
-      <circle cx="329" cy="356" r="11" fill="#D4880F"/>
-      <circle cx="329" cy="356" r="16" fill="none" stroke="#D4880F" stroke-width="1" opacity="0.35"/>
-      <text x="329" y="334" text-anchor="middle" font-family="Barlow,sans-serif" font-size="12" font-weight="800" fill="#13183A">Springfield</text>
-      <text x="329" y="320" text-anchor="middle" font-family="Barlow,sans-serif" font-size="9" fill="#D4880F" font-weight="700" letter-spacing="2">NOW</text>
+      <g class="city-pin" data-city="springfield">
+        <circle cx="329" cy="356" r="28" fill="transparent"/>
+        <circle cx="329" cy="356" r="20" fill="#D4880F" opacity="0.12"/>
+        <circle cx="329" cy="356" r="11" fill="#D4880F"/>
+        <circle cx="329" cy="356" r="16" fill="none" stroke="#D4880F" stroke-width="1" opacity="0.35"/>
+        <text x="329" y="334" text-anchor="middle" font-family="Barlow,sans-serif" font-size="12" font-weight="800" fill="#13183A">Springfield</text>
+        <text x="329" y="320" text-anchor="middle" font-family="Barlow,sans-serif" font-size="9" fill="#D4880F" font-weight="700" letter-spacing="2">NOW</text>
+      </g>
 
       <!-- Legend -->
       <rect x="622" y="370" width="162" height="90" rx="6" fill="white" stroke="#D6CFA8" stroke-width="1" opacity="0.96"/>
@@ -1049,43 +1182,39 @@ footer{
       <text x="654" y="441" font-family="Barlow,sans-serif" font-size="10" fill="#5C5A72" opacity="0.75" font-weight="600">Planned</text>
     </svg>
   </div>
+  <p style="text-align:center;font-size:12px;color:rgba(19,24,58,0.4);padding:10px 0 4px;letter-spacing:0.05em;">Hover a city to see its 3-hour coverage radius.</p>
 </div>
 
 <!-- ABOUT THE GOOD PROJECT -->
 <div class="about-tgp" id="about">
-  <div class="about-grid">
-    <div>
-      <div class="about-mission-eye">The Good Project</div>
-      <div class="about-mission-h">To relieve human suffering, in all forms, in all places.</div>
-      <p class="about-mission-p">Not after the disaster. Before it. The Beehive is the first hub in a network we're building city by city — each one stocked, trained, and ready. And each one designed to fund the next.</p>
-      <div class="about-pillars">
-        <div class="about-pillar"><span>I</span> Physical</div>
-        <div class="about-pillar"><span>II</span> Intellectual</div>
-        <div class="about-pillar"><span>III</span> Social</div>
-        <div class="about-pillar"><span>IV</span> Spiritual</div>
-      </div>
-      <div class="about-expand">
-        <button class="manifesto-toggle" onclick="toggleManifesto(this)">
-          <span class="tog-arrow">+</span>
-          Read our manifesto
-        </button>
-        <div class="manifesto-body">
-          <p class="manifesto-p">The Good Project exists to relieve human suffering, in all forms, in all places. To bring light and life, as Jesus does, to the inhabitants of the earth.</p>
-          <ol class="manifesto-ol">
-            <li data-n="1">All humans are children of God and therefore, regardless of circumstance, race, past actions, or social standing, are creatures of infinite worth.</li>
-            <li data-n="2">Given that infinite worth, suffering in any way and in any degree can and should be prevented, remedied, and, where possible, healed.</li>
-            <li data-n="3">Charity begins with Christlike love and ends in action. It includes bread, water, and the necessities of life, but does not exclude spiritual, social, mental, and other forms of support.</li>
-            <li data-n="4">The Savior Himself taught that "the poor ye have always with you" — no organization can fully rectify human suffering until His return.</li>
-            <li data-n="5">Yet any effort to provide relief or prosper any human being, according to the light-and-life pattern of Jesus Christ, is among the highest aims to which any organization can aspire.</li>
-          </ol>
-          <div class="manifesto-quote">"Verily I say, men should be anxiously engaged in a good cause, and do many things of their own free will, and bring to pass much righteousness."</div>
-          <p class="manifesto-p">The Good Project is one permutation of a good cause. One way to be anxiously engaged in doing good. We derive our four pillars from Jacob: to clothe the naked, feed the hungry, liberate the captive, and administer relief to the sick and afflicted.</p>
-        </div>
-      </div>
-    </div>
-    <div class="about-poem">
-      <div class="poem-title">A Sailor's Hymn</div>
-      <div class="poem-body">We followed Him thru wicked sea —
+  <div class="about-mission-eye">The Good Project</div>
+  <div class="about-mission-h">To relieve human suffering, in all forms, in all places.</div>
+  <p class="about-mission-p">The Beehive is the first hub in a network we're building city by city — stocked, trained, and ready before anything happens. Each one is designed to fund the next.</p>
+  <div class="about-pillars">
+    <div class="about-pillar"><span>I</span> Physical</div>
+    <div class="about-pillar"><span>II</span> Intellectual</div>
+    <div class="about-pillar"><span>III</span> Social</div>
+    <div class="about-pillar"><span>IV</span> Spiritual</div>
+  </div>
+  <div class="about-expand">
+    <button class="manifesto-toggle" onclick="toggleManifesto(this)">
+      <span class="tog-arrow">+</span>
+      Read our manifesto
+    </button>
+    <div class="manifesto-body">
+      <p class="manifesto-p">The Good Project exists to relieve human suffering, in all forms, in all places. To bring light and life, as Jesus does, to the inhabitants of the earth.</p>
+      <ol class="manifesto-ol">
+        <li data-n="1">All humans are children of God and therefore, regardless of circumstance, race, past actions, or social standing, are creatures of infinite worth.</li>
+        <li data-n="2">Given that infinite worth, suffering in any way and in any degree can and should be prevented, remedied, and, where possible, healed.</li>
+        <li data-n="3">Charity begins with Christlike love and ends in action. It includes bread, water, and the necessities of life, but does not exclude spiritual, social, mental, and other forms of support.</li>
+        <li data-n="4">The Savior Himself taught that "the poor ye have always with you" — no organization can fully rectify human suffering until His return.</li>
+        <li data-n="5">Yet any effort to provide relief or prosper any human being, according to the light-and-life pattern of Jesus Christ, is among the highest aims to which any organization can aspire.</li>
+      </ol>
+      <div class="manifesto-quote">"Verily I say, men should be anxiously engaged in a good cause, and do many things of their own free will, and bring to pass much righteousness."</div>
+      <p class="manifesto-p">The Good Project is one permutation of a good cause. One way to be anxiously engaged in doing good. We derive our four pillars from Jacob: to clothe the naked, feed the hungry, liberate the captive, and administer relief to the sick and afflicted.</p>
+      <div class="about-poem">
+        <div class="poem-title">A Sailor's Hymn</div>
+        <div class="poem-body">We followed Him thru wicked sea —
 horrid, bloody fierce,
 We kept the pace 'til freedom's Dawn
 rang new in ev'ry ear.
@@ -1111,7 +1240,8 @@ Our florians are quiet-kept,
 we're absent honor's roll;
 we dive, we drown, we pirate on,
 — we ransom for the Pearl.</div>
-      <div class="poem-author">— Reif Tauati</div>
+        <div class="poem-author">— Reif Tauati</div>
+      </div>
     </div>
   </div>
 </div>
@@ -1123,7 +1253,7 @@ we dive, we drown, we pirate on,
       <div class="section-eye">How it works</div>
       <div class="how-h">Funded by generous local donors. Designed to sustain itself.</div>
       <p class="how-p">We are not a charity that asks indefinitely. The Beehive is built to generate its own revenue — through the store, the school, and disaster-relief reimbursements — so that each hub eventually pays for itself and seeds the next one.</p>
-      <p class="how-p">We need capital to get the first one open. That's the ask.</p>
+      <p class="how-p">If you believe in the mission, this is a good place to support it.</p>
     </div>
     <div class="how-model">
       <div class="how-row">
@@ -1168,13 +1298,37 @@ we dive, we drown, we pirate on,
 
 <!-- DONATE -->
 <div class="donate" id="give">
-  <div class="section-eye" style="margin-bottom:var(--sp1);">Support the mission</div>
-  <h2 class="donate-h">Your gift builds the walls, stocks the shelves, trains the neighbors, opens the doors.</h2>
-  <div class="btns" style="margin-bottom:var(--sp2);">
-    <button class="btn-amber">Donate Now</button>
+  <div class="section-eye" style="margin-bottom:var(--sp2);">Support the mission</div>
+
+  <div class="donate-hero">
+    <div class="donate-top">
+      Your&nbsp;<span class="donate-amt-val" id="d-amt">$100</span>
+    </div>
+    <div class="donate-effect-wrap">
+      <div class="donate-effect" id="d-effect">saves lives.</div>
+    </div>
+  </div>
+
+  <div class="donate-amounts" id="d-amts">
+    <button class="dam" data-amt="25" data-label="$25">$25</button>
+    <button class="dam active" data-amt="100" data-label="$100">$100</button>
+    <button class="dam" data-amt="250" data-label="$250">$250</button>
+    <button class="dam" data-amt="1000" data-label="$1,000">$1,000</button>
+    <button class="dam" data-amt="custom" data-label="">Custom</button>
+  </div>
+  <div class="donate-custom-wrap" id="d-custom" style="display:none;">
+    <input type="number" id="d-custom-input" placeholder="Enter amount" min="1">
+  </div>
+
+  <div class="donate-impact" id="d-impact">
+    Trains a neighbor in first aid and emergency preparedness.
+  </div>
+
+  <div class="btns" style="margin-bottom:var(--sp1);">
+    <button class="btn-amber" id="d-cta">Donate $100</button>
     <a href="mailto:hello@thegoodproject.net" class="btn-ghost-light">Wire, Check, DAF &mdash; Email Us</a>
   </div>
-  <p style="font-size:var(--sm);color:rgba(255,255,255,0.4);letter-spacing:0.06em;">Instructions within 24 hours &middot; Tax documentation included</p>
+  <p class="donate-meta">Instructions within 24 hours &middot; Tax documentation included</p>
 </div>
 
 <!-- LIGHTBOX -->
@@ -1194,6 +1348,7 @@ const carSlides = [
   {title:'The Shelter', desc:'When evacuation orders go out, the Beehive is already open. Safe beds, warm meals, power, and people who know what they\'re doing.'},
   {title:'Command Center', desc:'When the grid goes down, the Beehive coordinates the neighborhood. Local leadership, live logistics, resources moving to where they\'re needed.'},
   {title:'Operation 61', desc:'Most people don\'t know what to do when the grid goes down. We change that. First aid, food preservation, emergency preparedness — taught by people who\'ve been through it. Your neighbors, trained and ready before the sirens go off.'},
+  {title:'The Stockhouse', desc:'Pallets of water, food, and disaster relief supplies staged and ready. When a disaster hits the region, the Beehive loads and moves — we deploy within hours.'},
 ];
 let carIdx = 0;
 const carTotal = carSlides.length;
@@ -1289,6 +1444,198 @@ function toggleManifesto(btn){
   btn.nextElementSibling.classList.toggle('open');
   btn.querySelector('.tog-arrow').textContent = btn.classList.contains('open') ? '×' : '+';
 }
+
+// DONATE INTERACTIVE
+(function(){
+  const EFFECTS = [
+    'saves lives.',
+    'feeds families.',
+    'trains neighbors.',
+    'stocks the shelves.',
+    'builds the next Beehive.',
+    'does major good.',
+    'keeps the lights on.',
+    'gets us ready.',
+    'makes a real difference.',
+  ];
+  const IMPACTS = {
+    25:   'Buys a complete 72-hour emergency kit for one family.',
+    100:  'Trains a neighbor in first aid and emergency preparedness.',
+    250:  'Stocks emergency supplies for an entire apartment floor.',
+    1000: 'Funds one full week of Beehive operations — open every day, ready for anything.',
+  };
+
+  let effectIdx = 0;
+  let effectTimer;
+  const effectEl = document.getElementById('d-effect');
+
+  function cycleEffect(){
+    effectEl.classList.add('exit');
+    setTimeout(() => {
+      effectIdx = (effectIdx + 1) % EFFECTS.length;
+      effectEl.textContent = EFFECTS[effectIdx];
+      effectEl.classList.remove('exit');
+      effectEl.classList.add('enter');
+      requestAnimationFrame(() => requestAnimationFrame(() => effectEl.classList.remove('enter')));
+    }, 380);
+  }
+
+  function startCycle(){ effectTimer = setInterval(cycleEffect, 4500); }
+  function stopCycle(){ clearInterval(effectTimer); }
+  startCycle();
+
+  function setAmount(amt, label){
+    const amtEl = document.getElementById('d-amt');
+    const impactEl = document.getElementById('d-impact');
+    const ctaEl = document.getElementById('d-cta');
+
+    amtEl.textContent = label || '$' + amt.toLocaleString();
+    ctaEl.textContent = 'Donate ' + (label || '$' + amt.toLocaleString());
+
+    if(IMPACTS[amt]){
+      impactEl.style.opacity = '0';
+      setTimeout(() => { impactEl.textContent = IMPACTS[amt]; impactEl.style.opacity = '1'; }, 180);
+    } else {
+      impactEl.style.opacity = '0';
+      setTimeout(() => { impactEl.textContent = ''; impactEl.style.opacity = '1'; }, 180);
+    }
+  }
+
+  document.getElementById('d-amts').addEventListener('click', e => {
+    const btn = e.target.closest('.dam'); if(!btn) return;
+    document.querySelectorAll('.dam').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const customWrap = document.getElementById('d-custom');
+    if(btn.dataset.amt === 'custom'){
+      customWrap.style.display = '';
+      document.getElementById('d-amt').textContent = '$—';
+      document.getElementById('d-cta').textContent = 'Donate';
+      document.getElementById('d-impact').textContent = '';
+      document.getElementById('d-custom-input').focus();
+    } else {
+      customWrap.style.display = 'none';
+      setAmount(Number(btn.dataset.amt), btn.dataset.label);
+    }
+  });
+
+  document.getElementById('d-custom-input').addEventListener('input', e => {
+    const v = parseInt(e.target.value, 10);
+    if(v > 0){
+      const label = '$' + v.toLocaleString();
+      document.getElementById('d-amt').textContent = label;
+      document.getElementById('d-cta').textContent = 'Donate ' + label;
+    }
+  });
+})();
+
+// City SVG coordinates
+var CITY_COORDS = {
+  springfield:{cx:329,cy:356}, joplin:{cx:221,cy:365}, branson:{cx:336,cy:398},
+  kansascity:{cx:215,cy:215}, stlouis:{cx:604,cy:251},
+  bentonville:{cx:248,cy:418}, tulsa:{cx:90,cy:434}
+};
+
+// MAP TOOLTIPS
+(function(){
+  const CITIES = {
+    springfield: { name:'Springfield, MO', status:'Active now', cls:'active', pop:'500K metro area', hazards:'Tornadoes · Ice storms · Flash flooding', note:'The first Beehive. Open now.' },
+    joplin:      { name:'Joplin, MO',       status:'Near future', cls:'near',    pop:'175K metro area', hazards:'Tornadoes · Flash flooding',           note:'The 2011 F5 tornado killed 161 people and leveled a third of the city.' },
+    branson:     { name:'Branson, MO',      status:'Near future', cls:'near',    pop:'10K city · regional tourism hub', hazards:'Tornadoes · Flash flooding · Ice storms', note:'Major tourist corridor with limited emergency infrastructure.' },
+    kansascity:  { name:'Kansas City, MO',  status:'Planned',    cls:'planned', pop:'2.2M metro area', hazards:'Tornadoes · Ice storms · Flooding',    note:'' },
+    stlouis:     { name:'St. Louis, MO',    status:'Planned',    cls:'planned', pop:'2.8M metro area', hazards:'Tornadoes · Mississippi flooding · Ice storms', note:'The Great Flood of 1993 displaced over 10,000 people.' },
+    bentonville: { name:'Bentonville, AR',  status:'Planned',    cls:'planned', pop:'600K metro area', hazards:'Tornadoes · Flash flooding · Ice storms', note:'Fast-growing corridor between Missouri and Oklahoma.' },
+    tulsa:       { name:'Tulsa, OK',        status:'Planned',    cls:'planned', pop:'1M metro area',   hazards:'Tornadoes · Severe storms · Ice storms · Flooding', note:'Sits at the heart of Tornado Alley.' },
+  };
+
+  const tip = document.createElement('div');
+  tip.className = 'map-tooltip';
+  tip.id = 'map-tooltip';
+  tip.innerHTML = `
+    <div class="mt-name" id="mt-name"></div>
+    <div class="mt-status" id="mt-status"></div>
+    <div class="mt-row"><span class="mt-lbl">Population</span><span class="mt-val" id="mt-pop"></span></div>
+    <div class="mt-row"><span class="mt-lbl">Hazards</span><span class="mt-val" id="mt-hazards"></span></div>
+    <div class="mt-note" id="mt-note"></div>`;
+  document.body.appendChild(tip);
+
+  const hoverRings = document.getElementById('hover-rings');
+  const sfRings    = document.getElementById('sf-rings');
+  const cityRings  = document.getElementById('city-rings');
+
+  // Inline transitions on SVG <g> elements
+  sfRings.style.transition   = 'opacity 0.55s ease';
+  cityRings.style.transition = 'opacity 0.4s ease';
+
+  var sfTimer, hideTimer;
+  function rAF(fn){ requestAnimationFrame(() => requestAnimationFrame(fn)); }
+
+  function setEllipse(id, cx, cy){ var e=document.getElementById(id); e.setAttribute('cx',cx); e.setAttribute('cy',cy); }
+  function setLabel(id, cx, cy, rx, ry){
+    var el = document.getElementById(id);
+    el.setAttribute('x', cx + rx * 0.7);
+    el.setAttribute('y', cy - ry * 0.7);
+  }
+
+  function showRings(city, coords){
+    clearTimeout(sfTimer); clearTimeout(hideTimer);
+    hoverRings.style.display = '';
+
+    if(city === 'springfield'){
+      // Springfield: just its own rings, no secondary
+      sfRings.style.opacity = '0';
+      cityRings.style.display = 'none';
+      rAF(() => { sfRings.style.opacity = '1'; });
+    } else {
+      // 1. Position & fade in the hovered city's rings immediately
+      setEllipse('cr-1', coords.cx, coords.cy);
+      setEllipse('cr-2', coords.cx, coords.cy);
+      setEllipse('cr-3', coords.cx, coords.cy);
+      setLabel('cr-l1', coords.cx, coords.cy,  88,  59);
+      setLabel('cr-l2', coords.cx, coords.cy, 176, 117);
+      setLabel('cr-l3', coords.cx, coords.cy, 264, 176);
+      cityRings.style.opacity = '0';
+      cityRings.style.display = '';
+      sfRings.style.opacity = '0';
+      rAF(() => { cityRings.style.opacity = '1'; });
+
+      // 2. Then Springfield rings bloom in after a beat — reveal the overlap
+      sfTimer = setTimeout(() => { sfRings.style.opacity = '1'; }, 700);
+    }
+  }
+
+  function hideRings(){
+    clearTimeout(sfTimer);
+    sfRings.style.opacity   = '0';
+    cityRings.style.opacity = '0';
+    hideTimer = setTimeout(() => {
+      hoverRings.style.display = 'none';
+      cityRings.style.display  = 'none';
+    }, 550);
+  }
+
+  document.querySelectorAll('.city-pin').forEach(pin => {
+    pin.addEventListener('mouseenter', () => {
+      const d = CITIES[pin.dataset.city]; if (!d) return;
+      document.getElementById('mt-name').textContent = d.name;
+      const st = document.getElementById('mt-status');
+      st.textContent = d.status; st.className = 'mt-status ' + d.cls;
+      document.getElementById('mt-pop').textContent = d.pop;
+      document.getElementById('mt-hazards').textContent = d.hazards;
+      const note = document.getElementById('mt-note');
+      note.textContent = d.note; note.style.display = d.note ? '' : 'none';
+      tip.classList.add('vis');
+      showRings(pin.dataset.city, CITY_COORDS[pin.dataset.city]);
+    });
+    pin.addEventListener('mousemove', e => {
+      tip.style.left = e.clientX + 'px';
+      tip.style.top  = (e.clientY - 8) + 'px';
+    });
+    pin.addEventListener('mouseleave', () => {
+      tip.classList.remove('vis');
+      hideRings();
+    });
+  });
+})();
 </script>
 
 <!-- FOOTER -->

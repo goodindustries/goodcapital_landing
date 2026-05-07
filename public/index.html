@@ -243,10 +243,10 @@ nav{
 }
 .car-cap-desc{font-size:clamp(18px,2.2vw,32px);color:rgba(255,255,255,0.85);line-height:1.5;max-width:640px;}
 .car-next-peek{
-  position:absolute;right:15%;top:50%;transform:translateY(-50%);
-  width:clamp(72px,7vw,104px);height:clamp(72px,7vw,104px);border-radius:50%;
+  position:absolute;right:32%;top:50%;transform:translateY(-50%);
+  width:clamp(144px,14vw,208px);height:clamp(144px,14vw,208px);border-radius:50%;
   background:#fff;color:var(--navy);
-  border:3px solid var(--amber);font-size:clamp(28px,3.2vw,44px);
+  border:3px solid var(--amber);font-size:clamp(56px,6.4vw,88px);
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;z-index:10;transition:all 0.2s;
   box-shadow:0 6px 32px rgba(10,12,28,0.7),0 0 0 4px rgba(212,136,15,0.18);
@@ -658,6 +658,67 @@ nav{
   .manifesto-ol{grid-template-columns:1fr;}
 }
 
+/* OPERATION 61 */
+.op61{
+  background:var(--navy);
+  padding:var(--sp4) var(--sp3);
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.op61-inner{max-width:1200px;margin:0 auto;}
+.op61-header{
+  padding-bottom:var(--sp3);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  margin-bottom:var(--sp3);
+}
+.op61-tagline{
+  font-size:clamp(36px,5vw,80px);font-family:var(--font-hd);font-weight:700;
+  color:#fff;line-height:1.0;margin-bottom:var(--sp2);
+}
+.op61-verse{
+  font-size:clamp(15px,1.3vw,20px);color:rgba(255,255,255,0.45);
+  font-style:italic;line-height:1.75;
+  border-left:3px solid var(--amber);
+  padding-left:20px;max-width:60ch;
+}
+.op61-ref{
+  display:block;margin-top:12px;
+  font-style:normal;font-size:clamp(11px,0.9vw,14px);
+  font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--amber);
+}
+.op61-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:var(--sp3);align-items:start;
+}
+.op61-photo{border-radius:12px;overflow:hidden;}
+.op61-photo img{width:100%;height:auto;display:block;}
+.op61-pillars{display:flex;flex-direction:column;gap:0;}
+.op61-pillar{
+  padding:var(--sp2) 0;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.op61-pillar:first-child{padding-top:0;}
+.op61-pillar:last-child{border-bottom:none;}
+.op61-pillar-icon{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--amber);display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;
+}
+.op61-pillar-kw{
+  font-size:clamp(22px,2.2vw,36px);font-family:var(--font-hd);font-weight:700;
+  color:#fff;margin-bottom:10px;line-height:1.0;
+}
+.op61-pillar-desc{
+  font-size:clamp(14px,1.2vw,18px);color:rgba(255,255,255,0.6);line-height:1.7;
+}
+@media(max-width:1024px){
+  .op61-grid{grid-template-columns:1fr;}
+  .op61-photo{max-width:640px;}
+}
+@media(max-width:768px){
+  .op61{padding:var(--sp3) 20px;}
+}
+
 /* FLOATING TGP LOGO */
 .tgp-float{
   position:fixed;left:24px;bottom:24px;
@@ -773,7 +834,7 @@ footer{
   <div class="what-inner">
     <div class="what-header">
       <div class="section-eye" style="color:var(--amber);margin-bottom:var(--sp1);">What is The Beehive?</div>
-      <div class="what-tagline">A prepared people<br>make a prepared city.</div>
+      <div class="what-tagline">Storm shelters<br>on steroids.</div>
       <div class="what-intro-p">A disaster relief resource hub — one building, built to do everything.</div>
     </div>
 
@@ -811,7 +872,8 @@ footer{
       </div>
     </div>
 
-    <div class="what-close">One building.<br>Every day and on the worst day.</div>
+    <div class="what-close">One building. Four jobs.<br>Every day and on the worst day.</div>
+    <div class="what-close" style="font-size:clamp(18px,2vw,32px);color:rgba(255,255,255,0.45);font-weight:600;padding-top:var(--sp1);">A prepared people make a prepared city.</div>
   </div>
 </div>
 
@@ -840,7 +902,7 @@ footer{
         </div>
       </div>
       <div class="car-slide" onclick="openLb(3)">
-        <img src="/assets/photos/disaster-school-deploy.png" alt="Operation 61">
+        <img src="/assets/photos/operation-61-team.png" alt="Operation 61">
         <div class="car-cap-overlay">
           <div class="car-cap-title">Operation 61</div>
           <div class="car-cap-desc">Most people don't know what to do when the grid goes down. We change that. First aid, food preservation, emergency preparedness — taught by people who've been through it. Your neighbors, trained and ready before the sirens go off.</div>
@@ -860,6 +922,53 @@ footer{
     <button class="car-btn car-prev" onclick="carStep(-1)">&#8592;</button>
     <div class="car-dots" id="car-dots"></div>
     <button class="car-btn car-next-ctrl" onclick="carStep(1)">&#8594;</button>
+  </div>
+</div>
+
+<!-- OPERATION 61 -->
+<div class="op61" id="op61">
+  <div class="op61-inner">
+    <div class="op61-header">
+      <div class="section-eye" style="color:var(--amber);margin-bottom:var(--sp1);">Operation 61</div>
+      <div class="op61-tagline">Trained neighbors.<br>Ready to deploy.</div>
+      <div class="op61-verse">
+        "To bind up the brokenhearted&hellip; to rebuild the ancient ruins,<br>
+        to restore the former devastations."
+        <span class="op61-ref">Isaiah 61</span>
+      </div>
+    </div>
+
+    <div class="op61-grid">
+      <div class="op61-photo">
+        <img src="/assets/photos/operation-61-team.png" alt="Operation 61 Disaster Relief Team training at The Beehive">
+      </div>
+
+      <div class="op61-pillars">
+        <div class="op61-pillar">
+          <div class="op61-pillar-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2a4 4 0 100 8 4 4 0 000-8Z" stroke="#fff" stroke-width="1.6"/><path d="M3 18c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <div class="op61-pillar-kw">Monthly membership</div>
+          <div class="op61-pillar-desc">A commitment to physical readiness and skills training — so when the call comes, you're not starting from zero. Monthly dues fund the team and keep the training continuous.</div>
+        </div>
+
+        <div class="op61-pillar">
+          <div class="op61-pillar-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 10l5 5 9-9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="op61-pillar-kw">Real certification</div>
+          <div class="op61-pillar-desc">FEMA-recognized training, wilderness first aid, search and rescue, emergency logistics. Skills earned with your hands, not a pamphlet — and credentials that qualify you to respond when it counts.</div>
+        </div>
+
+        <div class="op61-pillar">
+          <div class="op61-pillar-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L2 7l8 4 8-4-8-5Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 12l8 4 8-4" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="op61-pillar-kw">Get deployed</div>
+          <div class="op61-pillar-desc">When a disaster is declared, Operation 61 gets the call. Local team members deploy to where they're needed — your community, or another one that needs you. Help moving where it matters most.</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -931,7 +1040,7 @@ footer{
       Platte SW   40.00N 95.77W → 109, 149
       Platte NW   40.57N 95.77W → 109, 106
     -->
-    <svg viewBox="0 0 800 520" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;border-radius:10px;">
+    <svg viewBox="0 0 800 520" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;border-radius:10px;overflow:hidden;">
 
       <!-- Background (surrounding states) -->
       <rect width="800" height="520" fill="#FAF8F4"/>
@@ -1292,7 +1401,7 @@ const lbImgs = [
   {src:'/assets/photos/beehive-the-store.png', alt:'The Store'},
   {src:'/assets/photos/beehive-shelter.png', alt:'Shelter'},
   {src:'/assets/photos/beehive-command-center.png', alt:'Disaster Response Command Center'},
-  {src:'/assets/photos/relief-team.png', alt:'The Relief Team'}
+  {src:'/assets/photos/operation-61-team.png', alt:'Operation 61 Disaster Relief Team'}
 ];
 let lbIdx = 0;
 function openLb(i){
