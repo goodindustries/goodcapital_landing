@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Responsive Tester — The Beehive</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0f1117;--surface:#1a1d27;--border:#2a2d3a;
+  --text:#e2e0f0;--muted:#6b6880;--amber:#D4880F;--pass:#22c55e;--warn:#f59e0b;--fail:#ef4444;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:13px;height:100vh;display:flex;flex-direction:column;overflow:hidden;}
+
+/* TOP BAR */
+.topbar{
+  display:flex;align-items:center;gap:16px;padding:10px 20px;
+  background:var(--surface);border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.topbar-title{font-weight:700;font-size:14px;letter-spacing:0.04em;color:var(--text);}
+.topbar-url{font-size:12px;color:var(--muted);font-family:monospace;}
+.topbar-sep{width:1px;height:20px;background:var(--border);}
+.btn{
+  padding:5px 12px;border-radius:6px;border:1px solid var(--border);
+  background:transparent;color:var(--muted);font-size:12px;cursor:pointer;
+  transition:all 0.15s;font-family:inherit;
+}
+.btn:hover{background:var(--border);color:var(--text);}
+.btn.active{background:var(--amber);border-color:var(--amber);color:#fff;}
+.spacer{flex:1;}
+.status{font-size:11px;color:var(--muted);}
+
+/* VIEWPORT TABS */
+.tabs{
+  display:flex;gap:2px;padding:8px 20px 0;
+  background:var(--surface);border-bottom:1px solid var(--border);
+  flex-shrink:0;overflow-x:auto;
+}
+.tab{
+  padding:6px 14px;border-radius:6px 6px 0 0;border:1px solid transparent;
+  border-bottom:none;cursor:pointer;font-size:12px;color:var(--muted);
+  white-space:nowrap;transition:all 0.15s;background:transparent;font-family:inherit;
+}
+.tab:hover{color:var(--text);background:rgba(255,255,255,0.04);}
+.tab.active{background:var(--bg);border-color:var(--border);color:var(--text);}
+.tab .tab-w{font-weight:700;font-size:13px;}
+.tab .tab-label{font-size:10px;color:var(--muted);display:block;margin-top:1px;}
+
+/* MAIN STAGE */
+.stage{flex:1;overflow:hidden;position:relative;}
+
+/* MULTI VIEW */
+.multi-view{
+  display:flex;gap:16px;padding:16px 20px;
+  height:100%;overflow-x:auto;overflow-y:hidden;
+  align-items:flex-start;
+}
+.vp-panel{
+  flex-shrink:0;display:flex;flex-direction:column;gap:8px;
+}
+.vp-label{
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:600;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;
+}
+.vp-label .vp-badge{
+  padding:2px 7px;border-radius:4px;background:var(--border);
+  font-size:10px;color:var(--text);font-weight:700;letter-spacing:0;text-transform:none;
+}
+.vp-frame{
+  border:1px solid var(--border);border-radius:8px;overflow:hidden;
+  background:#fff;position:relative;flex-shrink:0;
+  box-shadow:0 4px 24px rgba(0,0,0,0.4);
+}
+.vp-frame iframe{
+  display:block;border:none;transform-origin:top left;
+}
+.vp-frame .vp-overlay{
+  position:absolute;inset:0;pointer-events:none;
+  border-radius:8px;
+}
+
+/* SINGLE VIEW */
+.single-view{
+  display:flex;flex-direction:column;align-items:center;
+  padding:20px;height:100%;overflow:auto;
+}
+.single-frame{
+  border:1px solid var(--border);border-radius:8px;overflow:hidden;
+  background:#fff;flex-shrink:0;
+  box-shadow:0 8px 40px rgba(0,0,0,0.5);
+}
+.single-frame iframe{display:block;border:none;}
+
+/* ISSUES PANEL */
+.issues{
+  position:absolute;right:0;top:0;bottom:0;width:280px;
+  background:var(--surface);border-left:1px solid var(--border);
+  overflow-y:auto;display:none;flex-direction:column;
+}
+.issues.open{display:flex;}
+.issues-header{padding:12px 16px;border-bottom:1px solid var(--border);font-weight:700;font-size:13px;}
+.issue-item{padding:10px 16px;border-bottom:1px solid var(--border);cursor:pointer;}
+.issue-item:hover{background:rgba(255,255,255,0.03);}
+.issue-sev{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:8px;}
+.issue-sev.warn{background:var(--warn);}
+.issue-sev.fail{background:var(--fail);}
+.issue-title{font-size:12px;color:var(--text);}
+.issue-desc{font-size:11px;color:var(--muted);margin-top:3px;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="topbar-title">Responsive Tester</span>
+  <span class="topbar-sep"></span>
+  <span class="topbar-url" id="site-url">http://localhost:8888</span>
+  <span class="topbar-sep"></span>
+  <button class="btn active" id="btn-multi" onclick="setMode('multi')">Multi</button>
+  <button class="btn" id="btn-single" onclick="setMode('single')">Single</button>
+  <span class="topbar-sep"></span>
+  <button class="btn" id="btn-reload" onclick="reloadAll()">↺ Reload All</button>
+  <div class="spacer"></div>
+  <span class="status" id="status-text">6 viewports loaded</span>
+</div>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="stage">
+  <div class="multi-view" id="multi-view"></div>
+  <div class="single-view" id="single-view" style="display:none;"></div>
+</div>
+
+<script>
+const BASE = window.location.origin.replace(/\/responsive-test\.html.*/, '') || 'http://localhost:8888';
+const SRC = BASE + '/';
+
+const VIEWPORTS = [
+  {label:'iPhone SE',   w:375,  h:667,  display:270},
+  {label:'iPhone 14',   w:390,  h:844,  display:270},
+  {label:'iPhone 14 Pro Max', w:430, h:932, display:280},
+  {label:'iPad',        w:768,  h:1024, display:340},
+  {label:'Laptop',      w:1280, h:800,  display:380},
+  {label:'Desktop',     w:1440, h:900,  display:400},
+];
+
+let mode = 'multi';
+let activeTab = 0;
+
+document.getElementById('site-url').textContent = SRC;
+
+function buildTabs(){
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = VIEWPORTS.map((vp,i) => `
+    <button class="tab${i===activeTab?' active':''}" onclick="setTab(${i})">
+      <span class="tab-w">${vp.w}px</span>
+      <span class="tab-label">${vp.label}</span>
+    </button>
+  `).join('') + `<button class="tab" onclick="setMode('multi')" style="margin-left:auto;">All →</button>`;
+}
+
+function buildMulti(){
+  const container = document.getElementById('multi-view');
+  container.innerHTML = '';
+  const stageH = document.querySelector('.stage').offsetHeight - 32;
+
+  VIEWPORTS.forEach((vp, i) => {
+    const frameH = stageH - 40;
+    const scale = vp.display / vp.w;
+    const scaledH = Math.min(frameH, Math.round(vp.h * scale));
+
+    const panel = document.createElement('div');
+    panel.className = 'vp-panel';
+    panel.innerHTML = `
+      <div class="vp-label">
+        ${vp.label}
+        <span class="vp-badge">${vp.w}×${vp.h}</span>
+      </div>
+      <div class="vp-frame" style="width:${vp.display}px;height:${scaledH}px;">
+        <iframe
+          src="${SRC}"
+          width="${vp.w}"
+          height="${Math.round(scaledH / scale)}"
+          style="transform:scale(${scale.toFixed(4)});width:${vp.w}px;height:${Math.round(scaledH/scale)}px;"
+          loading="lazy"
+          title="${vp.label}"
+        ></iframe>
+      </div>`;
+    container.appendChild(panel);
+  });
+}
+
+function buildSingle(){
+  const vp = VIEWPORTS[activeTab];
+  const container = document.getElementById('single-view');
+  const stageH = document.querySelector('.stage').offsetHeight - 40;
+  const maxW = Math.min(vp.w, document.querySelector('.stage').offsetWidth - 80);
+  const scale = maxW < vp.w ? maxW / vp.w : 1;
+  const displayW = Math.round(vp.w * scale);
+  const displayH = Math.round(vp.h * scale);
+
+  container.innerHTML = `
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+      <span style="font-weight:700;font-size:14px;">${vp.label}</span>
+      <span style="color:var(--muted);font-size:12px;">${vp.w} × ${vp.h}px</span>
+      ${scale < 1 ? `<span style="color:var(--amber);font-size:11px;">${Math.round(scale*100)}% scale</span>` : ''}
+    </div>
+    <div class="single-frame" style="width:${displayW}px;height:${displayH}px;overflow:hidden;">
+      <iframe
+        src="${SRC}"
+        width="${vp.w}"
+        height="${vp.h}"
+        style="transform:scale(${scale.toFixed(4)});transform-origin:top left;width:${vp.w}px;height:${vp.h}px;"
+        title="${vp.label}"
+      ></iframe>
+    </div>`;
+}
+
+function setMode(m){
+  mode = m;
+  document.getElementById('multi-view').style.display = m==='multi' ? 'flex' : 'none';
+  document.getElementById('single-view').style.display = m==='single' ? 'flex' : 'none';
+  document.getElementById('tabs').style.display = m==='single' ? 'flex' : 'none';
+  document.getElementById('btn-multi').classList.toggle('active', m==='multi');
+  document.getElementById('btn-single').classList.toggle('active', m==='single');
+  if(m==='multi') buildMulti();
+  else buildSingle();
+}
+
+function setTab(i){
+  activeTab = i;
+  buildTabs();
+  buildSingle();
+}
+
+function reloadAll(){
+  document.querySelectorAll('iframe').forEach(f => { f.src = f.src; });
+  document.getElementById('status-text').textContent = 'Reloaded ' + new Date().toLocaleTimeString();
+}
+
+// Init
+buildTabs();
+setMode('multi');
+window.addEventListener('resize', () => {
+  if(mode==='multi') buildMulti();
+  else buildSingle();
+});
+</script>
+</body>
+</html>

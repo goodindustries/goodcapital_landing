@@ -242,23 +242,25 @@ nav{
 .car-cap-desc{font-size:clamp(16px,1.6vw,24px);color:rgba(255,255,255,0.85);line-height:1.5;max-width:580px;}
 .car-next-peek{
   position:absolute;right:15%;top:50%;transform:translateY(-50%);
-  width:clamp(80px,8vw,120px);height:clamp(80px,8vw,120px);border-radius:50%;
+  width:clamp(72px,7vw,104px);height:clamp(72px,7vw,104px);border-radius:50%;
   background:#fff;color:var(--navy);
-  border:none;font-size:clamp(36px,4vw,56px);
+  border:3px solid var(--amber);font-size:clamp(28px,3.2vw,44px);
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;z-index:10;transition:all 0.2s;
-  box-shadow:0 8px 40px rgba(10,12,28,0.55);
+  box-shadow:0 6px 32px rgba(10,12,28,0.7),0 0 0 4px rgba(212,136,15,0.18);
 }
-.car-next-peek:hover{background:var(--amber);color:#fff;}
+.car-next-peek:hover{background:var(--amber);color:#fff;border-color:var(--amber);}
 .car-controls{display:flex;align-items:center;justify-content:center;gap:16px;padding:var(--sp1) var(--sp3);}
 .car-btn{
-  width:44px;height:44px;border-radius:50%;
+  width:56px;height:56px;border-radius:50%;
   background:var(--navy);color:#fff;
-  border:none;font-size:18px;
+  border:none;font-size:22px;
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;flex-shrink:0;transition:background 0.2s;
+  box-shadow:0 2px 12px rgba(19,24,58,0.18);
 }
 .car-btn:hover{background:var(--amber);}
+.car-next-ctrl{display:none;}
 .car-dots{display:flex;gap:8px;align-items:center;}
 .car-dot{
   width:8px;height:8px;border-radius:50%;
@@ -309,6 +311,18 @@ nav{
   .lb-next{right:-4px;}
 }
 
+/* TABLET */
+@media(max-width:1024px) and (min-width:769px){
+  .what-grid{grid-template-columns:1fr;}
+  .what-pillar{border-right:none;padding:clamp(28px,4vw,44px) 0;}
+  .what-pillar:nth-child(even){padding-left:0;}
+  .creates{padding:var(--sp3) var(--sp3);}
+  .cities{font-size:clamp(18px,2.8vw,26px);}
+  .map-header{grid-template-columns:1fr 1fr;}
+  .about-grid{grid-template-columns:1fr;gap:var(--sp3);}
+  .how-grid{grid-template-columns:1fr;}
+}
+
 /* MOBILE */
 @media(max-width:768px){
   :root{--sp3:32px;--sp4:64px;}
@@ -348,7 +362,8 @@ nav{
   .car-cap-title{font-size:clamp(20px,6vw,32px);}
   .car-cap-desc{display:none;}
   .car-next-peek{display:none;}
-  .car-controls{padding:var(--sp1) 16px;justify-content:flex-start;}
+  .car-next-ctrl{display:flex;}
+  .car-controls{padding:var(--sp1) 16px;justify-content:flex-start;gap:12px;}
 
   /* Creates */
   .creates{grid-template-columns:1fr;gap:var(--sp2);padding:var(--sp3) 20px;}
@@ -751,6 +766,7 @@ footer{
   <div class="car-controls">
     <button class="car-btn car-prev" onclick="carStep(-1)">&#8592;</button>
     <div class="car-dots" id="car-dots"></div>
+    <button class="car-btn car-next-ctrl" onclick="carStep(1)">&#8594;</button>
   </div>
 </div>
 
