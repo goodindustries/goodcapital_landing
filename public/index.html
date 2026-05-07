@@ -159,6 +159,8 @@ nav{
   background:var(--navy);
   padding:var(--sp4) var(--sp3);
   max-width:none!important;
+  border-radius:24px;
+  margin:clamp(12px,2vw,28px) clamp(12px,2vw,28px) 0;
 }
 .what-inner{max-width:1200px;margin:0 auto;}
 .what-header{
@@ -410,10 +412,10 @@ nav{
   border-left:6px solid var(--amber);
   padding-left:var(--sp2);
 }
-.creates-eye{font-size:var(--xs);color:var(--amber);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:var(--sp1);}
-.creates-p{font-size:clamp(24px,3vw,42px);font-family:var(--font-hd);font-weight:700;color:var(--cream);line-height:1.15;}
+.creates-eye{font-size:clamp(11px,1vw,14px);color:var(--amber);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:var(--sp1);}
+.creates-p{font-size:clamp(32px,4.5vw,64px);font-family:var(--font-hd);font-weight:700;color:var(--cream);line-height:1.1;}
 .creates-sub{
-  font-size:clamp(18px,2vw,28px);font-family:var(--font-hd);font-weight:600;
+  font-size:clamp(18px,2.2vw,32px);font-family:var(--font-hd);font-weight:500;
   color:var(--cream);opacity:0.75;
   margin-top:var(--sp1);line-height:1.3;letter-spacing:0.01em;
 }
@@ -619,6 +621,29 @@ nav{
 .tgp-float img{width:10vw;min-width:100px;max-width:220px;height:auto;display:block;}
 @media(max-width:700px){.tgp-float{display:none;}}
 
+/* MAP TOOLTIP */
+.map-tooltip{
+  position:fixed;pointer-events:none;z-index:200;
+  background:#13183A;border:1px solid rgba(212,136,15,0.4);
+  border-radius:14px;padding:16px 20px;min-width:210px;max-width:270px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.4);
+  opacity:0;transition:opacity 0.12s;
+  transform:translate(-50%,-115%);
+}
+.map-tooltip.vis{opacity:1;}
+.mt-name{font-size:15px;font-weight:800;font-family:var(--font-hd);color:#fff;line-height:1.2;margin-bottom:3px;}
+.mt-status{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;}
+.mt-status.active{color:var(--amber);}
+.mt-status.near{color:#8a8fa8;}
+.mt-status.planned{color:#5a5f75;}
+.mt-row{display:flex;gap:10px;align-items:baseline;margin-bottom:5px;}
+.mt-lbl{font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.08em;width:72px;flex-shrink:0;}
+.mt-val{font-size:12px;color:rgba(255,255,255,0.82);line-height:1.4;}
+.mt-note{font-size:11px;color:rgba(255,255,255,0.48);margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);font-style:italic;line-height:1.5;}
+.city-pin{cursor:pointer;}
+.city-pin circle,.city-pin text{transition:opacity 0.1s;}
+.city-pin:hover circle{opacity:1!important;}
+
 /* FOOTER */
 footer{
   border-top:1px solid var(--rule);
@@ -740,7 +765,7 @@ footer{
       </div>
     </div>
 
-    <div class="what-close">One building. Four jobs.<br>Every day and on the worst day.</div>
+    <div class="what-close">One building.<br>Every day and on the worst day.</div>
   </div>
 </div>
 
@@ -819,14 +844,14 @@ footer{
   <div class="map-header">
     <div>
       <div class="section-eye">Where we build</div>
-      <h2 class="section-h">Tornado Alley.</h2>
+      <h2 class="section-h">Tornado Alley.<br><span style="opacity:0.45;font-size:0.7em;">then, the world.</span></h2>
     </div>
     <div>
       <div class="cities">
         Joplin<span>.</span> Branson<span>.</span> Bentonville<span>.</span><br>
         Tulsa<span>.</span> Kansas City<span>.</span> St. Louis<span>.</span>
       </div>
-      <p class="cities-sub">Each Beehive funds the next.</p>
+      <p class="cities-sub">Each Beehive supports the next. It's a network of good.</p>
     </div>
   </div>
 
@@ -922,36 +947,50 @@ footer{
       <line x1="329" y1="356" x2="90" y2="434" stroke="#13183A" stroke-width="1.2" stroke-dasharray="6 5" opacity="0.2"/>
 
       <!-- Future city dots (outline only) -->
-      <!-- Kansas City -->
-      <circle cx="215" cy="215" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
-      <text x="230" y="212" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Kansas City</text>
+      <g class="city-pin" data-city="kansascity">
+        <circle cx="215" cy="215" r="14" fill="transparent"/>
+        <circle cx="215" cy="215" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
+        <text x="230" y="212" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Kansas City</text>
+      </g>
 
-      <!-- St. Louis -->
-      <circle cx="604" cy="251" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
-      <text x="618" y="248" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">St. Louis</text>
+      <g class="city-pin" data-city="stlouis">
+        <circle cx="604" cy="251" r="14" fill="transparent"/>
+        <circle cx="604" cy="251" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
+        <text x="618" y="248" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">St. Louis</text>
+      </g>
 
-      <!-- Joplin (near future) -->
-      <circle cx="221" cy="365" r="7" fill="#13183A" opacity="0.55"/>
-      <text x="206" y="357" text-anchor="end" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" font-weight="600">Joplin</text>
+      <g class="city-pin" data-city="joplin">
+        <circle cx="221" cy="365" r="14" fill="transparent"/>
+        <circle cx="221" cy="365" r="7" fill="#13183A" opacity="0.55"/>
+        <text x="206" y="357" text-anchor="end" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" font-weight="600">Joplin</text>
+      </g>
 
-      <!-- Branson (near future) -->
-      <circle cx="336" cy="398" r="7" fill="#13183A" opacity="0.55"/>
-      <text x="351" y="412" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" font-weight="600">Branson</text>
+      <g class="city-pin" data-city="branson">
+        <circle cx="336" cy="398" r="14" fill="transparent"/>
+        <circle cx="336" cy="398" r="7" fill="#13183A" opacity="0.55"/>
+        <text x="351" y="412" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" font-weight="600">Branson</text>
+      </g>
 
-      <!-- Bentonville (AR - future) -->
-      <circle cx="248" cy="418" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
-      <text x="263" y="432" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Bentonville</text>
+      <g class="city-pin" data-city="bentonville">
+        <circle cx="248" cy="418" r="14" fill="transparent"/>
+        <circle cx="248" cy="418" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
+        <text x="263" y="432" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Bentonville</text>
+      </g>
 
-      <!-- Tulsa (OK - future) -->
-      <circle cx="90" cy="434" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
-      <text x="105" y="448" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Tulsa</text>
+      <g class="city-pin" data-city="tulsa">
+        <circle cx="90" cy="434" r="14" fill="transparent"/>
+        <circle cx="90" cy="434" r="7" fill="none" stroke="#13183A" stroke-width="1.5" opacity="0.35"/>
+        <text x="105" y="448" font-family="Barlow,sans-serif" font-size="11" fill="#5C5A72" opacity="0.75" font-weight="600">Tulsa</text>
+      </g>
 
-      <!-- Springfield HQ (amber, prominent) -->
-      <circle cx="329" cy="356" r="20" fill="#D4880F" opacity="0.12"/>
-      <circle cx="329" cy="356" r="11" fill="#D4880F"/>
-      <circle cx="329" cy="356" r="16" fill="none" stroke="#D4880F" stroke-width="1" opacity="0.35"/>
-      <text x="329" y="334" text-anchor="middle" font-family="Barlow,sans-serif" font-size="12" font-weight="800" fill="#13183A">Springfield</text>
-      <text x="329" y="320" text-anchor="middle" font-family="Barlow,sans-serif" font-size="9" fill="#D4880F" font-weight="700" letter-spacing="2">NOW</text>
+      <g class="city-pin" data-city="springfield">
+        <circle cx="329" cy="356" r="28" fill="transparent"/>
+        <circle cx="329" cy="356" r="20" fill="#D4880F" opacity="0.12"/>
+        <circle cx="329" cy="356" r="11" fill="#D4880F"/>
+        <circle cx="329" cy="356" r="16" fill="none" stroke="#D4880F" stroke-width="1" opacity="0.35"/>
+        <text x="329" y="334" text-anchor="middle" font-family="Barlow,sans-serif" font-size="12" font-weight="800" fill="#13183A">Springfield</text>
+        <text x="329" y="320" text-anchor="middle" font-family="Barlow,sans-serif" font-size="9" fill="#D4880F" font-weight="700" letter-spacing="2">NOW</text>
+      </g>
 
       <!-- Legend -->
       <rect x="622" y="370" width="162" height="90" rx="6" fill="white" stroke="#D6CFA8" stroke-width="1" opacity="0.96"/>
@@ -992,11 +1031,9 @@ footer{
       </ol>
       <div class="manifesto-quote">"Verily I say, men should be anxiously engaged in a good cause, and do many things of their own free will, and bring to pass much righteousness."</div>
       <p class="manifesto-p">The Good Project is one permutation of a good cause. One way to be anxiously engaged in doing good. We derive our four pillars from Jacob: to clothe the naked, feed the hungry, liberate the captive, and administer relief to the sick and afflicted.</p>
-    </div>
-  </div>
-  <div class="about-poem">
-    <div class="poem-title">A Sailor's Hymn</div>
-    <div class="poem-body">We followed Him thru wicked sea —
+      <div class="about-poem">
+        <div class="poem-title">A Sailor's Hymn</div>
+        <div class="poem-body">We followed Him thru wicked sea —
 horrid, bloody fierce,
 We kept the pace 'til freedom's Dawn
 rang new in ev'ry ear.
@@ -1022,7 +1059,9 @@ Our florians are quiet-kept,
 we're absent honor's roll;
 we dive, we drown, we pirate on,
 — we ransom for the Pearl.</div>
-    <div class="poem-author">— Reif Tauati</div>
+        <div class="poem-author">— Reif Tauati</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1200,6 +1239,49 @@ function toggleManifesto(btn){
   btn.nextElementSibling.classList.toggle('open');
   btn.querySelector('.tog-arrow').textContent = btn.classList.contains('open') ? '×' : '+';
 }
+
+// MAP TOOLTIPS
+(function(){
+  const CITIES = {
+    springfield: { name:'Springfield, MO', status:'Active now', cls:'active', pop:'500K metro area', hazards:'Tornadoes · Ice storms · Flash flooding', note:'The first Beehive. Open now.' },
+    joplin:      { name:'Joplin, MO',       status:'Near future', cls:'near',    pop:'175K metro area', hazards:'Tornadoes · Flash flooding',           note:'The 2011 F5 tornado killed 161 people and leveled a third of the city.' },
+    branson:     { name:'Branson, MO',      status:'Near future', cls:'near',    pop:'10K city · regional tourism hub', hazards:'Tornadoes · Flash flooding · Ice storms', note:'Major tourist corridor with limited emergency infrastructure.' },
+    kansascity:  { name:'Kansas City, MO',  status:'Planned',    cls:'planned', pop:'2.2M metro area', hazards:'Tornadoes · Ice storms · Flooding',    note:'' },
+    stlouis:     { name:'St. Louis, MO',    status:'Planned',    cls:'planned', pop:'2.8M metro area', hazards:'Tornadoes · Mississippi flooding · Ice storms', note:'The Great Flood of 1993 displaced over 10,000 people.' },
+    bentonville: { name:'Bentonville, AR',  status:'Planned',    cls:'planned', pop:'600K metro area', hazards:'Tornadoes · Flash flooding · Ice storms', note:'Fast-growing corridor between Missouri and Oklahoma.' },
+    tulsa:       { name:'Tulsa, OK',        status:'Planned',    cls:'planned', pop:'1M metro area',   hazards:'Tornadoes · Severe storms · Ice storms · Flooding', note:'Sits at the heart of Tornado Alley.' },
+  };
+
+  const tip = document.createElement('div');
+  tip.className = 'map-tooltip';
+  tip.id = 'map-tooltip';
+  tip.innerHTML = `
+    <div class="mt-name" id="mt-name"></div>
+    <div class="mt-status" id="mt-status"></div>
+    <div class="mt-row"><span class="mt-lbl">Population</span><span class="mt-val" id="mt-pop"></span></div>
+    <div class="mt-row"><span class="mt-lbl">Hazards</span><span class="mt-val" id="mt-hazards"></span></div>
+    <div class="mt-note" id="mt-note"></div>`;
+  document.body.appendChild(tip);
+
+  document.querySelectorAll('.city-pin').forEach(pin => {
+    pin.addEventListener('mouseenter', () => {
+      const d = CITIES[pin.dataset.city]; if (!d) return;
+      document.getElementById('mt-name').textContent = d.name;
+      const st = document.getElementById('mt-status');
+      st.textContent = d.status; st.className = 'mt-status ' + d.cls;
+      document.getElementById('mt-pop').textContent = d.pop;
+      document.getElementById('mt-hazards').textContent = d.hazards;
+      const note = document.getElementById('mt-note');
+      note.textContent = d.note; note.style.display = d.note ? '' : 'none';
+      tip.classList.add('vis');
+    });
+    pin.addEventListener('mousemove', e => {
+      tip.style.left = e.clientX + 'px';
+      tip.style.top  = (e.clientY - 8) + 'px';
+    });
+    pin.addEventListener('mouseleave', () => tip.classList.remove('vis'));
+  });
+})();
 </script>
 
 <!-- FOOTER -->
