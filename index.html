@@ -126,40 +126,31 @@ nav{
 }
 
 /* PROBLEM STATS */
-.prob-stats{background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.06);}
-.prob-featured{
-  padding:var(--sp3) var(--sp3) 0;
-  border-bottom:1px solid rgba(255,255,255,0.06);
-  display:grid;grid-template-columns:auto 1fr;
-  gap:0 var(--sp3);align-items:end;
-  padding-bottom:var(--sp3);
+.prob-row3{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  background:var(--navy);
+  border-radius:0 0 20px 20px;
+  overflow:hidden;
 }
-.prob-featured-n{
-  font-size:clamp(80px,10vw,160px);font-weight:800;font-family:var(--font-hd);
-  color:var(--amber);line-height:0.88;letter-spacing:-0.02em;
-}
-.prob-featured-l{
-  font-size:clamp(14px,1.4vw,20px);color:var(--cream);font-weight:700;
-  letter-spacing:0.08em;text-transform:uppercase;line-height:1.5;
-  padding-bottom:0.2em;max-width:340px;
-}
-.prob-grid{
-  display:grid;grid-template-columns:1fr 1fr;
+.prob-row2{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  background:var(--navy);
+  border-radius:20px;
+  overflow:hidden;
+  margin:var(--sp3) var(--sp3);
 }
 .prob-stat{
-  padding:var(--sp2) var(--sp3);
-  border-right:1px solid rgba(255,255,255,0.06);
-  border-bottom:1px solid rgba(255,255,255,0.06);
+  padding:clamp(28px,3.5vw,48px) clamp(24px,3vw,48px);
+  border-right:1px solid rgba(255,255,255,0.07);
 }
-.prob-stat:nth-child(even){border-right:none;}
-.prob-stat:nth-last-child(-n+2){border-bottom:none;}
+.prob-stat:last-child{border-right:none;}
 .prob-n{
-  font-size:clamp(48px,5vw,84px);font-weight:800;font-family:var(--font-hd);
-  letter-spacing:0.01em;color:var(--amber);line-height:1;
+  font-size:clamp(44px,5vw,80px);font-weight:800;font-family:var(--font-hd);
+  letter-spacing:-0.01em;color:var(--amber);line-height:1;
 }
 .prob-l{
-  font-size:clamp(11px,0.9vw,14px);color:var(--cream);
-  font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  font-size:clamp(11px,0.85vw,13px);color:rgba(255,255,255,0.55);
+  font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
   margin-top:10px;line-height:1.5;
 }
 
@@ -332,11 +323,11 @@ nav{
   .hero{padding:var(--sp4) 20px;min-height:50vh;}
 
   /* Stats */
-  .prob-featured{grid-template-columns:1fr;padding:var(--sp2) 20px;}
-  .prob-featured-n{font-size:clamp(72px,20vw,120px);}
-  .prob-featured-l{max-width:100%;padding-bottom:0;margin-top:8px;}
-  .prob-grid{grid-template-columns:1fr 1fr;}
-  .prob-stat{padding:var(--sp2) 20px;}
+  .prob-row3{grid-template-columns:1fr;}
+  .prob-row3 .prob-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,0.07);}
+  .prob-row3 .prob-stat:last-child{border-bottom:none;}
+  .prob-row2{margin:var(--sp2) 16px;border-radius:14px;}
+  .prob-stat{padding:20px 20px;}
   .prob-n{font-size:clamp(36px,10vw,56px);}
 
   /* What */
@@ -613,29 +604,19 @@ footer{
   </div>
 </div>
 
-<!-- PROBLEM STATS -->
-<div class="prob-stats">
-  <div class="prob-featured">
-    <div class="prob-featured-n">16 days.</div>
-    <div class="prob-featured-l">The average wait for federal aid after a disaster is declared. Your neighborhood can't wait sixteen days.</div>
+<!-- PROBLEM STATS — TOP 3 -->
+<div class="prob-row3">
+  <div class="prob-stat">
+    <div class="prob-n">16 days.</div>
+    <div class="prob-l">Average wait for federal disaster aid</div>
   </div>
-  <div class="prob-grid">
-    <div class="prob-stat">
-      <div class="prob-n">13M</div>
-      <div class="prob-l">Americans have nowhere to turn when disaster hits their block.</div>
-    </div>
-    <div class="prob-stat">
-      <div class="prob-n">3 in 4</div>
-      <div class="prob-l">Families haven't talked about what to do when something goes wrong.</div>
-    </div>
-    <div class="prob-stat">
-      <div class="prob-n">47%</div>
-      <div class="prob-l">Emergency calls go unanswered. The system gets overwhelmed. Your neighbor doesn't get through.</div>
-    </div>
-    <div class="prob-stat">
-      <div class="prob-n">25%</div>
-      <div class="prob-l">One in four households lost power completely last year. Most weren't ready.</div>
-    </div>
+  <div class="prob-stat">
+    <div class="prob-n">13M</div>
+    <div class="prob-l">Americans with no local preparedness infrastructure</div>
+  </div>
+  <div class="prob-stat">
+    <div class="prob-n">3 in 4</div>
+    <div class="prob-l">Households with no emergency plan</div>
   </div>
 </div>
 
@@ -723,6 +704,18 @@ footer{
   <div class="car-controls">
     <button class="car-btn car-prev" onclick="carStep(-1)">&#8592;</button>
     <div class="car-dots" id="car-dots"></div>
+  </div>
+</div>
+
+<!-- STATS BREAK — 2 -->
+<div class="prob-row2">
+  <div class="prob-stat">
+    <div class="prob-n">47%</div>
+    <div class="prob-l">Emergency calls go unanswered during major disasters</div>
+  </div>
+  <div class="prob-stat">
+    <div class="prob-n">25%</div>
+    <div class="prob-l">U.S. households lost power completely last year</div>
   </div>
 </div>
 
