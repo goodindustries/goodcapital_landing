@@ -126,24 +126,41 @@ nav{
 }
 
 /* PROBLEM STATS */
-.prob-stats{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  background:var(--navy);
+.prob-stats{background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.06);}
+.prob-featured{
+  padding:var(--sp3) var(--sp3) 0;
   border-bottom:1px solid rgba(255,255,255,0.06);
+  display:grid;grid-template-columns:auto 1fr;
+  gap:0 var(--sp3);align-items:end;
+  padding-bottom:var(--sp3);
+}
+.prob-featured-n{
+  font-size:clamp(80px,10vw,160px);font-weight:800;font-family:var(--font-hd);
+  color:var(--amber);line-height:0.88;letter-spacing:-0.02em;
+}
+.prob-featured-l{
+  font-size:clamp(14px,1.4vw,20px);color:var(--cream);font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;line-height:1.5;
+  padding-bottom:0.2em;max-width:340px;
+}
+.prob-grid{
+  display:grid;grid-template-columns:1fr 1fr;
 }
 .prob-stat{
-  padding:var(--sp3) var(--sp3);
+  padding:var(--sp2) var(--sp3);
   border-right:1px solid rgba(255,255,255,0.06);
+  border-bottom:1px solid rgba(255,255,255,0.06);
 }
-.prob-stat:last-child{border-right:none;}
+.prob-stat:nth-child(even){border-right:none;}
+.prob-stat:nth-last-child(-n+2){border-bottom:none;}
 .prob-n{
-  font-size:clamp(56px,6vw,100px);font-weight:800;font-family:var(--font-hd);
+  font-size:clamp(48px,5vw,84px);font-weight:800;font-family:var(--font-hd);
   letter-spacing:0.01em;color:var(--amber);line-height:1;
 }
 .prob-l{
-  font-size:clamp(11px,1vw,16px);color:var(--cream);
+  font-size:clamp(11px,0.9vw,14px);color:var(--cream);
   font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
-  margin-top:12px;line-height:1.5;
+  margin-top:10px;line-height:1.5;
 }
 
 /* WHAT A BEEHIVE IS */
@@ -183,8 +200,9 @@ nav{
 }
 .what-num{
   font-size:clamp(13px,1.1vw,16px);font-family:var(--font-hd);font-weight:700;
-  color:var(--amber);letter-spacing:0.12em;margin-bottom:clamp(12px,1.5vw,20px);
+  color:var(--amber);letter-spacing:0.12em;margin-bottom:clamp(8px,1vw,14px);
 }
+.what-icon{margin-bottom:clamp(10px,1.2vw,18px);line-height:1;}
 .what-kw{
   font-size:clamp(28px,3.2vw,56px);font-family:var(--font-hd);font-weight:700;
   color:#fff;line-height:0.92;letter-spacing:-0.01em;
@@ -314,10 +332,12 @@ nav{
   .hero{padding:var(--sp4) 20px;min-height:50vh;}
 
   /* Stats */
-  .prob-stats{grid-template-columns:1fr;}
-  .prob-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06);}
-  .prob-stat:last-child{border-bottom:none;}
-  .prob-n{font-size:clamp(56px,18vw,80px);}
+  .prob-featured{grid-template-columns:1fr;padding:var(--sp2) 20px;}
+  .prob-featured-n{font-size:clamp(72px,20vw,120px);}
+  .prob-featured-l{max-width:100%;padding-bottom:0;margin-top:8px;}
+  .prob-grid{grid-template-columns:1fr 1fr;}
+  .prob-stat{padding:var(--sp2) 20px;}
+  .prob-n{font-size:clamp(36px,10vw,56px);}
 
   /* What */
   .what{padding:var(--sp3) 20px;}
@@ -332,7 +352,8 @@ nav{
   /* Carousel */
   .carousel-wrap{padding:var(--sp2) 0;}
   .carousel-outer{padding-left:16px;}
-  .car-slide{min-width:78%;border-radius:10px;}
+  .car-slide{min-width:78%;border-radius:10px;height:56vw;}
+  .car-slide img{height:100%;width:100%;object-fit:cover;object-position:center;}
   .car-cap-title{font-size:clamp(20px,6vw,32px);}
   .car-cap-desc{display:none;}
   .car-next-peek{display:none;}
@@ -344,8 +365,10 @@ nav{
   .creates-p{font-size:clamp(22px,7vw,34px);}
 
   /* Map */
-  .map-header{grid-template-columns:1fr;}
-  .map-svg-wrap{padding:0 20px var(--sp2);}
+  .map-header{grid-template-columns:1fr;gap:var(--sp2);padding:var(--sp2) 20px;}
+  .cities{font-size:clamp(22px,7vw,32px);line-height:1.4;}
+  .map-svg-wrap{padding:0 20px var(--sp2);overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .map-svg-wrap svg{min-width:480px;}
 
   /* About */
   .about-tgp{padding:var(--sp3) 20px;}
@@ -505,17 +528,27 @@ footer{
 
 <!-- PROBLEM STATS -->
 <div class="prob-stats">
-  <div class="prob-stat">
-    <div class="prob-n">72 hrs.</div>
-    <div class="prob-l">The average home has three days of essential supplies</div>
+  <div class="prob-featured">
+    <div class="prob-featured-n">16 days.</div>
+    <div class="prob-featured-l">The average wait for federal aid after a disaster is declared.</div>
   </div>
-  <div class="prob-stat">
-    <div class="prob-n">47%</div>
-    <div class="prob-l">Of emergency calls go unanswered during a major disaster</div>
-  </div>
-  <div class="prob-stat">
-    <div class="prob-n">25%</div>
-    <div class="prob-l">Of U.S. households experienced a complete power outage last year</div>
+  <div class="prob-grid">
+    <div class="prob-stat">
+      <div class="prob-n">13M</div>
+      <div class="prob-l">Americans live in communities with no formal disaster preparedness infrastructure.</div>
+    </div>
+    <div class="prob-stat">
+      <div class="prob-n">3 in 4</div>
+      <div class="prob-l">Americans have no emergency plan for their household.</div>
+    </div>
+    <div class="prob-stat">
+      <div class="prob-n">47%</div>
+      <div class="prob-l">Of emergency calls go unanswered during a major disaster.</div>
+    </div>
+    <div class="prob-stat">
+      <div class="prob-n">25%</div>
+      <div class="prob-l">Of U.S. households experienced a complete power outage last year.</div>
+    </div>
   </div>
 </div>
 
@@ -531,25 +564,37 @@ footer{
     <div class="what-grid">
       <div class="what-pillar">
         <div class="what-num">01</div>
-        <div class="what-kw">A store.</div>
+        <div class="what-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 6h20l-2 12H6L4 6Z" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/><circle cx="10" cy="23" r="1.5" fill="#D4880F"/><circle cx="18" cy="23" r="1.5" fill="#D4880F"/><path d="M2 3h3l1 3" stroke="#D4880F" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="what-kw">A store</div>
         <div class="what-desc">Buy a 72-hour kit, a water filter, a tent, a cot. Everything your family needs — before you need it.</div>
       </div>
 
       <div class="what-pillar">
         <div class="what-num">02</div>
-        <div class="what-kw">A school.</div>
+        <div class="what-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4L4 9l10 5 10-5-10-5Z" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/><path d="M4 14l10 5 10-5" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/><path d="M4 19l10 5 10-5" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="what-kw">A school</div>
         <div class="what-desc">Learn to can food. Earn a first aid certification. Get tornado shelter certified. Your neighbors trained before the sirens go off.</div>
       </div>
 
       <div class="what-pillar">
         <div class="what-num">03</div>
-        <div class="what-kw">A shelter.</div>
+        <div class="what-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M3 13L14 4l11 9v11a1 1 0 01-1 1H4a1 1 0 01-1-1V13Z" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/><path d="M10 24v-8h8v8" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="what-kw">A shelter</div>
         <div class="what-desc">When evacuation orders go out, the Beehive is already open. Safe beds, warm meals, power, and people who know what they're doing.</div>
       </div>
 
       <div class="what-pillar">
         <div class="what-num">04</div>
-        <div class="what-kw">A command center.</div>
+        <div class="what-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="3" fill="#D4880F"/><path d="M7 7a9.9 9.9 0 000 14" stroke="#D4880F" stroke-width="2" stroke-linecap="round"/><path d="M21 7a9.9 9.9 0 010 14" stroke="#D4880F" stroke-width="2" stroke-linecap="round"/><path d="M4 4a14.1 14.1 0 000 20" stroke="#D4880F" stroke-width="2" stroke-linecap="round" opacity=".4"/><path d="M24 4a14.1 14.1 0 010 20" stroke="#D4880F" stroke-width="2" stroke-linecap="round" opacity=".4"/></svg>
+        </div>
+        <div class="what-kw">A command center</div>
         <div class="what-desc">When the grid goes down, the Beehive coordinates the neighborhood. Local leadership, live logistics, resources moving to where they're needed.</div>
       </div>
     </div>
@@ -810,10 +855,14 @@ function renderCar(){
   track.style.transform = `translateX(${-carIdx * offset}px)`;
 
   const outer = document.querySelector('.carousel-outer');
-  const img = slides[carIdx].querySelector('img');
-  const setH = () => { outer.style.height = (img.naturalHeight / img.naturalWidth * slides[carIdx].offsetWidth) + 'px'; };
-  if(img.complete && img.naturalWidth > 0) setH();
-  else img.addEventListener('load', setH, {once:true});
+  if(window.innerWidth > 768){
+    const img = slides[carIdx].querySelector('img');
+    const setH = () => { outer.style.height = (img.naturalHeight / img.naturalWidth * slides[carIdx].offsetWidth) + 'px'; };
+    if(img.complete && img.naturalWidth > 0) setH();
+    else img.addEventListener('load', setH, {once:true});
+  } else {
+    outer.style.height = '';
+  }
 
   document.getElementById('car-dots').innerHTML = carSlides.map((_,i) =>
     `<button class="car-dot${i===carIdx?' active':''}" onclick="carIdx=${i};renderCar()"></button>`
