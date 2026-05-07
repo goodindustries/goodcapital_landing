@@ -750,15 +750,26 @@ nav{
 /* FOOTER */
 footer{
   border-top:1px solid var(--rule);
-  padding:var(--sp3) var(--sp3);
-  display:flex;flex-direction:column;align-items:center;gap:var(--sp1);
-  background:var(--cream);text-align:center;
+  padding:var(--sp4) var(--sp3) var(--sp3);
+  background:var(--cream);
 }
-.footer-by{font-size:var(--xs);color:var(--faint);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;}
-.footer-tgp img{height:52px;width:auto;}
-.footer-meta{font-size:var(--xs);color:var(--faint);font-weight:500;letter-spacing:0.06em;}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:var(--sp3);align-items:start;}
+.footer-brand img{height:44px;width:auto;display:block;margin-bottom:var(--sp1);}
+.footer-legal{font-size:12px;color:var(--faint);line-height:1.6;margin-top:4px;}
+.footer-hierarchy{display:flex;flex-direction:column;gap:6px;}
+.footer-hierarchy-row{display:flex;align-items:baseline;gap:8px;}
+.footer-h-label{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);min-width:120px;}
+.footer-h-name{font-size:13px;color:var(--muted);font-weight:500;}
+.footer-h-desc{font-size:11px;color:var(--faint);margin-left:4px;}
+.footer-divider{width:1px;background:var(--rule);align-self:stretch;margin:0 4px;}
+.footer-bottom{max-width:1200px;margin:var(--sp2) auto 0;padding-top:var(--sp1);border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.footer-meta{font-size:12px;color:var(--faint);}
 .footer-meta a{color:var(--faint);text-decoration:none;}
 .footer-meta a:hover{color:var(--muted);}
+@media(max-width:768px){
+  .footer-inner{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;}
+}
 
 /* MOBILE OVERRIDES — placed after base CSS to win the cascade */
 @media(max-width:768px){
@@ -830,7 +841,7 @@ footer{
 <!-- ABOUT THE GOOD PROJECT -->
 <div class="about-tgp" id="about">
   <div class="section-eye">Our Why</div>
-  <p class="about-mission-p">The Good Project is a nonprofit organization aimed at building permanent community preparedness infrastructure — starting with The Beehive. The first hub in a network we're growing city by city, stocked, trained, and ready before anything happens. Each one designed to fund the next.</p>
+  <p class="about-mission-p">The Good Project builds permanent community preparedness infrastructure. The Beehive is the first hub in a network we're expanding city by city — stocked, staffed, and ready before anything happens. Each one designed to fund the next.</p>
   <div class="about-mission-h">To relieve human suffering, in all forms, in all places.</div>
   <div class="about-pillars">
     <div class="about-pillar"><span>I</span> Physical</div>
@@ -1640,8 +1651,38 @@ var CITY_COORDS = {
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-by">A project of The Good Project</div>
-  <div class="footer-meta"><a href="mailto:hello@thegoodproject.net">hello@thegoodproject.net</a></div>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <img src="/assets/brand/tgp-logo-wordmark.png" alt="The Good Project">
+      </div>
+      <div class="footer-legal">
+        A registered 501(c)(3) nonprofit organization.<br>
+        Building permanent community preparedness infrastructure.
+      </div>
+    </div>
+    <div class="footer-hierarchy">
+      <div class="footer-hierarchy-row">
+        <span class="footer-h-label">Parent org</span>
+        <span class="footer-h-name">The Good Project</span>
+        <span class="footer-h-desc">— nonprofit steward</span>
+      </div>
+      <div class="footer-hierarchy-row">
+        <span class="footer-h-label">Initiative</span>
+        <span class="footer-h-name">The Beehive</span>
+        <span class="footer-h-desc">— disaster preparedness hub</span>
+      </div>
+      <div class="footer-hierarchy-row">
+        <span class="footer-h-label">Field unit</span>
+        <span class="footer-h-name">Operation 61</span>
+        <span class="footer-h-desc">— disaster response team</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-meta"><a href="mailto:hello@thegoodproject.net">hello@thegoodproject.net</a></div>
+    <div class="footer-meta">&copy; 2025 The Good Project. All rights reserved.</div>
+  </div>
 </footer>
 
 </body>
