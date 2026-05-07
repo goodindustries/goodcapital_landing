@@ -62,7 +62,7 @@ nav{
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
 }
-.nav-logo img{height:clamp(32px,3.5vw,52px);width:auto;max-width:40vw;}
+.nav-logo img{width:clamp(180px,22vw,340px);height:auto;display:block;}
 .nav-links{
   display:flex;gap:var(--sp2);list-style:none;
   font-size:var(--sm);font-weight:700;
@@ -176,22 +176,22 @@ nav{
 .car-slide img{width:100%;height:auto;display:block;pointer-events:none;user-select:none;}
 .car-cap-overlay{
   position:absolute;bottom:0;left:0;right:0;
-  padding:var(--sp3) var(--sp2) var(--sp2);
-  background:linear-gradient(to top,rgba(10,12,28,0.9) 0%,rgba(10,12,28,0.5) 60%,transparent 100%);
+  padding:clamp(40px,6vw,80px) var(--sp3) var(--sp3);
+  background:linear-gradient(to top,rgba(10,12,28,0.92) 0%,rgba(10,12,28,0.55) 55%,transparent 100%);
 }
 .car-cap-title{
-  font-size:clamp(20px,2.2vw,34px);font-weight:700;font-family:var(--font-hd);
-  color:#fff;margin-bottom:8px;letter-spacing:0.01em;
+  font-size:clamp(26px,3.5vw,52px);font-weight:700;font-family:var(--font-hd);
+  color:#fff;margin-bottom:10px;letter-spacing:0.01em;
 }
-.car-cap-desc{font-size:clamp(14px,1.2vw,18px);color:rgba(255,255,255,0.82);line-height:1.55;max-width:540px;}
+.car-cap-desc{font-size:clamp(16px,1.6vw,24px);color:rgba(255,255,255,0.85);line-height:1.5;max-width:580px;}
 .car-next-peek{
   position:absolute;right:15%;top:50%;transform:translateY(-50%);
-  width:clamp(52px,5vw,72px);height:clamp(52px,5vw,72px);border-radius:50%;
+  width:clamp(64px,6vw,88px);height:clamp(64px,6vw,88px);border-radius:50%;
   background:#fff;color:var(--navy);
-  border:none;font-size:clamp(20px,2vw,28px);
+  border:none;font-size:clamp(26px,2.5vw,38px);
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;z-index:10;transition:all 0.2s;
-  box-shadow:0 4px 20px rgba(10,12,28,0.3);
+  box-shadow:0 6px 28px rgba(10,12,28,0.45);
 }
 .car-next-peek:hover{background:var(--amber);color:#fff;}
 .car-controls{display:flex;align-items:center;justify-content:center;gap:16px;padding:var(--sp1) var(--sp3);}
@@ -441,7 +441,7 @@ footer{
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-display">We build disaster relief hubs in your city.</div>
+    <div class="hero-display">Every city needs a disaster relief hub.</div>
     <button class="hero-cta" onclick="document.getElementById('give').scrollIntoView({behavior:'smooth'})">Donate Now</button>
   </div>
 </div>
