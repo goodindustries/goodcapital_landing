@@ -66,7 +66,7 @@ nav{
 .nav-logo img{width:clamp(220px,26vw,400px);height:auto;display:block;}
 .nav-links{
   display:flex;gap:var(--sp2);list-style:none;
-  font-size:var(--sm);font-weight:700;
+  font-size:clamp(15px,1.3vw,22px);font-weight:700;
   letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);
   cursor:pointer;
 }
@@ -145,13 +145,13 @@ nav{
 }
 .prob-stat:last-child{border-right:none;}
 .prob-n{
-  font-size:clamp(44px,5vw,80px);font-weight:800;font-family:var(--font-hd);
+  font-size:clamp(32px,3.5vw,56px);font-weight:700;font-family:var(--font-hd);
   letter-spacing:-0.01em;color:var(--amber);line-height:1;
 }
 .prob-l{
-  font-size:clamp(11px,0.85vw,13px);color:rgba(255,255,255,0.55);
-  font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
-  margin-top:10px;line-height:1.5;
+  font-size:clamp(14px,1.3vw,20px);color:rgba(255,255,255,0.65);
+  font-weight:500;letter-spacing:0.01em;text-transform:none;
+  margin-top:12px;line-height:1.55;
 }
 
 /* WHAT A BEEHIVE IS */
@@ -239,7 +239,7 @@ nav{
   font-size:clamp(26px,3.5vw,52px);font-weight:700;font-family:var(--font-hd);
   color:#fff;margin-bottom:10px;letter-spacing:0.01em;
 }
-.car-cap-desc{font-size:clamp(16px,1.6vw,24px);color:rgba(255,255,255,0.85);line-height:1.5;max-width:580px;}
+.car-cap-desc{font-size:clamp(18px,2.2vw,32px);color:rgba(255,255,255,0.85);line-height:1.5;max-width:640px;}
 .car-next-peek{
   position:absolute;right:15%;top:50%;transform:translateY(-50%);
   width:clamp(72px,7vw,104px);height:clamp(72px,7vw,104px);border-radius:50%;
@@ -359,8 +359,8 @@ nav{
   .carousel-outer{padding-left:16px;}
   .car-slide{min-width:78%;border-radius:10px;height:56vw;}
   .car-slide img{height:100%;width:100%;object-fit:cover;object-position:center;}
-  .car-cap-title{font-size:clamp(20px,6vw,32px);}
-  .car-cap-desc{display:none;}
+  .car-cap-title{font-size:clamp(18px,5.5vw,28px);}
+  .car-cap-desc{font-size:clamp(13px,3.8vw,16px);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
   .car-next-peek{display:none;}
   .car-next-ctrl{display:flex;}
   .car-controls{padding:var(--sp1) 16px;justify-content:flex-start;gap:12px;}
@@ -373,12 +373,11 @@ nav{
   /* Map */
   .map-header{grid-template-columns:1fr;gap:var(--sp2);padding:var(--sp2) 20px;}
   .cities{font-size:clamp(22px,7vw,32px);line-height:1.4;}
-  .map-svg-wrap{padding:0 20px var(--sp2);overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  .map-svg-wrap svg{min-width:480px;}
+  .map-svg-wrap{padding:0 20px var(--sp2);}
+  .map-svg-wrap svg{min-width:unset;width:100%;}
 
   /* About */
   .about-tgp{padding:var(--sp3) 20px;}
-  .about-grid{grid-template-columns:1fr;gap:var(--sp3);}
   .about-pillars{grid-template-columns:1fr 1fr;}
   .section-h{font-size:clamp(28px,8vw,48px);}
   .about-body{font-size:clamp(15px,4vw,18px);}
@@ -521,12 +520,6 @@ nav{
   background:var(--navy);
   border-top:1px solid rgba(255,255,255,0.06);
 }
-.about-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:var(--sp4);align-items:start;
-  padding-bottom:var(--sp4);
-  border-bottom:1px solid rgba(255,255,255,0.1);
-}
 .about-mission-eye{
   font-size:clamp(13px,1vw,16px);font-weight:700;letter-spacing:0.12em;
   text-transform:uppercase;color:var(--amber);margin-bottom:var(--sp2);
@@ -550,10 +543,10 @@ nav{
 }
 .about-pillar span{color:var(--amber);margin-right:8px;}
 .about-poem{
-  padding:var(--sp3);
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:12px;
+  margin-top:var(--sp3);
+  padding:var(--sp3) 0;
+  border-top:1px solid rgba(255,255,255,0.08);
+  max-width:640px;
 }
 .poem-title{
   font-size:clamp(11px,0.9vw,14px);font-weight:700;letter-spacing:0.12em;
@@ -639,6 +632,28 @@ footer{
 .footer-meta a{color:var(--faint);text-decoration:none;}
 .footer-meta a:hover{color:var(--muted);}
 
+/* MOBILE OVERRIDES — placed after base CSS to win the cascade */
+@media(max-width:768px){
+  .creates{grid-template-columns:1fr!important;gap:var(--sp2);padding:var(--sp3) 20px;}
+  .map-header{grid-template-columns:1fr!important;align-items:start;gap:var(--sp2);padding:var(--sp2) 20px;}
+  .map-svg-wrap{padding:0 20px var(--sp2);}
+  .map-svg-wrap svg{min-width:unset!important;width:100%;}
+  .how{padding:var(--sp3) 20px;}
+  .how-grid{grid-template-columns:1fr!important;}
+  .about-tgp{padding:var(--sp3) 20px;}
+  .about-grid{grid-template-columns:1fr!important;gap:var(--sp3);}
+  .about-poem{margin-top:0;}
+  .donate{padding:var(--sp3) 20px;}
+  .donate-h{font-size:clamp(28px,8vw,48px);}
+  .btns{flex-direction:column;align-items:center;}
+  .btn-amber,.btn-ghost-light{width:100%;max-width:320px;text-align:center;}
+}
+@media(max-width:1024px) and (min-width:769px){
+  .creates{grid-template-columns:1fr!important;}
+  .map-header{grid-template-columns:1fr 1fr;}
+  .about-grid{grid-template-columns:1fr!important;gap:var(--sp3);}
+  .how-grid{grid-template-columns:1fr!important;}
+}
 </style>
 </head>
 <body>
@@ -705,7 +720,7 @@ footer{
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4L4 9l10 5 10-5-10-5Z" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/><path d="M4 14l10 5 10-5" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/><path d="M4 19l10 5 10-5" stroke="#D4880F" stroke-width="2" stroke-linejoin="round"/></svg>
         </div>
         <div class="what-kw">A school</div>
-        <div class="what-desc">Learn to preserve food, earn a first aid cert, get tornado-shelter certified. Skills that live in your hands — not a pamphlet in a drawer.</div>
+        <div class="what-desc">Learn to preserve food, earn a first aid cert, get tornado-shelter certified. Skills that live in your hands.</div>
       </div>
 
       <div class="what-pillar">
@@ -754,10 +769,17 @@ footer{
         </div>
       </div>
       <div class="car-slide" onclick="openLb(3)">
-        <img src="/assets/photos/disaster-school-deploy.png" alt="Disaster School">
+        <img src="/assets/photos/disaster-school-deploy.png" alt="Operation 61">
         <div class="car-cap-overlay">
-          <div class="car-cap-title">Disaster School</div>
+          <div class="car-cap-title">Operation 61</div>
           <div class="car-cap-desc">Most people don't know what to do when the grid goes down. We change that. First aid, food preservation, emergency preparedness — taught by people who've been through it. Your neighbors, trained and ready before the sirens go off.</div>
+        </div>
+      </div>
+      <div class="car-slide" onclick="openLb(4)">
+        <img src="/assets/photos/beehive-stockhouse.png" alt="The Stockhouse">
+        <div class="car-cap-overlay">
+          <div class="car-cap-title">The Stockhouse</div>
+          <div class="car-cap-desc">Pallets of water, food, and disaster relief supplies staged and ready. When a disaster hits the region, the Beehive loads and moves — we deploy within hours.</div>
         </div>
       </div>
     </div>
@@ -945,39 +967,36 @@ footer{
 
 <!-- ABOUT THE GOOD PROJECT -->
 <div class="about-tgp" id="about">
-  <div class="about-grid">
-    <div>
-      <div class="about-mission-eye">The Good Project</div>
-      <div class="about-mission-h">To relieve human suffering, in all forms, in all places.</div>
-      <p class="about-mission-p">Not after the disaster. Before it. The Beehive is the first hub in a network we're building city by city — each one stocked, trained, and ready. And each one designed to fund the next.</p>
-      <div class="about-pillars">
-        <div class="about-pillar"><span>I</span> Physical</div>
-        <div class="about-pillar"><span>II</span> Intellectual</div>
-        <div class="about-pillar"><span>III</span> Social</div>
-        <div class="about-pillar"><span>IV</span> Spiritual</div>
-      </div>
-      <div class="about-expand">
-        <button class="manifesto-toggle" onclick="toggleManifesto(this)">
-          <span class="tog-arrow">+</span>
-          Read our manifesto
-        </button>
-        <div class="manifesto-body">
-          <p class="manifesto-p">The Good Project exists to relieve human suffering, in all forms, in all places. To bring light and life, as Jesus does, to the inhabitants of the earth.</p>
-          <ol class="manifesto-ol">
-            <li data-n="1">All humans are children of God and therefore, regardless of circumstance, race, past actions, or social standing, are creatures of infinite worth.</li>
-            <li data-n="2">Given that infinite worth, suffering in any way and in any degree can and should be prevented, remedied, and, where possible, healed.</li>
-            <li data-n="3">Charity begins with Christlike love and ends in action. It includes bread, water, and the necessities of life, but does not exclude spiritual, social, mental, and other forms of support.</li>
-            <li data-n="4">The Savior Himself taught that "the poor ye have always with you" — no organization can fully rectify human suffering until His return.</li>
-            <li data-n="5">Yet any effort to provide relief or prosper any human being, according to the light-and-life pattern of Jesus Christ, is among the highest aims to which any organization can aspire.</li>
-          </ol>
-          <div class="manifesto-quote">"Verily I say, men should be anxiously engaged in a good cause, and do many things of their own free will, and bring to pass much righteousness."</div>
-          <p class="manifesto-p">The Good Project is one permutation of a good cause. One way to be anxiously engaged in doing good. We derive our four pillars from Jacob: to clothe the naked, feed the hungry, liberate the captive, and administer relief to the sick and afflicted.</p>
-        </div>
-      </div>
+  <div class="about-mission-eye">The Good Project</div>
+  <div class="about-mission-h">To relieve human suffering, in all forms, in all places.</div>
+  <p class="about-mission-p">The Beehive is the first hub in a network we're building city by city — stocked, trained, and ready before anything happens. Each one is designed to fund the next.</p>
+  <div class="about-pillars">
+    <div class="about-pillar"><span>I</span> Physical</div>
+    <div class="about-pillar"><span>II</span> Intellectual</div>
+    <div class="about-pillar"><span>III</span> Social</div>
+    <div class="about-pillar"><span>IV</span> Spiritual</div>
+  </div>
+  <div class="about-expand">
+    <button class="manifesto-toggle" onclick="toggleManifesto(this)">
+      <span class="tog-arrow">+</span>
+      Read our manifesto
+    </button>
+    <div class="manifesto-body">
+      <p class="manifesto-p">The Good Project exists to relieve human suffering, in all forms, in all places. To bring light and life, as Jesus does, to the inhabitants of the earth.</p>
+      <ol class="manifesto-ol">
+        <li data-n="1">All humans are children of God and therefore, regardless of circumstance, race, past actions, or social standing, are creatures of infinite worth.</li>
+        <li data-n="2">Given that infinite worth, suffering in any way and in any degree can and should be prevented, remedied, and, where possible, healed.</li>
+        <li data-n="3">Charity begins with Christlike love and ends in action. It includes bread, water, and the necessities of life, but does not exclude spiritual, social, mental, and other forms of support.</li>
+        <li data-n="4">The Savior Himself taught that "the poor ye have always with you" — no organization can fully rectify human suffering until His return.</li>
+        <li data-n="5">Yet any effort to provide relief or prosper any human being, according to the light-and-life pattern of Jesus Christ, is among the highest aims to which any organization can aspire.</li>
+      </ol>
+      <div class="manifesto-quote">"Verily I say, men should be anxiously engaged in a good cause, and do many things of their own free will, and bring to pass much righteousness."</div>
+      <p class="manifesto-p">The Good Project is one permutation of a good cause. One way to be anxiously engaged in doing good. We derive our four pillars from Jacob: to clothe the naked, feed the hungry, liberate the captive, and administer relief to the sick and afflicted.</p>
     </div>
-    <div class="about-poem">
-      <div class="poem-title">A Sailor's Hymn</div>
-      <div class="poem-body">We followed Him thru wicked sea —
+  </div>
+  <div class="about-poem">
+    <div class="poem-title">A Sailor's Hymn</div>
+    <div class="poem-body">We followed Him thru wicked sea —
 horrid, bloody fierce,
 We kept the pace 'til freedom's Dawn
 rang new in ev'ry ear.
@@ -1003,8 +1022,7 @@ Our florians are quiet-kept,
 we're absent honor's roll;
 we dive, we drown, we pirate on,
 — we ransom for the Pearl.</div>
-      <div class="poem-author">— Reif Tauati</div>
-    </div>
+    <div class="poem-author">— Reif Tauati</div>
   </div>
 </div>
 
@@ -1015,7 +1033,7 @@ we dive, we drown, we pirate on,
       <div class="section-eye">How it works</div>
       <div class="how-h">Funded by generous local donors. Designed to sustain itself.</div>
       <p class="how-p">We are not a charity that asks indefinitely. The Beehive is built to generate its own revenue — through the store, the school, and disaster-relief reimbursements — so that each hub eventually pays for itself and seeds the next one.</p>
-      <p class="how-p">We need capital to get the first one open. That's the ask.</p>
+      <p class="how-p">If you believe in the mission, this is a good place to support it.</p>
     </div>
     <div class="how-model">
       <div class="how-row">
@@ -1032,7 +1050,7 @@ we dive, we drown, we pirate on,
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L2 6l7 3.5L16 6 9 2Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 9.5l7 3.5 7-3.5" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>
         </div>
         <div class="how-row-body">
-          <div class="how-row-title">Disaster School</div>
+          <div class="how-row-title">Operation 61</div>
           <div class="how-row-desc">Tuition-based training courses for individuals, families, and employers.</div>
         </div>
       </div>
@@ -1085,7 +1103,8 @@ const carSlides = [
   {title:'The Store', desc:'72-hour kits, water filters, emergency power, first aid gear — everything your family needs, before you need it. In stock. In your neighborhood.'},
   {title:'The Shelter', desc:'When evacuation orders go out, the Beehive is already open. Safe beds, warm meals, power, and people who know what they\'re doing.'},
   {title:'Command Center', desc:'When the grid goes down, the Beehive coordinates the neighborhood. Local leadership, live logistics, resources moving to where they\'re needed.'},
-  {title:'Disaster School', desc:'Most people don\'t know what to do when the grid goes down. We change that. First aid, food preservation, emergency preparedness — taught by people who\'ve been through it. Your neighbors, trained and ready before the sirens go off.'},
+  {title:'Operation 61', desc:'Most people don\'t know what to do when the grid goes down. We change that. First aid, food preservation, emergency preparedness — taught by people who\'ve been through it. Your neighbors, trained and ready before the sirens go off.'},
+  {title:'The Stockhouse', desc:'Pallets of water, food, and disaster relief supplies staged and ready. When a disaster hits the region, the Beehive loads and moves — we deploy within hours.'},
 ];
 let carIdx = 0;
 const carTotal = carSlides.length;
