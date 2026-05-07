@@ -23,10 +23,10 @@
   --rule:     #E0DDD6;
 
 
-  --xs:   10px;
-  --sm:   13px;
-  --base: 16px;
-  --md:   26px;
+  --xs:   11px;
+  --sm:   14px;
+  --base: 18px;
+  --md:   28px;
   --lg:   42px;
   --xl:   68px;
 
@@ -153,8 +153,8 @@ nav{
   background:var(--cream-lt);
 }
 .section-eye{
-  font-size:clamp(11px,1.1vw,15px);color:var(--amber);
-  font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  font-size:clamp(14px,1.4vw,20px);color:var(--amber);
+  font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
   margin-bottom:var(--sp1);
 }
 .section-h{
@@ -166,20 +166,34 @@ nav{
 
 /* CAROUSEL */
 .carousel-wrap{padding:var(--sp3) 0;}
-.carousel-outer{overflow:hidden;transition:height 0.5s cubic-bezier(0.25,0.46,0.45,0.94);}
+.carousel-outer{overflow:hidden;position:relative;transition:height 0.5s cubic-bezier(0.25,0.46,0.45,0.94);}
 .car-track{
   display:flex;gap:20px;align-items:flex-start;
   transition:transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
   will-change:transform;
 }
-.car-slide{min-width:65%;flex-shrink:0;border-radius:14px;overflow:hidden;cursor:pointer;}
+.car-slide{min-width:65%;flex-shrink:0;border-radius:14px;overflow:hidden;cursor:pointer;position:relative;}
 .car-slide img{width:100%;height:auto;display:block;pointer-events:none;user-select:none;}
-.car-info{padding:var(--sp1) var(--sp3) 0;}
-.car-info-title{
-  font-size:clamp(22px,2.5vw,38px);font-weight:700;font-family:var(--font-hd);
-  color:var(--navy);margin-bottom:8px;
+.car-cap-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:var(--sp3) var(--sp2) var(--sp2);
+  background:linear-gradient(to top,rgba(10,12,28,0.9) 0%,rgba(10,12,28,0.5) 60%,transparent 100%);
 }
-.car-info-desc{font-size:clamp(15px,1.4vw,19px);color:var(--muted);line-height:1.6;max-width:640px;}
+.car-cap-title{
+  font-size:clamp(20px,2.2vw,34px);font-weight:700;font-family:var(--font-hd);
+  color:#fff;margin-bottom:8px;letter-spacing:0.01em;
+}
+.car-cap-desc{font-size:clamp(14px,1.2vw,18px);color:rgba(255,255,255,0.82);line-height:1.55;max-width:540px;}
+.car-next-peek{
+  position:absolute;right:15%;top:50%;transform:translateY(-50%);
+  width:48px;height:48px;border-radius:50%;
+  background:rgba(255,255,255,0.92);color:var(--navy);
+  border:none;font-size:20px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;z-index:10;transition:all 0.2s;
+  backdrop-filter:blur(4px);
+}
+.car-next-peek:hover{background:#fff;color:var(--amber);}
 .car-controls{display:flex;align-items:center;justify-content:center;gap:16px;padding:var(--sp1) var(--sp3);}
 .car-btn{
   width:44px;height:44px;border-radius:50%;
@@ -237,7 +251,58 @@ nav{
 @media(max-width:700px){
   .lb-prev{left:-4px;}
   .lb-next{right:-4px;}
-  .img-grid{grid-template-columns:1fr;}
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  :root{--sp3:32px;--sp4:64px;}
+
+  /* Nav */
+  nav{padding:14px 20px;}
+  .nav-links{display:none;}
+  .nav-logo img{height:32px;}
+
+  /* Hero */
+  .hero{padding:var(--sp4) 20px;min-height:50vh;}
+
+  /* Stats */
+  .prob-stats{grid-template-columns:1fr;}
+  .prob-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06);}
+  .prob-stat:last-child{border-bottom:none;}
+  .prob-n{font-size:clamp(56px,18vw,80px);}
+
+  /* What */
+  .what{padding:var(--sp3) 20px;}
+  .section-h{max-width:100%;font-size:clamp(28px,8vw,48px);}
+  .section-p{font-size:clamp(16px,4vw,20px);}
+
+  /* Carousel */
+  .car-slide{min-width:82%;}
+  .car-next-peek{right:5%;width:40px;height:40px;font-size:16px;}
+  .car-cap-desc{display:none;}
+
+  /* Creates */
+  .creates{grid-template-columns:1fr;gap:var(--sp2);padding:var(--sp3) 20px;}
+  .creates-quote{font-size:clamp(32px,9vw,52px);}
+  .creates-p{font-size:clamp(22px,7vw,34px);}
+
+  /* Map */
+  .map-header{grid-template-columns:1fr;}
+  .map-svg-wrap{padding:0 20px var(--sp2);}
+
+  /* About */
+  .about-tgp{padding:var(--sp3) 20px;}
+  .section-h{font-size:clamp(28px,8vw,48px);}
+  .about-body{font-size:clamp(15px,4vw,18px);}
+
+  /* Donate */
+  .donate{padding:var(--sp3) 20px;}
+  .donate-h{font-size:clamp(28px,8vw,48px);}
+  .btns{flex-direction:column;align-items:center;}
+  .btn-amber,.btn-ghost-light{width:100%;max-width:320px;text-align:center;}
+
+  /* Footer */
+  footer{padding:var(--sp2) 20px;}
 }
 
 /* WHAT IT CREATES */
@@ -248,18 +313,18 @@ nav{
   background:var(--navy);
 }
 .creates-quote{
-  font-size:var(--lg);font-weight:700;font-family:var(--font-hd);
-  line-height:1.05;letter-spacing:0.01em;
+  font-size:clamp(40px,6vw,88px);font-weight:700;font-family:var(--font-hd);
+  line-height:1.0;letter-spacing:0.01em;
   color:var(--cream);
   border-left:6px solid var(--amber);
   padding-left:var(--sp2);
 }
 .creates-eye{font-size:var(--xs);color:var(--amber);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:var(--sp1);}
-.creates-p{font-size:var(--md);font-family:var(--font-hd);font-weight:700;color:var(--cream);line-height:1.2;}
+.creates-p{font-size:clamp(24px,3vw,42px);font-family:var(--font-hd);font-weight:700;color:var(--cream);line-height:1.15;}
 .creates-sub{
-  font-size:clamp(24px,3vw,38px);font-family:var(--font-hd);font-weight:700;
-  color:var(--cream);opacity:0.8;
-  margin-top:var(--sp2);line-height:1.15;letter-spacing:0.01em;
+  font-size:clamp(18px,2vw,28px);font-family:var(--font-hd);font-weight:600;
+  color:var(--cream);opacity:0.75;
+  margin-top:var(--sp1);line-height:1.3;letter-spacing:0.01em;
 }
 
 /* NETWORK MAP */
@@ -381,8 +446,7 @@ footer{
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-display">A prepared people make a prepared city.</div>
-    <p class="hero-sub">We build disaster relief hubs in your city.</p>
+    <div class="hero-display">We build disaster relief hubs in your city.</div>
     <button class="hero-cta" onclick="document.getElementById('give').scrollIntoView({behavior:'smooth'})">Donate Now</button>
   </div>
 </div>
@@ -408,8 +472,8 @@ footer{
 
 <!-- WHAT A BEEHIVE IS -->
 <div class="what" id="what">
-  <div class="section-eye">What a Beehive is</div>
-  <h2 class="section-h">The place your neighborhood has never had.</h2>
+  <div class="section-eye">What is The Beehive?</div>
+  <h2 class="section-h">A prepared people make a prepared city.</h2>
   <p class="section-p">Buy a 72-hour kit, a water filter, a tent. Learn to can food, earn a first aid certification. Everything your family needs. Before you need it.</p>
 </div>
 
@@ -418,26 +482,38 @@ footer{
     <div class="car-track" id="car-track">
       <div class="car-slide" onclick="openLb(0)">
         <img src="/assets/photos/beehive-the-store.png" alt="The Store">
+        <div class="car-cap-overlay">
+          <div class="car-cap-title">The Store</div>
+          <div class="car-cap-desc">Everything your family needs before disaster strikes — 72-hour kits, water filtration, first aid, emergency power, and gear. All vetted, all in stock, all in your neighborhood. No shipping. No waiting.</div>
+        </div>
       </div>
       <div class="car-slide" onclick="openLb(1)">
         <img src="/assets/photos/beehive-shelter.png" alt="Disaster School">
+        <div class="car-cap-overlay">
+          <div class="car-cap-title">Disaster School</div>
+          <div class="car-cap-desc">Hands-on training in first aid, emergency response, search and rescue, and shelter-in-place. Taught by certified instructors. Earn credentials that matter when systems go down.</div>
+        </div>
       </div>
       <div class="car-slide" onclick="openLb(2)">
         <img src="/assets/photos/beehive-command-center.png" alt="Shelter &amp; Command">
+        <div class="car-cap-overlay">
+          <div class="car-cap-title">Shelter &amp; Command</div>
+          <div class="car-cap-desc">The Beehive doubles as a full disaster response command center — staffed, stocked, and ready to activate within hours of a declared emergency. When the grid goes down, this is where the city reports.</div>
+        </div>
       </div>
       <div class="car-slide" onclick="openLb(3)">
         <img src="/assets/photos/relief-team.png" alt="The Relief Team">
+        <div class="car-cap-overlay">
+          <div class="car-cap-title">The Relief Team</div>
+          <div class="car-cap-desc">Neighborhood volunteers trained to a professional standard — first aid certified, situationally aware, and pre-positioned in the community. They don't fly in. They live here.</div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="car-info">
-    <div class="car-info-title" id="car-title"></div>
-    <div class="car-info-desc" id="car-desc"></div>
+    <button class="car-next-peek" onclick="carStep(1)">&#8594;</button>
   </div>
   <div class="car-controls">
     <button class="car-btn car-prev" onclick="carStep(-1)">&#8592;</button>
     <div class="car-dots" id="car-dots"></div>
-    <button class="car-btn car-next" onclick="carStep(1)">&#8594;</button>
   </div>
 </div>
 
@@ -616,20 +692,11 @@ footer{
 <div class="donate" id="give">
   <div class="section-eye" style="margin-bottom:var(--sp1);">Build the first Beehive</div>
   <h2 class="donate-h">Your gift builds the walls, stocks the shelves, trains the neighbors, opens the doors.</h2>
-  <button class="btn-amber">Donate Now</button>
-</div>
-
-<!-- READY TO GIVE -->
-<div class="ready">
-  <div>
-    <div class="section-eye" style="color:var(--amber);">Ready to give?</div>
-    <h2 class="ready-h">Wire, check, DAF,<br>or foundation grant.</h2>
-    <p class="ready-p">Email us. Instructions within 24 hours. Tax documentation included.</p>
-    <div class="btns" style="justify-content:flex-start;">
-      <button class="btn-amber">Donate Now</button>
-      <a href="mailto:hello@thegoodproject.net" class="btn-ghost-light">Email the Team</a>
-    </div>
+  <div class="btns" style="margin-bottom:var(--sp2);">
+    <button class="btn-amber">Donate Now</button>
+    <a href="mailto:hello@thegoodproject.net" class="btn-ghost-light">Wire, Check, DAF &mdash; Email Us</a>
   </div>
+  <p style="font-size:var(--sm);color:rgba(255,255,255,0.4);letter-spacing:0.06em;">Instructions within 24 hours &middot; Tax documentation included</p>
 </div>
 
 <!-- LIGHTBOX -->
@@ -658,23 +725,15 @@ function carStep(dir){ carIdx=(carIdx+dir+carTotal)%carTotal; renderCar(); }
 function renderCar(){
   const track = document.getElementById('car-track');
   const slides = track.querySelectorAll('.car-slide');
-  const slide = slides[0];
-  const offset = slide.offsetWidth + 20;
+  const offset = slides[0].offsetWidth + 20;
   track.style.transform = `translateX(${-carIdx * offset}px)`;
 
-  // Clip outer to current slide's image height
   const outer = document.querySelector('.carousel-outer');
   const img = slides[carIdx].querySelector('img');
-  if(img.complete && img.naturalWidth > 0){
-    outer.style.height = (img.naturalHeight / img.naturalWidth * slides[carIdx].offsetWidth) + 'px';
-  } else {
-    img.addEventListener('load', () => {
-      outer.style.height = (img.naturalHeight / img.naturalWidth * slides[carIdx].offsetWidth) + 'px';
-    }, {once:true});
-  }
+  const setH = () => { outer.style.height = (img.naturalHeight / img.naturalWidth * slides[carIdx].offsetWidth) + 'px'; };
+  if(img.complete && img.naturalWidth > 0) setH();
+  else img.addEventListener('load', setH, {once:true});
 
-  document.getElementById('car-title').textContent = carSlides[carIdx].title;
-  document.getElementById('car-desc').textContent = carSlides[carIdx].desc;
   document.getElementById('car-dots').innerHTML = carSlides.map((_,i) =>
     `<button class="car-dot${i===carIdx?' active':''}" onclick="carIdx=${i};renderCar()"></button>`
   ).join('');
