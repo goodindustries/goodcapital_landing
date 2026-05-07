@@ -186,14 +186,14 @@ nav{
 .car-cap-desc{font-size:clamp(14px,1.2vw,18px);color:rgba(255,255,255,0.82);line-height:1.55;max-width:540px;}
 .car-next-peek{
   position:absolute;right:15%;top:50%;transform:translateY(-50%);
-  width:48px;height:48px;border-radius:50%;
-  background:rgba(255,255,255,0.92);color:var(--navy);
-  border:none;font-size:20px;
+  width:clamp(52px,5vw,72px);height:clamp(52px,5vw,72px);border-radius:50%;
+  background:#fff;color:var(--navy);
+  border:none;font-size:clamp(20px,2vw,28px);
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;z-index:10;transition:all 0.2s;
-  backdrop-filter:blur(4px);
+  box-shadow:0 4px 20px rgba(10,12,28,0.3);
 }
-.car-next-peek:hover{background:#fff;color:var(--amber);}
+.car-next-peek:hover{background:var(--amber);color:#fff;}
 .car-controls{display:flex;align-items:center;justify-content:center;gap:16px;padding:var(--sp1) var(--sp3);}
 .car-btn{
   width:44px;height:44px;border-radius:50%;
@@ -278,7 +278,7 @@ nav{
 
   /* Carousel */
   .car-slide{min-width:82%;}
-  .car-next-peek{right:5%;width:40px;height:40px;font-size:16px;}
+  .car-next-peek{right:4%;}
   .car-cap-desc{display:none;}
 
   /* Creates */
