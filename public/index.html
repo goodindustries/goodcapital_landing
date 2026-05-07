@@ -1449,14 +1449,59 @@ var CITY_COORDS = {
     <div class="mt-note" id="mt-note"></div>`;
   document.body.appendChild(tip);
 
-  const hoverRings  = document.getElementById('hover-rings');
-  const cityRings   = document.getElementById('city-rings');
+  const hoverRings = document.getElementById('hover-rings');
+  const sfRings    = document.getElementById('sf-rings');
+  const cityRings  = document.getElementById('city-rings');
 
-  function setEllipse(id, cx, cy){ document.getElementById(id).setAttribute('cx',cx); document.getElementById(id).setAttribute('cy',cy); }
+  // Inline transitions on SVG <g> elements
+  sfRings.style.transition   = 'opacity 0.55s ease';
+  cityRings.style.transition = 'opacity 0.4s ease';
+
+  var sfTimer, hideTimer;
+  function rAF(fn){ requestAnimationFrame(() => requestAnimationFrame(fn)); }
+
+  function setEllipse(id, cx, cy){ var e=document.getElementById(id); e.setAttribute('cx',cx); e.setAttribute('cy',cy); }
   function setLabel(id, cx, cy, rx, ry){
     var el = document.getElementById(id);
     el.setAttribute('x', cx + rx * 0.7);
     el.setAttribute('y', cy - ry * 0.7);
+  }
+
+  function showRings(city, coords){
+    clearTimeout(sfTimer); clearTimeout(hideTimer);
+    hoverRings.style.display = '';
+
+    if(city === 'springfield'){
+      // Springfield: just its own rings, no secondary
+      sfRings.style.opacity = '0';
+      cityRings.style.display = 'none';
+      rAF(() => { sfRings.style.opacity = '1'; });
+    } else {
+      // 1. Position & fade in the hovered city's rings immediately
+      setEllipse('cr-1', coords.cx, coords.cy);
+      setEllipse('cr-2', coords.cx, coords.cy);
+      setEllipse('cr-3', coords.cx, coords.cy);
+      setLabel('cr-l1', coords.cx, coords.cy,  88,  59);
+      setLabel('cr-l2', coords.cx, coords.cy, 176, 117);
+      setLabel('cr-l3', coords.cx, coords.cy, 264, 176);
+      cityRings.style.opacity = '0';
+      cityRings.style.display = '';
+      sfRings.style.opacity = '0';
+      rAF(() => { cityRings.style.opacity = '1'; });
+
+      // 2. Then Springfield rings bloom in after a beat — reveal the overlap
+      sfTimer = setTimeout(() => { sfRings.style.opacity = '1'; }, 700);
+    }
+  }
+
+  function hideRings(){
+    clearTimeout(sfTimer);
+    sfRings.style.opacity   = '0';
+    cityRings.style.opacity = '0';
+    hideTimer = setTimeout(() => {
+      hoverRings.style.display = 'none';
+      cityRings.style.display  = 'none';
+    }, 550);
   }
 
   document.querySelectorAll('.city-pin').forEach(pin => {
@@ -1470,22 +1515,7 @@ var CITY_COORDS = {
       const note = document.getElementById('mt-note');
       note.textContent = d.note; note.style.display = d.note ? '' : 'none';
       tip.classList.add('vis');
-
-      // Show radius rings
-      hoverRings.style.display = '';
-      const coords = CITY_COORDS[pin.dataset.city];
-      if(coords && pin.dataset.city !== 'springfield'){
-        // Position city rings and labels
-        setEllipse('cr-1', coords.cx, coords.cy);
-        setEllipse('cr-2', coords.cx, coords.cy);
-        setEllipse('cr-3', coords.cx, coords.cy);
-        setLabel('cr-l1', coords.cx, coords.cy,  88,  59);
-        setLabel('cr-l2', coords.cx, coords.cy, 176, 117);
-        setLabel('cr-l3', coords.cx, coords.cy, 264, 176);
-        cityRings.style.display = '';
-      } else {
-        cityRings.style.display = 'none';
-      }
+      showRings(pin.dataset.city, CITY_COORDS[pin.dataset.city]);
     });
     pin.addEventListener('mousemove', e => {
       tip.style.left = e.clientX + 'px';
@@ -1493,8 +1523,7 @@ var CITY_COORDS = {
     });
     pin.addEventListener('mouseleave', () => {
       tip.classList.remove('vis');
-      hoverRings.style.display = 'none';
-      cityRings.style.display  = 'none';
+      hideRings();
     });
   });
 })();
