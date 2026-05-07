@@ -149,9 +149,49 @@ nav{
 
 /* WHAT A BEEHIVE IS */
 .what{
+  background:var(--navy);
   padding:var(--sp4) var(--sp3);
-  border-bottom:1px solid var(--rule);
-  background:var(--cream-lt);
+  max-width:none!important;
+}
+.what-inner{max-width:1200px;margin:0 auto;}
+.what-header{
+  padding-bottom:var(--sp3);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  margin-bottom:0;
+}
+.what-tagline{
+  font-size:clamp(38px,5.5vw,88px);font-family:var(--font-hd);font-weight:700;
+  color:#fff;line-height:1.0;margin-bottom:clamp(16px,2vw,28px);
+}
+.what-intro-p{
+  font-size:clamp(20px,2vw,30px);color:rgba(255,255,255,0.5);
+  font-family:var(--font-hd);font-weight:600;letter-spacing:0.01em;
+}
+.what-pillar{
+  display:grid;
+  grid-template-columns:clamp(48px,5vw,80px) 1fr;
+  gap:0 clamp(24px,3vw,56px);
+  padding:clamp(48px,6vw,88px) 0;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  align-items:start;
+}
+.what-num{
+  font-size:clamp(14px,1.2vw,18px);font-family:var(--font-hd);font-weight:700;
+  color:var(--amber);letter-spacing:0.1em;padding-top:0.4em;
+}
+.what-kw{
+  font-size:clamp(52px,7vw,120px);font-family:var(--font-hd);font-weight:700;
+  color:#fff;line-height:0.92;letter-spacing:-0.01em;
+  margin-bottom:clamp(20px,2.5vw,36px);
+}
+.what-desc{
+  font-size:clamp(18px,1.8vw,26px);color:rgba(255,255,255,0.62);
+  line-height:1.65;max-width:680px;
+}
+.what-close{
+  padding:clamp(56px,7vw,112px) 0 0;
+  font-size:clamp(28px,3.5vw,60px);font-family:var(--font-hd);font-weight:700;
+  color:#fff;line-height:1.1;letter-spacing:0.01em;
 }
 .section-eye{
   font-size:clamp(14px,1.4vw,20px);color:var(--amber);
@@ -274,6 +314,9 @@ nav{
 
   /* What */
   .what{padding:var(--sp3) 20px;}
+  .what-pillar{grid-template-columns:36px 1fr;gap:0 16px;padding:clamp(36px,8vw,56px) 0;}
+  .what-kw{font-size:clamp(40px,10vw,72px);}
+  .what-close{font-size:clamp(24px,7vw,40px);padding-top:var(--sp3);}
   .section-h{max-width:100%;font-size:clamp(28px,8vw,48px);}
   .section-p{font-size:clamp(16px,4vw,20px);}
 
@@ -468,9 +511,47 @@ footer{
 
 <!-- WHAT A BEEHIVE IS -->
 <div class="what" id="what">
-  <div class="section-eye">What is The Beehive?</div>
-  <h2 class="section-h">A prepared people make a prepared city.</h2>
-  <p class="section-p">Buy a 72-hour kit, a water filter, a tent. Learn to can food, earn a first aid certification. Everything your family needs. Before you need it.</p>
+  <div class="what-inner">
+    <div class="what-header">
+      <div class="section-eye" style="color:var(--amber);margin-bottom:var(--sp1);">What is The Beehive?</div>
+      <div class="what-tagline">A prepared people<br>make a prepared city.</div>
+      <div class="what-intro-p">The Beehive is four things in one building.</div>
+    </div>
+
+    <div class="what-pillar">
+      <div class="what-num">01</div>
+      <div>
+        <div class="what-kw">A store.</div>
+        <div class="what-desc">Buy a 72-hour kit, a water filter, a tent, a cot. Everything your family needs — before you need it.</div>
+      </div>
+    </div>
+
+    <div class="what-pillar">
+      <div class="what-num">02</div>
+      <div>
+        <div class="what-kw">A school.</div>
+        <div class="what-desc">Learn to can food. Earn a first aid certification. Get tornado shelter certified. Your neighbors trained before the sirens go off.</div>
+      </div>
+    </div>
+
+    <div class="what-pillar">
+      <div class="what-num">03</div>
+      <div>
+        <div class="what-kw">A shelter.</div>
+        <div class="what-desc">When evacuation orders go out, the Beehive is already open. Safe beds, warm meals, power, and people who know what they're doing.</div>
+      </div>
+    </div>
+
+    <div class="what-pillar">
+      <div class="what-num">04</div>
+      <div>
+        <div class="what-kw">A command center.</div>
+        <div class="what-desc">When the grid goes down, the Beehive coordinates the neighborhood. Local leadership, live logistics, resources moving to where they're needed.</div>
+      </div>
+    </div>
+
+    <div class="what-close">One building. Four jobs.<br>Every day and on the worst day.</div>
+  </div>
 </div>
 
 <div class="carousel-wrap">
