@@ -122,6 +122,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-s
   <span class="topbar-sep"></span>
   <button class="btn active" id="btn-multi" onclick="setMode('multi')">Multi</button>
   <button class="btn" id="btn-single" onclick="setMode('single')">Single</button>
+  <button class="btn" id="btn-donate" onclick="setFocus('donate')">Donate</button>
   <span class="topbar-sep"></span>
   <button class="btn" id="btn-reload" onclick="reloadAll()">↺ Reload All</button>
   <div class="spacer"></div>
@@ -150,8 +151,13 @@ const VIEWPORTS = [
 
 let mode = 'multi';
 let activeTab = 0;
+let focus = 'site';
 
 document.getElementById('site-url').textContent = SRC;
+
+function buildSrc(){
+  return SRC + (focus === 'donate' ? '#give' : '');
+}
 
 function buildTabs(){
   const tabs = document.getElementById('tabs');
@@ -182,7 +188,7 @@ function buildMulti(){
       </div>
       <div class="vp-frame" style="width:${vp.display}px;height:${scaledH}px;">
         <iframe
-          src="${SRC}"
+          src="${buildSrc()}"
           width="${vp.w}"
           height="${Math.round(scaledH / scale)}"
           style="transform:scale(${scale.toFixed(4)});width:${vp.w}px;height:${Math.round(scaledH/scale)}px;"
@@ -211,7 +217,7 @@ function buildSingle(){
     </div>
     <div class="single-frame" style="width:${displayW}px;height:${displayH}px;overflow:hidden;">
       <iframe
-        src="${SRC}"
+        src="${buildSrc()}"
         width="${vp.w}"
         height="${vp.h}"
         style="transform:scale(${scale.toFixed(4)});transform-origin:top left;width:${vp.w}px;height:${vp.h}px;"
@@ -227,7 +233,15 @@ function setMode(m){
   document.getElementById('tabs').style.display = m==='single' ? 'flex' : 'none';
   document.getElementById('btn-multi').classList.toggle('active', m==='multi');
   document.getElementById('btn-single').classList.toggle('active', m==='single');
+  document.getElementById('btn-donate').classList.toggle('active', focus==='donate');
   if(m==='multi') buildMulti();
+  else buildSingle();
+}
+
+function setFocus(next){
+  focus = next;
+  document.getElementById('btn-donate').classList.toggle('active', focus==='donate');
+  if(mode==='multi') buildMulti();
   else buildSingle();
 }
 
