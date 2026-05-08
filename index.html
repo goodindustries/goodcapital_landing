@@ -1193,17 +1193,17 @@ we dive, we drown, we pirate on,
 
       <!-- Surrounding state fills — Missouri River boundaries applied -->
       <!-- Nebraska: E border follows Missouri River (Omaha bend 41.26N 95.86W → 101,55) -->
-      <path d="M 0,0 L 44,0 L 101,55 L 109,106 L 109,149 L 0,149 Z" fill="#E8E4D8"/>
+      <path d="M 0,0 L 44,0 L 109,106 L 109,149 L 0,149 Z" fill="#C8C2B0"/>
       <!-- Iowa: tapered W border follows Missouri River, wider at top (42N) than bottom (40.57N) -->
-      <path d="M 44,0 L 469,0 L 469,103 L 212,106 L 109,106 L 101,55 Z" fill="#E8E4D8"/>
+      <path d="M 44,0 L 469,0 L 469,103 L 212,106 L 109,106 Z" fill="#C8C2B0"/>
       <!-- Illinois (+ TN/KY sliver): W border IS the Mississippi River bezier -->
-      <path d="M 469,0 L 800,0 L 800,520 L 665,520 L 665,349 C 649,318 629,283 606,251 C 572,218 503,170 469,103 Z" fill="#E8E4D8"/>
+      <path d="M 469,0 L 800,0 L 800,520 L 665,520 L 665,349 C 649,318 629,283 606,251 C 572,218 503,170 469,103 Z" fill="#C8C2B0"/>
       <!-- Kansas: essentially rectangular (accurate) -->
-      <polygon points="0,149 212,149 212,371 0,371" fill="#E8E4D8"/>
+      <polygon points="0,149 212,149 212,371 0,371" fill="#C8C2B0"/>
       <!-- Oklahoma: south of Kansas, visible strip -->
-      <polygon points="0,371 212,371 212,520 0,520" fill="#E8E4D8"/>
+      <polygon points="0,371 212,371 212,520 0,520" fill="#C8C2B0"/>
       <!-- Arkansas: south of Missouri, east of Oklahoma -->
-      <polygon points="212,409 603,409 603,446 665,446 665,520 212,520" fill="#E8E4D8"/>
+      <polygon points="212,409 603,409 603,446 665,446 665,520 212,520" fill="#C8C2B0"/>
 
       <!-- Missouri state polygon
            M Iowa NW → Iowa NE → Mississippi curve → Cape Girardeau
@@ -1222,11 +1222,9 @@ we dive, we drown, we pirate on,
         L 109,149
         L 109,106
         Z"
-        fill="#F2F0EB" stroke="#C4BFA8" stroke-width="1" stroke-linejoin="round"/>
+        fill="#F2F0EB" stroke="#8B7B5F" stroke-width="2" stroke-linejoin="round"/>
 
-      <!-- Missouri River (KC to STL, west to east) -->
-      <path d="M 109,130 Q 165,168 215,215 Q 340,252 435,253 Q 530,252 614,238"
-            fill="none" stroke="#93b8cc" stroke-width="2" opacity="0.45" stroke-linecap="round"/>
+      <!-- Missouri River removed — was creating false border impression -->
 
       <!-- State labels -->
       <text x="340" y="72" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" fill="#A8A4BC" letter-spacing="3" font-weight="700">IOWA</text>
@@ -1326,7 +1324,7 @@ we dive, we drown, we pirate on,
 
       <!-- Surrounding state borders -->
       <!-- NE/IA border: Missouri River diagonal (Omaha bend → Iowa/NE/MO tri-state) -->
-      <polyline points="44,0 101,55 212,106" fill="none" stroke="#C4BFA8" stroke-width="0.9" opacity="0.8"/>
+      <polyline points="44,0 109,106" fill="none" stroke="#C4BFA8" stroke-width="0.9" opacity="0.8"/>
       <!-- Iowa/MO border (starts correctly at the Iowa/NE/MO tri-state point) -->
       <line x1="212" y1="106" x2="469" y2="103" stroke="#C4BFA8" stroke-width="0.8" opacity="0.7"/>
       <!-- Platte Purchase W edge (NE corner of Missouri) -->
