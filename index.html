@@ -1537,7 +1537,7 @@ we dive, we drown, we pirate on,
 
   <div class="donate-hero">
     <div class="donate-top">
-      Your&nbsp;<span class="donate-amt-val" id="d-amt">$100</span>
+      Your&nbsp;<span class="donate-amt-val" id="d-amt">$—</span>
     </div>
     <div class="donate-effect-wrap">
       <div class="donate-effect" id="d-effect">saves lives.</div>
@@ -2067,6 +2067,12 @@ function toggleManifesto(btn){
   }
 
   setDonateMode('monthly');
+  // Pre-select $100 so the PayPal button renders on load
+  const defaultBtn = document.querySelector('.dam[data-amt="100"]');
+  if(defaultBtn){
+    defaultBtn.classList.add('active');
+    setAmount(100, '$100');
+  }
   syncPayPalCheckout();
 })();
 
