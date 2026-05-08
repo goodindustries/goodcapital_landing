@@ -1796,7 +1796,8 @@ function toggleManifesto(btn){
         });
         const capture = await response.json().catch(() => ({}));
         if(!response.ok) throw new Error(capture.error || 'Could not complete PayPal checkout.');
-        setDonateStatus('Thank you. Your donation was received.');
+        const donorName = capture.donor && capture.donor.givenName;
+        setDonateStatus(donorName ? `Thank you, ${donorName}. Your donation was received.` : 'Thank you. Your donation was received.');
       },
       onCancel(){
         setDonateStatus('Checkout canceled. Your donation was not processed.');
