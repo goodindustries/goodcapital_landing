@@ -9,10 +9,12 @@ Landing page for The Beehive / The Good Project nonprofit disaster preparedness 
 | File | Purpose |
 |------|---------|
 | `public/index.html` | **Canonical source** — edit this |
-| `index.html` | Root copy served by Netlify — never edit directly |
+| `index.html` | Root mirror of `public/index.html` — never edit directly |
 | `public/assets/` | Images, fonts |
 
-**Netlify is configured with no build command.** It serves `index.html` from the repo root as a plain static file. All building happens locally.
+**Netlify is configured with no build command.** It publishes the `public/` directory as a plain static site and serves serverless functions from `netlify/functions/`.
+
+The root `index.html` is kept in sync for repo-level previews, direct local opens, and any tooling that expects a root entrypoint. All building happens locally.
 
 ## Workflow
 
@@ -29,7 +31,7 @@ git commit -m "..."
 git push origin main
 ```
 
-Every code change must include the `cp` step before pushing. Netlify will not reflect changes otherwise.
+Every code change must include the `cp` step before pushing so `public/index.html` and the root mirror stay identical.
 
 ## Local Development
 
