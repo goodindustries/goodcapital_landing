@@ -1970,17 +1970,21 @@ function toggleManifesto(btn){
           setDonateStatus('Enter a donation amount of at least $1.', true);
           return actions.reject();
         }
-        if(!currentMonthlyPlanId){
-          setDonateStatus('Monthly gift is still preparing. Please try again.', true);
-          return actions.reject();
-        }
         setDonateStatus('');
         return actions.resolve();
       },
       async createSubscription(data, actions){
-        return actions.subscription.create({
-          plan_id: currentMonthlyPlanId
-        });
+        if(!currentMonthlyPlanId){
+          setDonateStatus('Setting up your monthly gift...');
+          try {
+            currentMonthlyPlanId = await ensureMonthlyPlan(selectedDonationAmount);
+          } catch(err) {
+            setDonateStatus('Could not set up monthly gift. Please try again or schedule a call.', true);
+            throw err;
+          }
+        }
+        setDonateStatus('');
+        return actions.subscription.create({ plan_id: currentMonthlyPlanId });
       },
       async onApprove(data){
         setDonateStatus('Activating your monthly gift...');
@@ -2060,30 +2064,19 @@ function toggleManifesto(btn){
     const token = ++donationRenderToken;
     const container = document.getElementById('paypal-button-container');
     if(container) container.innerHTML = '';
+    setDonateStatus('');
+
+    if(!selectedDonationAmount){ return; }
+
+    currentMonthlyPlanId = null;
 
     try {
-      if(donationMode === 'monthly'){
-        if(!selectedDonationAmount){
-          setDonateStatus('');
-          return;
-        }
-        setDonateStatus('Setting up monthly gifts...');
-        currentMonthlyPlanId = await ensureMonthlyPlan(selectedDonationAmount);
-      } else {
-        currentMonthlyPlanId = null;
-      }
-
       await loadPayPalSdk(donationMode);
       if(token !== donationRenderToken) return;
       renderPayPalButton();
     } catch(err) {
       console.error('PayPal setup error:', err);
-      setDonateStatus(
-        donationMode === 'monthly'
-          ? 'Monthly gifts could not load. Please choose one-time or schedule a call.'
-          : 'PayPal checkout could not load. Please refresh or schedule a call.',
-        true
-      );
+      setDonateStatus('PayPal checkout could not load. Please refresh or schedule a call.', true);
     }
   }
 

@@ -7,7 +7,6 @@ const {
   parseBody,
 } = require('./_paypal');
 
-const MONTHLY_PRODUCT_ID = 'PROD-TGPLANDINGMONTHLY';
 const MONTHLY_PRODUCT_REQUEST_ID = 'tgp-landing-monthly-product';
 
 async function ensureMonthlyProduct(accessToken) {
@@ -20,7 +19,6 @@ async function ensureMonthlyProduct(accessToken) {
       Prefer: 'return=representation',
     },
     body: JSON.stringify({
-      id: MONTHLY_PRODUCT_ID,
       name: 'The Good Project Monthly Giving',
       description: 'Monthly giving for The Good Project landing page',
       type: 'SERVICE',
@@ -36,7 +34,7 @@ async function ensureMonthlyProduct(accessToken) {
     message: product.message || product.name || 'unknown',
   });
 
-  return MONTHLY_PRODUCT_ID;
+  return null;
 }
 
 exports.handler = async (event) => {
@@ -50,6 +48,9 @@ exports.handler = async (event) => {
 
     const accessToken = await getAccessToken();
     const productId = await ensureMonthlyProduct(accessToken);
+    if (!productId) {
+      return json(502, { error: 'PayPal could not create the monthly product.' });
+    }
     const requestId = `tgp-monthly-plan-${amount.replace('.', '-')}`;
 
     const response = await fetch(`${PAYPAL_API_BASE}/v1/billing/plans`, {
