@@ -905,8 +905,8 @@ footer{
 <!-- ABOUT THE GOOD PROJECT -->
 <div class="about-tgp" id="about">
   <div class="section-eye">Our Why</div>
-  <p class="about-mission-p">The Good Project builds permanent community preparedness infrastructure. The Beehive is the first hub in a network we're expanding city by city — stocked, staffed, and ready before anything happens. Each one designed to fund the next.</p>
-  <div class="about-mission-h">To relieve human suffering, in all forms, in all places.</div>
+  <div class="about-mission-h">Mission: To relieve suffering, in all forms, in all places.</div>
+  <p class="about-mission-p">Because the worth of every soul is great.</p>
   <div class="about-pillars">
     <div class="about-pillar"><span>I</span> Physical</div>
     <div class="about-pillar"><span>II</span> Intellectual</div>
@@ -1179,26 +1179,18 @@ we dive, we drown, we pirate on,
       <!-- Background (surrounding states) -->
       <rect width="800" height="520" fill="#FAF8F4"/>
 
-      <!-- State boundary guides (very subtle) -->
-      <!-- Iowa/MO north border extended -->
-      <line x1="0" y1="106" x2="800" y2="106" stroke="#D6CFA8" stroke-width="0.5" opacity="0.6"/>
-      <!-- AR/MO south border extended -->
-      <line x1="0" y1="409" x2="800" y2="409" stroke="#D6CFA8" stroke-width="0.5" opacity="0.6"/>
-      <!-- Mississippi (east border) rough position -->
-      <line x1="665" y1="0" x2="720" y2="520" stroke="#93b8cc" stroke-width="1.5" opacity="0.2"/>
-
-      <!-- Surrounding state fills — equirectangular projection, same as city coords -->
-      <!-- Nebraska (NW, above Kansas) -->
-      <polygon points="0,0 109,0 109,149 0,149" fill="#E8E4D8"/>
-      <!-- Iowa (above Missouri, east of Nebraska) -->
-      <polygon points="109,0 469,0 469,103 109,106" fill="#E8E4D8"/>
-      <!-- Illinois + SE states (east of Mississippi River) -->
+      <!-- Surrounding state fills — Missouri River boundaries applied -->
+      <!-- Nebraska: E border follows Missouri River (Omaha bend 41.26N 95.86W → 101,55) -->
+      <path d="M 0,0 L 44,0 L 101,55 L 109,106 L 109,149 L 0,149 Z" fill="#E8E4D8"/>
+      <!-- Iowa: tapered W border follows Missouri River, wider at top (42N) than bottom (40.57N) -->
+      <path d="M 44,0 L 469,0 L 469,103 L 212,106 L 101,55 Z" fill="#E8E4D8"/>
+      <!-- Illinois (+ TN/KY sliver): W border IS the Mississippi River bezier -->
       <path d="M 469,0 L 800,0 L 800,520 L 665,520 L 665,349 C 649,318 629,283 606,251 C 572,218 503,170 469,103 Z" fill="#E8E4D8"/>
-      <!-- Kansas (west of Missouri, between Nebraska and Oklahoma) -->
+      <!-- Kansas: essentially rectangular (accurate) -->
       <polygon points="0,149 212,149 212,371 0,371" fill="#E8E4D8"/>
-      <!-- Oklahoma (south of Kansas) -->
+      <!-- Oklahoma: south of Kansas, visible strip -->
       <polygon points="0,371 212,371 212,520 0,520" fill="#E8E4D8"/>
-      <!-- Arkansas (south of Missouri, east of Oklahoma) -->
+      <!-- Arkansas: south of Missouri, east of Oklahoma -->
       <polygon points="212,409 603,409 603,446 665,446 665,520 212,520" fill="#E8E4D8"/>
 
       <!-- Missouri state polygon
@@ -1320,22 +1312,28 @@ we dive, we drown, we pirate on,
         <text x="329" y="320" text-anchor="middle" font-family="Barlow,sans-serif" font-size="9" fill="#D4880F" font-weight="700" letter-spacing="2">NOW</text>
       </g>
 
-      <!-- Surrounding state borders (subtle context lines) -->
-      <!-- Iowa/MO border -->
-      <line x1="109" y1="106" x2="469" y2="103" stroke="#C4BFA8" stroke-width="0.8" opacity="0.7"/>
-      <!-- KS/MO border -->
+      <!-- Surrounding state borders -->
+      <!-- NE/IA border: Missouri River diagonal (Omaha bend → Iowa/NE/MO tri-state) -->
+      <polyline points="44,0 101,55 212,106" fill="none" stroke="#C4BFA8" stroke-width="0.9" opacity="0.8"/>
+      <!-- Iowa/MO border (starts correctly at the Iowa/NE/MO tri-state point) -->
+      <line x1="212" y1="106" x2="469" y2="103" stroke="#C4BFA8" stroke-width="0.8" opacity="0.7"/>
+      <!-- Platte Purchase W edge (NE corner of Missouri) -->
+      <line x1="109" y1="106" x2="109" y2="149" stroke="#C4BFA8" stroke-width="0.7" opacity="0.5"/>
+      <!-- Platte Purchase S edge + KS/NE border -->
+      <line x1="0" y1="149" x2="212" y2="149" stroke="#C4BFA8" stroke-width="0.8" opacity="0.55"/>
+      <!-- KS/MO western border -->
       <line x1="212" y1="106" x2="212" y2="409" stroke="#C4BFA8" stroke-width="0.8" opacity="0.7"/>
-      <!-- Platte Purchase (KS/NE jog) -->
-      <line x1="109" y1="149" x2="212" y2="149" stroke="#C4BFA8" stroke-width="0.8" opacity="0.5"/>
+      <!-- KS/OK border (37°N) -->
+      <line x1="0" y1="371" x2="212" y2="371" stroke="#C4BFA8" stroke-width="0.8" opacity="0.6"/>
       <!-- AR/MO border -->
       <line x1="212" y1="409" x2="603" y2="409" stroke="#C4BFA8" stroke-width="0.8" opacity="0.7"/>
-      <!-- Bootheel south -->
+      <!-- Bootheel -->
       <line x1="603" y1="409" x2="603" y2="446" stroke="#C4BFA8" stroke-width="0.8" opacity="0.6"/>
       <line x1="603" y1="446" x2="665" y2="446" stroke="#C4BFA8" stroke-width="0.8" opacity="0.6"/>
-      <!-- Mississippi (east border) - more accurate curve -->
+      <!-- Mississippi River -->
       <path d="M 469,103 C 503,170 572,218 606,251 C 629,283 649,318 665,349 L 665,446"
             fill="none" stroke="#93b8cc" stroke-width="2" opacity="0.5"/>
-      <!-- Oklahoma/KS border at y=409 going west -->
+      <!-- OK/AR border south of MO -->
       <line x1="0" y1="409" x2="212" y2="409" stroke="#C4BFA8" stroke-width="0.6" opacity="0.4"/>
 
       <!-- Legend -->
@@ -1364,14 +1362,14 @@ we dive, we drown, we pirate on,
         <circle id="anim-ir3" cx="260" cy="355" r="4" fill="none" stroke="#DD5555" stroke-width="1"   opacity="0"/>
       </g>
 
-      <!-- Coverage glows — all 7 cities -->
-      <g id="anim-sf-glow"          style="opacity:0;display:none;"><ellipse cx="329" cy="356" rx="192" ry="128" fill="#D4880F" fill-opacity="0.06" stroke="#D4880F" stroke-width="1.5" stroke-dasharray="9 6"/><ellipse cx="329" cy="356" rx="108" ry="72" fill="#D4880F" fill-opacity="0.06" stroke="#D4880F" stroke-width="1" stroke-dasharray="5 5"/></g>
-      <g id="anim-joplin-glow"      style="opacity:0;display:none;"><ellipse cx="221" cy="365" rx="150" ry="100" fill="#D4880F" fill-opacity="0.06" stroke="#D4880F" stroke-width="1" stroke-dasharray="5 5"/></g>
-      <g id="anim-branson-glow"     style="opacity:0;display:none;"><ellipse cx="336" cy="398" rx="130" ry="87"  fill="#D4880F" fill-opacity="0.06" stroke="#D4880F" stroke-width="1" stroke-dasharray="5 5"/></g>
-      <g id="anim-kc-glow"          style="opacity:0;display:none;"><ellipse cx="215" cy="215" rx="160" ry="107" fill="#D4880F" fill-opacity="0.06" stroke="#D4880F" stroke-width="1" stroke-dasharray="5 5"/></g>
-      <g id="anim-stl-glow"         style="opacity:0;display:none;"><ellipse cx="604" cy="251" rx="160" ry="107" fill="#D4880F" fill-opacity="0.06" stroke="#D4880F" stroke-width="1" stroke-dasharray="5 5"/></g>
-      <g id="anim-bentonville-glow" style="opacity:0;display:none;"><ellipse cx="248" cy="418" rx="130" ry="87"  fill="#D4880F" fill-opacity="0.06" stroke="#D4880F" stroke-width="1" stroke-dasharray="5 5"/></g>
-      <g id="anim-tulsa-glow"       style="opacity:0;display:none;"><ellipse cx="90"  cy="434" rx="130" ry="87"  fill="#D4880F" fill-opacity="0.06" stroke="#D4880F" stroke-width="1" stroke-dasharray="5 5"/></g>
+      <!-- Coverage glows — all 7 cities (outline only, no fill) -->
+      <g id="anim-sf-glow"          style="opacity:0;display:none;"><ellipse cx="329" cy="356" rx="192" ry="128" fill="none" stroke="#D4880F" stroke-width="1.5" stroke-dasharray="9 6" opacity="0.55"/></g>
+      <g id="anim-joplin-glow"      style="opacity:0;display:none;"><ellipse cx="221" cy="365" rx="150" ry="100" fill="none" stroke="#D4880F" stroke-width="1"   stroke-dasharray="5 5" opacity="0.5"/></g>
+      <g id="anim-branson-glow"     style="opacity:0;display:none;"><ellipse cx="336" cy="398" rx="130" ry="87"  fill="none" stroke="#D4880F" stroke-width="1"   stroke-dasharray="5 5" opacity="0.5"/></g>
+      <g id="anim-kc-glow"          style="opacity:0;display:none;"><ellipse cx="215" cy="215" rx="160" ry="107" fill="none" stroke="#D4880F" stroke-width="1"   stroke-dasharray="5 5" opacity="0.5"/></g>
+      <g id="anim-stl-glow"         style="opacity:0;display:none;"><ellipse cx="604" cy="251" rx="160" ry="107" fill="none" stroke="#D4880F" stroke-width="1"   stroke-dasharray="5 5" opacity="0.5"/></g>
+      <g id="anim-bentonville-glow" style="opacity:0;display:none;"><ellipse cx="248" cy="418" rx="130" ry="87"  fill="none" stroke="#D4880F" stroke-width="1"   stroke-dasharray="5 5" opacity="0.5"/></g>
+      <g id="anim-tulsa-glow"       style="opacity:0;display:none;"><ellipse cx="90"  cy="434" rx="130" ry="87"  fill="none" stroke="#D4880F" stroke-width="1"   stroke-dasharray="5 5" opacity="0.5"/></g>
 
       <!-- Response lines — x2/y2 set by JS per scenario -->
       <line id="anim-resp-sf"          x1="329" y1="356" x2="260" y2="355" stroke="#D4880F" stroke-width="2"   stroke-linecap="round" stroke-dasharray="600" stroke-dashoffset="600" opacity="0"/>
