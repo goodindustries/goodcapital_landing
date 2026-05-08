@@ -412,6 +412,11 @@ nav{
   gap:var(--sp3);align-items:center;
   background:var(--navy);
 }
+.prepared-section{
+  padding:var(--sp4) var(--sp3);
+  background:var(--navy);
+  border-top:1px solid rgba(255,255,255,0.06);
+}
 .creates-quote{
   font-size:clamp(40px,6vw,88px);font-weight:700;font-family:var(--font-hd);
   line-height:1.0;letter-spacing:0.01em;
@@ -444,8 +449,15 @@ nav{
 }
 .cities span{color:var(--rule);}
 .cities-sub{font-size:var(--base);color:var(--muted);line-height:1.7;margin-top:12px;}
-.map-svg-wrap{padding:0 var(--sp3) var(--sp3);display:flex;gap:14px;align-items:stretch;}
-.map-svg-wrap>svg{flex:2;min-width:0;}
+.map-svg-wrap{padding:0 var(--sp3) var(--sp3);}
+.map-ops-strip{
+  margin:0 var(--sp3) var(--sp3);
+  background:#0D1124;
+  border:1px solid rgba(148,144,232,0.22);
+  border-radius:8px;overflow:hidden;
+  display:flex;flex-direction:column;
+  max-height:280px;
+}
 
 /* HOW */
 .how{
@@ -824,11 +836,11 @@ nav{
 
 /* OPS TERMINAL */
 .ops-terminal{
-  flex:1;min-width:0;
   background:#0D1124;
   border:1px solid rgba(148,144,232,0.22);
   border-radius:8px;overflow:hidden;
   display:flex;flex-direction:column;
+  max-height:260px;
 }
 .ops-header{
   padding:7px 11px;
@@ -887,6 +899,7 @@ footer{
   .map-header{grid-template-columns:1fr!important;align-items:start;gap:var(--sp2);padding:var(--sp2) 20px;}
   .map-svg-wrap{padding:0 20px var(--sp2);flex-direction:column!important;}
   .map-svg-wrap>svg{min-width:unset!important;width:100%!important;}
+  .map-ops-strip{margin:0 20px var(--sp2);}
   .ops-terminal{width:100%!important;min-height:unset!important;}
   .ops-log{min-height:160px!important;flex:none!important;}
   .how{padding:var(--sp3) 20px;}
@@ -1177,16 +1190,6 @@ we dive, we drown, we pirate on,
   </div>
 </div>
 
-<!-- WHAT IT CREATES -->
-<div class="creates">
-  <div class="creates-quote">If you are prepared,<br>you shall not fear.</div>
-  <div>
-    <div class="creates-eye">What it creates</div>
-    <p class="creates-p">A resilient community.</p>
-
-  </div>
-</div>
-
 <!-- NETWORK MAP -->
 <div class="map-section" id="where">
   <div class="map-header">
@@ -1451,6 +1454,8 @@ we dive, we drown, we pirate on,
         </g>
       </g>
     </svg>
+  </div>
+  <div class="map-ops-strip">
     <div class="ops-terminal" id="ops-terminal">
       <div class="ops-header">
         <span class="ops-live-dot"></span>
@@ -1460,6 +1465,15 @@ we dive, we drown, we pirate on,
         <div class="ops-entry" style="color:rgba(180,210,255,0.18);font-style:italic;">Scroll into view to activate&hellip;</div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- WHAT IT CREATES -->
+<div class="creates">
+  <div class="creates-quote">If you are prepared,<br>you shall not fear.</div>
+  <div>
+    <div class="creates-eye">What it creates</div>
+    <p class="creates-p">A resilient community.</p>
   </div>
 </div>
 
@@ -1598,7 +1612,15 @@ const carSlides = [
 
   let logIdx = 0, extIdx = 1, animating = false;
 
-  function slideW(){ return realSlides[0].offsetWidth + 20; }
+  function slideW(){
+    // Measure actual stride between adjacent real slides (handles rounding + timing)
+    if(realSlides.length > 1){
+      const d = realSlides[1].getBoundingClientRect().left - realSlides[0].getBoundingClientRect().left;
+      if(d > 0) return d;
+    }
+    const w = realSlides[0].getBoundingClientRect().width;
+    return (w > 0 ? w : outer.getBoundingClientRect().width * (window.innerWidth <= 768 ? 0.78 : 0.5)) + 20;
+  }
 
   function setPos(animate){
     if(!animate) track.style.transition = 'none';
@@ -1654,6 +1676,9 @@ const carSlides = [
   });
 
   render(false);
+  // Re-render after all images load in case adjustHeight ran before images were sized
+  window.addEventListener('load', () => render(false), {once:true});
+  window.addEventListener('resize', () => render(false));
 })();
 </script>
 
