@@ -1710,7 +1710,7 @@ function toggleManifesto(btn){
   async function loadPayPalSdk(){
     if(window.paypal && paypal.Buttons) return;
 
-    const response = await fetch('/api/paypal-config');
+    const response = await fetch('/.netlify/functions/paypal-config');
     const config = await response.json().catch(() => ({}));
     if(!response.ok || !config.clientId) throw new Error(config.error || 'Missing PayPal configuration.');
 
@@ -1789,7 +1789,7 @@ function toggleManifesto(btn){
         return actions.resolve();
       },
       async createOrder(){
-        const response = await fetch('/api/paypal-create-order', {
+        const response = await fetch('/.netlify/functions/paypal-create-order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ amount: selectedDonationAmount })
@@ -1800,7 +1800,7 @@ function toggleManifesto(btn){
       },
       async onApprove(data){
         setDonateStatus('Finalizing your donation...');
-        const response = await fetch('/api/paypal-capture-order', {
+        const response = await fetch('/.netlify/functions/paypal-capture-order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ orderID: data.orderID })
