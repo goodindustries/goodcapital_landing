@@ -41,6 +41,16 @@ Every code change must include the `cp` step before pushing so `public/index.htm
 # → http://localhost:8888
 ```
 
+## Asset Hygiene
+
+Keep live site assets in `public/assets/`:
+
+- `public/assets/brand/` for logos, marks, and brand files
+- `public/assets/icons/` for favicons and app icons
+- `public/assets/photos/` for page photography
+
+Use lowercase, descriptive, hyphenated filenames. Avoid adding loose images at the repo root.
+
 ## Regression Screenshots
 
 Requires Node + Puppeteer. Run the local server first, then:
