@@ -2427,9 +2427,13 @@ var CITY_COORDS = {
         logOps('→  ALL BEEHIVES DISPATCHING', 'ops-dispatch');
         logOps('    SF · Joplin · Branson · KC', 'ops-dispatch');
         logOps('    STL · Bentonville · Tulsa', 'ops-dispatch');
-        // Comms chatter
+        // Comms chatter — each entry also updates the SVG status bar
         sc.comms.forEach(function(c){
-          later(function(){ logOps(c.msg, c.cls||''); }, c.delay);
+          later(function(){
+            logOps(c.msg, c.cls||'');
+            var color = c.cls==='ops-alert' ? '#CC3333' : c.cls==='ops-arrive' ? '#4CAF50' : '#D4880F';
+            setStatus(c.msg.replace(/^Op61-\w+:\s*/,''), color);
+          }, c.delay);
         });
         setStatus('ALL HUBS DISPATCHED · CLOSEST ARRIVES FIRST', '#D4880F');
       }, 600);
