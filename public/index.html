@@ -1510,8 +1510,8 @@ we dive, we drown, we pirate on,
     </div>
     <a href="https://calendly.com/the-good-project" target="_blank" rel="noopener" class="btn-ghost-light">Schedule a call with Reif</a>
   </div>
-  <p class="donate-consent">Your gift is received, remembered, and put to work. We may use the contact and mailing information you provide through PayPal for receipts, tax documentation, personal thank-you notes, small donor gifts, and occasional mission updates. Unsubscribe from non-transactional emails anytime.</p>
-  <p class="donate-meta">Receipts and tax documentation included</p>
+  <p class="donate-consent">Your gift is received with gratitude and put to work. PayPal may share your contact and mailing information so we can send a receipt, tax documentation, a personal thank-you note, small donor gifts, and occasional mission updates. Non-transactional emails are optional.</p>
+  <p class="donate-meta">Donation acknowledgement and tax documentation provided</p>
 </div>
 
 <!-- LIGHTBOX -->
@@ -1770,6 +1770,7 @@ function toggleManifesto(btn){
     }
 
     paypal.Buttons({
+      fundingSource: paypal.FUNDING.PAYPAL,
       style: {
         layout: 'horizontal',
         color: 'gold',
