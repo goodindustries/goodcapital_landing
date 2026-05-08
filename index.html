@@ -1956,23 +1956,36 @@ var CITY_COORDS = {
     { label:'CAT 4 TORNADO · JOPLIN CORRIDOR',
       impact:{x:260,y:350}, tornadoStart:{x:55,y:490}, tornadoEnd:{x:255,y:338},
       comms:[
-        {delay:900,  msg:'→ Joplin: Bravo eyes on zone, ETA 9 min'},
-        {delay:1600, msg:'→ Springfield: Alpha loaded, rolling west'},
-        {delay:2400, msg:'→ KC: Delta northbound on 71, ETA 40 min'}
+        {delay:400,  cls:'ops-alert',    msg:'Op61-NET: CAT 4 confirmed — all units mobilize'},
+        {delay:1000, cls:'ops-dispatch', msg:'Op61-JLN: Bravo eyes on zone, staging at fairgrounds'},
+        {delay:1700, cls:'ops-dispatch', msg:'Op61-SGF: Alpha loaded, rolling west on 44'},
+        {delay:2400, cls:'ops-dispatch', msg:'Op61-BRN: Charlie mobile, ETA 28 min'},
+        {delay:3100, cls:'ops-dispatch', msg:'Op61-KC:  Delta northbound on 71 — water + MREs'},
+        {delay:3900, cls:'ops-dispatch', msg:'Op61-STL: Echo westbound, medical unit, ETA 90 min'},
+        {delay:4700, cls:'ops-arrive',   msg:'Op61-JLN: Bravo — shelter open, 40 cots active'},
+        {delay:5500, cls:'ops-dispatch', msg:'Op61-SGF: Alpha inbound, ETA 4 min'}
       ]},
     { label:'FLASH FLOOD · LAKE OF THE OZARKS',
       impact:{x:430,y:295}, tornadoStart:{x:395,y:490}, tornadoEnd:{x:428,y:283},
       comms:[
-        {delay:800,  msg:'→ Springfield: Alpha eastbound on 44'},
-        {delay:1500, msg:'→ STL: Echo westbound, boats on trailer'},
-        {delay:2200, msg:'→ Branson: Charlie enroute with inflatables'}
+        {delay:400,  cls:'ops-alert',    msg:'Op61-NET: Flash flood confirmed — boats needed'},
+        {delay:1000, cls:'ops-dispatch', msg:'Op61-BRN: Charlie launching inflatables now'},
+        {delay:1700, cls:'ops-dispatch', msg:'Op61-SGF: Alpha eastbound on 44, ETA 35 min'},
+        {delay:2400, cls:'ops-dispatch', msg:'Op61-STL: Echo westbound, boats on trailer'},
+        {delay:3200, cls:'ops-dispatch', msg:'Op61-JLN: Bravo on standby — await water rescue order'},
+        {delay:4000, cls:'ops-arrive',   msg:'Op61-BRN: Charlie — first boat in water, 6 rescued'},
+        {delay:4800, cls:'ops-dispatch', msg:'Op61-SGF: Alpha 10 min out, pump team ready'}
       ]},
     { label:'F3 TORNADO · NORTHEAST OKLAHOMA',
       impact:{x:110,y:440}, tornadoStart:{x:45,y:480}, tornadoEnd:{x:108,y:430},
       comms:[
-        {delay:500,  msg:'→ Tulsa: Foxtrot staging at impact zone'},
-        {delay:1400, msg:'→ Joplin: Bravo southbound on 44'},
-        {delay:2100, msg:'→ Bentonville: Charlie westbound on 412'}
+        {delay:400,  cls:'ops-alert',    msg:'Op61-NET: F3 confirmed NE Oklahoma — go go go'},
+        {delay:900,  cls:'ops-arrive',   msg:'Op61-TUL: Foxtrot on scene — need medical, 30+ displaced'},
+        {delay:1600, cls:'ops-dispatch', msg:'Op61-BNV: Charlie westbound on 412, ETA 30 min'},
+        {delay:2300, cls:'ops-dispatch', msg:'Op61-JLN: Bravo southbound on 44, water + shelter'},
+        {delay:3100, cls:'ops-dispatch', msg:'Op61-KC:  Delta southbound, ETA 90 min'},
+        {delay:3900, cls:'ops-arrive',   msg:'Op61-TUL: Foxtrot — shelter active, 23 housed'},
+        {delay:4700, cls:'ops-dispatch', msg:'Op61-BNV: Charlie inbound, ETA 8 min'}
       ]}
   ];
 
@@ -2152,7 +2165,7 @@ var CITY_COORDS = {
         logOps('    STL · Bentonville · Tulsa', 'ops-dispatch');
         // Comms chatter
         sc.comms.forEach(function(c){
-          later(function(){ logOps('    '+c.msg); }, c.delay);
+          later(function(){ logOps(c.msg, c.cls||''); }, c.delay);
         });
         setStatus('ALL HUBS DISPATCHED · CLOSEST ARRIVES FIRST', '#D4880F');
       }, 600);
