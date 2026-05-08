@@ -1576,36 +1576,67 @@ const carSlides = [
   {title:'Operation 61', desc:'Most people don\'t know what to do when the grid goes down. We change that. First aid, food preservation, emergency preparedness — taught by people who\'ve been through it. Your neighbors, trained and ready before the sirens go off.'},
   {title:'The Storehouse', desc:'Pallets of water, food, and disaster relief supplies staged and ready. When a disaster hits the region, the Beehive loads and moves — we deploy within hours.'},
 ];
-let carIdx = 0;
-const carTotal = carSlides.length;
-
-function carStep(dir){ carIdx=(carIdx+dir+carTotal)%carTotal; renderCar(); }
-
-function renderCar(){
-  const track = document.getElementById('car-track');
-  const slides = track.querySelectorAll('.car-slide');
-  const offset = slides[0].offsetWidth + 20;
-  track.style.transform = `translateX(${-carIdx * offset}px)`;
-
-  const outer = document.querySelector('.carousel-outer');
-  if(window.innerWidth > 768){
-    const img = slides[carIdx].querySelector('img');
-    const setH = () => { outer.style.height = (img.naturalHeight / img.naturalWidth * slides[carIdx].offsetWidth) + 'px'; };
-    if(img.complete && img.naturalWidth > 0) setH();
-    else img.addEventListener('load', setH, {once:true});
-  } else {
-    outer.style.height = '';
-  }
-
-  document.getElementById('car-dots').innerHTML = carSlides.map((_,i) =>
-    `<button class="car-dot${i===carIdx?' active':''}" onclick="carIdx=${i};renderCar()"></button>`
-  ).join('');
-}
-
 (function(){
   const track = document.getElementById('car-track');
+  const outer = document.querySelector('.carousel-outer');
+  const dotsEl = document.getElementById('car-dots');
+  const N = carSlides.length;
+
+  // Prepend clone of last slide, append clone of first — enables seamless wrap
+  const realSlides = [...track.querySelectorAll('.car-slide')];
+  const headClone = realSlides[N-1].cloneNode(true);
+  const tailClone = realSlides[0].cloneNode(true);
+  [headClone, tailClone].forEach(c => c.setAttribute('aria-hidden','true'));
+  track.insertBefore(headClone, realSlides[0]);
+  track.appendChild(tailClone);
+  // Extended track: [headClone, slide0..slideN-1, tailClone]
+  // extIdx 1..N are the real slides; 0 = headClone; N+1 = tailClone
+
+  let logIdx = 0, extIdx = 1, animating = false;
+
+  function slideW(){ return realSlides[0].offsetWidth + 20; }
+
+  function setPos(animate){
+    if(!animate) track.style.transition = 'none';
+    track.style.transform = `translateX(${-extIdx * slideW()}px)`;
+    if(!animate){ track.getBoundingClientRect(); track.style.transition = ''; }
+  }
+
+  function updateDots(){
+    dotsEl.innerHTML = Array.from({length:N},(_,i) =>
+      `<button class="car-dot${i===logIdx?' active':''}" onclick="carJump(${i})"></button>`
+    ).join('');
+  }
+
+  function adjustHeight(){
+    if(window.innerWidth > 768){
+      const img = realSlides[logIdx].querySelector('img');
+      const setH = () => { outer.style.height = (img.naturalHeight/img.naturalWidth*realSlides[logIdx].offsetWidth)+'px'; };
+      if(img.complete && img.naturalWidth > 0) setH(); else img.addEventListener('load',setH,{once:true});
+    } else { outer.style.height = ''; }
+  }
+
+  function render(animate){ setPos(animate); updateDots(); adjustHeight(); }
+
+  window.carStep = function(dir){
+    if(animating) return; animating = true;
+    extIdx += dir; logIdx = (logIdx + dir + N) % N;
+    render(true);
+  };
+
+  window.carJump = function(i){
+    logIdx = i; extIdx = i + 1; render(true);
+  };
+
+  track.addEventListener('transitionend', function(e){
+    if(e.propertyName !== 'transform') return;
+    animating = false;
+    if(extIdx === 0){ extIdx = N; setPos(false); }
+    else if(extIdx === N+1){ extIdx = 1; setPos(false); }
+  });
+
   let startX = 0, dragging = false;
-  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; dragging = true; }, {passive:true});
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; dragging = true; },{passive:true});
   track.addEventListener('touchend', e => {
     if(!dragging) return;
     if(Math.abs(startX - e.changedTouches[0].clientX) > 40) carStep(startX > e.changedTouches[0].clientX ? 1 : -1);
@@ -1614,13 +1645,12 @@ function renderCar(){
   track.addEventListener('pointerdown', e => { startX = e.clientX; dragging = true; });
   track.addEventListener('pointerup', e => {
     if(!dragging) return;
-    const dx = Math.abs(startX - e.clientX);
-    if(dx > 40) carStep(startX > e.clientX ? 1 : -1);
+    if(Math.abs(startX - e.clientX) > 40) carStep(startX > e.clientX ? 1 : -1);
     dragging = false;
   });
-})();
 
-renderCar();
+  render(false);
+})();
 </script>
 
 <script>
