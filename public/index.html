@@ -231,7 +231,7 @@ nav{
   will-change:transform;
 }
 .car-slide{min-width:50%;flex-shrink:0;border-radius:14px;overflow:hidden;cursor:pointer;position:relative;}
-.car-slide img{width:100%;height:auto;display:block;pointer-events:none;user-select:none;}
+.car-slide img{width:100%;height:420px;object-fit:cover;object-position:center top;display:block;pointer-events:none;user-select:none;}
 .car-cap-overlay{
   position:absolute;bottom:0;left:0;right:0;
   padding:clamp(40px,6vw,80px) var(--sp3) var(--sp3);
@@ -359,8 +359,8 @@ nav{
   /* Carousel */
   .carousel-wrap{padding:var(--sp2) 0;}
   .carousel-outer{padding-left:16px;}
-  .car-slide{min-width:78%;border-radius:10px;height:56vw;}
-  .car-slide img{height:100%;width:100%;object-fit:cover;object-position:center;}
+  .car-slide{min-width:78%;border-radius:10px;}
+  .car-slide img{width:100%;}
   .car-cap-title{font-size:clamp(18px,5.5vw,28px);}
   .car-cap-desc{font-size:clamp(13px,3.8vw,16px);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
   .car-next-peek{display:none;}
@@ -598,6 +598,9 @@ nav{
   padding:var(--sp3) 0;
   border-top:1px solid rgba(255,255,255,0.08);
   max-width:640px;
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
 }
 .poem-title{
   font-size:clamp(11px,0.9vw,14px);font-weight:700;letter-spacing:0.12em;
@@ -775,7 +778,7 @@ nav{
 
 /* OPS TERMINAL */
 .ops-terminal{
-  width:210px;flex-shrink:0;
+  width:280px;flex-shrink:0;
   background:#0D1124;
   border:1px solid rgba(148,144,232,0.22);
   border-radius:8px;overflow:hidden;
@@ -785,7 +788,7 @@ nav{
   padding:7px 11px;
   border-bottom:1px solid rgba(148,144,232,0.15);
   color:#D4880F;font-weight:700;letter-spacing:0.14em;
-  font-size:8.5px;text-transform:uppercase;font-family:var(--font-hd);
+  font-size:10.5px;text-transform:uppercase;font-family:var(--font-hd);
   display:flex;align-items:center;gap:7px;flex-shrink:0;
 }
 .ops-live-dot{
@@ -802,7 +805,7 @@ nav{
 }
 .ops-entry{
   line-height:1.5;
-  font-family:'Courier New',Courier,monospace;font-size:9px;
+  font-family:'Courier New',Courier,monospace;font-size:11px;
   color:rgba(180,210,255,0.38);
   white-space:pre-wrap;word-break:break-word;
 }
@@ -906,7 +909,7 @@ footer{
 <div class="about-tgp" id="about">
   <div class="section-eye">Our Why</div>
   <div class="about-mission-h">Mission: To relieve suffering, in all forms, in all places.</div>
-  <p class="about-mission-p">Because the worth of every soul is great.</p>
+  <p class="about-mission-p"><strong>Because the worth of every soul is great.</strong></p>
   <div class="about-pillars">
     <div class="about-pillar"><span>I</span> Physical</div>
     <div class="about-pillar"><span>II</span> Intellectual</div>
@@ -1183,7 +1186,7 @@ we dive, we drown, we pirate on,
       <!-- Nebraska: E border follows Missouri River (Omaha bend 41.26N 95.86W → 101,55) -->
       <path d="M 0,0 L 44,0 L 101,55 L 109,106 L 109,149 L 0,149 Z" fill="#E8E4D8"/>
       <!-- Iowa: tapered W border follows Missouri River, wider at top (42N) than bottom (40.57N) -->
-      <path d="M 44,0 L 469,0 L 469,103 L 212,106 L 101,55 Z" fill="#E8E4D8"/>
+      <path d="M 44,0 L 469,0 L 469,103 L 212,106 L 109,106 L 101,55 Z" fill="#E8E4D8"/>
       <!-- Illinois (+ TN/KY sliver): W border IS the Mississippi River bezier -->
       <path d="M 469,0 L 800,0 L 800,520 L 665,520 L 665,349 C 649,318 629,283 606,251 C 572,218 503,170 469,103 Z" fill="#E8E4D8"/>
       <!-- Kansas: essentially rectangular (accurate) -->
@@ -1210,7 +1213,7 @@ we dive, we drown, we pirate on,
         L 109,149
         L 109,106
         Z"
-        fill="#F2F0EB" stroke="#9490E8" stroke-width="1.5" stroke-linejoin="round"/>
+        fill="#F2F0EB" stroke="#C4BFA8" stroke-width="1" stroke-linejoin="round"/>
 
       <!-- Missouri River (KC to STL, west to east) -->
       <path d="M 109,130 Q 165,168 215,215 Q 340,252 435,253 Q 530,252 614,238"
