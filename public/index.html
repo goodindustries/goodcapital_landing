@@ -440,7 +440,7 @@ nav{
 .cities span{color:var(--rule);}
 .cities-sub{font-size:var(--base);color:var(--muted);line-height:1.7;margin-top:12px;}
 .map-svg-wrap{padding:0 var(--sp3) var(--sp3);display:flex;gap:14px;align-items:flex-start;}
-.map-svg-wrap>svg{flex:1;min-width:0;}
+.map-svg-wrap>svg{flex:2;min-width:0;}
 
 /* HOW */
 .how{
@@ -787,7 +787,7 @@ nav{
 
 /* OPS TERMINAL */
 .ops-terminal{
-  width:280px;flex-shrink:0;
+  flex:1;min-width:0;
   background:#0D1124;
   border:1px solid rgba(148,144,232,0.22);
   border-radius:8px;overflow:hidden;
@@ -1710,7 +1710,7 @@ function toggleManifesto(btn){
   async function loadPayPalSdk(){
     if(window.paypal && paypal.Buttons) return;
 
-    const response = await fetch('/.netlify/functions/paypal-config');
+    const response = await fetch('/api/paypal-config');
     const config = await response.json().catch(() => ({}));
     if(!response.ok || !config.clientId) throw new Error(config.error || 'Missing PayPal configuration.');
 
@@ -1789,7 +1789,7 @@ function toggleManifesto(btn){
         return actions.resolve();
       },
       async createOrder(){
-        const response = await fetch('/.netlify/functions/paypal-create-order', {
+        const response = await fetch('/api/paypal-create-order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ amount: selectedDonationAmount })
@@ -1800,7 +1800,7 @@ function toggleManifesto(btn){
       },
       async onApprove(data){
         setDonateStatus('Finalizing your donation...');
-        const response = await fetch('/.netlify/functions/paypal-capture-order', {
+        const response = await fetch('/api/paypal-capture-order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ orderID: data.orderID })
