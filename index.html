@@ -748,23 +748,28 @@ nav{
 .city-pin:hover circle{opacity:1!important;}
 
 /* MAP TORNADO ANIMATION */
-@keyframes funnel-wobble{
-  0%,100%{transform:skewX(0deg) scaleX(1);}
-  25%{transform:skewX(4deg) scaleX(0.92);}
-  75%{transform:skewX(-4deg) scaleX(1.08);}
+@keyframes funnel-rotate{
+  0%{transform:skewX(0deg) scaleX(1);}
+  20%{transform:skewX(3deg) scaleX(0.94);}
+  55%{transform:skewX(-2.5deg) scaleX(1.05);}
+  80%{transform:skewX(2deg) scaleX(0.97);}
+  100%{transform:skewX(0deg) scaleX(1);}
+}
+@keyframes debris-orbit{
+  0%{transform:rotate(0deg) translateX(18px);}
+  100%{transform:rotate(360deg) translateX(18px);}
 }
 @keyframes danger-pulse{
-  0%,100%{opacity:0.18;}50%{opacity:0.32;}
+  0%,100%{opacity:0.18;}50%{opacity:0.30;}
 }
-@keyframes status-fade{
-  0%{opacity:0;transform:translateY(4px);}
-  15%,85%{opacity:1;transform:translateY(0);}
-  100%{opacity:0;transform:translateY(-4px);}
-}
-#anim-funnel-spin{transform-origin:0px 0px;animation:funnel-wobble 0.5s ease-in-out infinite;}
+#anim-funnel-spin{transform-origin:0px 0px;animation:funnel-rotate 0.55s ease-in-out infinite;}
+#anim-debris-1{transform-origin:0px 22px;animation:debris-orbit 0.8s linear infinite;}
+#anim-debris-2{transform-origin:0px 22px;animation:debris-orbit 0.8s linear infinite;animation-delay:-0.27s;}
+#anim-debris-3{transform-origin:0px 22px;animation:debris-orbit 0.8s linear infinite;animation-delay:-0.53s;}
 #anim-tornado,#anim-danger,#anim-resp-sf,#anim-resp-joplin,#anim-resp-branson,
 #anim-sf-glow,#anim-joplin-glow,#anim-branson-glow,#anim-impact-rings,
-#anim-ir1,#anim-ir2,#anim-ir3,#anim-status-box{pointer-events:none;}
+#anim-ir1,#anim-ir2,#anim-ir3,#anim-status-box,
+#anim-team-sf,#anim-team-joplin,#anim-team-branson{pointer-events:none;}
 #anim-status-text{font-family:Barlow,sans-serif;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
 
 /* FOOTER */
@@ -923,7 +928,7 @@ we dive, we drown, we pirate on,
   <div class="what-inner">
     <div class="what-header">
       <div class="section-eye" style="color:var(--amber);margin-bottom:var(--sp1);">What is The Beehive?</div>
-      <div class="what-tagline">Storm shelters on steroids.</div>
+      <div class="what-tagline">Storm shelters on <em>steroids.</em></div>
       <div class="what-intro-p">A disaster relief resource hub — one building, built to do everything.</div>
     </div>
 
@@ -1261,6 +1266,46 @@ we dive, we drown, we pirate on,
         <text x="329" y="320" text-anchor="middle" font-family="Barlow,sans-serif" font-size="9" fill="#D4880F" font-weight="700" letter-spacing="2">NOW</text>
       </g>
 
+      <!-- Surrounding state borders (subtle context lines) -->
+      <!-- Iowa/MO border -->
+      <line x1="109" y1="106" x2="469" y2="103" stroke="#C4BFA8" stroke-width="0.8" opacity="0.7"/>
+      <!-- KS/MO border -->
+      <line x1="212" y1="106" x2="212" y2="409" stroke="#C4BFA8" stroke-width="0.8" opacity="0.7"/>
+      <!-- Platte Purchase (KS/NE jog) -->
+      <line x1="109" y1="149" x2="212" y2="149" stroke="#C4BFA8" stroke-width="0.8" opacity="0.5"/>
+      <!-- AR/MO border -->
+      <line x1="212" y1="409" x2="603" y2="409" stroke="#C4BFA8" stroke-width="0.8" opacity="0.7"/>
+      <!-- Bootheel south -->
+      <line x1="603" y1="409" x2="603" y2="446" stroke="#C4BFA8" stroke-width="0.8" opacity="0.6"/>
+      <line x1="603" y1="446" x2="665" y2="446" stroke="#C4BFA8" stroke-width="0.8" opacity="0.6"/>
+      <!-- Mississippi (east border) - more accurate curve -->
+      <path d="M 469,103 C 503,170 572,218 606,251 C 629,283 649,318 665,349 L 665,446"
+            fill="none" stroke="#93b8cc" stroke-width="2" opacity="0.5"/>
+      <!-- Oklahoma/KS border at y=409 going west -->
+      <line x1="0" y1="409" x2="212" y2="409" stroke="#C4BFA8" stroke-width="0.6" opacity="0.4"/>
+
+      <!-- Team vehicles (JS-positioned, start at city, move to impact ~260,360) -->
+      <!-- Arrow shape pointing right; JS rotates toward target -->
+      <g id="anim-team-sf" style="display:none;opacity:0;" transform="translate(329,356)">
+        <circle r="5" fill="#D4880F" opacity="0.95"/>
+        <polygon points="4,-2.5 10,0 4,2.5" fill="#fff"/>
+      </g>
+      <g id="anim-team-joplin" style="display:none;opacity:0;" transform="translate(221,365)">
+        <circle r="5" fill="#D4880F" opacity="0.95"/>
+        <polygon points="4,-2.5 10,0 4,2.5" fill="#fff"/>
+      </g>
+      <g id="anim-team-branson" style="display:none;opacity:0;" transform="translate(336,398)">
+        <circle r="5" fill="#D4880F" opacity="0.95"/>
+        <polygon points="4,-2.5 10,0 4,2.5" fill="#fff"/>
+      </g>
+
+      <!-- Coverage callout (appears during multi-city phase) -->
+      <g id="anim-coverage-note" style="display:none;opacity:0;">
+        <rect x="16" y="52" width="230" height="32" rx="4" fill="#13183A" fill-opacity="0.80"/>
+        <text x="131" y="66" text-anchor="middle" font-family="Barlow,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.75)" letter-spacing="0.05em">More Beehives =</text>
+        <text x="131" y="78" text-anchor="middle" font-family="Barlow,sans-serif" font-size="8.5" fill="#D4880F" font-weight="700" letter-spacing="0.05em">DEEPER COVERAGE ACROSS THE REGION</text>
+      </g>
+
       <!-- Legend -->
       <rect x="608" y="370" width="178" height="118" rx="6" fill="white" stroke="#D6CFA8" stroke-width="1" opacity="0.96"/>
       <circle cx="626" cy="391" r="7" fill="#D4880F"/>
@@ -1312,26 +1357,35 @@ we dive, we drown, we pirate on,
         <text id="anim-status-text" x="116" y="34" text-anchor="middle" fill="#D4880F">CATEGORY 4 — JOPLIN CORRIDOR</text>
       </g>
 
-      <!-- Tornado funnel (JS moves via transform) -->
+      <!-- Tornado funnel — realistic gray/charcoal design, JS moves via transform -->
       <g id="anim-tornado" style="display:none;opacity:0;" transform="translate(88,490)">
+        <!-- Storm cloud base (static) -->
+        <ellipse cx="0"   cy="-62" rx="30" ry="13" fill="#3A3840" opacity="0.85"/>
+        <ellipse cx="-16" cy="-68" rx="16" ry="10" fill="#302E38" opacity="0.80"/>
+        <ellipse cx="16"  cy="-66" rx="14" ry="9"  fill="#302E38" opacity="0.75"/>
+        <ellipse cx="4"   cy="-71" rx="10" ry="7"  fill="#282630" opacity="0.70"/>
+        <!-- Funnel body (spins with CSS) -->
         <g id="anim-funnel-spin">
-          <!-- Cloud top -->
-          <ellipse cx="0" cy="-56" rx="26" ry="11" fill="#7070AA" opacity="0.72"/>
-          <ellipse cx="-11" cy="-60" rx="13" ry="8"  fill="#6868A0" opacity="0.65"/>
-          <ellipse cx="11"  cy="-58" rx="11" ry="7"  fill="#6868A0" opacity="0.60"/>
-          <!-- Funnel body: wide top → narrow bottom -->
-          <path d="M-18,-50 C-22,-25 -11,0 -4,18 L0,30 L4,18 C11,0 22,-25 18,-50 Z" fill="#6A68A8" opacity="0.78"/>
+          <!-- Outer shadow layer -->
+          <path d="M-22,-52 C-27,-28 -14,-2 -5,20 L0,34 L5,20 C14,-2 27,-28 22,-52 Z" fill="#2C2A34" opacity="0.40"/>
+          <!-- Main funnel -->
+          <path d="M-18,-52 C-23,-26 -12,0 -4,19 L0,32 L4,19 C12,0 23,-26 18,-52 Z"  fill="#3E3C4A" opacity="0.88"/>
+          <!-- Inner vortex core -->
+          <path d="M-10,-46 C-13,-24 -6,2 -2,16 L0,27 L2,16 C6,2 13,-24 10,-46 Z"   fill="#524F5E" opacity="0.55"/>
           <!-- Rotation bands -->
-          <ellipse cx="0" cy="-38" rx="17" ry="4.5" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.3"/>
-          <ellipse cx="0" cy="-25" rx="13" ry="3.5" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.1"/>
-          <ellipse cx="0" cy="-13" rx="9"  ry="2.5" fill="none" stroke="rgba(255,255,255,0.38)" stroke-width="0.9"/>
-          <ellipse cx="0" cy="-2"  rx="6"  ry="2"   fill="none" stroke="rgba(255,255,255,0.30)" stroke-width="0.8"/>
-          <ellipse cx="0" cy="9"   rx="3.5" ry="1.5" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="0.7"/>
-          <!-- Debris at tip -->
-          <circle cx="-7" cy="24" r="2.5" fill="#9090CC" opacity="0.55"/>
-          <circle cx="6"  cy="27" r="2"   fill="#9090CC" opacity="0.45"/>
-          <circle cx="0"  cy="29" r="1.5" fill="#9090CC" opacity="0.50"/>
+          <ellipse cx="0" cy="-40" rx="16" ry="4.5" fill="none" stroke="rgba(210,205,220,0.46)" stroke-width="1.4"/>
+          <ellipse cx="0" cy="-28" rx="12" ry="3.5" fill="none" stroke="rgba(195,190,208,0.40)" stroke-width="1.2"/>
+          <ellipse cx="0" cy="-17" rx="9"  ry="3"   fill="none" stroke="rgba(178,173,192,0.34)" stroke-width="1.0"/>
+          <ellipse cx="0" cy="-7"  rx="6.5" ry="2.2" fill="none" stroke="rgba(160,155,175,0.28)" stroke-width="0.9"/>
+          <ellipse cx="0" cy="3"   rx="4.5" ry="1.8" fill="none" stroke="rgba(145,140,160,0.22)" stroke-width="0.8"/>
+          <ellipse cx="0" cy="12"  rx="3"   ry="1.3" fill="none" stroke="rgba(130,125,145,0.18)" stroke-width="0.7"/>
+          <!-- Ground contact dust cloud -->
+          <ellipse cx="0" cy="28" rx="14" ry="5" fill="#3A3840" opacity="0.55"/>
         </g>
+        <!-- Orbiting debris (CSS animation) -->
+        <g id="anim-debris-1"><circle cx="18" cy="22" r="2"   fill="#5A5868" opacity="0.70"/></g>
+        <g id="anim-debris-2"><circle cx="18" cy="22" r="1.5" fill="#6A6878" opacity="0.60"/></g>
+        <g id="anim-debris-3"><circle cx="18" cy="22" r="1"   fill="#4A4858" opacity="0.65"/></g>
       </g>
     </svg>
   </div>
@@ -1745,20 +1799,28 @@ var CITY_COORDS = {
   var respSF  = document.getElementById('anim-resp-sf');
   var respJ   = document.getElementById('anim-resp-joplin');
   var respB   = document.getElementById('anim-resp-branson');
-  var statusBox  = document.getElementById('anim-status-box');
-  var statusText = document.getElementById('anim-status-text');
+  var statusBox    = document.getElementById('anim-status-box');
+  var statusText   = document.getElementById('anim-status-text');
+  var coverageNote = document.getElementById('anim-coverage-note');
+  var teamSF  = document.getElementById('anim-team-sf');
+  var teamJ   = document.getElementById('anim-team-joplin');
+  var teamB   = document.getElementById('anim-team-branson');
 
-  // Tornado tip lands at impact; funnel extends ~30px above group center
-  var START = {x:88, y:490};   // enters from SW (off-screen bottom)
-  var END   = {x:255, y:320};  // tip contact at (255, 350) ≈ Joplin corridor
+  // Impact zone (Joplin corridor)
+  var IMPACT = {x:260, y:355};
+  // Tornado: enters SW off-screen, tip contacts impact zone
+  var START = {x:72, y:495};
+  var END   = {x:IMPACT.x - 5, y:IMPACT.y - 32};
 
   var timers = [];
-  var rafId  = null;
+  var rafIds = [];
   var running = false;
 
+  function rAF(fn){ var id = requestAnimationFrame(fn); rafIds.push(id); return id; }
   function show(el){ el.style.display=''; requestAnimationFrame(function(){ el.style.opacity='1'; }); }
   function hide(el){ el.style.opacity='0'; }
   function hideNow(el){ el.style.display='none'; el.style.opacity='0'; }
+  function later(fn,ms){ var t=setTimeout(fn,ms); timers.push(t); }
 
   function setStatus(txt, color){
     statusText.textContent = txt;
@@ -1766,149 +1828,149 @@ var CITY_COORDS = {
     show(statusBox);
   }
 
-  // Animate a circle's r from 0→max, opacity 1→0 over duration ms
   function pulseRing(el, maxR, dur, delay){
-    timers.push(setTimeout(function(){
-      el.style.opacity = '1';
-      var start = null;
-      function step(t){
-        if(!start) start=t;
-        var p = Math.min((t-start)/dur, 1);
-        var r = p * maxR;
-        var op = 1 - p;
-        el.setAttribute('r', r.toFixed(1));
-        el.setAttribute('opacity', op.toFixed(2));
-        if(p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }, delay||0));
+    later(function(){
+      var t0=null;
+      function step(t){ if(!t0)t0=t; var p=Math.min((t-t0)/dur,1);
+        el.setAttribute('r',(p*maxR).toFixed(1)); el.setAttribute('opacity',(1-p).toFixed(2));
+        if(p<1) rAF(step); }
+      rAF(step);
+    }, delay||0);
   }
 
-  // Animate stroke-dashoffset from 500→0 over dur ms
   function drawLine(el, dur, delay){
-    timers.push(setTimeout(function(){
-      el.style.transition = 'stroke-dashoffset '+dur+'ms ease, opacity 300ms';
+    later(function(){
+      el.style.transition='stroke-dashoffset '+dur+'ms ease, opacity 400ms';
       el.setAttribute('opacity','0.85');
       el.setAttribute('stroke-dashoffset','0');
-    }, delay||0));
+    }, delay||0);
+  }
+
+  // Animate a team dot from (fx,fy) → IMPACT over dur ms, then hide
+  function moveTeam(el, fx, fy, dur, delay){
+    later(function(){
+      el.style.display='';
+      var angle = Math.atan2(IMPACT.y - fy, IMPACT.x - fx) * 180 / Math.PI;
+      var t0=null;
+      function step(t){
+        if(!t0)t0=t;
+        var p = Math.min((t-t0)/dur, 1);
+        var ease = 1 - Math.pow(1-p, 2);
+        var x = fx + (IMPACT.x - fx) * ease;
+        var y = fy + (IMPACT.y - fy) * ease;
+        el.setAttribute('transform','translate('+x.toFixed(1)+','+y.toFixed(1)+') rotate('+angle+')');
+        el.style.opacity = p > 0.9 ? ((1-p)*10).toFixed(2) : '1';
+        if(p<1) rAF(step); else hideNow(el);
+      }
+      rAF(step);
+    }, delay||0);
   }
 
   function moveTornado(onDone){
-    var dur  = 2600;
-    var start = null;
-    tornado.style.display = '';
+    var dur=2800; var t0=null;
+    tornado.style.display='';
     function step(t){
-      if(!start) start = t;
-      var p = Math.min((t - start) / dur, 1);
-      // ease in-out cubic
-      var e = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p+2,3)/2;
-      var x = START.x + (END.x - START.x) * e;
-      var y = START.y + (END.y - START.y) * e;
+      if(!t0)t0=t;
+      var p=Math.min((t-t0)/dur,1);
+      var e = p<0.5 ? 4*p*p*p : 1-Math.pow(-2*p+2,3)/2;
+      var x=START.x+(END.x-START.x)*e;
+      var y=START.y+(END.y-START.y)*e;
       tornado.setAttribute('transform','translate('+x.toFixed(1)+','+y.toFixed(1)+')');
-      // fade in first 200ms
-      tornado.style.opacity = Math.min(p * (dur/200), 1).toFixed(2);
-      if(p < 1){ rafId = requestAnimationFrame(step); }
-      else { onDone && onDone(); }
+      tornado.style.opacity=Math.min(p*(dur/180),1).toFixed(2);
+      if(p<1){ rAF(step); } else { onDone&&onDone(); }
     }
-    rafId = requestAnimationFrame(step);
+    rAF(step);
   }
 
   function fadeTornado(){
-    var dur = 600; var start = null; var oy = parseFloat(END.y);
+    var dur=700; var t0=null; var ey=END.y;
     function step(t){
-      if(!start) start=t;
-      var p = Math.min((t-start)/dur,1);
-      tornado.style.opacity = (1-p).toFixed(2);
-      tornado.setAttribute('transform','translate('+END.x.toFixed(1)+','+(oy + p*12).toFixed(1)+')');
-      if(p<1) rafId = requestAnimationFrame(step);
-      else hideNow(tornado);
+      if(!t0)t0=t; var p=Math.min((t-t0)/dur,1);
+      tornado.style.opacity=(1-p).toFixed(2);
+      tornado.setAttribute('transform','translate('+END.x+','+(ey+p*14).toFixed(1)+')');
+      if(p<1) rAF(step); else hideNow(tornado);
     }
-    rafId = requestAnimationFrame(step);
+    rAF(step);
   }
 
   function resetAll(){
-    running = false;
+    running=false;
     timers.forEach(clearTimeout); timers=[];
-    if(rafId) cancelAnimationFrame(rafId);
-    hideNow(tornado); hideNow(danger); hideNow(impactRings);
-    hideNow(sfGlow); hideNow(jGlow); hideNow(bGlow); hideNow(statusBox);
+    rafIds.forEach(cancelAnimationFrame); rafIds=[];
+    [tornado,danger,impactRings,sfGlow,jGlow,bGlow,statusBox,coverageNote,teamSF,teamJ,teamB]
+      .forEach(hideNow);
     [ir1,ir2,ir3].forEach(function(el){ el.setAttribute('r','4'); el.setAttribute('opacity','0'); });
     [respSF,respJ,respB].forEach(function(el){
-      el.style.transition='none';
-      el.setAttribute('stroke-dashoffset','500');
-      el.setAttribute('opacity','0');
+      el.style.transition='none'; el.setAttribute('stroke-dashoffset','500'); el.setAttribute('opacity','0');
     });
   }
 
   function runSequence(){
     if(running) return;
-    running = true;
+    running=true;
 
-    // Phase 1: Tornado approaches (0–2600ms)
-    setStatus('CATEGORY 4 · JOPLIN CORRIDOR', '#CC3333');
+    // Phase 1 — tornado tracks NE across map
+    setStatus('CATEGORY 4 TORNADO · JOPLIN CORRIDOR', '#CC3333');
     moveTornado(function(){
 
-      // Phase 2: Impact (2600ms)
+      // Phase 2 — impact
       fadeTornado();
       show(danger);
-      danger.style.animation = 'danger-pulse 1.4s ease-in-out infinite';
+      danger.style.animation='danger-pulse 1.4s ease-in-out infinite';
       impactRings.style.display='';
-      pulseRing(ir1, 75,  1000, 0);
-      pulseRing(ir2, 100, 1300, 200);
-      pulseRing(ir3, 130, 1600, 400);
-      setStatus('IMPACT DETECTED · BEEHIVES ACTIVATING', '#CC3333');
+      pulseRing(ir1, 72,  1000, 0);
+      pulseRing(ir2, 100, 1300, 180);
+      pulseRing(ir3, 132, 1600, 360);
+      setStatus('IMPACT · BEEHIVES ACTIVATING', '#CC3333');
 
-      // Phase 3: Springfield responds (3400ms)
-      timers.push(setTimeout(function(){
-        setStatus('SPRINGFIELD RESPONDING · 40 MIN ETA', '#D4880F');
-        show(sfGlow);
-        sfGlow.style.transition = 'opacity 1s ease';
-        drawLine(respSF, 1200, 0);
-      }, 800));
+      // Phase 3 — Springfield team moves + coverage blooms (t+900ms)
+      later(function(){
+        setStatus('SPRINGFIELD RESPONDING', '#D4880F');
+        show(sfGlow); sfGlow.style.transition='opacity 1.1s ease';
+        drawLine(respSF, 1400, 0);
+        moveTeam(teamSF, 329, 356, 1400, 0);
+      }, 900);
 
-      // Phase 4: Joplin activates (4800ms)
-      timers.push(setTimeout(function(){
-        setStatus('JOPLIN MOBILIZING · NETWORK EXPANDING', '#D4880F');
-        show(jGlow);
-        jGlow.style.transition = 'opacity 0.9s ease';
-        drawLine(respJ, 900, 0);
-      }, 2200));
+      // Phase 4 — Joplin team (t+2400ms)
+      later(function(){
+        setStatus('JOPLIN + SPRINGFIELD · COVERAGE EXPANDING', '#D4880F');
+        show(jGlow); jGlow.style.transition='opacity 1s ease';
+        drawLine(respJ, 1000, 0);
+        moveTeam(teamJ, 221, 365, 1000, 0);
+        show(coverageNote); coverageNote.style.transition='opacity 0.7s ease';
+      }, 2400);
 
-      // Phase 5: Branson activates (5800ms)
-      timers.push(setTimeout(function(){
-        setStatus('FULL NETWORK COVERAGE', '#4CAF50');
-        show(bGlow);
-        bGlow.style.transition = 'opacity 0.9s ease';
-        drawLine(respB, 900, 0);
-      }, 3200));
+      // Phase 5 — Branson team (t+3800ms)
+      later(function(){
+        setStatus('3 BEEHIVES DEPLOYED · FULL COVERAGE', '#4CAF50');
+        show(bGlow); bGlow.style.transition='opacity 1s ease';
+        drawLine(respB, 1000, 0);
+        moveTeam(teamB, 336, 398, 1000, 0);
+      }, 3800);
 
-      // Phase 6: Hold, then reset (9000ms total)
-      timers.push(setTimeout(function(){
-        hide(statusBox);
-        timers.push(setTimeout(function(){
+      // Phase 6 — hold + reset (total ~13s)
+      later(function(){
+        hide(statusBox); hide(coverageNote);
+        later(function(){
           hide(sfGlow); hide(jGlow); hide(bGlow);
           hide(danger); hide(respSF); hide(respJ); hide(respB);
-          timers.push(setTimeout(resetAll, 1000));
-        }, 800));
-      }, 4600));
+          later(resetAll, 900);
+        }, 700);
+      }, 5200);
     });
   }
 
-  // Trigger on scroll into view, loop every ~14s
   var mapSection = document.getElementById('where');
-  var loopTimer  = null;
-  var observed   = false;
-
-  var observer = new IntersectionObserver(function(entries){
+  var observed = false;
+  new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting && !observed){
-        observed = true;
-        function loop(){ runSequence(); loopTimer = setTimeout(loop, 14000); }
+        observed=true;
+        function loop(){ runSequence(); setTimeout(loop, 15000); }
         loop();
       }
     });
-  }, {threshold:0.3});
-  observer.observe(mapSection);
+  },{threshold:0.25}).observe(mapSection);
 })();
 </script>
 
