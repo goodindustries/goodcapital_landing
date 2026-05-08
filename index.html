@@ -1836,38 +1836,38 @@ function toggleManifesto(btn){
   }
 
   async function loadPayPalSdk(intent){
-    // Use data-namespace so each intent gets its own isolated global —
-    // avoids zoid "listener already exists" when switching modes.
     const ns = intent === 'subscription' ? 'paypalSub' : 'paypalCap';
     if(window[ns]?.Buttons) return;
+    // Return existing promise immediately — prevents race where two callers
+    // both see null before the first fetch completes and both inject a script.
     if(paypalSdkPromises[intent]) return paypalSdkPromises[intent];
 
-    const response = await fetch('/.netlify/functions/paypal-config');
-    const config = await response.json().catch(() => ({}));
-    if(!response.ok || !config.clientId) throw new Error(config.error || 'Missing PayPal configuration.');
+    paypalSdkPromises[intent] = (async () => {
+      const response = await fetch('/.netlify/functions/paypal-config');
+      const config = await response.json().catch(() => ({}));
+      if(!response.ok || !config.clientId) throw new Error(config.error || 'Missing PayPal configuration.');
 
-    paypalSdkPromises[intent] = new Promise((resolve, reject) => {
-      const script = document.createElement('script');
-      const params = new URLSearchParams({
-        'client-id': config.clientId,
-        currency: 'USD',
-        intent,
-        components: 'buttons'
+      await new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        const params = new URLSearchParams({
+          'client-id': config.clientId,
+          currency: 'USD',
+          intent,
+          components: 'buttons'
+        });
+        if(intent === 'subscription') params.set('vault', 'true');
+        script.src = 'https://www.paypal.com/sdk/js?' + params.toString();
+        script.async = true;
+        script.setAttribute('data-namespace', ns);
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('PayPal SDK failed to load.'));
+        document.head.appendChild(script);
       });
-      if(intent === 'subscription') params.set('vault', 'true');
-      script.src = 'https://www.paypal.com/sdk/js?' + params.toString();
-      script.async = true;
-      script.setAttribute('data-namespace', ns);
-      script.onload = () => resolve();
-      script.onerror = () => {
-        paypalSdkPromises[intent] = null;
-        reject(new Error('PayPal SDK failed to load.'));
-      };
-      document.head.appendChild(script);
-    }).catch(err => {
+    })().catch(err => {
       paypalSdkPromises[intent] = null;
       throw err;
     });
+
     return paypalSdkPromises[intent];
   }
 
