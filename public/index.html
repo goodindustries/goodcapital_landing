@@ -231,7 +231,7 @@ nav{
   will-change:transform;
 }
 .car-slide{min-width:50%;flex-shrink:0;border-radius:14px;overflow:hidden;cursor:pointer;position:relative;}
-.car-slide img{width:100%;height:clamp(280px,32vw,520px);object-fit:cover;object-position:center top;display:block;pointer-events:none;user-select:none;}
+.car-slide img{width:100%;height:clamp(480px,50vw,700px);object-fit:cover;object-position:center top;display:block;pointer-events:none;user-select:none;}
 .car-cap-overlay{
   position:absolute;bottom:0;left:0;right:0;
   padding:clamp(40px,6vw,80px) var(--sp3) var(--sp3);
@@ -439,7 +439,7 @@ nav{
 }
 .cities span{color:var(--rule);}
 .cities-sub{font-size:var(--base);color:var(--muted);line-height:1.7;margin-top:12px;}
-.map-svg-wrap{padding:0 var(--sp3) var(--sp3);display:flex;gap:14px;align-items:flex-start;}
+.map-svg-wrap{padding:0 var(--sp3) var(--sp3);display:flex;gap:14px;align-items:stretch;}
 .map-svg-wrap>svg{flex:2;min-width:0;}
 
 /* HOW */
@@ -552,7 +552,17 @@ nav{
 }
 .btn-ghost-light:hover{border-color:rgba(237,232,196,0.7);}
 .btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
-.paypal-donate-wrap{width:min(360px,100%);}
+.donate-actions{
+  display:grid;grid-template-columns:minmax(320px,520px) minmax(260px,360px);
+  gap:18px;align-items:start;justify-content:center;
+  max-width:920px;margin:0 auto var(--sp1);
+}
+.donate-actions .btn-ghost-light{
+  height:48px;display:flex;align-items:center;justify-content:center;
+  padding:0 28px;white-space:nowrap;align-self:start;
+  font-size:clamp(13px,1vw,15px);
+}
+.paypal-donate-wrap{width:100%;min-width:0;}
 #paypal-button-container{min-height:48px;}
 .donate-status{
   min-height:1.5em;margin-top:8px;
@@ -560,8 +570,8 @@ nav{
 }
 .donate-status.error{color:#f0b0a8;}
 .donate-consent{
-  max-width:620px;margin:0 auto var(--sp2);
-  font-size:var(--sm);line-height:1.55;color:rgba(255,255,255,0.48);
+  max-width:760px;margin:12px auto var(--sp2);
+  font-size:clamp(12px,0.95vw,14px);line-height:1.6;color:rgba(255,255,255,0.44);
 }
 
 /* READY TO GIVE */
@@ -797,7 +807,7 @@ nav{
   padding:7px 11px;
   border-bottom:1px solid rgba(148,144,232,0.15);
   color:#D4880F;font-weight:700;letter-spacing:0.14em;
-  font-size:10.5px;text-transform:uppercase;font-family:var(--font-hd);
+  font-size:12px;text-transform:uppercase;font-family:var(--font-hd);
   display:flex;align-items:center;gap:7px;flex-shrink:0;
 }
 .ops-live-dot{
@@ -806,15 +816,14 @@ nav{
 }
 @keyframes blink-dot{0%,100%{opacity:1;}50%{opacity:0.15;}}
 .ops-log{
-  flex:1;padding:8px 10px;
+  flex:1;padding:10px 14px;
   overflow-y:auto;
-  display:flex;flex-direction:column;gap:3px;
-  min-height:240px;
+  display:flex;flex-direction:column;gap:5px;
   scrollbar-width:thin;scrollbar-color:#1e2445 transparent;
 }
 .ops-entry{
   line-height:1.5;
-  font-family:'Courier New',Courier,monospace;font-size:11px;
+  font-family:'Courier New',Courier,monospace;font-size:13px;
   color:rgba(180,210,255,0.38);
   white-space:pre-wrap;word-break:break-word;
 }
@@ -861,6 +870,8 @@ footer{
   .donate{padding:var(--sp3) 20px;}
   .donate-h{font-size:clamp(28px,8vw,48px);}
   .btns{flex-direction:column;align-items:center;}
+  .donate-actions{display:flex;max-width:360px;width:100%;gap:14px;}
+  .donate-actions .btn-ghost-light{width:100%;max-width:none;}
   .btn-amber,.btn-ghost-light{width:100%;max-width:320px;text-align:center;}
 }
 @media(max-width:1024px) and (min-width:769px){
@@ -1152,7 +1163,7 @@ we dive, we drown, we pirate on,
         Joplin &middot; Branson &middot; Bentonville<br>
         Tulsa &middot; Kansas City &middot; St. Louis
       </div>
-      <p class="cities-sub">Each Beehive supports the next. It's a network of good.</p>
+      <p class="cities-sub">In times of trouble, every Beehive works together. A network built for the worst days.</p>
     </div>
   </div>
 
@@ -1191,18 +1202,16 @@ we dive, we drown, we pirate on,
       <!-- Background (surrounding states) -->
       <rect width="800" height="520" fill="#FAF8F4"/>
 
-      <!-- Surrounding state fills — Missouri River boundaries applied -->
-      <!-- Nebraska: E border follows Missouri River (Omaha bend 41.26N 95.86W → 101,55) -->
-      <path d="M 0,0 L 44,0 L 109,106 L 109,149 L 0,149 Z" fill="#C8C2B0"/>
-      <!-- Iowa: tapered W border follows Missouri River, wider at top (42N) than bottom (40.57N) -->
-      <path d="M 44,0 L 469,0 L 469,103 L 212,106 L 109,106 Z" fill="#C8C2B0"/>
+      <!-- Surrounding state fills — simplified for visual clarity -->
+      <!-- Iowa: horizontal strip across top -->
+      <path d="M 0,0 L 469,0 L 469,103 L 212,106 L 0,106 Z" fill="#C8C2B0"/>
       <!-- Illinois (+ TN/KY sliver): W border IS the Mississippi River bezier -->
       <path d="M 469,0 L 800,0 L 800,520 L 665,520 L 665,349 C 649,318 629,283 606,251 C 572,218 503,170 469,103 Z" fill="#C8C2B0"/>
-      <!-- Kansas: essentially rectangular (accurate) -->
-      <polygon points="0,149 212,149 212,371 0,371" fill="#C8C2B0"/>
-      <!-- Oklahoma: south of Kansas, visible strip -->
-      <polygon points="0,371 212,371 212,520 0,520" fill="#C8C2B0"/>
-      <!-- Arkansas: south of Missouri, east of Oklahoma -->
+      <!-- Kansas: full western strip from Iowa border to Oklahoma -->
+      <polygon points="0,106 212,106 212,409 0,409" fill="#C8C2B0"/>
+      <!-- Oklahoma: south of Kansas -->
+      <polygon points="0,409 212,409 212,520 0,520" fill="#C8C2B0"/>
+      <!-- Arkansas: south of Missouri -->
       <polygon points="212,409 603,409 603,446 665,446 665,520 212,520" fill="#C8C2B0"/>
 
       <!-- Missouri state polygon
@@ -1218,9 +1227,6 @@ we dive, we drown, we pirate on,
         L 603,446
         L 603,409
         L 212,409
-        L 212,149
-        L 109,149
-        L 109,106
         Z"
         fill="#F2F0EB" stroke="#8B7B5F" stroke-width="2" stroke-linejoin="round"/>
 
@@ -1232,7 +1238,6 @@ we dive, we drown, we pirate on,
       <text x="748" y="260" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#A8A4BC" letter-spacing="2" font-weight="700">ILLINOIS</text>
       <text x="60" y="300" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#A8A4BC" letter-spacing="2" font-weight="700" transform="rotate(-90,60,300)">KANSAS</text>
       <text x="44" y="472" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#A8A4BC" letter-spacing="2" font-weight="700">OKLAHOMA</text>
-      <text x="134" y="72" text-anchor="middle" font-family="Barlow,sans-serif" font-size="9" fill="#A8A4BC" letter-spacing="2" font-weight="700">NEBRASKA</text>
 
       <!-- MISSOURI label -->
       <text x="400" y="265" text-anchor="middle" font-family="Barlow,sans-serif" font-size="13" fill="#9490E8" letter-spacing="4" font-weight="700" opacity="0.4">MISSOURI</text>
@@ -1323,14 +1328,9 @@ we dive, we drown, we pirate on,
       </g>
 
       <!-- Surrounding state borders -->
-      <!-- NE/IA border: Missouri River diagonal (Omaha bend → Iowa/NE/MO tri-state) -->
-      <polyline points="44,0 109,106" fill="none" stroke="#C4BFA8" stroke-width="0.9" opacity="0.8"/>
-      <!-- Iowa/MO border (starts correctly at the Iowa/NE/MO tri-state point) -->
+      <!-- Iowa/MO border -->
+      <line x1="0" y1="106" x2="212" y2="106" stroke="#C4BFA8" stroke-width="0.8" opacity="0.6"/>
       <line x1="212" y1="106" x2="469" y2="103" stroke="#C4BFA8" stroke-width="0.8" opacity="0.7"/>
-      <!-- Platte Purchase W edge (NE corner of Missouri) -->
-      <line x1="109" y1="106" x2="109" y2="149" stroke="#C4BFA8" stroke-width="0.7" opacity="0.5"/>
-      <!-- Platte Purchase S edge + KS/NE border -->
-      <line x1="0" y1="149" x2="212" y2="149" stroke="#C4BFA8" stroke-width="0.8" opacity="0.55"/>
       <!-- KS/MO western border -->
       <line x1="212" y1="106" x2="212" y2="409" stroke="#C4BFA8" stroke-width="0.8" opacity="0.7"/>
       <!-- KS/OK border (37°N) -->
@@ -1503,15 +1503,15 @@ we dive, we drown, we pirate on,
 
   <div class="donate-impact" id="d-impact" style="display:none;"></div>
 
-  <div class="btns" style="margin-bottom:var(--sp1);">
+  <div class="btns donate-actions">
     <div class="paypal-donate-wrap">
       <div id="paypal-button-container" aria-label="PayPal donation checkout"></div>
       <div class="donate-status" id="d-status" role="status" aria-live="polite"></div>
     </div>
     <a href="https://calendly.com/the-good-project" target="_blank" rel="noopener" class="btn-ghost-light">Schedule a call with Reif</a>
   </div>
-  <p class="donate-consent">Your gift is received, remembered, and put to work. By donating, you agree that The Good Project may use the contact and mailing information you provide through PayPal for receipts, tax documentation, personal thank-you notes, occasional small donor gifts, and mission updates. You can unsubscribe from non-transactional emails anytime.</p>
-  <p class="donate-meta">Instructions within 24 hours &middot; Tax documentation included</p>
+  <p class="donate-consent">Your gift is received, remembered, and put to work. We may use the contact and mailing information you provide through PayPal for receipts, tax documentation, personal thank-you notes, small donor gifts, and occasional mission updates. Unsubscribe from non-transactional emails anytime.</p>
+  <p class="donate-meta">Receipts and tax documentation included</p>
 </div>
 
 <!-- LIGHTBOX -->
@@ -1954,36 +1954,36 @@ var CITY_COORDS = {
     { label:'CAT 4 TORNADO · JOPLIN CORRIDOR',
       impact:{x:260,y:350}, tornadoStart:{x:55,y:490}, tornadoEnd:{x:255,y:338},
       comms:[
-        {delay:400,  cls:'ops-alert',    msg:'Op61-NET: CAT 4 confirmed — all units mobilize'},
-        {delay:1000, cls:'ops-dispatch', msg:'Op61-JLN: Bravo eyes on zone, staging at fairgrounds'},
-        {delay:1700, cls:'ops-dispatch', msg:'Op61-SGF: Alpha loaded, rolling west on 44'},
-        {delay:2400, cls:'ops-dispatch', msg:'Op61-BRN: Charlie mobile, ETA 28 min'},
-        {delay:3100, cls:'ops-dispatch', msg:'Op61-KC:  Delta northbound on 71 — water + MREs'},
-        {delay:3900, cls:'ops-dispatch', msg:'Op61-STL: Echo westbound, medical unit, ETA 90 min'},
-        {delay:4700, cls:'ops-arrive',   msg:'Op61-JLN: Bravo — shelter open, 40 cots active'},
-        {delay:5500, cls:'ops-dispatch', msg:'Op61-SGF: Alpha inbound, ETA 4 min'}
+        {delay:1200,  cls:'ops-alert',    msg:'Op61-NET: CAT 4 confirmed — all units mobilize'},
+        {delay:3000,  cls:'ops-dispatch', msg:'Op61-JLN: Bravo eyes on zone, staging at fairgrounds'},
+        {delay:5100,  cls:'ops-dispatch', msg:'Op61-SGF: Alpha loaded, rolling west on 44'},
+        {delay:7200,  cls:'ops-dispatch', msg:'Op61-BRN: Charlie mobile, ETA 28 min'},
+        {delay:9300,  cls:'ops-dispatch', msg:'Op61-KC:  Delta northbound on 71 — water + MREs'},
+        {delay:11700, cls:'ops-dispatch', msg:'Op61-STL: Echo westbound, medical unit, ETA 90 min'},
+        {delay:14100, cls:'ops-arrive',   msg:'Op61-JLN: Bravo — shelter open, 40 cots active'},
+        {delay:16500, cls:'ops-dispatch', msg:'Op61-SGF: Alpha inbound, ETA 4 min'}
       ]},
     { label:'FLASH FLOOD · LAKE OF THE OZARKS',
       impact:{x:430,y:295}, tornadoStart:{x:395,y:490}, tornadoEnd:{x:428,y:283},
       comms:[
-        {delay:400,  cls:'ops-alert',    msg:'Op61-NET: Flash flood confirmed — boats needed'},
-        {delay:1000, cls:'ops-dispatch', msg:'Op61-BRN: Charlie launching inflatables now'},
-        {delay:1700, cls:'ops-dispatch', msg:'Op61-SGF: Alpha eastbound on 44, ETA 35 min'},
-        {delay:2400, cls:'ops-dispatch', msg:'Op61-STL: Echo westbound, boats on trailer'},
-        {delay:3200, cls:'ops-dispatch', msg:'Op61-JLN: Bravo on standby — await water rescue order'},
-        {delay:4000, cls:'ops-arrive',   msg:'Op61-BRN: Charlie — first boat in water, 6 rescued'},
-        {delay:4800, cls:'ops-dispatch', msg:'Op61-SGF: Alpha 10 min out, pump team ready'}
+        {delay:1200,  cls:'ops-alert',    msg:'Op61-NET: Flash flood confirmed — boats needed'},
+        {delay:3000,  cls:'ops-dispatch', msg:'Op61-BRN: Charlie launching inflatables now'},
+        {delay:5100,  cls:'ops-dispatch', msg:'Op61-SGF: Alpha eastbound on 44, ETA 35 min'},
+        {delay:7200,  cls:'ops-dispatch', msg:'Op61-STL: Echo westbound, boats on trailer'},
+        {delay:9600,  cls:'ops-dispatch', msg:'Op61-JLN: Bravo on standby — await water rescue order'},
+        {delay:12000, cls:'ops-arrive',   msg:'Op61-BRN: Charlie — first boat in water, 6 rescued'},
+        {delay:14400, cls:'ops-dispatch', msg:'Op61-SGF: Alpha 10 min out, pump team ready'}
       ]},
     { label:'F3 TORNADO · NORTHEAST OKLAHOMA',
       impact:{x:110,y:440}, tornadoStart:{x:45,y:480}, tornadoEnd:{x:108,y:430},
       comms:[
-        {delay:400,  cls:'ops-alert',    msg:'Op61-NET: F3 confirmed NE Oklahoma — go go go'},
-        {delay:900,  cls:'ops-arrive',   msg:'Op61-TUL: Foxtrot on scene — need medical, 30+ displaced'},
-        {delay:1600, cls:'ops-dispatch', msg:'Op61-BNV: Charlie westbound on 412, ETA 30 min'},
-        {delay:2300, cls:'ops-dispatch', msg:'Op61-JLN: Bravo southbound on 44, water + shelter'},
-        {delay:3100, cls:'ops-dispatch', msg:'Op61-KC:  Delta southbound, ETA 90 min'},
-        {delay:3900, cls:'ops-arrive',   msg:'Op61-TUL: Foxtrot — shelter active, 23 housed'},
-        {delay:4700, cls:'ops-dispatch', msg:'Op61-BNV: Charlie inbound, ETA 8 min'}
+        {delay:1200,  cls:'ops-alert',    msg:'Op61-NET: F3 confirmed NE Oklahoma — go go go'},
+        {delay:2700,  cls:'ops-arrive',   msg:'Op61-TUL: Foxtrot on scene — need medical, 30+ displaced'},
+        {delay:4800,  cls:'ops-dispatch', msg:'Op61-BNV: Charlie westbound on 412, ETA 30 min'},
+        {delay:6900,  cls:'ops-dispatch', msg:'Op61-JLN: Bravo southbound on 44, water + shelter'},
+        {delay:9300,  cls:'ops-dispatch', msg:'Op61-KC:  Delta southbound, ETA 90 min'},
+        {delay:11700, cls:'ops-arrive',   msg:'Op61-TUL: Foxtrot — shelter active, 23 housed'},
+        {delay:14100, cls:'ops-dispatch', msg:'Op61-BNV: Charlie inbound, ETA 8 min'}
       ]}
   ];
 
@@ -2079,7 +2079,7 @@ var CITY_COORDS = {
   }
 
   function moveTornado(sc, onDone){
-    var dur=2200, t0=null, S=sc.tornadoStart, E=sc.tornadoEnd;
+    var dur=3500, t0=null, S=sc.tornadoStart, E=sc.tornadoEnd;
     tornado.style.display='';
     function step(t){
       if(!t0)t0=t;
@@ -2181,15 +2181,15 @@ var CITY_COORDS = {
         setStatus('ALL UNITS CONVERGING · MORE BEEHIVES = FASTER COVERAGE', '#4CAF50');
       }, 600+maxTravel+300);
 
-      // Phase 6: hold → fade out
+      // Phase 6: hold → fade out (hold long enough for all comms to finish)
       later(function(){
         hide(statusBox);
         later(function(){
           CITIES.forEach(function(c){ var els=cityEls[c.key]; hide(els.glow); hide(els.resp); });
           hide(danger);
-          later(resetAll, 900);
-        }, 700);
-      }, 600+maxTravel+3500);
+          later(resetAll, 1500);
+        }, 1000);
+      }, 600+maxTravel+18000);
     });
   }
 
