@@ -1062,34 +1062,41 @@ we dive, we drown, we pirate on,
   <div class="carousel-outer">
     <div class="car-track" id="car-track">
       <div class="car-slide" onclick="openLb(0)">
+        <img src="/assets/photos/beehive-exterior-night.png" alt="The Beehive — Night Operations">
+        <div class="car-cap-overlay">
+          <div class="car-cap-title">The Beehive</div>
+          <div class="car-cap-desc">When the call goes out, the lights stay on. The Beehive is the hub — the building that doesn't close when everything else does.</div>
+        </div>
+      </div>
+      <div class="car-slide" onclick="openLb(1)">
         <img src="/assets/photos/beehive-the-store.png" alt="The Store">
         <div class="car-cap-overlay">
           <div class="car-cap-title">The Store</div>
           <div class="car-cap-desc">72-hour kits, water filters, emergency power, first aid gear — everything your family needs, before you need it. In stock. In your neighborhood.</div>
         </div>
       </div>
-      <div class="car-slide" onclick="openLb(1)">
+      <div class="car-slide" onclick="openLb(2)">
         <img src="/assets/photos/beehive-shelter.png" alt="The Shelter">
         <div class="car-cap-overlay">
           <div class="car-cap-title">The Shelter</div>
           <div class="car-cap-desc">When evacuation orders go out, the Beehive is already open. Safe beds, warm meals, power, and people who know what they're doing.</div>
         </div>
       </div>
-      <div class="car-slide" onclick="openLb(2)">
+      <div class="car-slide" onclick="openLb(3)">
         <img src="/assets/photos/beehive-command-center.png" alt="Command Center">
         <div class="car-cap-overlay">
           <div class="car-cap-title">Command Center</div>
           <div class="car-cap-desc">When the grid goes down, the Beehive coordinates the neighborhood. Local leadership, live logistics, resources moving to where they're needed.</div>
         </div>
       </div>
-      <div class="car-slide" onclick="openLb(3)">
+      <div class="car-slide" onclick="openLb(4)">
         <img src="/assets/photos/operation-61-gear.png" alt="Operation 61 Gear Prep">
         <div class="car-cap-overlay">
           <div class="car-cap-title">Operation 61</div>
           <div class="car-cap-desc">A monthly membership that turns neighbors into certified disaster responders. Train together, earn real credentials, and deploy when the call comes.</div>
         </div>
       </div>
-      <div class="car-slide" onclick="openLb(4)">
+      <div class="car-slide" onclick="openLb(5)">
         <img src="/assets/photos/beehive-storehouse.png" alt="The Storehouse">
         <div class="car-cap-overlay">
           <div class="car-cap-title">The Storehouse</div>
@@ -1527,8 +1534,8 @@ we dive, we drown, we pirate on,
 
   <div class="donate-impact" id="d-impact" style="display:none;"></div>
   <div class="donate-mode" role="tablist" aria-label="Donation frequency">
-    <button class="donate-mode-btn active" type="button" data-mode="one-time" aria-pressed="true">One-time</button>
-    <button class="donate-mode-btn" type="button" data-mode="monthly" aria-pressed="false">Monthly</button>
+    <button class="donate-mode-btn active" type="button" data-mode="monthly" aria-pressed="true">Monthly</button>
+    <button class="donate-mode-btn" type="button" data-mode="one-time" aria-pressed="false">One-time</button>
   </div>
   <p class="donate-mode-note" id="d-mode-note">Monthly gifts renew until you cancel them in PayPal.</p>
 
@@ -1560,6 +1567,7 @@ we dive, we drown, we pirate on,
 
 <script>
 const carSlides = [
+  {title:'The Beehive', desc:'When the call goes out, the lights stay on. The Beehive is the hub — the building that doesn\'t close when everything else does.'},
   {title:'The Store', desc:'72-hour kits, water filters, emergency power, first aid gear — everything your family needs, before you need it. In stock. In your neighborhood.'},
   {title:'The Shelter', desc:'When evacuation orders go out, the Beehive is already open. Safe beds, warm meals, power, and people who know what they\'re doing.'},
   {title:'Command Center', desc:'When the grid goes down, the Beehive coordinates the neighborhood. Local leadership, live logistics, resources moving to where they\'re needed.'},
@@ -1615,6 +1623,7 @@ renderCar();
 
 <script>
 const lbImgs = [
+  {src:'/assets/photos/beehive-exterior-night.png', alt:'The Beehive — Night Operations'},
   {src:'/assets/photos/beehive-the-store.png', alt:'The Store'},
   {src:'/assets/photos/beehive-shelter.png', alt:'Shelter'},
   {src:'/assets/photos/beehive-command-center.png', alt:'Disaster Response Command Center'},
@@ -1771,18 +1780,18 @@ function toggleManifesto(btn){
   async function loadPayPalSdk(mode){
     const desiredMode = mode === 'monthly' ? 'subscription' : 'capture';
     if(window.paypal && paypal.Buttons && currentPayPalMode === desiredMode) return;
+    if(paypalSdkPromise && currentPayPalMode === desiredMode) return paypalSdkPromise;
 
     if(currentPayPalMode && currentPayPalMode !== desiredMode){
       clearPayPalSdk();
     }
-
-    if(paypalSdkPromise && currentPayPalMode === desiredMode) return paypalSdkPromise;
     if(window.paypal && paypal.Buttons && currentPayPalMode === desiredMode) return;
 
     const response = await fetch('/.netlify/functions/paypal-config');
     const config = await response.json().catch(() => ({}));
     if(!response.ok || !config.clientId) throw new Error(config.error || 'Missing PayPal configuration.');
 
+    currentPayPalMode = desiredMode;
     paypalSdkPromise = new Promise((resolve, reject) => {
       const script = document.createElement('script');
       const params = new URLSearchParams({
@@ -1796,11 +1805,17 @@ function toggleManifesto(btn){
       script.async = true;
       script.dataset.paypalSdk = 'true';
       script.dataset.paypalSdkMode = desiredMode;
-      script.onload = resolve;
-      script.onerror = () => reject(new Error('PayPal SDK failed to load.'));
+      script.onload = () => resolve();
+      script.onerror = () => {
+        currentPayPalMode = null;
+        paypalSdkPromise = null;
+        reject(new Error('PayPal SDK failed to load.'));
+      };
       document.head.appendChild(script);
+    }).catch(err => {
+      paypalSdkPromise = null;
+      throw err;
     });
-    currentPayPalMode = desiredMode;
     return paypalSdkPromise;
   }
 
@@ -1820,6 +1835,10 @@ function toggleManifesto(btn){
       customWrap.style.display = 'none';
       setDonateStatus('');
       setAmount(Number(btn.dataset.amt), btn.dataset.label);
+      if(donationMode === 'monthly'){
+        currentMonthlyPlanId = null;
+        syncPayPalCheckout();
+      }
     }
   });
 
@@ -1830,9 +1849,17 @@ function toggleManifesto(btn){
       selectedDonationAmount = v;
       document.getElementById('d-amt').textContent = label;
       setDonateStatus('');
+      if(donationMode === 'monthly'){
+        currentMonthlyPlanId = null;
+        syncPayPalCheckout();
+      }
     } else {
       selectedDonationAmount = null;
       document.getElementById('d-amt').textContent = '$—';
+      if(donationMode === 'monthly'){
+        currentMonthlyPlanId = null;
+        syncPayPalCheckout();
+      }
     }
   });
 
@@ -1999,7 +2026,7 @@ function toggleManifesto(btn){
     }
   }
 
-  setDonateMode('one-time');
+  setDonateMode('monthly');
   syncPayPalCheckout();
 })();
 
