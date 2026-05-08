@@ -1539,8 +1539,8 @@ we dive, we drown, we pirate on,
 
   <div class="donate-impact" id="d-impact" style="display:none;"></div>
   <div class="donate-mode" role="tablist" aria-label="Donation frequency">
-    <button class="donate-mode-btn active" type="button" data-mode="monthly" aria-pressed="true">Monthly</button>
-    <button class="donate-mode-btn" type="button" data-mode="one-time" aria-pressed="false">One-time</button>
+    <button class="donate-mode-btn" type="button" data-mode="monthly" aria-pressed="false">Monthly</button>
+    <button class="donate-mode-btn active" type="button" data-mode="one-time" aria-pressed="true">One-time</button>
   </div>
   <p class="donate-mode-note" id="d-mode-note">Monthly gifts renew until you cancel them in PayPal.</p>
 
@@ -2061,7 +2061,7 @@ function toggleManifesto(btn){
     }
   }
 
-  setDonateMode('monthly');
+  setDonateMode('one-time');
   syncPayPalCheckout();
 })();
 
