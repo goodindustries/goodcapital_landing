@@ -231,7 +231,7 @@ nav{
   will-change:transform;
 }
 .car-slide{min-width:50%;flex-shrink:0;border-radius:14px;overflow:hidden;cursor:pointer;position:relative;}
-.car-slide img{width:100%;height:clamp(480px,50vw,700px);object-fit:cover;object-position:center top;display:block;pointer-events:none;user-select:none;}
+.car-slide img{width:100%;height:clamp(480px,62vw,820px);object-fit:cover;object-position:center top;display:block;pointer-events:none;user-select:none;}
 .car-cap-overlay{
   position:absolute;bottom:0;left:0;right:0;
   padding:clamp(40px,6vw,80px) var(--sp3) var(--sp3);
@@ -308,6 +308,9 @@ nav{
   background:rgba(255,255,255,0.3);border:none;cursor:pointer;padding:0;
 }
 .lb-dot.active{background:var(--amber);}
+.lb-cap{text-align:center;max-width:780px;padding:0 12px;}
+.lb-cap-title{font-family:var(--font-hd);font-size:clamp(18px,2vw,26px);font-weight:700;color:#fff;margin-bottom:6px;}
+.lb-cap-desc{font-size:clamp(13px,1.3vw,17px);color:rgba(255,255,255,0.72);line-height:1.6;}
 @media(max-width:700px){
   .lb-prev{left:-4px;}
   .lb-next{right:-4px;}
@@ -533,6 +536,25 @@ nav{
   font-size:clamp(15px,1.4vw,20px);color:rgba(255,255,255,0.55);
   max-width:540px;margin:0 auto var(--sp2);min-height:2.4em;
   line-height:1.5;transition:opacity 0.2s;
+}
+.donate-mode{
+  display:inline-flex;gap:8px;padding:6px;
+  margin:0 auto var(--sp2);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:999px;background:rgba(255,255,255,0.03);
+}
+.donate-mode-btn{
+  border:0;background:transparent;color:rgba(255,255,255,0.72);
+  padding:10px 18px;border-radius:999px;
+  font-family:var(--font-hd);font-size:13px;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;
+  transition:background 0.15s,color 0.15s;
+}
+.donate-mode-btn:hover{color:#fff;}
+.donate-mode-btn.active{background:var(--amber);color:#fff;}
+.donate-mode-note{
+  max-width:640px;margin:0 auto var(--sp2);
+  font-size:12px;line-height:1.5;color:rgba(255,255,255,0.42);
 }
 .donate-meta{font-size:var(--sm);color:rgba(255,255,255,0.4);letter-spacing:0.06em;margin-top:var(--sp2);}
 .btn-amber{
@@ -870,6 +892,8 @@ footer{
   .donate{padding:var(--sp3) 20px;}
   .donate-h{font-size:clamp(28px,8vw,48px);}
   .btns{flex-direction:column;align-items:center;}
+  .donate-mode{width:100%;max-width:360px;justify-content:stretch;}
+  .donate-mode-btn{flex:1;padding:10px 14px;}
   .donate-actions{display:flex;max-width:360px;width:100%;gap:14px;}
   .donate-actions .btn-ghost-light{width:100%;max-width:none;}
   .btn-amber,.btn-ghost-light{width:100%;max-width:320px;text-align:center;}
@@ -1502,6 +1526,11 @@ we dive, we drown, we pirate on,
   </div>
 
   <div class="donate-impact" id="d-impact" style="display:none;"></div>
+  <div class="donate-mode" role="tablist" aria-label="Donation frequency">
+    <button class="donate-mode-btn active" type="button" data-mode="one-time" aria-pressed="true">One-time</button>
+    <button class="donate-mode-btn" type="button" data-mode="monthly" aria-pressed="false">Monthly</button>
+  </div>
+  <p class="donate-mode-note" id="d-mode-note">Monthly gifts renew until you cancel them in PayPal.</p>
 
   <div class="btns donate-actions">
     <div class="paypal-donate-wrap">
@@ -1510,7 +1539,7 @@ we dive, we drown, we pirate on,
     </div>
     <a href="https://calendly.com/the-good-project" target="_blank" rel="noopener" class="btn-ghost-light">Schedule a call with Reif</a>
   </div>
-  <p class="donate-consent">Your gift is received with gratitude and put to work. PayPal may share your contact and mailing information so we can send a receipt, tax documentation, a personal thank-you note, small donor gifts, and occasional mission updates. Non-transactional emails are optional.</p>
+  <p class="donate-consent">Your gift is received with gratitude and put to work. PayPal may share your contact and mailing information so we can send a receipt, tax documentation, a personal thank-you note, small donor gifts, and occasional mission updates. Monthly gifts renew until you cancel in PayPal. Non-transactional emails are optional.</p>
   <p class="donate-meta">Donation acknowledgement and tax documentation provided</p>
 </div>
 
@@ -1522,6 +1551,10 @@ we dive, we drown, we pirate on,
     <img class="lb-img" id="lb-img" src="" alt="">
     <button class="lb-next" onclick="stepLb(1)">&#8594;</button>
     <div class="lb-dots" id="lb-dots"></div>
+    <div class="lb-cap" id="lb-cap">
+      <div class="lb-cap-title" id="lb-cap-title"></div>
+      <div class="lb-cap-desc" id="lb-cap-desc"></div>
+    </div>
   </div>
 </div>
 
@@ -1568,10 +1601,11 @@ function renderCar(){
     if(Math.abs(startX - e.changedTouches[0].clientX) > 40) carStep(startX > e.changedTouches[0].clientX ? 1 : -1);
     dragging = false;
   });
-  track.addEventListener('pointerdown', e => { startX = e.clientX; dragging = true; track.setPointerCapture(e.pointerId); });
+  track.addEventListener('pointerdown', e => { startX = e.clientX; dragging = true; });
   track.addEventListener('pointerup', e => {
     if(!dragging) return;
-    if(Math.abs(startX - e.clientX) > 40) carStep(startX > e.clientX ? 1 : -1);
+    const dx = Math.abs(startX - e.clientX);
+    if(dx > 40) carStep(startX > e.clientX ? 1 : -1);
     dragging = false;
   });
 })();
@@ -1613,6 +1647,8 @@ function renderLb(){
   dots.innerHTML = lbImgs.map((_, i) =>
     `<button class="lb-dot${i===lbIdx?' active':''}" onclick="openLb(${i})"></button>`
   ).join('');
+  document.getElementById('lb-cap-title').textContent = carSlides[lbIdx].title;
+  document.getElementById('lb-cap-desc').textContent = carSlides[lbIdx].desc;
 }
 document.addEventListener('keydown', e => {
   if(!document.getElementById('lb').classList.contains('open')) return;
@@ -1650,6 +1686,11 @@ function toggleManifesto(btn){
   };
 
   let selectedDonationAmount = 100;
+  let donationMode = 'one-time';
+  let currentPayPalMode = null;
+  let currentMonthlyPlanId = null;
+  let paypalSdkPromise = null;
+  let donationRenderToken = 0;
   let effectIdx = 0;
   let effectTimer;
   const effectEl = document.getElementById('d-effect');
@@ -1705,27 +1746,62 @@ function toggleManifesto(btn){
     statusEl.classList.toggle('error', Boolean(isError));
   }
 
-  async function loadPayPalSdk(){
-    if(window.paypal && paypal.Buttons) return;
+  function setDonateMode(mode){
+    donationMode = mode;
+    document.querySelectorAll('.donate-mode-btn').forEach(btn => {
+      const active = btn.dataset.mode === mode;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    const note = document.getElementById('d-mode-note');
+    if(note){
+      note.textContent = mode === 'monthly'
+        ? 'Monthly gifts renew until you cancel them in PayPal.'
+        : 'One-time gifts are processed immediately through PayPal.';
+    }
+  }
+
+  function clearPayPalSdk(){
+    document.querySelectorAll('script[data-paypal-sdk="true"]').forEach(script => script.remove());
+    currentPayPalMode = null;
+    paypalSdkPromise = null;
+    try { delete window.paypal; } catch (_) { window.paypal = undefined; }
+  }
+
+  async function loadPayPalSdk(mode){
+    const desiredMode = mode === 'monthly' ? 'subscription' : 'capture';
+    if(window.paypal && paypal.Buttons && currentPayPalMode === desiredMode) return;
+
+    if(currentPayPalMode && currentPayPalMode !== desiredMode){
+      clearPayPalSdk();
+    }
+
+    if(paypalSdkPromise && currentPayPalMode === desiredMode) return paypalSdkPromise;
+    if(window.paypal && paypal.Buttons && currentPayPalMode === desiredMode) return;
 
     const response = await fetch('/.netlify/functions/paypal-config');
     const config = await response.json().catch(() => ({}));
     if(!response.ok || !config.clientId) throw new Error(config.error || 'Missing PayPal configuration.');
 
-    await new Promise((resolve, reject) => {
+    paypalSdkPromise = new Promise((resolve, reject) => {
       const script = document.createElement('script');
       const params = new URLSearchParams({
         'client-id': config.clientId,
         currency: 'USD',
-        intent: 'capture',
+        intent: desiredMode,
         components: 'buttons'
       });
+      if(desiredMode === 'subscription') params.set('vault', 'true');
       script.src = 'https://www.paypal.com/sdk/js?' + params.toString();
       script.async = true;
+      script.dataset.paypalSdk = 'true';
+      script.dataset.paypalSdkMode = desiredMode;
       script.onload = resolve;
       script.onerror = () => reject(new Error('PayPal SDK failed to load.'));
       document.head.appendChild(script);
     });
+    currentPayPalMode = desiredMode;
+    return paypalSdkPromise;
   }
 
   document.getElementById('d-amts').addEventListener('click', e => {
@@ -1760,6 +1836,26 @@ function toggleManifesto(btn){
     }
   });
 
+  document.querySelectorAll('.donate-mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if(btn.dataset.mode === donationMode) return;
+      currentMonthlyPlanId = null;
+      setDonateMode(btn.dataset.mode);
+      syncPayPalCheckout();
+    });
+  });
+
+  async function ensureMonthlyPlan(amount){
+    const response = await fetch('/.netlify/functions/paypal-create-subscription-plan', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount })
+    });
+    const plan = await response.json().catch(() => ({}));
+    if(!response.ok || !plan.planId) throw new Error(plan.error || 'Could not create the monthly plan.');
+    return plan.planId;
+  }
+
   function renderPayPalButton(){
     const container = document.getElementById('paypal-button-container');
     if(!container) return;
@@ -1769,7 +1865,55 @@ function toggleManifesto(btn){
       return;
     }
 
-    paypal.Buttons({
+    container.innerHTML = '';
+
+    const config = donationMode === 'monthly' ? {
+      fundingSource: paypal.FUNDING.PAYPAL,
+      style: {
+        layout: 'horizontal',
+        color: 'gold',
+        shape: 'pill',
+        label: 'subscribe',
+        tagline: false,
+        height: 48
+      },
+      onClick(data, actions){
+        if(!selectedDonationAmount){
+          setDonateStatus('Enter a donation amount of at least $1.', true);
+          return actions.reject();
+        }
+        if(!currentMonthlyPlanId){
+          setDonateStatus('Monthly gift is still preparing. Please try again.', true);
+          return actions.reject();
+        }
+        setDonateStatus('');
+        return actions.resolve();
+      },
+      async createSubscription(data, actions){
+        return actions.subscription.create({
+          plan_id: currentMonthlyPlanId
+        });
+      },
+      async onApprove(data){
+        setDonateStatus('Activating your monthly gift...');
+        const response = await fetch('/.netlify/functions/paypal-capture-subscription', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ subscriptionID: data.subscriptionID })
+        });
+        const capture = await response.json().catch(() => ({}));
+        if(!response.ok) throw new Error(capture.error || 'Could not complete PayPal subscription.');
+        const donorName = capture.donor && capture.donor.givenName;
+        setDonateStatus(donorName ? `Thank you, ${donorName}. Your monthly gift is active.` : 'Thank you. Your monthly gift is active.');
+      },
+      onCancel(){
+        setDonateStatus('Subscription canceled. Your monthly gift was not activated.');
+      },
+      onError(err){
+        console.error('PayPal subscription error:', err);
+        setDonateStatus('PayPal could not start the monthly gift. Please try again or schedule a call.', true);
+      }
+    } : {
       fundingSource: paypal.FUNDING.PAYPAL,
       style: {
         layout: 'horizontal',
@@ -1816,16 +1960,47 @@ function toggleManifesto(btn){
         console.error('PayPal checkout error:', err);
         setDonateStatus('PayPal could not process that donation. Please try again or schedule a call.', true);
       }
-    }).render('#paypal-button-container').catch(err => {
+    };
+
+    paypal.Buttons(config).render('#paypal-button-container').catch(err => {
       console.error('PayPal render error:', err);
       setDonateStatus('PayPal checkout could not load. Please refresh or schedule a call.', true);
     });
   }
 
-  loadPayPalSdk().then(renderPayPalButton).catch(err => {
-    console.error('PayPal setup error:', err);
-    setDonateStatus('PayPal checkout could not load. Please refresh or schedule a call.', true);
-  });
+  async function syncPayPalCheckout(){
+    const token = ++donationRenderToken;
+    const container = document.getElementById('paypal-button-container');
+    if(container) container.innerHTML = '';
+
+    try {
+      if(donationMode === 'monthly'){
+        if(!selectedDonationAmount){
+          setDonateStatus('Enter a donation amount of at least $1.', true);
+          return;
+        }
+        setDonateStatus('Setting up monthly gifts...');
+        currentMonthlyPlanId = await ensureMonthlyPlan(selectedDonationAmount);
+      } else {
+        currentMonthlyPlanId = null;
+      }
+
+      await loadPayPalSdk(donationMode);
+      if(token !== donationRenderToken) return;
+      renderPayPalButton();
+    } catch(err) {
+      console.error('PayPal setup error:', err);
+      setDonateStatus(
+        donationMode === 'monthly'
+          ? 'Monthly gifts could not load. Please choose one-time or schedule a call.'
+          : 'PayPal checkout could not load. Please refresh or schedule a call.',
+        true
+      );
+    }
+  }
+
+  setDonateMode('one-time');
+  syncPayPalCheckout();
 })();
 
 // City SVG coordinates
