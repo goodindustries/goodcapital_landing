@@ -748,24 +748,15 @@ nav{
 .city-pin:hover circle{opacity:1!important;}
 
 /* MAP TORNADO ANIMATION */
-@keyframes funnel-rotate{
-  0%{transform:skewX(0deg) scaleX(1);}
-  20%{transform:skewX(3deg) scaleX(0.94);}
-  55%{transform:skewX(-2.5deg) scaleX(1.05);}
-  80%{transform:skewX(2deg) scaleX(0.97);}
-  100%{transform:skewX(0deg) scaleX(1);}
-}
-@keyframes debris-orbit{
-  0%{transform:rotate(0deg) translateX(18px);}
-  100%{transform:rotate(360deg) translateX(18px);}
+@keyframes funnel-sway{
+  0%,100%{transform:skewX(0deg);}
+  35%{transform:skewX(2deg);}
+  70%{transform:skewX(-1.5deg);}
 }
 @keyframes danger-pulse{
   0%,100%{opacity:0.18;}50%{opacity:0.30;}
 }
-#anim-funnel-spin{transform-origin:0px 0px;animation:funnel-rotate 0.55s ease-in-out infinite;}
-#anim-debris-1{transform-origin:0px 22px;animation:debris-orbit 0.8s linear infinite;}
-#anim-debris-2{transform-origin:0px 22px;animation:debris-orbit 0.8s linear infinite;animation-delay:-0.27s;}
-#anim-debris-3{transform-origin:0px 22px;animation:debris-orbit 0.8s linear infinite;animation-delay:-0.53s;}
+#anim-funnel-spin{transform-origin:0px 0px;animation:funnel-sway 0.7s ease-in-out infinite;}
 #anim-tornado,#anim-danger,#anim-resp-sf,#anim-resp-joplin,#anim-resp-branson,
 #anim-sf-glow,#anim-joplin-glow,#anim-branson-glow,#anim-impact-rings,
 #anim-ir1,#anim-ir2,#anim-ir3,#anim-status-box,
@@ -1357,35 +1348,23 @@ we dive, we drown, we pirate on,
         <text id="anim-status-text" x="116" y="34" text-anchor="middle" fill="#D4880F">CATEGORY 4 — JOPLIN CORRIDOR</text>
       </g>
 
-      <!-- Tornado funnel — realistic gray/charcoal design, JS moves via transform -->
+      <!-- Tornado — clean silhouette, JS translates the whole group -->
       <g id="anim-tornado" style="display:none;opacity:0;" transform="translate(88,490)">
-        <!-- Storm cloud base (static) -->
-        <ellipse cx="0"   cy="-62" rx="30" ry="13" fill="#3A3840" opacity="0.85"/>
-        <ellipse cx="-16" cy="-68" rx="16" ry="10" fill="#302E38" opacity="0.80"/>
-        <ellipse cx="16"  cy="-66" rx="14" ry="9"  fill="#302E38" opacity="0.75"/>
-        <ellipse cx="4"   cy="-71" rx="10" ry="7"  fill="#282630" opacity="0.70"/>
-        <!-- Funnel body (spins with CSS) -->
+        <!-- Cloud base (static) -->
+        <ellipse cx="0"  cy="-56" rx="28" ry="11" fill="#3A3848" opacity="0.88"/>
+        <ellipse cx="-13" cy="-61" rx="15" ry="9"  fill="#30303C" opacity="0.82"/>
+        <ellipse cx="13"  cy="-59" rx="13" ry="8"  fill="#30303C" opacity="0.78"/>
+        <!-- Funnel body — single clean path, slight lean NE for motion -->
         <g id="anim-funnel-spin">
-          <!-- Outer shadow layer -->
-          <path d="M-22,-52 C-27,-28 -14,-2 -5,20 L0,34 L5,20 C14,-2 27,-28 22,-52 Z" fill="#2C2A34" opacity="0.40"/>
-          <!-- Main funnel -->
-          <path d="M-18,-52 C-23,-26 -12,0 -4,19 L0,32 L4,19 C12,0 23,-26 18,-52 Z"  fill="#3E3C4A" opacity="0.88"/>
-          <!-- Inner vortex core -->
-          <path d="M-10,-46 C-13,-24 -6,2 -2,16 L0,27 L2,16 C6,2 13,-24 10,-46 Z"   fill="#524F5E" opacity="0.55"/>
-          <!-- Rotation bands -->
-          <ellipse cx="0" cy="-40" rx="16" ry="4.5" fill="none" stroke="rgba(210,205,220,0.46)" stroke-width="1.4"/>
-          <ellipse cx="0" cy="-28" rx="12" ry="3.5" fill="none" stroke="rgba(195,190,208,0.40)" stroke-width="1.2"/>
-          <ellipse cx="0" cy="-17" rx="9"  ry="3"   fill="none" stroke="rgba(178,173,192,0.34)" stroke-width="1.0"/>
-          <ellipse cx="0" cy="-7"  rx="6.5" ry="2.2" fill="none" stroke="rgba(160,155,175,0.28)" stroke-width="0.9"/>
-          <ellipse cx="0" cy="3"   rx="4.5" ry="1.8" fill="none" stroke="rgba(145,140,160,0.22)" stroke-width="0.8"/>
-          <ellipse cx="0" cy="12"  rx="3"   ry="1.3" fill="none" stroke="rgba(130,125,145,0.18)" stroke-width="0.7"/>
-          <!-- Ground contact dust cloud -->
-          <ellipse cx="0" cy="28" rx="14" ry="5" fill="#3A3840" opacity="0.55"/>
+          <path d="M-19,-52 C-21,-30 -9,0 -3,20 L0,30 L3,20 C9,0 21,-30 19,-52 Z"
+                fill="#3C3A4A" opacity="0.92"/>
+          <!-- 3 rotation ellipses only -->
+          <ellipse cx="0" cy="-38" rx="17" ry="5"   fill="none" stroke="rgba(220,215,232,0.38)" stroke-width="1.5"/>
+          <ellipse cx="0" cy="-20" rx="11" ry="3.5" fill="none" stroke="rgba(200,195,215,0.30)" stroke-width="1.2"/>
+          <ellipse cx="0" cy="-5"  rx="6"  ry="2"   fill="none" stroke="rgba(180,175,196,0.22)" stroke-width="1.0"/>
+          <!-- Ground dust -->
+          <ellipse cx="0" cy="26" rx="13" ry="4.5" fill="#3A3848" opacity="0.50"/>
         </g>
-        <!-- Orbiting debris (CSS animation) -->
-        <g id="anim-debris-1"><circle cx="18" cy="22" r="2"   fill="#5A5868" opacity="0.70"/></g>
-        <g id="anim-debris-2"><circle cx="18" cy="22" r="1.5" fill="#6A6878" opacity="0.60"/></g>
-        <g id="anim-debris-3"><circle cx="18" cy="22" r="1"   fill="#4A4858" opacity="0.65"/></g>
       </g>
     </svg>
   </div>
@@ -1911,7 +1890,7 @@ var CITY_COORDS = {
     setStatus('CATEGORY 4 TORNADO · JOPLIN CORRIDOR', '#CC3333');
     moveTornado(function(){
 
-      // Phase 2 — impact
+      // Phase 2 — impact + ALL hubs activate simultaneously
       fadeTornado();
       show(danger);
       danger.style.animation='danger-pulse 1.4s ease-in-out infinite';
@@ -1919,34 +1898,48 @@ var CITY_COORDS = {
       pulseRing(ir1, 72,  1000, 0);
       pulseRing(ir2, 100, 1300, 180);
       pulseRing(ir3, 132, 1600, 360);
-      setStatus('IMPACT · BEEHIVES ACTIVATING', '#CC3333');
+      setStatus('IMPACT · ALL BEEHIVES DISPATCHING NOW', '#CC3333');
 
-      // Phase 3 — Springfield team moves + coverage blooms (t+900ms)
+      // Phase 3 — all three glow + lines + teams start simultaneously (t+700ms)
       later(function(){
-        setStatus('SPRINGFIELD RESPONDING', '#D4880F');
-        show(sfGlow); sfGlow.style.transition='opacity 1.1s ease';
-        drawLine(respSF, 1400, 0);
-        moveTeam(teamSF, 329, 356, 1400, 0);
-      }, 900);
+        // All coverage rings bloom at once
+        show(sfGlow); sfGlow.style.transition='opacity 1s ease';
+        show(jGlow);  jGlow.style.transition='opacity 1s ease';
+        show(bGlow);  bGlow.style.transition='opacity 1s ease';
 
-      // Phase 4 — Joplin team (t+2400ms)
+        // All response lines draw simultaneously
+        drawLine(respSF, 1800, 0);   // Springfield ~75mi — slower draw
+        drawLine(respJ,  600,  0);   // Joplin ~10mi  — fast draw
+        drawLine(respB,  2000, 0);   // Branson ~90mi — slowest draw
+
+        // Teams leave at the same time, arrive proportionally
+        // Joplin: 10mi → 15 min ETA → fastest dot (600ms)
+        moveTeam(teamJ,   221, 365, 600,  0);
+        // Springfield: 75mi → 45 min ETA → medium dot (1800ms)
+        moveTeam(teamSF,  329, 356, 1800, 0);
+        // Branson: 90mi → 55 min ETA → slowest dot (2200ms)
+        moveTeam(teamB,   336, 398, 2200, 0);
+
+        setStatus('DISPATCHED SIMULTANEOUSLY · CLOSEST ARRIVES FIRST', '#D4880F');
+      }, 700);
+
+      // Phase 4 — Joplin arrives (t+1400ms)
       later(function(){
-        setStatus('JOPLIN + SPRINGFIELD · COVERAGE EXPANDING', '#D4880F');
-        show(jGlow); jGlow.style.transition='opacity 1s ease';
-        drawLine(respJ, 1000, 0);
-        moveTeam(teamJ, 221, 365, 1000, 0);
+        setStatus('JOPLIN ON SCENE · 15 MIN', '#4CAF50');
+      }, 1400);
+
+      // Phase 5 — Springfield arrives (t+2600ms)
+      later(function(){
+        setStatus('SPRINGFIELD ON SCENE · 45 MIN', '#4CAF50');
         show(coverageNote); coverageNote.style.transition='opacity 0.7s ease';
-      }, 2400);
+      }, 2600);
 
-      // Phase 5 — Branson team (t+3800ms)
+      // Phase 6 — Branson arrives (t+3000ms)
       later(function(){
-        setStatus('3 BEEHIVES DEPLOYED · FULL COVERAGE', '#4CAF50');
-        show(bGlow); bGlow.style.transition='opacity 1s ease';
-        drawLine(respB, 1000, 0);
-        moveTeam(teamB, 336, 398, 1000, 0);
-      }, 3800);
+        setStatus('ALL TEAMS ON SCENE · MORE BEEHIVES = FASTER HELP', '#4CAF50');
+      }, 3100);
 
-      // Phase 6 — hold + reset (total ~13s)
+      // Phase 7 — hold + reset
       later(function(){
         hide(statusBox); hide(coverageNote);
         later(function(){
@@ -1954,7 +1947,7 @@ var CITY_COORDS = {
           hide(danger); hide(respSF); hide(respJ); hide(respB);
           later(resetAll, 900);
         }, 700);
-      }, 5200);
+      }, 5000);
     });
   }
 
