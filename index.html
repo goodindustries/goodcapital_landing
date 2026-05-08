@@ -375,8 +375,10 @@ nav{
   /* Map */
   .map-header{grid-template-columns:1fr;gap:var(--sp2);padding:var(--sp2) 20px;}
   .cities{font-size:clamp(22px,7vw,32px);line-height:1.4;}
-  .map-svg-wrap{padding:0 20px var(--sp2);}
-  .map-svg-wrap svg{min-width:unset;width:100%;}
+  .map-svg-wrap{padding:0 20px var(--sp2);flex-direction:column;}
+  .map-svg-wrap>svg{min-width:unset;width:100%;}
+  .ops-terminal{width:100%;min-height:unset;}
+  .ops-log{min-height:160px;flex:none;}
 
   /* About */
   .about-tgp{padding:var(--sp3) 20px;}
@@ -437,7 +439,8 @@ nav{
 }
 .cities span{color:var(--rule);}
 .cities-sub{font-size:var(--base);color:var(--muted);line-height:1.7;margin-top:12px;}
-.map-svg-wrap{padding:0 var(--sp3) var(--sp3);}
+.map-svg-wrap{padding:0 var(--sp3) var(--sp3);display:flex;gap:14px;align-items:flex-start;}
+.map-svg-wrap>svg{flex:1;min-width:0;}
 
 /* HOW */
 .how{
@@ -549,6 +552,13 @@ nav{
 }
 .btn-ghost-light:hover{border-color:rgba(237,232,196,0.7);}
 .btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.paypal-donate-wrap{width:min(360px,100%);}
+#paypal-button-container{min-height:48px;}
+.donate-status{
+  min-height:1.5em;margin-top:8px;
+  font-size:var(--sm);line-height:1.4;color:rgba(255,255,255,0.62);
+}
+.donate-status.error{color:#f0b0a8;}
 
 /* READY TO GIVE */
 .ready{
@@ -763,6 +773,43 @@ nav{
 #anim-team-sf,#anim-team-joplin,#anim-team-branson,#anim-team-kc,#anim-team-stl,#anim-team-bentonville,#anim-team-tulsa{pointer-events:none;}
 #anim-status-text{font-family:Barlow,sans-serif;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
 
+/* OPS TERMINAL */
+.ops-terminal{
+  width:210px;flex-shrink:0;
+  background:#0D1124;
+  border:1px solid rgba(148,144,232,0.22);
+  border-radius:8px;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.ops-header{
+  padding:7px 11px;
+  border-bottom:1px solid rgba(148,144,232,0.15);
+  color:#D4880F;font-weight:700;letter-spacing:0.14em;
+  font-size:8.5px;text-transform:uppercase;font-family:var(--font-hd);
+  display:flex;align-items:center;gap:7px;flex-shrink:0;
+}
+.ops-live-dot{
+  width:5px;height:5px;border-radius:50%;background:#4CAF50;
+  animation:blink-dot 1.2s ease-in-out infinite;flex-shrink:0;
+}
+@keyframes blink-dot{0%,100%{opacity:1;}50%{opacity:0.15;}}
+.ops-log{
+  flex:1;padding:8px 10px;
+  overflow-y:auto;
+  display:flex;flex-direction:column;gap:3px;
+  min-height:240px;
+  scrollbar-width:thin;scrollbar-color:#1e2445 transparent;
+}
+.ops-entry{
+  line-height:1.5;
+  font-family:'Courier New',Courier,monospace;font-size:9px;
+  color:rgba(180,210,255,0.38);
+  white-space:pre-wrap;word-break:break-word;
+}
+.ops-alert{color:#FF7070!important;}
+.ops-dispatch{color:#D4880F!important;}
+.ops-arrive{color:#5DC977!important;}
+
 /* FOOTER */
 footer{
   border-top:1px solid var(--rule);
@@ -790,8 +837,10 @@ footer{
 @media(max-width:768px){
   .creates{grid-template-columns:1fr!important;gap:var(--sp2);padding:var(--sp3) 20px;}
   .map-header{grid-template-columns:1fr!important;align-items:start;gap:var(--sp2);padding:var(--sp2) 20px;}
-  .map-svg-wrap{padding:0 20px var(--sp2);}
-  .map-svg-wrap svg{min-width:unset!important;width:100%;}
+  .map-svg-wrap{padding:0 20px var(--sp2);flex-direction:column!important;}
+  .map-svg-wrap>svg{min-width:unset!important;width:100%!important;}
+  .ops-terminal{width:100%!important;min-height:unset!important;}
+  .ops-log{min-height:160px!important;flex:none!important;}
   .how{padding:var(--sp3) 20px;}
   .how-grid{grid-template-columns:1fr!important;}
   .about-tgp{padding:var(--sp3) 20px;}
@@ -1075,7 +1124,7 @@ we dive, we drown, we pirate on,
   <div>
     <div class="creates-eye">What it creates</div>
     <p class="creates-p">A resilient community.</p>
-    <p class="creates-sub">Preparedness is not a product. It is a system.</p>
+
   </div>
 </div>
 
@@ -1137,6 +1186,20 @@ we dive, we drown, we pirate on,
       <line x1="0" y1="409" x2="800" y2="409" stroke="#D6CFA8" stroke-width="0.5" opacity="0.6"/>
       <!-- Mississippi (east border) rough position -->
       <line x1="665" y1="0" x2="720" y2="520" stroke="#93b8cc" stroke-width="1.5" opacity="0.2"/>
+
+      <!-- Surrounding state fills — equirectangular projection, same as city coords -->
+      <!-- Nebraska (NW, above Kansas) -->
+      <polygon points="0,0 109,0 109,149 0,149" fill="#E8E4D8"/>
+      <!-- Iowa (above Missouri, east of Nebraska) -->
+      <polygon points="109,0 469,0 469,103 109,106" fill="#E8E4D8"/>
+      <!-- Illinois + SE states (east of Mississippi River) -->
+      <path d="M 469,0 L 800,0 L 800,520 L 665,520 L 665,349 C 649,318 629,283 606,251 C 572,218 503,170 469,103 Z" fill="#E8E4D8"/>
+      <!-- Kansas (west of Missouri, between Nebraska and Oklahoma) -->
+      <polygon points="0,149 212,149 212,371 0,371" fill="#E8E4D8"/>
+      <!-- Oklahoma (south of Kansas) -->
+      <polygon points="0,371 212,371 212,520 0,520" fill="#E8E4D8"/>
+      <!-- Arkansas (south of Missouri, east of Oklahoma) -->
+      <polygon points="212,409 603,409 603,446 665,446 665,520 212,520" fill="#E8E4D8"/>
 
       <!-- Missouri state polygon
            M Iowa NW → Iowa NE → Mississippi curve → Cape Girardeau
@@ -1344,6 +1407,15 @@ we dive, we drown, we pirate on,
         </g>
       </g>
     </svg>
+    <div class="ops-terminal" id="ops-terminal">
+      <div class="ops-header">
+        <span class="ops-live-dot"></span>
+        OPS CENTER
+      </div>
+      <div class="ops-log" id="ops-log">
+        <div class="ops-entry" style="color:rgba(180,210,255,0.18);font-style:italic;">Scroll into view to activate&hellip;</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1424,7 +1496,10 @@ we dive, we drown, we pirate on,
   <div class="donate-impact" id="d-impact" style="display:none;"></div>
 
   <div class="btns" style="margin-bottom:var(--sp1);">
-    <button class="btn-amber" id="d-cta">Donate $100</button>
+    <div class="paypal-donate-wrap">
+      <div id="paypal-button-container" aria-label="PayPal donation checkout"></div>
+      <div class="donate-status" id="d-status" role="status" aria-live="polite"></div>
+    </div>
     <a href="https://calendly.com/the-good-project" target="_blank" rel="noopener" class="btn-ghost-light">Schedule a call with Reif</a>
   </div>
   <p class="donate-meta">Instructions within 24 hours &middot; Tax documentation included</p>
@@ -1565,6 +1640,7 @@ function toggleManifesto(btn){
     1000: 'Funds one full week of Beehive operations — open every day, ready for anything.',
   };
 
+  let selectedDonationAmount = 100;
   let effectIdx = 0;
   let effectTimer;
   const effectEl = document.getElementById('d-effect');
@@ -1587,10 +1663,9 @@ function toggleManifesto(btn){
   function setAmount(amt, label){
     const amtEl = document.getElementById('d-amt');
     const impactEl = document.getElementById('d-impact');
-    const ctaEl = document.getElementById('d-cta');
 
+    selectedDonationAmount = amt;
     amtEl.textContent = label || '$' + amt.toLocaleString();
-    ctaEl.textContent = 'Donate ' + (label || '$' + amt.toLocaleString());
 
     if(IMPACTS[amt]){
       impactEl.style.opacity = '0';
@@ -1601,6 +1676,49 @@ function toggleManifesto(btn){
     }
   }
 
+  function formatAmount(amt){
+    return '$' + amt.toLocaleString(undefined, {
+      minimumFractionDigits: Number.isInteger(amt) ? 0 : 2,
+      maximumFractionDigits: 2
+    });
+  }
+
+  function normalizeDonationAmount(value){
+    const amount = Number(value);
+    if(!Number.isFinite(amount) || amount < 1) return null;
+    return Math.round(amount * 100) / 100;
+  }
+
+  function setDonateStatus(message, isError){
+    const statusEl = document.getElementById('d-status');
+    if(!statusEl) return;
+    statusEl.textContent = message || '';
+    statusEl.classList.toggle('error', Boolean(isError));
+  }
+
+  async function loadPayPalSdk(){
+    if(window.paypal && paypal.Buttons) return;
+
+    const response = await fetch('/.netlify/functions/paypal-config');
+    const config = await response.json().catch(() => ({}));
+    if(!response.ok || !config.clientId) throw new Error(config.error || 'Missing PayPal configuration.');
+
+    await new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      const params = new URLSearchParams({
+        'client-id': config.clientId,
+        currency: 'USD',
+        intent: 'capture',
+        components: 'buttons'
+      });
+      script.src = 'https://www.paypal.com/sdk/js?' + params.toString();
+      script.async = true;
+      script.onload = resolve;
+      script.onerror = () => reject(new Error('PayPal SDK failed to load.'));
+      document.head.appendChild(script);
+    });
+  }
+
   document.getElementById('d-amts').addEventListener('click', e => {
     const btn = e.target.closest('.dam'); if(!btn) return;
     document.querySelectorAll('.dam').forEach(b => b.classList.remove('active'));
@@ -1609,22 +1727,93 @@ function toggleManifesto(btn){
     if(btn.dataset.amt === 'custom'){
       customWrap.style.display = '';
       document.getElementById('d-amt').textContent = '$—';
-      document.getElementById('d-cta').textContent = 'Donate';
       document.getElementById('d-impact').textContent = '';
+      selectedDonationAmount = null;
+      setDonateStatus('');
       document.getElementById('d-custom-input').focus();
     } else {
       customWrap.style.display = 'none';
+      setDonateStatus('');
       setAmount(Number(btn.dataset.amt), btn.dataset.label);
     }
   });
 
   document.getElementById('d-custom-input').addEventListener('input', e => {
-    const v = parseInt(e.target.value, 10);
-    if(v > 0){
-      const label = '$' + v.toLocaleString();
+    const v = normalizeDonationAmount(e.target.value);
+    if(v){
+      const label = formatAmount(v);
+      selectedDonationAmount = v;
       document.getElementById('d-amt').textContent = label;
-      document.getElementById('d-cta').textContent = 'Donate ' + label;
+      setDonateStatus('');
+    } else {
+      selectedDonationAmount = null;
+      document.getElementById('d-amt').textContent = '$—';
     }
+  });
+
+  function renderPayPalButton(){
+    const container = document.getElementById('paypal-button-container');
+    if(!container) return;
+
+    if(!window.paypal || !paypal.Buttons){
+      setDonateStatus('PayPal checkout could not load. Please refresh or schedule a call.', true);
+      return;
+    }
+
+    paypal.Buttons({
+      style: {
+        layout: 'horizontal',
+        color: 'gold',
+        shape: 'pill',
+        label: 'donate',
+        tagline: false,
+        height: 48
+      },
+      onClick(data, actions){
+        if(!selectedDonationAmount){
+          setDonateStatus('Enter a donation amount of at least $1.', true);
+          return actions.reject();
+        }
+        setDonateStatus('');
+        return actions.resolve();
+      },
+      async createOrder(){
+        const response = await fetch('/.netlify/functions/paypal-create-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount: selectedDonationAmount })
+        });
+        const order = await response.json().catch(() => ({}));
+        if(!response.ok || !order.id) throw new Error(order.error || 'Could not start PayPal checkout.');
+        return order.id;
+      },
+      async onApprove(data){
+        setDonateStatus('Finalizing your donation...');
+        const response = await fetch('/.netlify/functions/paypal-capture-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ orderID: data.orderID })
+        });
+        const capture = await response.json().catch(() => ({}));
+        if(!response.ok) throw new Error(capture.error || 'Could not complete PayPal checkout.');
+        setDonateStatus('Thank you. Your donation was received.');
+      },
+      onCancel(){
+        setDonateStatus('Checkout canceled. Your donation was not processed.');
+      },
+      onError(err){
+        console.error('PayPal checkout error:', err);
+        setDonateStatus('PayPal could not process that donation. Please try again or schedule a call.', true);
+      }
+    }).render('#paypal-button-container').catch(err => {
+      console.error('PayPal render error:', err);
+      setDonateStatus('PayPal checkout could not load. Please refresh or schedule a call.', true);
+    });
+  }
+
+  loadPayPalSdk().then(renderPayPalButton).catch(err => {
+    console.error('PayPal setup error:', err);
+    setDonateStatus('PayPal checkout could not load. Please refresh or schedule a call.', true);
   });
 })();
 
@@ -1753,11 +1942,26 @@ var CITY_COORDS = {
 
   var SCENARIOS = [
     { label:'CAT 4 TORNADO · JOPLIN CORRIDOR',
-      impact:{x:260,y:350}, tornadoStart:{x:55,y:490}, tornadoEnd:{x:255,y:338} },
+      impact:{x:260,y:350}, tornadoStart:{x:55,y:490}, tornadoEnd:{x:255,y:338},
+      comms:[
+        {delay:900,  msg:'→ Joplin: Bravo eyes on zone, ETA 9 min'},
+        {delay:1600, msg:'→ Springfield: Alpha loaded, rolling west'},
+        {delay:2400, msg:'→ KC: Delta northbound on 71, ETA 40 min'}
+      ]},
     { label:'FLASH FLOOD · LAKE OF THE OZARKS',
-      impact:{x:430,y:295}, tornadoStart:{x:395,y:490}, tornadoEnd:{x:428,y:283} },
+      impact:{x:430,y:295}, tornadoStart:{x:395,y:490}, tornadoEnd:{x:428,y:283},
+      comms:[
+        {delay:800,  msg:'→ Springfield: Alpha eastbound on 44'},
+        {delay:1500, msg:'→ STL: Echo westbound, boats on trailer'},
+        {delay:2200, msg:'→ Branson: Charlie enroute with inflatables'}
+      ]},
     { label:'F3 TORNADO · NORTHEAST OKLAHOMA',
-      impact:{x:110,y:440}, tornadoStart:{x:45,y:480}, tornadoEnd:{x:108,y:430} }
+      impact:{x:110,y:440}, tornadoStart:{x:45,y:480}, tornadoEnd:{x:108,y:430},
+      comms:[
+        {delay:500,  msg:'→ Tulsa: Foxtrot staging at impact zone'},
+        {delay:1400, msg:'→ Joplin: Bravo southbound on 44'},
+        {delay:2100, msg:'→ Bentonville: Charlie westbound on 412'}
+      ]}
   ];
 
   var tornado   = document.getElementById('anim-tornado');
@@ -1781,6 +1985,7 @@ var CITY_COORDS = {
   });
 
   var timers=[], rafIds=[], running=false, scIdx=0;
+  var opsLog = document.getElementById('ops-log');
 
   function rAF(fn){ var id=requestAnimationFrame(fn); rafIds.push(id); return id; }
   function show(el){ if(!el)return; el.style.display=''; requestAnimationFrame(function(){ el.style.opacity='1'; }); }
@@ -1788,6 +1993,17 @@ var CITY_COORDS = {
   function hideNow(el){ if(!el)return; el.style.display='none'; el.style.opacity='0'; }
   function later(fn,ms){ var t=setTimeout(fn,ms); timers.push(t); return t; }
   function dist(ax,ay,bx,by){ return Math.sqrt((bx-ax)*(bx-ax)+(by-ay)*(by-ay)); }
+
+  function logOps(msg, cls){
+    var el=document.createElement('div');
+    el.className='ops-entry'+(cls?' '+cls:'');
+    el.textContent=msg;
+    opsLog.appendChild(el);
+    opsLog.scrollTop=opsLog.scrollHeight;
+  }
+  function clearOps(){
+    opsLog.innerHTML='';
+  }
 
   function setStatus(txt, color){
     statusText.textContent=txt;
@@ -1893,6 +2109,8 @@ var CITY_COORDS = {
     var maxTravel=arrivals[arrivals.length-1].travelDur;
 
     // Phase 1: tornado moves in
+    clearOps();
+    logOps('⚠  '+sc.label, 'ops-alert');
     setStatus(sc.label, '#CC3333');
     moveTornado(sc, function(){
 
@@ -1903,6 +2121,7 @@ var CITY_COORDS = {
       pulseRing(ir1, 68, 1000, 0);
       pulseRing(ir2, 92, 1300, 200);
       pulseRing(ir3,124, 1600, 400);
+      logOps('⚡  IMPACT CONFIRMED', 'ops-alert');
       setStatus('IMPACT · ALL BEEHIVES DISPATCHING NOW', '#CC3333');
 
       // Phase 3: all hubs dispatch simultaneously (t+600ms)
@@ -1916,16 +2135,26 @@ var CITY_COORDS = {
           drawLine(els.resp, impact, lDur, 0);
           moveTeam(els.team, c, impact, tDur, 0);
         });
+        logOps('→  ALL BEEHIVES DISPATCHING', 'ops-dispatch');
+        logOps('    SF · Joplin · Branson · KC', 'ops-dispatch');
+        logOps('    STL · Bentonville · Tulsa', 'ops-dispatch');
+        // Comms chatter
+        sc.comms.forEach(function(c){
+          later(function(){ logOps('    '+c.msg); }, c.delay);
+        });
         setStatus('ALL HUBS DISPATCHED · CLOSEST ARRIVES FIRST', '#D4880F');
       }, 600);
 
       // Phase 4: first arrival
       later(function(){
+        logOps('✓  '+arrivals[0].city.label.toUpperCase()+' ON SCENE', 'ops-arrive');
         setStatus(arrivals[0].city.label.toUpperCase()+' ON SCENE · FIRST RESPONSE', '#4CAF50');
       }, 600+arrivals[0].travelDur);
 
       // Phase 5: all converging
       later(function(){
+        logOps('✓  ALL UNITS CONVERGING', 'ops-arrive');
+        logOps('    more beehives = faster coverage', 'ops-arrive');
         setStatus('ALL UNITS CONVERGING · MORE BEEHIVES = FASTER COVERAGE', '#4CAF50');
       }, 600+maxTravel+300);
 
