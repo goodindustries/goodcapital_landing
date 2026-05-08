@@ -22,6 +22,9 @@ function getCompletedCapture(capture) {
 function normalizeDonor(capture) {
   const payer = capture.payer || {};
   const name = payer.name || {};
+  const unit = Array.isArray(capture.purchase_units) ? capture.purchase_units[0] || {} : {};
+  const shipping = unit.shipping || {};
+  const address = shipping.address || {};
   const payment = getCompletedCapture(capture) || {};
   const amount = payment.amount || {};
   const fullName = [name.given_name, name.surname].filter(Boolean).join(' ');
@@ -37,6 +40,15 @@ function normalizeDonor(capture) {
     email: payer.email_address || null,
     amount: amount.value || null,
     currency: amount.currency_code || null,
+    shippingName: shipping.name && shipping.name.full_name ? shipping.name.full_name : null,
+    mailingAddress: address.address_line_1 ? {
+      line1: address.address_line_1 || null,
+      line2: address.address_line_2 || null,
+      city: address.admin_area_2 || null,
+      state: address.admin_area_1 || null,
+      postalCode: address.postal_code || null,
+      countryCode: address.country_code || null,
+    } : null,
     capturedAt: payment.create_time || new Date().toISOString(),
   };
 }
@@ -79,6 +91,7 @@ exports.handler = async (event) => {
       amount: donor.amount,
       currency: donor.currency,
       email: donor.email,
+      mailingAddressPresent: Boolean(donor.mailingAddress),
     });
 
     return json(200, {

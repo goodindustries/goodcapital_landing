@@ -37,7 +37,7 @@ exports.handler = async (event) => {
         ],
         application_context: {
           brand_name: 'TGP Landing',
-          shipping_preference: 'NO_SHIPPING',
+          shipping_preference: 'GET_FROM_FILE',
           user_action: 'PAY_NOW',
         },
       }),
