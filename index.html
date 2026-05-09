@@ -448,8 +448,12 @@ nav{
 }
 .cities span{color:var(--rule);}
 .cities-sub{font-size:var(--base);color:var(--muted);line-height:1.7;margin-top:12px;}
-.map-svg-wrap{padding:0;position:relative;}
-.map-svg-wrap svg{display:block;border-radius:0;}
+.map-svg-wrap{
+  padding:0;position:relative;display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(280px,300px);
+  align-items:stretch;overflow:hidden;
+}
+.map-svg-wrap svg{display:block;width:100%;border-radius:0;}
 
 /* HOW */
 .how{
@@ -497,6 +501,12 @@ nav{
 
 /* DONATE */
 .donate{padding:var(--sp4) var(--sp3);background:var(--navy);text-align:center;}
+.donate-title{
+  font-family:var(--font-hd);font-size:clamp(22px,2.6vw,40px);
+  font-weight:700;line-height:1.05;letter-spacing:0.08em;
+  color:var(--amber);text-transform:uppercase;
+  margin:0 auto var(--sp3);
+}
 .donate-hero{margin-bottom:var(--sp3);}
 .donate-top{
   font-size:clamp(40px,6vw,80px);font-weight:700;font-family:var(--font-hd);
@@ -518,13 +528,13 @@ nav{
 .donate-effect.enter{transform:translateY(110%);opacity:0;}
 .donate-amounts{
   display:inline-flex;gap:2px;justify-content:center;flex-wrap:wrap;
-  max-width:min(100%,760px);padding:5px;
+  max-width:min(100%,720px);padding:5px;
   border:1px solid rgba(255,255,255,0.12);
   border-radius:999px;background:rgba(255,255,255,0.035);
   margin-bottom:var(--sp2);
 }
 .dam{
-  min-width:106px;padding:12px 20px;border-radius:100px;
+  min-width:104px;padding:12px 20px;border-radius:100px;
   border:0;
   background:transparent;color:rgba(255,255,255,0.7);
   font-family:var(--font-hd);font-size:clamp(15px,1.4vw,20px);font-weight:700;
@@ -549,7 +559,7 @@ nav{
 }
 .donate-mode{
   display:inline-flex;gap:2px;padding:4px;
-  margin:0 auto var(--sp2);
+  margin:0 auto 26px;
   border:1px solid rgba(255,255,255,0.12);
   border-radius:999px;background:rgba(255,255,255,0.035);
 }
@@ -562,10 +572,6 @@ nav{
 }
 .donate-mode-btn:hover{color:#fff;}
 .donate-mode-btn.active{background:var(--amber);color:#fff;}
-.donate-mode-note{
-  max-width:640px;margin:0 auto var(--sp2);
-  font-size:12px;line-height:1.5;color:rgba(255,255,255,0.42);
-}
 .donate-meta{font-size:var(--sm);color:rgba(255,255,255,0.4);letter-spacing:0.06em;margin-top:var(--sp2);}
 .btn-amber{
   background:var(--amber);color:#fff;
@@ -586,16 +592,16 @@ nav{
 .btn-ghost-light:hover{border-color:rgba(237,232,196,0.7);}
 .btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
 .donate-actions{
-  display:grid;grid-template-columns:minmax(320px,520px) minmax(260px,360px);
+  display:grid;grid-template-columns:minmax(280px,380px) minmax(260px,360px);
   gap:18px;align-items:start;justify-content:center;
-  max-width:920px;margin:0 auto var(--sp1);
+  max-width:780px;margin:0 auto var(--sp1);
 }
 .donate-actions .btn-ghost-light{
   height:48px;display:flex;align-items:center;justify-content:center;
   padding:0 28px;white-space:nowrap;align-self:start;
   font-size:clamp(13px,1vw,15px);
 }
-.paypal-donate-wrap{width:100%;min-width:0;}
+.paypal-donate-wrap{width:100%;max-width:380px;min-width:0;margin:0 auto;}
 #paypal-button-container{min-height:48px;}
 #paypal-button-container:empty{min-height:0;}
 .donate-status{
@@ -785,6 +791,16 @@ nav{
 .op61-pillar-desc{
   font-size:clamp(14px,1.2vw,18px);color:rgba(255,255,255,0.6);line-height:1.7;
 }
+.op61-cta{
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  margin-top:var(--sp3);text-align:center;
+}
+.op61-cta .btn-amber{min-width:min(100%,360px);}
+.op61-gift-link{
+  color:rgba(255,255,255,0.45);font-size:14px;
+  text-decoration:underline;text-underline-offset:3px;
+}
+.op61-gift-link:hover{color:rgba(255,255,255,0.72);}
 @media(max-width:1024px){
   .op61-grid{grid-template-columns:1fr;}
   .op61-photo{max-width:640px;}
@@ -843,8 +859,8 @@ nav{
 
 /* OPS TERMINAL */
 .ops-terminal{
-  position:absolute;top:0;right:0;bottom:0;
-  width:300px;
+  position:static;
+  width:auto;
   background:rgba(13,17,36,0.92);
   border-left:1px solid rgba(148,144,232,0.22);
   display:flex;flex-direction:column;
@@ -905,6 +921,7 @@ footer{
 @media(max-width:768px){
   .creates{grid-template-columns:1fr!important;gap:var(--sp2);padding:var(--sp3) 20px;}
   .map-header{grid-template-columns:1fr!important;align-items:start;gap:var(--sp2);padding:var(--sp2) 20px;}
+  .map-svg-wrap{display:block!important;}
   .map-svg-wrap>svg{width:100%!important;}
   .ops-terminal{position:static!important;width:100%!important;max-height:220px;border-left:none!important;border-top:1px solid rgba(148,144,232,0.22);}
   .ops-log{min-height:unset!important;}
@@ -980,7 +997,7 @@ footer{
 <div class="about-tgp" id="about">
   <div class="section-eye">Our Why</div>
   <p class="why-p">Mission: To relieve suffering, in all forms, in all places.</p>
-  <div class="about-mission-h">Because the worth of every human soul is great.</div>
+  <div class="about-mission-h">Because the worth of every human soul is <i>great</i>.</div>
   <div class="about-pillars">
     <div class="about-pillar"><span>I</span> Physical</div>
     <div class="about-pillar"><span>II</span> Intellectual</div>
@@ -1033,9 +1050,6 @@ we dive, we drown, we pirate on,
 — we ransom for the Pearl.</div>
         <div class="poem-author">— Reif Tauati</div>
       </div>
-    </div>
-    <div style="text-align:center;padding:var(--sp2) 0 var(--sp3);">
-      <button class="btn-amber" onclick="document.getElementById('give').scrollIntoView({behavior:'smooth'})">Thank you for your support!</button>
     </div>
   </div>
 </div>
@@ -1186,10 +1200,9 @@ we dive, we drown, we pirate on,
           <div class="op61-pillar-desc">When a disaster is declared, Operation 61 gets the call. Local team members deploy to where they're needed — your community, or another one that needs you. Help moving where it matters most.</div>
         </div>
       </div>
-      <div style="text-align:center;margin-top:var(--sp3);">
+      <div class="op61-cta">
         <button class="btn-amber" onclick="document.getElementById('give').scrollIntoView({behavior:'smooth'})">Fund the training</button>
-        <span style="display:inline-block;margin:0 16px;color:rgba(255,255,255,0.25);font-size:13px;">or</span>
-        <a href="#give" onclick="event.preventDefault();document.getElementById('give').scrollIntoView({behavior:'smooth'})" style="color:rgba(255,255,255,0.45);font-size:14px;text-decoration:underline;text-underline-offset:3px;">make a gift today</a>
+        <a class="op61-gift-link" href="#give" onclick="event.preventDefault();document.getElementById('give').scrollIntoView({behavior:'smooth'})">make a gift today</a>
       </div>
     </div>
   </div>
@@ -1551,7 +1564,7 @@ we dive, we drown, we pirate on,
 
 <!-- DONATE -->
 <div class="donate" id="give">
-  <div class="section-eye" style="margin-bottom:var(--sp2);">Thank you for your support!</div>
+  <h2 class="donate-title">Thank you for your support!</h2>
 
   <div class="donate-hero">
     <div class="donate-top">
@@ -1566,14 +1579,8 @@ we dive, we drown, we pirate on,
     <button class="donate-mode-btn active" type="button" data-mode="monthly" aria-pressed="true">Monthly</button>
     <button class="donate-mode-btn" type="button" data-mode="one-time" aria-pressed="false">One-time</button>
   </div>
-  <p class="donate-mode-note" id="d-mode-note">Monthly gifts renew until you cancel them in PayPal.</p>
 
   <div class="donate-amounts" id="d-amts">
-    <button class="dam" data-amt="25" data-label="$25">$25</button>
-    <button class="dam" data-amt="100" data-label="$100">$100</button>
-    <button class="dam" data-amt="250" data-label="$250">$250</button>
-    <button class="dam" data-amt="1000" data-label="$1,000">$1,000</button>
-    <button class="dam" data-amt="custom" data-label="">Custom</button>
   </div>
   <div class="donate-custom-wrap" id="d-custom" style="display:none;">
     <input type="number" id="d-custom-input" placeholder="Enter amount" min="1">
@@ -1759,6 +1766,9 @@ function toggleManifesto(btn){
 
 // DONATE INTERACTIVE
 (function(){
+  const DONATION_SCROLL_KEY = 'tgpDonationScrollY';
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
   const EFFECTS = [
     'saves lives.',
     'feeds families.',
@@ -1771,10 +1781,20 @@ function toggleManifesto(btn){
     'makes a real difference.',
   ];
   const IMPACTS = {
+    1:    'Helps keep the mission moving every month.',
+    5:    'Adds steady monthly support for everyday readiness work.',
+    10:   'Helps stock practical emergency supplies.',
+    20:   'Supports emergency preparedness supplies.',
     25:   'Buys a complete 72-hour emergency kit for one family.',
+    50:   'Helps prepare neighbors with practical emergency gear.',
     100:  'Trains a neighbor in first aid and emergency preparedness.',
+    500:  'Stocks emergency supplies for a larger community response.',
     250:  'Stocks emergency supplies for an entire apartment floor.',
     1000: 'Funds one full week of Beehive operations — open every day, ready for anything.',
+  };
+  const DONATION_AMOUNTS = {
+    monthly: [1, 5, 10, 25, 100],
+    'one-time': [20, 50, 100, 500]
   };
 
   let selectedDonationAmount = null;
@@ -1850,12 +1870,15 @@ function toggleManifesto(btn){
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
-    const note = document.getElementById('d-mode-note');
-    if(note){
-      note.textContent = mode === 'monthly'
-        ? 'Monthly gifts renew until you cancel them in PayPal.'
-        : 'One-time gifts are processed immediately through PayPal.';
-    }
+  }
+
+  function renderDonationAmounts(mode){
+    const amountsEl = document.getElementById('d-amts');
+    if(!amountsEl) return;
+    amountsEl.innerHTML = DONATION_AMOUNTS[mode].map(amount => {
+      const label = formatAmount(amount);
+      return `<button class="dam" type="button" data-amt="${amount}" data-label="${label}">${label}</button>`;
+    }).join('');
   }
 
   function intentForDonationMode(mode){
@@ -1869,7 +1892,8 @@ function toggleManifesto(btn){
   function reloadForDonationMode(mode){
     const url = new URL(window.location.href);
     url.searchParams.set('donation', mode);
-    url.hash = 'give';
+    url.hash = '';
+    sessionStorage.setItem(DONATION_SCROLL_KEY, String(window.scrollY));
     setDonateStatus('Switching PayPal checkout mode...');
     window.location.assign(url.toString());
   }
@@ -1961,6 +1985,8 @@ function toggleManifesto(btn){
       }
       currentMonthlyPlanId = null;
       setDonateMode(btn.dataset.mode);
+      renderDonationAmounts(donationMode);
+      selectDefaultDonationAmount();
       syncPayPalCheckout();
     });
   });
@@ -2113,14 +2139,28 @@ function toggleManifesto(btn){
     }
   }
 
-  setDonateMode(initialDonationMode);
-  // Pre-select $100 so the PayPal button renders on load
-  const defaultBtn = document.querySelector('.dam[data-amt="100"]');
-  if(defaultBtn){
-    defaultBtn.classList.add('active');
-    setAmount(100, '$100');
+  function selectDefaultDonationAmount(){
+    const defaultAmount = DONATION_AMOUNTS[donationMode].includes(100)
+      ? 100
+      : DONATION_AMOUNTS[donationMode][0];
+    document.querySelectorAll('.dam').forEach(btn => {
+      btn.classList.toggle('active', Number(btn.dataset.amt) === defaultAmount);
+    });
+    document.getElementById('d-custom').style.display = 'none';
+    document.getElementById('d-custom-input').value = '';
+    currentMonthlyPlanId = null;
+    setAmount(defaultAmount, formatAmount(defaultAmount));
   }
+  setDonateMode(initialDonationMode);
+  renderDonationAmounts(donationMode);
+  selectDefaultDonationAmount();
   syncPayPalCheckout();
+
+  const savedDonationScrollY = Number(sessionStorage.getItem(DONATION_SCROLL_KEY));
+  if(Number.isFinite(savedDonationScrollY)){
+    sessionStorage.removeItem(DONATION_SCROLL_KEY);
+    requestAnimationFrame(() => window.scrollTo(0, savedDonationScrollY));
+  }
 })();
 
 // City SVG coordinates
