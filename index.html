@@ -620,6 +620,79 @@ nav{
 .donate-actions:has(#paypal-button-container:empty) .paypal-donate-wrap{
   grid-row:2;
 }
+.donate-success{
+  display:none;position:relative;z-index:30;transform:translateZ(0);
+  max-width:820px;margin:var(--sp2) auto var(--sp2);
+  padding:clamp(28px,4vw,52px);border-radius:18px;
+  border:1px solid rgba(212,136,15,0.42);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(212,136,15,0.24), transparent 42%),
+    rgba(19,24,58,0.94);
+  box-shadow:0 26px 80px rgba(0,0,0,0.26), inset 0 0 0 1px rgba(255,255,255,0.04);
+}
+.donate.success .donate-success{display:block;animation:success-rise 0.65s cubic-bezier(.22,1,.36,1) both;}
+.donate.success .donate-mode,
+.donate.success .donate-amounts,
+.donate.success .donate-custom-wrap,
+.donate.success .donate-actions,
+.donate.success .donate-consent{display:none;}
+.success-burst{
+  width:86px;height:86px;margin:0 auto 18px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--amber);color:#fff;font-size:42px;font-weight:800;
+  box-shadow:0 0 0 10px rgba(212,136,15,0.14),0 0 0 22px rgba(212,136,15,0.07);
+  animation:success-pop 0.8s cubic-bezier(.16,1.4,.32,1) both;
+}
+.success-kicker{
+  font-family:var(--font-hd);font-size:clamp(15px,1.5vw,20px);
+  color:var(--amber);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  margin-bottom:10px;
+}
+.success-title{
+  font-family:var(--font-hd);font-size:clamp(38px,6vw,82px);
+  color:#fff;line-height:0.95;font-weight:700;letter-spacing:0.01em;
+  margin-bottom:18px;
+}
+.success-detail{
+  font-size:clamp(18px,1.8vw,28px);line-height:1.35;color:rgba(255,255,255,0.78);
+  max-width:680px;margin:0 auto 24px;
+}
+.success-detail strong{color:var(--amber);font-weight:800;}
+.success-share-title{
+  font-family:var(--font-hd);font-size:clamp(20px,2vw,30px);
+  color:#fff;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  margin:28px 0 14px;
+}
+.success-share-actions{
+  display:flex;justify-content:center;gap:12px;flex-wrap:wrap;
+}
+.success-share-actions a,
+.success-share-actions button{
+  min-height:46px;padding:0 20px;border-radius:999px;
+  border:1px solid rgba(237,232,196,0.28);
+  background:rgba(255,255,255,0.045);color:var(--cream);
+  font-family:var(--font);font-size:14px;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;
+  cursor:pointer;display:inline-flex;align-items:center;justify-content:center;
+}
+.success-share-actions a:hover,
+.success-share-actions button:hover{border-color:rgba(237,232,196,0.7);background:rgba(255,255,255,0.08);}
+.success-share-actions .primary-share{background:var(--amber);border-color:var(--amber);color:#fff;}
+.success-receipt{
+  margin-top:22px;font-size:14px;color:rgba(255,255,255,0.48);line-height:1.5;
+}
+.confetti-canvas{
+  position:fixed;inset:0;z-index:20;pointer-events:none;
+}
+@keyframes success-pop{
+  0%{transform:scale(0.25) rotate(-18deg);opacity:0;}
+  62%{transform:scale(1.12) rotate(7deg);opacity:1;}
+  100%{transform:scale(1) rotate(0deg);}
+}
+@keyframes success-rise{
+  from{transform:translateY(26px);opacity:0;}
+  to{transform:translateY(0);opacity:1;}
+}
 .donate-consent{
   max-width:760px;margin:12px auto var(--sp2);
   font-size:clamp(12px,0.95vw,14px);line-height:1.6;color:rgba(255,255,255,0.44);
@@ -1607,6 +1680,7 @@ we dive, we drown, we pirate on,
     </div>
     <a href="https://calendly.com/the-good-project" target="_blank" rel="noopener" class="btn-ghost-light">Schedule a call with Reif</a>
   </div>
+  <div class="donate-success" id="donate-success" aria-live="polite"></div>
   <p class="donate-consent">Your gift is received with gratitude and put to work. PayPal may share your contact and mailing information so we can send a receipt, a personal thank-you note, small donor gifts, and occasional mission updates. Monthly gifts renew until you cancel in PayPal. Non-transactional emails are optional.</p>
   <p class="donate-meta">Nonprofit organization &middot; 501(c)(3) in process, filed with state</p>
 </div>
@@ -2024,6 +2098,155 @@ function toggleManifesto(btn){
     });
   });
 
+  function launchConfetti(){
+    const existing = document.querySelector('.confetti-canvas');
+    if(existing) existing.remove();
+
+    const canvas = document.createElement('canvas');
+    canvas.className = 'confetti-canvas';
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    const colors = ['#D4880F', '#F6C557', '#EDE8C4', '#9490E8', '#FFFFFF'];
+    const pieces = [];
+    const start = performance.now();
+    const duration = 6200;
+
+    function sizeCanvas(){
+      canvas.width = window.innerWidth * window.devicePixelRatio;
+      canvas.height = window.innerHeight * window.devicePixelRatio;
+      ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+    }
+    sizeCanvas();
+    window.addEventListener('resize', sizeCanvas, { passive: true });
+
+    const originX = window.innerWidth / 2;
+    const originY = Math.min(window.innerHeight * 0.56, 560);
+    for(let i = 0; i < 760; i++){
+      const angle = Math.random() * Math.PI * 2;
+      const power = 7 + Math.random() * 22;
+      pieces.push({
+        x: originX + (Math.random() - 0.5) * 160,
+        y: originY + (Math.random() - 0.5) * 90,
+        vx: Math.cos(angle) * power + (Math.random() - 0.5) * 6,
+        vy: Math.sin(angle) * power - 12 - Math.random() * 18,
+        w: 5 + Math.random() * 10,
+        h: 9 + Math.random() * 18,
+        r: Math.random() * Math.PI,
+        vr: (Math.random() - 0.5) * 0.36,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        drag: 0.982 + Math.random() * 0.012,
+        gravity: 0.22 + Math.random() * 0.18,
+        alpha: 1
+      });
+    }
+
+    function draw(now){
+      const elapsed = now - start;
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      pieces.forEach(piece => {
+        piece.vx *= piece.drag;
+        piece.vy = piece.vy * piece.drag + piece.gravity;
+        piece.x += piece.vx;
+        piece.y += piece.vy;
+        piece.r += piece.vr;
+        if(elapsed > duration - 1200) piece.alpha = Math.max(0, (duration - elapsed) / 1200);
+
+        ctx.save();
+        ctx.globalAlpha = piece.alpha;
+        ctx.translate(piece.x, piece.y);
+        ctx.rotate(piece.r);
+        ctx.fillStyle = piece.color;
+        ctx.fillRect(-piece.w / 2, -piece.h / 2, piece.w, piece.h);
+        ctx.restore();
+
+        if(piece.y > window.innerHeight + 30 && elapsed < duration - 1600){
+          piece.y = -30 - Math.random() * 180;
+          piece.x = Math.random() * window.innerWidth;
+          piece.vy = 2 + Math.random() * 7;
+          piece.vx = (Math.random() - 0.5) * 4;
+        }
+      });
+
+      if(elapsed < duration){
+        requestAnimationFrame(draw);
+      } else {
+        window.removeEventListener('resize', sizeCanvas);
+        canvas.remove();
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  function shareDonation(){
+    const shareData = {
+      title: 'The Good Project',
+      text: 'I just supported The Good Project. Help build the next Beehive.',
+      url: 'https://thegoodproject.net/#give'
+    };
+    if(navigator.share){
+      navigator.share(shareData).catch(() => {});
+      return;
+    }
+    navigator.clipboard?.writeText(shareData.url);
+    const receipt = document.getElementById('success-receipt');
+    if(receipt) receipt.textContent = 'Donation link copied. Send it to someone who should be part of this.';
+  }
+
+  function escapeHtml(value){
+    return String(value || '').replace(/[&<>"']/g, ch => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    }[ch]));
+  }
+
+  function showDonationSuccess(details){
+    const donateEl = document.getElementById('give');
+    const successEl = document.getElementById('donate-success');
+    if(!donateEl || !successEl) return;
+
+    const donor = details.donorName ? `, ${escapeHtml(details.donorName)}` : '';
+    const amount = formatAmount(details.amount);
+    const cadence = details.mode === 'monthly' ? 'monthly gift' : 'gift';
+    const impact = details.mode === 'monthly'
+      ? 'Every month, you are helping keep Operation 61 training active before the next emergency.'
+      : 'Your gift goes to work immediately: supplies, training, and the next Beehive.';
+    const shareText = encodeURIComponent('I just supported The Good Project. Help build the next Beehive.');
+    const shareUrl = encodeURIComponent('https://thegoodproject.net/#give');
+
+    donateEl.classList.add('success');
+    successEl.innerHTML = `
+      <div class="success-burst" aria-hidden="true">✓</div>
+      <div class="success-kicker">You are in</div>
+      <div class="success-title">Thank you${donor}.</div>
+      <p class="success-detail">Your <strong>${amount}</strong> ${cadence} is active. ${impact}</p>
+      <div class="success-share-title">Bring someone with you</div>
+      <div class="success-share-actions">
+        <button class="primary-share" type="button" id="share-donation-btn">Share with others</button>
+        <a href="sms:?&body=${shareText}%20${shareUrl}">Text a friend</a>
+        <a href="mailto:?subject=Help%20build%20the%20next%20Beehive&body=${shareText}%0A%0A${shareUrl}">Email</a>
+        <button type="button" id="copy-donation-link">Copy link</button>
+      </div>
+      <div class="success-receipt" id="success-receipt">PayPal will email your receipt. We will follow up personally.</div>
+    `;
+
+    document.getElementById('share-donation-btn')?.addEventListener('click', shareDonation);
+    document.getElementById('copy-donation-link')?.addEventListener('click', () => {
+      navigator.clipboard?.writeText('https://thegoodproject.net/#give');
+      const receipt = document.getElementById('success-receipt');
+      if(receipt) receipt.textContent = 'Donation link copied. Send it to someone who should be part of this.';
+    });
+
+    setDonateStatus('');
+    document.getElementById('d-effect').textContent = details.mode === 'monthly'
+      ? 'is training neighbors.'
+      : 'is already at work.';
+    launchConfetti();
+    successEl.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  }
+
   async function ensureMonthlyPlan(amount){
     const response = await fetch('/.netlify/functions/paypal-create-subscription-plan', {
       method: 'POST',
@@ -2088,7 +2311,11 @@ function toggleManifesto(btn){
         const capture = await response.json().catch(() => ({}));
         if(!response.ok) throw new Error(capture.error || 'Could not complete PayPal subscription.');
         const donorName = capture.donor && capture.donor.givenName;
-        setDonateStatus(donorName ? `Thank you, ${donorName}. Your monthly gift is active.` : 'Thank you. Your monthly gift is active.');
+        showDonationSuccess({
+          donorName,
+          amount: selectedDonationAmount,
+          mode: 'monthly'
+        });
       },
       onCancel(){
         setDonateStatus('Subscription canceled. Your monthly gift was not activated.');
@@ -2135,7 +2362,11 @@ function toggleManifesto(btn){
         const capture = await response.json().catch(() => ({}));
         if(!response.ok) throw new Error(capture.error || 'Could not complete PayPal checkout.');
         const donorName = capture.donor && capture.donor.givenName;
-        setDonateStatus(donorName ? `Thank you, ${donorName}. Your donation was received.` : 'Thank you. Your donation was received.');
+        showDonationSuccess({
+          donorName,
+          amount: selectedDonationAmount,
+          mode: 'one-time'
+        });
       },
       onCancel(){
         setDonateStatus('Checkout canceled. Your donation was not processed.');
