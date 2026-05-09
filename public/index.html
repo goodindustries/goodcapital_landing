@@ -2231,7 +2231,7 @@ function toggleManifesto(btn){
     const amount = formatAmount(details.amount);
     const cadence = details.mode === 'monthly' ? 'monthly gift' : 'gift';
     const impact = details.mode === 'monthly'
-      ? 'Every month, you are helping keep Operation 61 training active before the next emergency.'
+      ? 'Every month, you are helping keep The Good Project ready before the next emergency.'
       : 'Your gift goes to work immediately: supplies, training, and the next Beehive.';
     const shareData = buildDonationShareData(details);
     donationShareData = shareData;
@@ -2241,7 +2241,7 @@ function toggleManifesto(btn){
     donateEl.classList.add('success');
     successEl.innerHTML = `
       <div class="success-burst" aria-hidden="true">✓</div>
-      <div class="success-kicker">Everyone from The Good Project &amp; The Beehive</div>
+      <div class="success-kicker">Everyone from The Good Project</div>
       <div class="success-title">Thank you${donor}.</div>
       <p class="success-detail">Your <strong>${amount}</strong> ${cadence} is active. ${impact}</p>
       <div class="success-share-title">Bring someone with you</div>
