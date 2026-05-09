@@ -626,12 +626,15 @@ nav{
   padding:clamp(28px,4vw,52px);border-radius:18px;
   border:1px solid rgba(212,136,15,0.42);
   background:
-    radial-gradient(circle at 50% 0%, rgba(212,136,15,0.24), transparent 42%),
-    rgba(19,24,58,0.94);
+    radial-gradient(circle at 50% 0%, rgba(212,136,15,0.2), transparent 42%),
+    var(--navy);
   box-shadow:0 26px 80px rgba(0,0,0,0.26), inset 0 0 0 1px rgba(255,255,255,0.04);
 }
 .donate.success .donate-success{display:block;animation:success-rise 0.65s cubic-bezier(.22,1,.36,1) both;}
 .donate.success .donate-mode,
+.donate.success .donate-title,
+.donate.success .donate-hero,
+.donate.success .donate-impact,
 .donate.success .donate-amounts,
 .donate.success .donate-custom-wrap,
 .donate.success .donate-actions,
@@ -2177,19 +2180,36 @@ function toggleManifesto(btn){
     requestAnimationFrame(draw);
   }
 
-  function shareDonation(){
-    const shareData = {
-      title: 'The Good Project',
-      text: 'I just supported The Good Project. Help build the next Beehive.',
-      url: 'https://thegoodproject.net/#give'
+  const donationShareUrl = 'https://thegoodproject.net/#give';
+  let donationShareData = {
+    title: 'Join me in supporting The Good Project',
+    text: 'I just supported The Good Project. Help build the next Beehive.',
+    url: donationShareUrl
+  };
+
+  function buildDonationShareData(details){
+    const amount = formatAmount(details.amount);
+    const cadence = details.mode === 'monthly' ? ' monthly' : '';
+    return {
+      title: 'Join me in supporting The Good Project',
+      text: `I just donated ${amount}${cadence} to The Good Project. Join me in helping build the next Beehive.`,
+      url: donationShareUrl
     };
+  }
+
+  function copyDonationShareText(){
+    navigator.clipboard?.writeText(`${donationShareData.text}\n\n${donationShareData.url}`);
+    const receipt = document.getElementById('success-receipt');
+    if(receipt) receipt.textContent = 'Share message copied. Send it to someone who should be part of this.';
+  }
+
+  function shareDonation(){
+    const shareData = donationShareData;
     if(navigator.share){
       navigator.share(shareData).catch(() => {});
       return;
     }
-    navigator.clipboard?.writeText(shareData.url);
-    const receipt = document.getElementById('success-receipt');
-    if(receipt) receipt.textContent = 'Donation link copied. Send it to someone who should be part of this.';
+    copyDonationShareText();
   }
 
   function escapeHtml(value){
@@ -2213,20 +2233,22 @@ function toggleManifesto(btn){
     const impact = details.mode === 'monthly'
       ? 'Every month, you are helping keep Operation 61 training active before the next emergency.'
       : 'Your gift goes to work immediately: supplies, training, and the next Beehive.';
-    const shareText = encodeURIComponent('I just supported The Good Project. Help build the next Beehive.');
-    const shareUrl = encodeURIComponent('https://thegoodproject.net/#give');
+    const shareData = buildDonationShareData(details);
+    donationShareData = shareData;
+    const shareBody = encodeURIComponent(`${shareData.text}\n\n${shareData.url}`);
+    const shareSubject = encodeURIComponent(shareData.title);
 
     donateEl.classList.add('success');
     successEl.innerHTML = `
       <div class="success-burst" aria-hidden="true">✓</div>
-      <div class="success-kicker">You are in</div>
+      <div class="success-kicker">Everyone from The Good Project &amp; The Beehive</div>
       <div class="success-title">Thank you${donor}.</div>
       <p class="success-detail">Your <strong>${amount}</strong> ${cadence} is active. ${impact}</p>
       <div class="success-share-title">Bring someone with you</div>
       <div class="success-share-actions">
         <button class="primary-share" type="button" id="share-donation-btn">Share with others</button>
-        <a href="sms:?&body=${shareText}%20${shareUrl}">Text a friend</a>
-        <a href="mailto:?subject=Help%20build%20the%20next%20Beehive&body=${shareText}%0A%0A${shareUrl}">Email</a>
+        <a href="sms:?&body=${shareBody}">Text a friend</a>
+        <a href="mailto:?subject=${shareSubject}&body=${shareBody}">Email</a>
         <button type="button" id="copy-donation-link">Copy link</button>
       </div>
       <div class="success-receipt" id="success-receipt">PayPal will email your receipt. We will follow up personally.</div>
@@ -2234,16 +2256,14 @@ function toggleManifesto(btn){
 
     document.getElementById('share-donation-btn')?.addEventListener('click', shareDonation);
     document.getElementById('copy-donation-link')?.addEventListener('click', () => {
-      navigator.clipboard?.writeText('https://thegoodproject.net/#give');
-      const receipt = document.getElementById('success-receipt');
-      if(receipt) receipt.textContent = 'Donation link copied. Send it to someone who should be part of this.';
+      copyDonationShareText();
     });
 
     setDonateStatus('');
     document.getElementById('d-effect').textContent = details.mode === 'monthly'
       ? 'is training neighbors.'
       : 'is already at work.';
-    launchConfetti();
+    window.setTimeout(launchConfetti, 520);
     successEl.scrollIntoView({ block: 'center', behavior: 'smooth' });
   }
 
