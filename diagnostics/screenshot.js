@@ -53,6 +53,8 @@ async function runInteractionTests(browser) {
   } catch(e){ fail('nav centering: ' + e.message); }
 
   try {
+    await page.evaluate(() => window.scrollTo({top: 0, behavior: 'instant'}));
+    await wait(300);
     const beforeY = await page.evaluate(() => window.scrollY);
     await page.evaluate(() => document.querySelector('.nav-links li:first-child').click());
     await wait(800);

@@ -527,11 +527,11 @@ nav{
 .donate-effect.exit{transform:translateY(-110%);opacity:0;}
 .donate-effect.enter{transform:translateY(110%);opacity:0;}
 .donate-amounts{
-  display:inline-flex;gap:2px;justify-content:center;flex-wrap:wrap;
+  display:flex;gap:2px;justify-content:center;flex-wrap:wrap;
   max-width:min(100%,720px);padding:5px;
   border:1px solid rgba(255,255,255,0.12);
   border-radius:999px;background:rgba(255,255,255,0.035);
-  margin-bottom:var(--sp2);
+  margin:0 auto var(--sp2);
 }
 .dam{
   min-width:104px;padding:12px 20px;border-radius:100px;
@@ -558,7 +558,7 @@ nav{
   line-height:1.5;transition:opacity 0.2s;
 }
 .donate-mode{
-  display:inline-flex;gap:2px;padding:4px;
+  display:flex;gap:2px;padding:4px;width:fit-content;
   margin:0 auto 26px;
   border:1px solid rgba(255,255,255,0.12);
   border-radius:999px;background:rgba(255,255,255,0.035);
@@ -792,10 +792,11 @@ nav{
   font-size:clamp(14px,1.2vw,18px);color:rgba(255,255,255,0.6);line-height:1.7;
 }
 .op61-cta{
+  grid-column:1 / -1;
   display:flex;flex-direction:column;align-items:center;gap:14px;
   margin-top:var(--sp3);text-align:center;
 }
-.op61-cta .btn-amber{min-width:min(100%,360px);}
+.op61-cta .btn-amber{width:min(100%,360px);}
 .op61-gift-link{
   color:rgba(255,255,255,0.45);font-size:14px;
   text-decoration:underline;text-underline-offset:3px;
@@ -1766,8 +1767,19 @@ function toggleManifesto(btn){
 
 // DONATE INTERACTIVE
 (function(){
-  const DONATION_SCROLL_KEY = 'tgpDonationScrollY';
+  const DONATION_SCROLL_KEY = 'tgpDonationScrollOffset';
   if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  const savedDonationScrollOffset = Number(sessionStorage.getItem(DONATION_SCROLL_KEY));
+  if(Number.isFinite(savedDonationScrollOffset)){
+    sessionStorage.removeItem(DONATION_SCROLL_KEY);
+    const restoreDonationScroll = () => {
+      const giveEl = document.getElementById('give');
+      if(giveEl) window.scrollTo(0, giveEl.offsetTop + savedDonationScrollOffset);
+    };
+    restoreDonationScroll();
+    requestAnimationFrame(restoreDonationScroll);
+    window.addEventListener('load', restoreDonationScroll, { once: true });
+  }
 
   const EFFECTS = [
     'saves lives.',
@@ -1893,9 +1905,11 @@ function toggleManifesto(btn){
     const url = new URL(window.location.href);
     url.searchParams.set('donation', mode);
     url.hash = '';
-    sessionStorage.setItem(DONATION_SCROLL_KEY, String(window.scrollY));
+    const giveEl = document.getElementById('give');
+    const scrollOffset = giveEl ? window.scrollY - giveEl.offsetTop : window.scrollY;
+    sessionStorage.setItem(DONATION_SCROLL_KEY, String(scrollOffset));
     setDonateStatus('Switching PayPal checkout mode...');
-    window.location.assign(url.toString());
+    window.location.replace(url.toString());
   }
 
   async function loadPayPalSdk(intent){
@@ -2155,12 +2169,6 @@ function toggleManifesto(btn){
   renderDonationAmounts(donationMode);
   selectDefaultDonationAmount();
   syncPayPalCheckout();
-
-  const savedDonationScrollY = Number(sessionStorage.getItem(DONATION_SCROLL_KEY));
-  if(Number.isFinite(savedDonationScrollY)){
-    sessionStorage.removeItem(DONATION_SCROLL_KEY);
-    requestAnimationFrame(() => window.scrollTo(0, savedDonationScrollY));
-  }
 })();
 
 // City SVG coordinates
