@@ -517,19 +517,22 @@ nav{
 .donate-effect.exit{transform:translateY(-110%);opacity:0;}
 .donate-effect.enter{transform:translateY(110%);opacity:0;}
 .donate-amounts{
-  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+  display:inline-flex;gap:2px;justify-content:center;flex-wrap:wrap;
+  max-width:min(100%,760px);padding:5px;
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:999px;background:rgba(255,255,255,0.035);
   margin-bottom:var(--sp2);
 }
 .dam{
-  padding:12px 24px;border-radius:100px;
-  border:1.5px solid rgba(255,255,255,0.18);
+  min-width:106px;padding:12px 20px;border-radius:100px;
+  border:0;
   background:transparent;color:rgba(255,255,255,0.7);
   font-family:var(--font-hd);font-size:clamp(15px,1.4vw,20px);font-weight:700;
   cursor:pointer;letter-spacing:0.02em;
-  transition:all 0.15s;
+  transition:background 0.15s,color 0.15s,box-shadow 0.15s;
 }
-.dam:hover{border-color:rgba(255,255,255,0.45);color:#fff;}
-.dam.active{background:var(--amber);border-color:var(--amber);color:#fff;}
+.dam:hover{background:rgba(255,255,255,0.055);color:#fff;}
+.dam.active{background:var(--amber);color:#fff;box-shadow:0 8px 18px rgba(215,145,43,0.18);}
 .donate-custom-wrap{margin:-8px 0 var(--sp1);}
 .donate-custom-wrap input{
   background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.2);
@@ -545,14 +548,14 @@ nav{
   line-height:1.5;transition:opacity 0.2s;
 }
 .donate-mode{
-  display:inline-flex;gap:8px;padding:6px;
+  display:inline-flex;gap:2px;padding:4px;
   margin:0 auto var(--sp2);
   border:1px solid rgba(255,255,255,0.12);
-  border-radius:999px;background:rgba(255,255,255,0.03);
+  border-radius:999px;background:rgba(255,255,255,0.035);
 }
 .donate-mode-btn{
   border:0;background:transparent;color:rgba(255,255,255,0.72);
-  padding:10px 18px;border-radius:999px;
+  min-width:112px;padding:10px 18px;border-radius:999px;
   font-family:var(--font-hd);font-size:13px;font-weight:700;
   letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;
   transition:background 0.15s,color 0.15s;
@@ -578,6 +581,7 @@ nav{
   padding:16px var(--sp2);border-radius:100px;
   font-family:var(--font);font-size:var(--base);font-weight:600;
   letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;
+  text-decoration:none;
 }
 .btn-ghost-light:hover{border-color:rgba(237,232,196,0.7);}
 .btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
@@ -593,11 +597,22 @@ nav{
 }
 .paypal-donate-wrap{width:100%;min-width:0;}
 #paypal-button-container{min-height:48px;}
+#paypal-button-container:empty{min-height:0;}
 .donate-status{
-  min-height:1.5em;margin-top:8px;
+  min-height:1.5em;margin-top:10px;text-align:center;
   font-size:var(--sm);line-height:1.4;color:rgba(255,255,255,0.62);
 }
-.donate-status.error{color:#f0b0a8;}
+.donate-status.error{
+  display:inline-flex;align-items:center;justify-content:center;
+  max-width:560px;padding:10px 14px;border-radius:999px;
+  background:rgba(240,176,168,0.08);color:#f0b0a8;
+}
+.donate-actions:has(#paypal-button-container:empty){
+  grid-template-columns:minmax(280px,440px);
+}
+.donate-actions:has(#paypal-button-container:empty) .paypal-donate-wrap{
+  grid-row:2;
+}
 .donate-consent{
   max-width:760px;margin:12px auto var(--sp2);
   font-size:clamp(12px,0.95vw,14px);line-height:1.6;color:rgba(255,255,255,0.44);
@@ -903,6 +918,9 @@ footer{
   .btns{flex-direction:column;align-items:center;}
   .donate-mode{width:100%;max-width:360px;justify-content:stretch;}
   .donate-mode-btn{flex:1;padding:10px 14px;}
+  .donate-amounts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-radius:28px;width:100%;max-width:360px;}
+  .dam{min-width:0;}
+  .dam:last-child:nth-child(odd){grid-column:1 / -1;}
   .donate-actions{display:flex;max-width:360px;width:100%;gap:14px;}
   .donate-actions .btn-ghost-light{width:100%;max-width:none;}
   .btn-amber,.btn-ghost-light{width:100%;max-width:320px;text-align:center;}
@@ -1760,11 +1778,16 @@ function toggleManifesto(btn){
   };
 
   let selectedDonationAmount = null;
-  let donationMode = 'monthly';
+  const initialDonationMode = new URLSearchParams(window.location.search).get('donation') === 'one-time'
+    ? 'one-time'
+    : 'monthly';
+  let donationMode = initialDonationMode;
   let currentMonthlyPlanId = null;
   let donationRenderToken = 0;
-  // One promise per intent — loaded once, never cleared (avoids zoid double-registration)
-  const paypalSdkPromises = { capture: null, subscription: null };
+  const paypalSdkState = window.__tgpPayPalSdkState || (window.__tgpPayPalSdkState = {
+    promise: null,
+    intent: null
+  });
   let effectIdx = 0;
   let effectTimer;
   const effectEl = document.getElementById('d-effect');
@@ -1835,14 +1858,34 @@ function toggleManifesto(btn){
     }
   }
 
-  async function loadPayPalSdk(intent){
-    const ns = intent === 'subscription' ? 'paypalSub' : 'paypalCap';
-    if(window[ns]?.Buttons) return;
-    // Return existing promise immediately — prevents race where two callers
-    // both see null before the first fetch completes and both inject a script.
-    if(paypalSdkPromises[intent]) return paypalSdkPromises[intent];
+  function intentForDonationMode(mode){
+    return mode === 'monthly' ? 'subscription' : 'capture';
+  }
 
-    paypalSdkPromises[intent] = (async () => {
+  function modeForPayPalIntent(intent){
+    return intent === 'subscription' ? 'monthly' : 'one-time';
+  }
+
+  function reloadForDonationMode(mode){
+    const url = new URL(window.location.href);
+    url.searchParams.set('donation', mode);
+    url.hash = 'give';
+    setDonateStatus('Switching PayPal checkout mode...');
+    window.location.assign(url.toString());
+  }
+
+  async function loadPayPalSdk(intent){
+    if(paypalSdkState.intent === intent && window.paypal?.Buttons) return;
+
+    if(paypalSdkState.intent && paypalSdkState.intent !== intent){
+      reloadForDonationMode(modeForPayPalIntent(intent));
+      throw new Error('PayPal checkout mode changed.');
+    }
+
+    if(paypalSdkState.promise) return paypalSdkState.promise;
+
+    paypalSdkState.intent = intent;
+    paypalSdkState.promise = (async () => {
       const response = await fetch('/.netlify/functions/paypal-config');
       const config = await response.json().catch(() => ({}));
       if(!response.ok || !config.clientId) throw new Error(config.error || 'Missing PayPal configuration.');
@@ -1858,17 +1901,17 @@ function toggleManifesto(btn){
         if(intent === 'subscription') params.set('vault', 'true');
         script.src = 'https://www.paypal.com/sdk/js?' + params.toString();
         script.async = true;
-        script.setAttribute('data-namespace', ns);
         script.onload = () => resolve();
         script.onerror = () => reject(new Error('PayPal SDK failed to load.'));
         document.head.appendChild(script);
       });
     })().catch(err => {
-      paypalSdkPromises[intent] = null;
+      paypalSdkState.promise = null;
+      paypalSdkState.intent = null;
       throw err;
     });
 
-    return paypalSdkPromises[intent];
+    return paypalSdkState.promise;
   }
 
   document.getElementById('d-amts').addEventListener('click', e => {
@@ -1912,6 +1955,10 @@ function toggleManifesto(btn){
   document.querySelectorAll('.donate-mode-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       if(btn.dataset.mode === donationMode) return;
+      if(paypalSdkState.intent && paypalSdkState.intent !== intentForDonationMode(btn.dataset.mode)){
+        reloadForDonationMode(btn.dataset.mode);
+        return;
+      }
       currentMonthlyPlanId = null;
       setDonateMode(btn.dataset.mode);
       syncPayPalCheckout();
@@ -1933,7 +1980,7 @@ function toggleManifesto(btn){
     const container = document.getElementById('paypal-button-container');
     if(!container) return;
 
-    const pp = donationMode === 'monthly' ? window.paypalSub : window.paypalCap;
+    const pp = window.paypal;
     if(!pp?.Buttons){
       setDonateStatus('PayPal checkout could not load. Please refresh or schedule a call.', true);
       return;
@@ -2057,7 +2104,7 @@ function toggleManifesto(btn){
     currentMonthlyPlanId = null;
 
     try {
-      await loadPayPalSdk(donationMode === 'monthly' ? 'subscription' : 'capture');
+      await loadPayPalSdk(intentForDonationMode(donationMode));
       if(token !== donationRenderToken) return;
       renderPayPalButton();
     } catch(err) {
@@ -2066,7 +2113,7 @@ function toggleManifesto(btn){
     }
   }
 
-  setDonateMode('monthly');
+  setDonateMode(initialDonationMode);
   // Pre-select $100 so the PayPal button renders on load
   const defaultBtn = document.querySelector('.dam[data-amt="100"]');
   if(defaultBtn){
