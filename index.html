@@ -46,6 +46,7 @@ body{
   font-family:var(--font);font-size:var(--base);line-height:1.618;
   max-width:100vw;overflow-x:clip;
 }
+html.donation-mode-switching body{visibility:hidden;}
 
 /* CONTENT CAP — text/chrome sections get max-width; full-bleed sections (photo-wrap, prob-stats, creates, donate, ready) stay uncapped */
 .hero,.what,.about-tgp,footer{
@@ -950,6 +951,16 @@ footer{
   .how-grid{grid-template-columns:1fr!important;}
 }
 </style>
+<script>
+(function(){
+  try {
+    if(sessionStorage.getItem('tgpDonationScrollAnchor') !== null){
+      if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      document.documentElement.classList.add('donation-mode-switching');
+    }
+  } catch(e) {}
+})();
+</script>
 </head>
 <body>
 
@@ -1767,18 +1778,24 @@ function toggleManifesto(btn){
 
 // DONATE INTERACTIVE
 (function(){
-  const DONATION_SCROLL_KEY = 'tgpDonationScrollOffset';
+  const DONATION_SCROLL_KEY = 'tgpDonationScrollAnchor';
   if('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  const savedDonationScrollOffset = Number(sessionStorage.getItem(DONATION_SCROLL_KEY));
-  if(Number.isFinite(savedDonationScrollOffset)){
+  const savedDonationScrollAnchor = JSON.parse(sessionStorage.getItem(DONATION_SCROLL_KEY) || 'null');
+  if(savedDonationScrollAnchor && Number.isFinite(savedDonationScrollAnchor.top)){
     sessionStorage.removeItem(DONATION_SCROLL_KEY);
     const restoreDonationScroll = () => {
-      const giveEl = document.getElementById('give');
-      if(giveEl) window.scrollTo(0, giveEl.offsetTop + savedDonationScrollOffset);
+      const anchorEl = document.querySelector(savedDonationScrollAnchor.selector);
+      if(anchorEl){
+        const delta = anchorEl.getBoundingClientRect().top - savedDonationScrollAnchor.top;
+        window.scrollTo({ top: window.scrollY + delta, behavior: 'instant' });
+      }
+      document.documentElement.classList.remove('donation-mode-switching');
     };
     restoreDonationScroll();
     requestAnimationFrame(restoreDonationScroll);
     window.addEventListener('load', restoreDonationScroll, { once: true });
+  } else {
+    document.documentElement.classList.remove('donation-mode-switching');
   }
 
   const EFFECTS = [
@@ -1905,9 +1922,11 @@ function toggleManifesto(btn){
     const url = new URL(window.location.href);
     url.searchParams.set('donation', mode);
     url.hash = '';
-    const giveEl = document.getElementById('give');
-    const scrollOffset = giveEl ? window.scrollY - giveEl.offsetTop : window.scrollY;
-    sessionStorage.setItem(DONATION_SCROLL_KEY, String(scrollOffset));
+    const anchorEl = document.querySelector('.donate-mode');
+    sessionStorage.setItem(DONATION_SCROLL_KEY, JSON.stringify({
+      selector: '.donate-mode',
+      top: anchorEl ? anchorEl.getBoundingClientRect().top : 0
+    }));
     setDonateStatus('Switching PayPal checkout mode...');
     window.location.replace(url.toString());
   }
