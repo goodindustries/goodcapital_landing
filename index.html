@@ -227,13 +227,13 @@ nav{
 
 /* CAROUSEL */
 .carousel-wrap{padding:var(--sp3) 0;}
-.carousel-outer{overflow:hidden;position:relative;transition:height 0.5s cubic-bezier(0.25,0.46,0.45,0.94);}
+.carousel-outer{overflow:hidden;position:relative;transition:height 0.5s cubic-bezier(0.25,0.46,0.45,0.94);touch-action:pan-y;}
 .car-track{
   display:flex;gap:20px;align-items:flex-start;
   transition:transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
-  will-change:transform;
+  will-change:transform;touch-action:pan-y;
 }
-.car-slide{min-width:50%;flex-shrink:0;border-radius:14px;overflow:hidden;cursor:pointer;position:relative;}
+.car-slide{flex:0 0 50%;min-width:0;border-radius:14px;overflow:hidden;cursor:pointer;position:relative;}
 .car-slide img{width:100%;height:clamp(520px,85vw,1100px);object-fit:cover;object-position:center top;display:block;pointer-events:none;user-select:none;}
 .car-cap-overlay{
   position:absolute;bottom:0;left:0;right:0;
@@ -364,11 +364,13 @@ nav{
 
   /* Carousel */
   .carousel-wrap{padding:var(--sp2) 0;}
-  .carousel-outer{padding-left:28px;}
-  .car-slide{min-width:78%;border-radius:10px;}
-  .car-slide img{width:100%;}
-  .car-cap-title{font-size:clamp(18px,5.5vw,28px);}
-  .car-cap-desc{font-size:clamp(13px,3.8vw,16px);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+  .carousel-outer{padding:0 16px;}
+  .car-track{gap:12px;}
+  .car-slide{flex-basis:calc(100vw - 32px);border-radius:10px;}
+  .car-slide img{height:clamp(420px,118vw,560px);object-position:center center;}
+  .car-cap-overlay{padding:96px 20px 22px;}
+  .car-cap-title{font-size:clamp(24px,7.2vw,34px);margin-bottom:8px;}
+  .car-cap-desc{font-size:clamp(15px,4.4vw,19px);line-height:1.4;max-width:none;}
   .car-next-peek{display:none;}
   .car-next-ctrl{display:flex;}
   .car-controls{padding:var(--sp1) 16px;justify-content:flex-start;gap:12px;}
@@ -1779,19 +1781,35 @@ const carSlides = [
     else if(extIdx === N+1){ extIdx = 1; setPos(false); }
   });
 
-  let startX = 0, dragging = false;
-  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; dragging = true; },{passive:true});
-  track.addEventListener('touchend', e => {
+  let startX = 0, startY = 0, dragging = false, suppressClick = false;
+  function startSwipe(x, y){
+    startX = x;
+    startY = y;
+    dragging = true;
+    suppressClick = false;
+  }
+  function endSwipe(x, y){
     if(!dragging) return;
-    if(Math.abs(startX - e.changedTouches[0].clientX) > 40) carStep(startX > e.changedTouches[0].clientX ? 1 : -1);
+    const dx = startX - x;
+    const dy = startY - y;
     dragging = false;
-  });
-  track.addEventListener('pointerdown', e => { startX = e.clientX; dragging = true; });
-  track.addEventListener('pointerup', e => {
-    if(!dragging) return;
-    if(Math.abs(startX - e.clientX) > 40) carStep(startX > e.clientX ? 1 : -1);
-    dragging = false;
-  });
+    if(Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)){
+      suppressClick = true;
+      carStep(dx > 0 ? 1 : -1);
+    }
+  }
+  track.addEventListener('touchstart', e => startSwipe(e.touches[0].clientX, e.touches[0].clientY), {passive:true});
+  track.addEventListener('touchend', e => endSwipe(e.changedTouches[0].clientX, e.changedTouches[0].clientY), {passive:true});
+  track.addEventListener('pointerdown', e => startSwipe(e.clientX, e.clientY));
+  track.addEventListener('pointerup', e => endSwipe(e.clientX, e.clientY));
+  track.addEventListener('pointercancel', () => { dragging = false; });
+  track.addEventListener('pointerleave', () => { dragging = false; });
+  track.addEventListener('click', e => {
+    if(!suppressClick) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    suppressClick = false;
+  }, true);
 
   render(false);
   // Re-render after all images load in case adjustHeight ran before images were sized
