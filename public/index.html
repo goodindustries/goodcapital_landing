@@ -945,7 +945,7 @@ nav{
   background:rgba(13,17,36,0.92);
   border-left:1px solid rgba(148,144,232,0.22);
   display:flex;flex-direction:column;
-  max-height:none;
+  max-height:none;min-height:0;overflow:hidden;
 }
 .ops-header{
   padding:7px 11px;
@@ -962,6 +962,7 @@ nav{
 .ops-log{
   flex:1;padding:10px 14px;
   overflow-y:auto;
+  min-height:0;
   display:flex;flex-direction:column;gap:5px;
   scrollbar-width:thin;scrollbar-color:#1e2445 transparent;
 }
@@ -1004,8 +1005,8 @@ footer{
   .map-header{grid-template-columns:1fr!important;align-items:start;gap:var(--sp2);padding:var(--sp2) 20px;}
   .map-svg-wrap{display:block!important;}
   .map-svg-wrap>svg{width:100%!important;}
-  .ops-terminal{position:static!important;width:100%!important;max-height:220px;border-left:none!important;border-top:1px solid rgba(148,144,232,0.22);}
-  .ops-log{min-height:unset!important;}
+  .ops-terminal{position:static!important;width:100%!important;height:220px;max-height:220px;border-left:none!important;border-top:1px solid rgba(148,144,232,0.22);}
+  .ops-log{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;}
   .how{padding:var(--sp3) 20px;}
   .how-grid{grid-template-columns:1fr!important;}
   .about-tgp{padding:var(--sp3) 20px;}
@@ -2001,10 +2002,11 @@ function toggleManifesto(btn){
   function renderDonationAmounts(mode){
     const amountsEl = document.getElementById('d-amts');
     if(!amountsEl) return;
-    amountsEl.innerHTML = DONATION_AMOUNTS[mode].map(amount => {
+    const amountButtons = DONATION_AMOUNTS[mode].map(amount => {
       const label = formatAmount(amount);
       return `<button class="dam" type="button" data-amt="${amount}" data-label="${label}">${label}</button>`;
     }).join('');
+    amountsEl.innerHTML = amountButtons + '<button class="dam" type="button" data-amt="custom">Custom</button>';
   }
 
   function intentForDonationMode(mode){
