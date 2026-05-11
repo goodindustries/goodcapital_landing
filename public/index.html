@@ -237,6 +237,7 @@ nav{
 .car-slide img{width:100%;height:clamp(520px,85vw,1100px);object-fit:cover;object-position:center top;display:block;pointer-events:none;user-select:none;}
 .car-cap-overlay{
   position:absolute;bottom:0;left:0;right:0;
+  z-index:2;pointer-events:none;
   padding:clamp(40px,6vw,80px) var(--sp3) var(--sp3);
   background:linear-gradient(to top,rgba(10,12,28,0.92) 0%,rgba(10,12,28,0.55) 55%,transparent 100%);
 }
@@ -1756,9 +1757,10 @@ const carSlides = [
 
   function adjustHeight(){
     if(window.innerWidth > 768){
-      const img = realSlides[logIdx].querySelector('img');
-      const setH = () => { outer.style.height = (img.naturalHeight/img.naturalWidth*realSlides[logIdx].offsetWidth)+'px'; };
-      if(img.complete && img.naturalWidth > 0) setH(); else img.addEventListener('load',setH,{once:true});
+      const slide = realSlides[logIdx];
+      const img = slide.querySelector('img');
+      const setH = () => { outer.style.height = slide.offsetHeight + 'px'; };
+      if(img.complete) setH(); else img.addEventListener('load',setH,{once:true});
     } else { outer.style.height = ''; }
   }
 
