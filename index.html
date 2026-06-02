@@ -817,6 +817,324 @@ nav{
   .manifesto-ol{grid-template-columns:1fr;}
 }
 
+/* BUILDER */
+.builder-section{
+  padding:var(--section-y) var(--site-gutter);
+  background:#f7f4ee;
+  border-top:1px solid rgba(19,24,58,0.08);
+  border-bottom:1px solid rgba(19,24,58,0.08);
+}
+.builder-inner{
+  max-width:var(--site-max);
+  margin:0 auto;
+}
+.builder-header{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(280px,420px);
+  gap:var(--sp3);
+  align-items:end;
+  margin-bottom:var(--section-y-tight);
+}
+.builder-title{
+  font-size:clamp(42px,6vw,92px);
+  font-family:var(--font-hd);
+  font-weight:700;
+  line-height:0.95;
+  letter-spacing:0;
+  color:var(--navy);
+  margin-top:var(--sp1);
+}
+.builder-namecard{
+  border-top:1px solid rgba(19,24,58,0.14);
+  padding-top:var(--sp1);
+}
+.builder-name{
+  font-size:clamp(24px,2.4vw,38px);
+  font-family:var(--font-hd);
+  font-weight:700;
+  line-height:1;
+  color:var(--navy);
+}
+.builder-name span{
+  display:block;
+  margin-top:8px;
+  font-size:clamp(13px,1.1vw,16px);
+  font-family:var(--font);
+  color:var(--muted);
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+}
+.builder-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:18px;
+  color:var(--amber);
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  text-decoration:none;
+}
+.builder-link:hover{color:var(--navy);}
+.builder-profile{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(280px,0.85fr);
+  gap:var(--card-gap);
+  align-items:stretch;
+}
+.builder-copy,
+.builder-portrait,
+.history-item,
+.testimonial-card{
+  border-radius:var(--panel-radius);
+  border:1px solid rgba(19,24,58,0.1);
+  background:#fff;
+  box-shadow:0 16px 42px rgba(19,24,58,0.08);
+}
+.builder-copy{
+  padding:clamp(28px,4vw,56px);
+}
+.builder-label{
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--amber);
+  margin-bottom:var(--sp1);
+}
+.builder-credentials{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-bottom:var(--sp2);
+}
+.builder-credential{
+  min-height:96px;
+  padding:16px;
+  border:1px solid rgba(19,24,58,0.1);
+  border-radius:var(--panel-radius);
+  color:var(--navy);
+  font-size:clamp(13px,1.05vw,16px);
+  font-weight:700;
+  line-height:1.25;
+}
+.builder-copy p{
+  font-size:clamp(17px,1.45vw,22px);
+  line-height:1.65;
+  color:rgba(19,24,58,0.78);
+  max-width:68ch;
+}
+.builder-copy p + p{margin-top:var(--sp1);}
+.builder-signature{
+  margin-top:var(--sp2);
+  font-size:clamp(18px,1.5vw,24px);
+  font-family:var(--font-hd);
+  font-weight:700;
+  color:var(--navy);
+}
+.builder-portrait{
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  min-height:100%;
+}
+.builder-portrait img{
+  width:100%;
+  height:100%;
+  min-height:420px;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
+.builder-portrait figcaption{
+  padding:18px 20px;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  border-top:1px solid rgba(19,24,58,0.08);
+}
+.builder-block{
+  margin-top:var(--section-y-tight);
+}
+.builder-block-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:var(--sp2);
+  padding-bottom:var(--sp1);
+  border-bottom:1px solid rgba(19,24,58,0.12);
+  margin-bottom:var(--sp2);
+}
+.builder-block-kicker{
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--amber);
+}
+.builder-block-title{
+  font-size:clamp(28px,3vw,48px);
+  font-family:var(--font-hd);
+  font-weight:700;
+  line-height:1;
+  letter-spacing:0;
+  color:var(--navy);
+  margin-top:10px;
+}
+.history-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:var(--card-gap);
+}
+.history-item{
+  padding:clamp(24px,3vw,36px);
+}
+.history-top{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-start;
+  margin-bottom:var(--sp1);
+}
+.history-org{
+  font-size:clamp(24px,2.5vw,38px);
+  font-family:var(--font-hd);
+  font-weight:700;
+  line-height:0.95;
+  color:var(--navy);
+}
+.history-role{
+  margin-top:8px;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.history-status{
+  flex-shrink:0;
+  border-radius:999px;
+  border:1px solid rgba(212,136,15,0.35);
+  padding:7px 10px;
+  color:var(--amber);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  line-height:1;
+}
+.history-item p{
+  color:rgba(19,24,58,0.72);
+  font-size:clamp(15px,1.15vw,18px);
+  line-height:1.65;
+}
+.field-notes{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:var(--card-gap);
+  margin-top:var(--card-gap);
+}
+.field-note{
+  min-height:180px;
+  border-radius:var(--panel-radius);
+  padding:clamp(24px,3vw,36px);
+  background:
+    linear-gradient(135deg,rgba(19,24,58,0.9),rgba(19,24,58,0.78)),
+    var(--navy);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+.field-note span{
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.48);
+}
+.field-note strong{
+  display:block;
+  margin-top:10px;
+  font-size:clamp(26px,3vw,44px);
+  font-family:var(--font-hd);
+  line-height:1;
+}
+.testimonial-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--card-gap);
+}
+.testimonial-card{
+  padding:clamp(22px,2.5vw,32px);
+  display:flex;
+  flex-direction:column;
+  min-height:260px;
+}
+.testimonial-card blockquote{
+  color:rgba(19,24,58,0.78);
+  font-size:clamp(15px,1.1vw,18px);
+  line-height:1.65;
+  flex:1;
+}
+.testimonial-person{
+  margin-top:var(--sp1);
+  padding-top:18px;
+  border-top:1px solid rgba(19,24,58,0.1);
+}
+.testimonial-name{
+  font-size:18px;
+  font-family:var(--font-hd);
+  font-weight:700;
+  color:var(--navy);
+  line-height:1;
+}
+.testimonial-title{
+  margin-top:7px;
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.45;
+}
+@media(max-width:1024px){
+  .builder-header,
+  .builder-profile{
+    grid-template-columns:1fr;
+  }
+  .builder-portrait img{
+    max-height:620px;
+  }
+  .testimonial-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media(max-width:768px){
+  .builder-section{
+    padding:var(--section-y) 20px;
+  }
+  .builder-credentials,
+  .history-grid,
+  .field-notes,
+  .testimonial-grid{
+    grid-template-columns:1fr;
+  }
+  .builder-block-head{
+    display:block;
+  }
+  .history-top{
+    display:block;
+  }
+  .history-status{
+    display:inline-flex;
+    margin-top:16px;
+  }
+  .builder-portrait img{
+    min-height:360px;
+  }
+}
+
 /* OPERATION 61 */
 .op61{
   background:var(--navy);
@@ -1841,8 +2159,7 @@ footer{
 <!-- ABOUT THE GOOD PROJECT -->
 <div class="about-tgp" id="about">
   <div class="section-eye">Our Why</div>
-  <p class="why-p">Mission: To relieve suffering, in all forms, in all places.</p>
-  <div class="about-mission-h">Because the worth of every human soul is <i>great</i>.</div>
+  <div class="about-mission-h">Why: Because the world of every human soul is great.</div>
   <div class="about-pillars">
     <div class="about-pillar"><span>I</span> Physical</div>
     <div class="about-pillar"><span>II</span> Intellectual</div>
@@ -1898,6 +2215,166 @@ we dive, we drown, we pirate on,
     </div>
   </div>
 </div>
+
+<!-- THE BUILDER -->
+<section class="builder-section" id="builder">
+  <div class="builder-inner">
+    <div class="builder-header">
+      <div>
+        <div class="section-eye">The builder</div>
+        <h2 class="builder-title">Who&rsquo;s behind it.</h2>
+      </div>
+      <div class="builder-namecard">
+        <div class="builder-name">Reif<span>Good Industries</span></div>
+        <a class="builder-link" href="https://www.linkedin.com/in/reif/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+      </div>
+    </div>
+
+    <div class="builder-profile">
+      <div class="builder-copy">
+        <div class="builder-label">Meet Reif</div>
+        <div class="builder-credentials">
+          <div class="builder-credential">Carnegie Mellon / BYU-Hawaii</div>
+          <div class="builder-credential">Software engineer / Overstock.com</div>
+          <div class="builder-credential">Startup founder / Amazon Consulting / Helping companies exit</div>
+        </div>
+        <p>I&rsquo;ve been on the factory floor. I&rsquo;ve run warehouses, survived a PE deal, done a buyback, and spent two years in the field doing humanitarian work. I started Good Industries because the gap between the tools that exist and the people who need them is still enormous &mdash; and closeable.</p>
+        <p>We are closing it.</p>
+        <div class="builder-signature">&mdash; Reif</div>
+      </div>
+      <figure class="builder-portrait">
+        <img src="/assets/photos/reif-portrait.png" alt="Portrait of Reif Tauati">
+        <figcaption>Operator first.</figcaption>
+      </figure>
+    </div>
+
+    <div class="builder-block">
+      <div class="builder-block-head">
+        <div>
+          <div class="builder-block-kicker">Operator history</div>
+          <h3 class="builder-block-title">Built from real operating work.</h3>
+        </div>
+      </div>
+      <div class="history-grid">
+        <article class="history-item">
+          <div class="history-top">
+            <div>
+              <div class="history-org">The Good Project</div>
+              <div class="history-role">Partner / Founder</div>
+            </div>
+            <div class="history-status">Active</div>
+          </div>
+          <p>Building a portfolio of companies aimed at relieving suffering &mdash; food, water, power, logistics, and the systems that hold everything together when things go wrong. Helping founders raise capital, go to market, and build the capabilities needed to scale.</p>
+        </article>
+        <article class="history-item">
+          <div class="history-top">
+            <div>
+              <div class="history-org">Q2 Investments</div>
+              <div class="history-role">Turnaround Executive</div>
+            </div>
+            <div class="history-status">Turnaround</div>
+          </div>
+          <p>Led a portfolio of five personalization e-commerce brands: agiftpersonalized.com, qualtry.com, groomsshop.com, turninghearts.com, and loangifts.com. Oversaw operations, revenue, technology, and team across the full portfolio.</p>
+        </article>
+        <article class="history-item">
+          <div class="history-top">
+            <div>
+              <div class="history-org">Guardia One</div>
+              <div class="history-role">Turnaround CEO</div>
+            </div>
+            <div class="history-status">Founder</div>
+          </div>
+          <p>Founded and launched a Shopify shipping warranty SaaS. Built the product and listed it on the official Shopify App Store.</p>
+        </article>
+        <article class="history-item">
+          <div class="history-top">
+            <div>
+              <div class="history-org">Qualtry</div>
+              <div class="history-role">EVP Revenue</div>
+            </div>
+            <div class="history-status">Sold to PE</div>
+          </div>
+          <p>Joined as PM, grew to EVP leading revenue and technology teams. Launched offsite channels including Amazon, Etsy, and Jane, responsible for $1.5M+ in annual sales.</p>
+        </article>
+        <article class="history-item">
+          <div class="history-top">
+            <div>
+              <div class="history-org">Elevated Billing Solutions</div>
+              <div class="history-role">Product Manager</div>
+            </div>
+            <div class="history-status">Product</div>
+          </div>
+          <p>Captured requirements from six department directors and the executive team. Owned the product backlog and sprint planning across three concurrent engineering teams.</p>
+        </article>
+      </div>
+
+      <div class="field-notes">
+        <div class="field-note"><span>Factory floor</span><strong>On the floor.</strong></div>
+        <div class="field-note"><span>Fulfillment warehouse</span><strong>Inside the operation.</strong></div>
+      </div>
+    </div>
+
+    <div class="builder-block">
+      <div class="builder-block-head">
+        <div>
+          <div class="builder-block-kicker">People who have worked with Reif</div>
+          <h3 class="builder-block-title">Trusted by operators, founders, and board members.</h3>
+        </div>
+      </div>
+      <div class="testimonial-grid">
+        <article class="testimonial-card">
+          <blockquote>&ldquo;Reif helped steer Qualtry through a complex merger and a global pandemic. He can set vision at a high level and get scrappy in the weeds to execute.&rdquo;</blockquote>
+          <div class="testimonial-person">
+            <div class="testimonial-name">Gary Kliegman</div>
+            <div class="testimonial-title">COO, LawnStarter &middot; Former Qualtry Board Member</div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <blockquote>&ldquo;Reif uses technology and automation to fix problems with an outside-the-box approach. He takes challenges head on and isn&rsquo;t afraid to roll up his sleeves.&rdquo;</blockquote>
+          <div class="testimonial-person">
+            <div class="testimonial-name">Michael Simon</div>
+            <div class="testimonial-title">Managing Principal, Traverse Pointe Partners</div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <blockquote>&ldquo;Reif has a knack for understanding complicated processes and designing systems that streamline them and make them more efficient.&rdquo;</blockquote>
+          <div class="testimonial-person">
+            <div class="testimonial-name">Mike Kunz</div>
+            <div class="testimonial-title">SVP Operations, AAPC</div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <blockquote>&ldquo;Reif is resourceful and has a knack for leveraging automation and technology to improve systems and processes.&rdquo;</blockquote>
+          <div class="testimonial-person">
+            <div class="testimonial-name">Patrick Glenn</div>
+            <div class="testimonial-title">Operations &middot; Supply Chain &middot; eCommerce &middot; Software</div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <blockquote>&ldquo;Reif possesses exceptional strategic vision and an impressive ability to navigate complex business challenges.&rdquo;</blockquote>
+          <div class="testimonial-person">
+            <div class="testimonial-name">Brock Klemetson</div>
+            <div class="testimonial-title">Gift Homie</div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <blockquote>&ldquo;Reif is scrappy, extremely hardworking, and has a knack for making big things happen with very limited resources.&rdquo;</blockquote>
+          <div class="testimonial-person">
+            <div class="testimonial-name">Stephen Kunz</div>
+            <div class="testimonial-title">Marketing Account Manager, Weber Associates</div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <blockquote>&ldquo;Reif is entirely comfortable wearing many hats, adapting to various roles with ease and efficiency.&rdquo;</blockquote>
+          <div class="testimonial-person">
+            <div class="testimonial-name">Christopher Hamze</div>
+            <div class="testimonial-title">Owner, Izzi&rsquo;s Gym</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- WHAT A BEEHIVE IS -->
 <div class="what" id="what">
