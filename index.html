@@ -390,7 +390,6 @@ nav{
 
   /* About */
   .about-tgp{padding:var(--sp3) 20px;}
-  .about-pillars{grid-template-columns:1fr 1fr;}
   .section-h{font-size:clamp(28px,8vw,48px);}
   .about-body{font-size:clamp(15px,4vw,18px);}
 
@@ -719,103 +718,11 @@ nav{
   background:var(--navy);
   border-top:1px solid rgba(255,255,255,0.06);
 }
-.why-p{
-  font-size:clamp(13px,1.1vw,16px);color:rgba(255,255,255,0.5);
-  text-transform:uppercase;letter-spacing:0.1em;font-weight:600;
-  margin-bottom:var(--sp1);
-}
 .about-mission-h{
   font-size:clamp(26px,3vw,48px);font-family:var(--font-hd);font-weight:700;
   color:#fff;line-height:1.05;margin-bottom:var(--sp2);
 }
-.about-mission-p{
-  font-size:clamp(15px,1.3vw,19px);color:rgba(255,255,255,0.6);
-  line-height:1.75;margin-bottom:var(--sp1);
-}
-.about-pillars{
-  display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;
-  margin-top:var(--sp2);
-}
-.about-pillar{
-  font-size:clamp(12px,1vw,15px);font-weight:700;letter-spacing:0.1em;
-  text-transform:uppercase;color:rgba(255,255,255,0.4);
-  padding:10px 0;border-top:1px solid rgba(255,255,255,0.1);
-}
-.about-pillar span{color:var(--amber);margin-right:8px;}
-.about-poem{
-  margin-top:var(--sp3);
-  padding:var(--sp3) 0;
-  border-top:1px solid rgba(255,255,255,0.08);
-  max-width:min(68rem,94vw);
-  text-align:center;
-  margin-left:auto;
-  margin-right:auto;
-}
-.poem-title{
-  font-size:clamp(14px,1.3vw,19px);font-weight:700;letter-spacing:0.14em;
-  text-transform:uppercase;color:var(--lavender);margin-bottom:var(--sp2);
-}
-.poem-body{
-  font-size:clamp(22px,2.8vw,38px);color:rgba(255,255,255,0.82);
-  line-height:1.75;font-style:italic;white-space:pre-line;text-align:center;
-}
-.poem-author{
-  margin-top:var(--sp3);
-  font-size:clamp(13px,1.1vw,16px);color:rgba(255,255,255,0.4);
-  font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
-}
-.about-tgp .section-eye{color:var(--lavender);}
-.about-expand{margin-top:var(--sp3);}
-.manifesto-toggle{
-  display:flex;align-items:center;gap:12px;
-  background:none;border:none;cursor:pointer;padding:0;
-  font-size:clamp(14px,1.2vw,17px);font-weight:700;font-family:var(--font);
-  color:rgba(255,255,255,0.5);letter-spacing:0.04em;
-  transition:color 0.2s;
-}
-.manifesto-toggle:hover{color:#fff;}
-.manifesto-toggle .tog-arrow{
-  width:32px;height:32px;border-radius:50%;
-  border:1px solid rgba(148,144,232,0.4);
-  display:flex;align-items:center;justify-content:center;
-  font-size:14px;transition:all 0.25s;flex-shrink:0;
-}
-.manifesto-toggle.open{color:#fff;}
-.manifesto-toggle.open .tog-arrow{
-  background:var(--amber);border-color:var(--amber);color:#fff;transform:rotate(45deg);
-}
-.manifesto-body{
-  display:none;
-  padding-top:var(--sp3);
-}
-.manifesto-body.open{display:block;}
-.manifesto-p{
-  font-size:clamp(15px,1.3vw,20px);color:rgba(255,255,255,0.6);
-  line-height:1.8;margin-bottom:var(--sp1);max-width:80ch;
-}
-.manifesto-p strong{color:rgba(255,255,255,0.85);font-weight:600;}
-.manifesto-ol{
-  margin:var(--sp2) 0;padding-left:0;list-style:none;
-  display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,32px) clamp(32px,4vw,64px);
-}
-.manifesto-ol li{
-  font-size:clamp(15px,1.3vw,20px);color:rgba(255,255,255,0.6);
-  line-height:1.75;padding-left:36px;position:relative;
-}
-.manifesto-ol li::before{
-  content:attr(data-n);position:absolute;left:0;
-  color:var(--amber);font-weight:700;font-family:var(--font-hd);font-size:1.1em;
-}
-.manifesto-quote{
-  margin:var(--sp2) 0;
-  padding:var(--sp2) var(--sp2);
-  border-left:4px solid var(--amber);
-  font-size:clamp(16px,1.5vw,22px);color:rgba(255,255,255,0.8);
-  font-style:italic;line-height:1.7;max-width:80ch;
-}
-@media(max-width:768px){
-  .manifesto-ol{grid-template-columns:1fr;}
-}
+.about-mission-h:only-child{margin-bottom:0;}
 
 /* BUILDER */
 .builder-section{
@@ -1033,7 +940,7 @@ nav{
 }
 .field-notes{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:var(--card-gap);
   margin-top:var(--card-gap);
 }
@@ -1654,13 +1561,6 @@ nav{
   margin-left:auto;
   margin-right:auto;
 }
-.about-pillars{
-  gap:clamp(10px,1.4vw,20px) clamp(20px,3vw,44px);
-  margin-top:clamp(28px,3vw,44px);
-}
-.about-expand{
-  margin-top:clamp(32px,4vw,56px);
-}
 .what{
   margin:0;
   border-radius:0;
@@ -1823,9 +1723,6 @@ footer{
     padding-left:20px;
     padding-right:20px;
   }
-  .about-pillars{
-    grid-template-columns:1fr;
-  }
   .what-pillar,
   .what-pillar:nth-child(even){
     padding:34px 0;
@@ -1881,7 +1778,6 @@ footer{
 /* HERO STYLE CONTINUITY */
 .section-eye,
 .creates-eye,
-.why-p,
 .op61-ref,
 .donate-title,
 .footer-h-label{
@@ -1928,7 +1824,6 @@ footer{
 .section-eye{
   color:#f3ae38;
 }
-.about-tgp .section-eye,
 .op61 .section-eye{
   color:#9f9bfd!important;
 }
@@ -1940,16 +1835,6 @@ footer{
 .donate-top,
 .donate-effect{
   letter-spacing:0;
-}
-.about-pillars{
-  display:grid;
-}
-.about-pillar{
-  border-top:1px solid rgba(255,255,255,0.12);
-}
-.manifesto-toggle .tog-arrow{
-  border-color:rgba(255,255,255,0.22);
-  background:rgba(255,255,255,0.045);
 }
 .what-header,
 .op61-header{
@@ -2158,223 +2043,8 @@ footer{
 
 <!-- ABOUT THE GOOD PROJECT -->
 <div class="about-tgp" id="about">
-  <div class="section-eye">Our Why</div>
   <div class="about-mission-h">Why: Because the world of every human soul is great.</div>
-  <div class="about-pillars">
-    <div class="about-pillar"><span>I</span> Physical</div>
-    <div class="about-pillar"><span>II</span> Intellectual</div>
-    <div class="about-pillar"><span>III</span> Social</div>
-    <div class="about-pillar"><span>IV</span> Spiritual</div>
-  </div>
-  <div class="about-expand">
-    <button class="manifesto-toggle" onclick="toggleManifesto(this)">
-      <span class="tog-arrow">+</span>
-      Read our manifesto
-    </button>
-    <div class="manifesto-body">
-      <p class="manifesto-p">The Good Project exists to relieve human suffering, in all forms, in all places. To bring light and life, as Jesus does, to the inhabitants of the earth.</p>
-      <ol class="manifesto-ol">
-        <li data-n="1">All humans are children of God and therefore, regardless of circumstance, race, past actions, or social standing, are creatures of infinite worth.</li>
-        <li data-n="2">Given that infinite worth, suffering in any way and in any degree can and should be prevented, remedied, and, where possible, healed.</li>
-        <li data-n="3">Charity begins with Christlike love and ends in action. It includes bread, water, and the necessities of life, but does not exclude spiritual, social, mental, and other forms of support.</li>
-        <li data-n="4">The Savior Himself taught that &ldquo;the poor ye have always with you&rdquo; &mdash; no organization can fully rectify human suffering until His return.</li>
-        <li data-n="5">Yet any effort to provide relief or prosper any human being, according to the light-and-life pattern of Jesus Christ, is among the highest aims to which any organization can aspire.</li>
-      </ol>
-      <div class="manifesto-quote">"Verily I say, men should be anxiously engaged in a good cause, and do many things of their own free will, and bring to pass much righteousness."</div>
-      <p class="manifesto-p">The Good Project is one permutation of a good cause. One way to be anxiously engaged in doing good. We derive our four pillars from Jacob: to clothe the naked, feed the hungry, liberate the captive, and administer relief to the sick and afflicted. &mdash; Jacob 2:19</p>
-      <div class="about-poem">
-        <div class="poem-title">A Sailor's Hymn</div>
-        <div class="poem-body">We followed Him thru wicked sea —
-horrid, bloody fierce,
-We kept the pace 'til freedom's Dawn
-rang new in ev'ry ear.
-We trafficked jagged highways
-with daggers sharp and bright,
-We bore the weak thru vantablack
-of Serpent's needled night.
-
-We did indeed these talents turn
-to free the single flow'r,
-twas Rose's light they nectar'd dim
-since that fateful hour.
-We raked the seas for Willow
-the Fallen Son would claim,
-and struck back the dark,
-alas once more — with frigid, Holy Flame.
-
-Now we commission galleons
-whose berth we'll never meet;
-They shall pirate ever on,
-those blistered, wretched seas.
-Our florians are quiet-kept,
-we're absent honor's roll;
-we dive, we drown, we pirate on,
-— we ransom for the Pearl.</div>
-        <div class="poem-author">— Reif Tauati</div>
-      </div>
-    </div>
-  </div>
 </div>
-
-<!-- THE BUILDER -->
-<section class="builder-section" id="builder">
-  <div class="builder-inner">
-    <div class="builder-header">
-      <div>
-        <div class="section-eye">The builder</div>
-        <h2 class="builder-title">Who&rsquo;s behind it.</h2>
-      </div>
-      <div class="builder-namecard">
-        <div class="builder-name">Reif<span>Good Industries</span></div>
-        <a class="builder-link" href="https://www.linkedin.com/in/reif/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
-      </div>
-    </div>
-
-    <div class="builder-profile">
-      <div class="builder-copy">
-        <div class="builder-label">Meet Reif</div>
-        <div class="builder-credentials">
-          <div class="builder-credential">Carnegie Mellon / BYU-Hawaii</div>
-          <div class="builder-credential">Software engineer / Overstock.com</div>
-          <div class="builder-credential">Startup founder / Amazon Consulting / Helping companies exit</div>
-        </div>
-        <p>I&rsquo;ve been on the factory floor. I&rsquo;ve run warehouses, survived a PE deal, done a buyback, and spent two years in the field doing humanitarian work. I started Good Industries because the gap between the tools that exist and the people who need them is still enormous &mdash; and closeable.</p>
-        <p>We are closing it.</p>
-        <div class="builder-signature">&mdash; Reif</div>
-      </div>
-      <figure class="builder-portrait">
-        <img src="/assets/photos/reif-portrait.png" alt="Portrait of Reif Tauati">
-        <figcaption>Operator first.</figcaption>
-      </figure>
-    </div>
-
-    <div class="builder-block">
-      <div class="builder-block-head">
-        <div>
-          <div class="builder-block-kicker">Operator history</div>
-          <h3 class="builder-block-title">Built from real operating work.</h3>
-        </div>
-      </div>
-      <div class="history-grid">
-        <article class="history-item">
-          <div class="history-top">
-            <div>
-              <div class="history-org">The Good Project</div>
-              <div class="history-role">Partner / Founder</div>
-            </div>
-            <div class="history-status">Active</div>
-          </div>
-          <p>Building a portfolio of companies aimed at relieving suffering &mdash; food, water, power, logistics, and the systems that hold everything together when things go wrong. Helping founders raise capital, go to market, and build the capabilities needed to scale.</p>
-        </article>
-        <article class="history-item">
-          <div class="history-top">
-            <div>
-              <div class="history-org">Q2 Investments</div>
-              <div class="history-role">Turnaround Executive</div>
-            </div>
-            <div class="history-status">Turnaround</div>
-          </div>
-          <p>Led a portfolio of five personalization e-commerce brands: agiftpersonalized.com, qualtry.com, groomsshop.com, turninghearts.com, and loangifts.com. Oversaw operations, revenue, technology, and team across the full portfolio.</p>
-        </article>
-        <article class="history-item">
-          <div class="history-top">
-            <div>
-              <div class="history-org">Guardia One</div>
-              <div class="history-role">Turnaround CEO</div>
-            </div>
-            <div class="history-status">Founder</div>
-          </div>
-          <p>Founded and launched a Shopify shipping warranty SaaS. Built the product and listed it on the official Shopify App Store.</p>
-        </article>
-        <article class="history-item">
-          <div class="history-top">
-            <div>
-              <div class="history-org">Qualtry</div>
-              <div class="history-role">EVP Revenue</div>
-            </div>
-            <div class="history-status">Sold to PE</div>
-          </div>
-          <p>Joined as PM, grew to EVP leading revenue and technology teams. Launched offsite channels including Amazon, Etsy, and Jane, responsible for $1.5M+ in annual sales.</p>
-        </article>
-        <article class="history-item">
-          <div class="history-top">
-            <div>
-              <div class="history-org">Elevated Billing Solutions</div>
-              <div class="history-role">Product Manager</div>
-            </div>
-            <div class="history-status">Product</div>
-          </div>
-          <p>Captured requirements from six department directors and the executive team. Owned the product backlog and sprint planning across three concurrent engineering teams.</p>
-        </article>
-      </div>
-
-      <div class="field-notes">
-        <div class="field-note"><span>Factory floor</span><strong>On the floor.</strong></div>
-        <div class="field-note"><span>Fulfillment warehouse</span><strong>Inside the operation.</strong></div>
-      </div>
-    </div>
-
-    <div class="builder-block">
-      <div class="builder-block-head">
-        <div>
-          <div class="builder-block-kicker">People who have worked with Reif</div>
-          <h3 class="builder-block-title">Trusted by operators, founders, and board members.</h3>
-        </div>
-      </div>
-      <div class="testimonial-grid">
-        <article class="testimonial-card">
-          <blockquote>&ldquo;Reif helped steer Qualtry through a complex merger and a global pandemic. He can set vision at a high level and get scrappy in the weeds to execute.&rdquo;</blockquote>
-          <div class="testimonial-person">
-            <div class="testimonial-name">Gary Kliegman</div>
-            <div class="testimonial-title">COO, LawnStarter &middot; Former Qualtry Board Member</div>
-          </div>
-        </article>
-        <article class="testimonial-card">
-          <blockquote>&ldquo;Reif uses technology and automation to fix problems with an outside-the-box approach. He takes challenges head on and isn&rsquo;t afraid to roll up his sleeves.&rdquo;</blockquote>
-          <div class="testimonial-person">
-            <div class="testimonial-name">Michael Simon</div>
-            <div class="testimonial-title">Managing Principal, Traverse Pointe Partners</div>
-          </div>
-        </article>
-        <article class="testimonial-card">
-          <blockquote>&ldquo;Reif has a knack for understanding complicated processes and designing systems that streamline them and make them more efficient.&rdquo;</blockquote>
-          <div class="testimonial-person">
-            <div class="testimonial-name">Mike Kunz</div>
-            <div class="testimonial-title">SVP Operations, AAPC</div>
-          </div>
-        </article>
-        <article class="testimonial-card">
-          <blockquote>&ldquo;Reif is resourceful and has a knack for leveraging automation and technology to improve systems and processes.&rdquo;</blockquote>
-          <div class="testimonial-person">
-            <div class="testimonial-name">Patrick Glenn</div>
-            <div class="testimonial-title">Operations &middot; Supply Chain &middot; eCommerce &middot; Software</div>
-          </div>
-        </article>
-        <article class="testimonial-card">
-          <blockquote>&ldquo;Reif possesses exceptional strategic vision and an impressive ability to navigate complex business challenges.&rdquo;</blockquote>
-          <div class="testimonial-person">
-            <div class="testimonial-name">Brock Klemetson</div>
-            <div class="testimonial-title">Gift Homie</div>
-          </div>
-        </article>
-        <article class="testimonial-card">
-          <blockquote>&ldquo;Reif is scrappy, extremely hardworking, and has a knack for making big things happen with very limited resources.&rdquo;</blockquote>
-          <div class="testimonial-person">
-            <div class="testimonial-name">Stephen Kunz</div>
-            <div class="testimonial-title">Marketing Account Manager, Weber Associates</div>
-          </div>
-        </article>
-        <article class="testimonial-card">
-          <blockquote>&ldquo;Reif is entirely comfortable wearing many hats, adapting to various roles with ease and efficiency.&rdquo;</blockquote>
-          <div class="testimonial-person">
-            <div class="testimonial-name">Christopher Hamze</div>
-            <div class="testimonial-title">Owner, Izzi&rsquo;s Gym</div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- WHAT A BEEHIVE IS -->
 <div class="what" id="what">
@@ -2818,6 +2488,168 @@ we dive, we drown, we pirate on,
   </div>
 </div>
 
+<!-- THE BUILDER -->
+<section class="builder-section" id="builder">
+  <div class="builder-inner">
+    <div class="builder-header">
+      <div>
+        <div class="section-eye">The builder</div>
+        <h2 class="builder-title">Built by someone who has lived the problem.</h2>
+      </div>
+      <div class="builder-namecard">
+        <div class="builder-name">Reif<span>Good Industries</span></div>
+        <a class="builder-link" href="https://www.linkedin.com/in/reif/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+      </div>
+    </div>
+
+    <div class="builder-profile">
+      <div class="builder-copy">
+        <div class="builder-label">Meet Reif</div>
+        <div class="builder-credentials">
+          <div class="builder-credential">Grew up in Hawaii experiencing natural disasters</div>
+          <div class="builder-credential">Two-year humanitarian mission in the field</div>
+          <div class="builder-credential">Factory floors, warehouses, and operating teams</div>
+        </div>
+        <p>I grew up in Hawaii, where natural disasters were not abstract. Storms, outages, tsunami warnings, and the isolation of island communities shape how you think about preparation, supply chains, and whether help can actually reach people in time.</p>
+        <p>I also spent two years in the field on a humanitarian mission, serving people up close and seeing what happens when fragile systems meet real human need. The Good Project comes from that overlap: lived disaster experience, humanitarian service, and the operator work of making complex systems actually run.</p>
+        <p>We are closing the gap between the tools that exist and the people who need them.</p>
+        <div class="builder-signature">&mdash; Reif</div>
+      </div>
+      <figure class="builder-portrait">
+        <img src="/assets/photos/reif-portrait.png" alt="Portrait of Reif Tauati">
+        <figcaption>Humanitarian field experience. Operator execution.</figcaption>
+      </figure>
+    </div>
+
+    <div class="field-notes">
+      <div class="field-note"><span>Hawaii</span><strong>Disaster readiness was personal.</strong></div>
+      <div class="field-note"><span>Humanitarian mission</span><strong>Two years serving in the field.</strong></div>
+      <div class="field-note"><span>Operations</span><strong>Built systems where work actually happens.</strong></div>
+    </div>
+
+    <div class="builder-block">
+      <div class="builder-block-head">
+        <div>
+          <div class="builder-block-kicker">Operator history</div>
+          <h3 class="builder-block-title">Built from real operating work.</h3>
+        </div>
+      </div>
+      <div class="history-grid">
+        <article class="history-item">
+          <div class="history-top">
+            <div>
+              <div class="history-org">The Good Project</div>
+              <div class="history-role">Partner / Founder</div>
+            </div>
+            <div class="history-status">Active</div>
+          </div>
+          <p>Building a portfolio of companies aimed at relieving suffering &mdash; food, water, power, logistics, and the systems that hold everything together when things go wrong. Helping founders raise capital, go to market, and build the capabilities needed to scale.</p>
+        </article>
+        <article class="history-item">
+          <div class="history-top">
+            <div>
+              <div class="history-org">Q2 Investments</div>
+              <div class="history-role">Turnaround Executive</div>
+            </div>
+            <div class="history-status">Turnaround</div>
+          </div>
+          <p>Led a portfolio of five personalization e-commerce brands: agiftpersonalized.com, qualtry.com, groomsshop.com, turninghearts.com, and loangifts.com. Oversaw operations, revenue, technology, and team across the full portfolio.</p>
+        </article>
+        <article class="history-item">
+          <div class="history-top">
+            <div>
+              <div class="history-org">Guardia One</div>
+              <div class="history-role">Turnaround CEO</div>
+            </div>
+            <div class="history-status">Founder</div>
+          </div>
+          <p>Founded and launched a Shopify shipping warranty SaaS. Built the product and listed it on the official Shopify App Store.</p>
+        </article>
+        <article class="history-item">
+          <div class="history-top">
+            <div>
+              <div class="history-org">Qualtry</div>
+              <div class="history-role">EVP Revenue</div>
+            </div>
+            <div class="history-status">Sold to PE</div>
+          </div>
+          <p>Joined as PM, grew to EVP leading revenue and technology teams. Launched offsite channels including Amazon, Etsy, and Jane, responsible for $1.5M+ in annual sales.</p>
+        </article>
+        <article class="history-item">
+          <div class="history-top">
+            <div>
+              <div class="history-org">Elevated Billing Solutions</div>
+              <div class="history-role">Product Manager</div>
+            </div>
+            <div class="history-status">Product</div>
+          </div>
+          <p>Captured requirements from six department directors and the executive team. Owned the product backlog and sprint planning across three concurrent engineering teams.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="builder-block">
+      <div class="builder-block-head">
+        <div>
+          <div class="builder-block-kicker">People who have worked with Reif</div>
+          <h3 class="builder-block-title">Trusted by operators, founders, and board members.</h3>
+        </div>
+      </div>
+      <div class="testimonial-grid">
+        <article class="testimonial-card">
+          <blockquote>&ldquo;Reif helped steer Qualtry through a complex merger and a global pandemic. He can set vision at a high level and get scrappy in the weeds to execute.&rdquo;</blockquote>
+          <div class="testimonial-person">
+            <div class="testimonial-name">Gary Kliegman</div>
+            <div class="testimonial-title">COO, LawnStarter &middot; Former Qualtry Board Member</div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <blockquote>&ldquo;Reif uses technology and automation to fix problems with an outside-the-box approach. He takes challenges head on and isn&rsquo;t afraid to roll up his sleeves.&rdquo;</blockquote>
+          <div class="testimonial-person">
+            <div class="testimonial-name">Michael Simon</div>
+            <div class="testimonial-title">Managing Principal, Traverse Pointe Partners</div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <blockquote>&ldquo;Reif has a knack for understanding complicated processes and designing systems that streamline them and make them more efficient.&rdquo;</blockquote>
+          <div class="testimonial-person">
+            <div class="testimonial-name">Mike Kunz</div>
+            <div class="testimonial-title">SVP Operations, AAPC</div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <blockquote>&ldquo;Reif is resourceful and has a knack for leveraging automation and technology to improve systems and processes.&rdquo;</blockquote>
+          <div class="testimonial-person">
+            <div class="testimonial-name">Patrick Glenn</div>
+            <div class="testimonial-title">Operations &middot; Supply Chain &middot; eCommerce &middot; Software</div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <blockquote>&ldquo;Reif possesses exceptional strategic vision and an impressive ability to navigate complex business challenges.&rdquo;</blockquote>
+          <div class="testimonial-person">
+            <div class="testimonial-name">Brock Klemetson</div>
+            <div class="testimonial-title">Gift Homie</div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <blockquote>&ldquo;Reif is scrappy, extremely hardworking, and has a knack for making big things happen with very limited resources.&rdquo;</blockquote>
+          <div class="testimonial-person">
+            <div class="testimonial-name">Stephen Kunz</div>
+            <div class="testimonial-title">Marketing Account Manager, Weber Associates</div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <blockquote>&ldquo;Reif is entirely comfortable wearing many hats, adapting to various roles with ease and efficiency.&rdquo;</blockquote>
+          <div class="testimonial-person">
+            <div class="testimonial-name">Christopher Hamze</div>
+            <div class="testimonial-title">Owner, Izzi&rsquo;s Gym</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- WHAT IT CREATES -->
 <div class="creates">
   <div class="creates-quote">If you are prepared,<br>you shall not fear.</div>
@@ -3098,12 +2930,6 @@ document.addEventListener('keydown', e => {
 </script>
 
 <script>
-function toggleManifesto(btn){
-  btn.classList.toggle('open');
-  btn.nextElementSibling.classList.toggle('open');
-  btn.querySelector('.tog-arrow').textContent = btn.classList.contains('open') ? '×' : '+';
-}
-
 // DONATE INTERACTIVE
 (function(){
   const DONATION_SCROLL_KEY = 'tgpDonationScrollAnchor';
